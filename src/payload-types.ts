@@ -72,9 +72,11 @@ export interface Config {
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaProducts: MediaProduct;
+    mediaClients: MediaClient;
     servicesSection: ServicesSection;
     techsSection: TechsSection;
     productsSection: ProductsSection;
+    clientsSection: ClientsSection;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -86,9 +88,11 @@ export interface Config {
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
+    mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     servicesSection: ServicesSectionSelect<false> | ServicesSectionSelect<true>;
     techsSection: TechsSectionSelect<false> | TechsSectionSelect<true>;
     productsSection: ProductsSectionSelect<false> | ProductsSectionSelect<true>;
+    clientsSection: ClientsSectionSelect<false> | ClientsSectionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -227,6 +231,25 @@ export interface MediaProduct {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaClients".
+ */
+export interface MediaClient {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "servicesSection".
  */
 export interface ServicesSection {
@@ -286,6 +309,23 @@ export interface ProductsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clientsSection".
+ */
+export interface ClientsSection {
+  id: number;
+  /**
+   * Name of the client
+   */
+  clientName: string;
+  /**
+   * Client's logo
+   */
+  clientLogo: number | MediaClient;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -312,6 +352,10 @@ export interface PayloadLockedDocument {
         value: number | MediaProduct;
       } | null)
     | ({
+        relationTo: 'mediaClients';
+        value: number | MediaClient;
+      } | null)
+    | ({
         relationTo: 'servicesSection';
         value: number | ServicesSection;
       } | null)
@@ -322,6 +366,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'productsSection';
         value: number | ProductsSection;
+      } | null)
+    | ({
+        relationTo: 'clientsSection';
+        value: number | ClientsSection;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -461,6 +509,24 @@ export interface MediaProductsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaClients_select".
+ */
+export interface MediaClientsSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "servicesSection_select".
  */
 export interface ServicesSectionSelect<T extends boolean = true> {
@@ -488,6 +554,16 @@ export interface TechsSectionSelect<T extends boolean = true> {
 export interface ProductsSectionSelect<T extends boolean = true> {
   productTitle?: T;
   productImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clientsSection_select".
+ */
+export interface ClientsSectionSelect<T extends boolean = true> {
+  clientName?: T;
+  clientLogo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -3,14 +3,13 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 
-export async function getDataProduct() {
+export async function getDataClients() {
   const payload = await getPayload({ config: await configPromise });
 
   const result = await payload.find({
-    collection: "productsSection",
-    sort: "-createdAt",
-    limit: 4
+    collection: "clientsSection",
+    sort: "createdAt"
   });
-  // console.log(result)
+  console.log(result)
   return result.docs || [];
 }

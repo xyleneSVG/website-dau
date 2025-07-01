@@ -11,13 +11,20 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 
+// Media Collections
 import { MediaServices } from './collections/landing/media/MediaServices'
 import { MediaTech } from './collections/landing/media/MediaTech'
 import { MediaProducts } from './collections/landing/media/MediaProducts'
+import { MediaClients } from './collections/landing/media/MediaClients'
 
+// Collections Landing
 import { ServicesSection } from './collections/landing/Services'
 import { TechsSection } from './collections/landing/Tech'
 import { ProductsSection } from './collections/landing/Products'
+import { ClientsSection } from './collections/landing/Clients'
+
+// Collections Message Guests
+import { Messages } from './collections/Messages'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -29,7 +36,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, MediaServices, MediaTech, MediaProducts, ServicesSection, TechsSection, ProductsSection],
+  collections: [Users, Media, Messages, MediaServices, MediaTech, MediaProducts, MediaClients, ServicesSection, TechsSection, ProductsSection, ClientsSection],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
