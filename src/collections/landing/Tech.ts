@@ -3,36 +3,27 @@ import type { CollectionConfig } from 'payload'
 export const TechsSection: CollectionConfig = {
   slug: 'techsSection',
   admin: {
-    useAsTitle: 'tech',
+    useAsTitle: 'techName',
     group: 'Landing Page',
   },
   fields: [
     {
-      name: 'tech',
-      type: 'array',
-      label: 'Technology Used',
-      labels: {
-        singular: 'Tech',
-        plural: 'Techs',
-      },
+      name: 'techName',
+      type: 'text',
       required: true,
-      fields: [
-        {
-          name: 'techName',
-          type: 'text',
-          required: true,
-          label: 'Technology Name',
-        },
-        {
-          name: 'techIcon',
-          type: 'upload',
-          relationTo: 'mediaTech',
-          required: true,
-          label: 'Technology Icon',
-        },
-      ],
+      label: 'Technology Name',
       admin: {
-        description: 'Tambahkan satu atau lebih teknologi yang digunakan (dianjurkan format icon teknologi adalah SVG)',
+        description: 'Name of the technology used',
+      },
+    },
+    {
+      name: 'techIcon',
+      type: 'upload',
+      relationTo: 'mediaTech',
+      required: true,
+      label: 'Technology Icon',
+      admin: {
+        description: 'Technology icon used',
       },
     },
   ],

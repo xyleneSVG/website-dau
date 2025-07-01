@@ -10,5 +10,6 @@ export async function getDataTech() {
     collection: "techsSection",
     sort: "createdAt"
   });
+  console.log(result)
   return result.docs || [];
 }

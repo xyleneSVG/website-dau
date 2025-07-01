@@ -26,7 +26,7 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="w-full h-max flex flex-col gap-y-6 px-4 py-3.5 sticky top-0 z-50" style={{background: "linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)"}}>
+            <div className="w-full h-max flex flex-col gap-y-6 px-4 py-3.5 fixed top-0 z-50" style={{background: "linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)"}}>
                 <div className="flex flex-row justify-between items-center md:hidden">
                     <Image src={logoDataAndalanUtama} alt={""} className="w-28 h-auto md:hidden"></Image>
                     <div className="block md:hidden">
@@ -74,6 +74,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
+            <div className="w-full h-[78px] lg:h-[108px]"></div>
         </>
     )
 }

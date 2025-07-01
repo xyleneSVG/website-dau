@@ -17,7 +17,6 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
 
   const [startIndex, setStartIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
-  const techList = techs[0]?.tech || []
 
   useEffect(() => {
     const updateVisibleCount = () => {
@@ -33,13 +32,13 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
 
   const handlePrev = () => {
     setStartIndex((prev) =>
-      (prev - visibleCount + techList.length) % techList.length
+      (prev - visibleCount + techs.length) % techs.length
     )
   }
 
   const handleNext = () => {
     setStartIndex((prev) =>
-      (prev + visibleCount) % techList.length
+      (prev + visibleCount) % techs.length
     )
   }
 
@@ -47,8 +46,8 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
     const items = []
 
     for (let i = 0; i < visibleCount; i++) {
-      const index = (startIndex + i) % techList.length
-      const tech = techList[index]
+      const index = (startIndex + i) % techs.length
+      const tech = techs[index]
       items.push({
         ...tech,
         key: i
@@ -62,7 +61,6 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
   
   // debug
   // console.log(techs)
-  // console.log(techList)
 
   return (
     <div className="w-full relative bg-[#DEE9FF]">
@@ -80,7 +78,7 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
           <Image width={0} height={0} src={icon1} alt="" className="w-max h-auto mx-auto sm:w-[440px] lg:w-[720px] xl:w-[840px] 2xl:w-[1002px]" />
 
           <div className="flex flex-row items-center gap-x-3 justify-center overflow-hidden lg:gap-x-7 xl:gap-x-9 2xl:gap-x-12">
-            {techList.length > visibleCount && (
+            {techs.length > visibleCount && (
               <button
                 onClick={handlePrev}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
@@ -114,7 +112,7 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
               </AnimatePresence>
             </div>
 
-            {techList.length > visibleCount && (
+            {techs.length > visibleCount && (
               <button
                 onClick={handleNext}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"

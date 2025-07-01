@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const MediaTech: CollectionConfig = {
   slug: 'mediaTech',
+  admin: {
+    group: 'Media Collection'
+  },
   access: {
     read: () => true,
   },

@@ -257,13 +257,13 @@ export interface ServicesSection {
 export interface TechsSection {
   id: number;
   /**
-   * Tambahkan satu atau lebih teknologi yang digunakan (dianjurkan format icon teknologi adalah SVG)
+   * Name of the technology used
    */
-  tech: {
-    techName: string;
-    techIcon: number | MediaTech;
-    id?: string | null;
-  }[];
+  techName: string;
+  /**
+   * Technology icon used
+   */
+  techIcon: number | MediaTech;
   updatedAt: string;
   createdAt: string;
 }
@@ -476,13 +476,8 @@ export interface ServicesSectionSelect<T extends boolean = true> {
  * via the `definition` "techsSection_select".
  */
 export interface TechsSectionSelect<T extends boolean = true> {
-  tech?:
-    | T
-    | {
-        techName?: T;
-        techIcon?: T;
-        id?: T;
-      };
+  techName?: T;
+  techIcon?: T;
   updatedAt?: T;
   createdAt?: T;
 }
