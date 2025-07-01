@@ -18,9 +18,9 @@ import { ServiceItem } from "../_interfaces/serviceItem";
 export default function Service({ services, domainBlob }: { services: ServiceItem[], domainBlob: string }) {
     return (
         <div className="w-full relative">
-            <Image width={0} height={0} src={backgroundIcon1} alt="" className="absolute top-0 left-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
-            <Image width={0} height={0} src={backgroundIcon2} alt="" className="absolute top-[35%] right-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
-            <Image width={0} height={0} src={backgroundIcon3} alt="" className="absolute bottom-0 left-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
+            <Image priority width={0} height={0} src={backgroundIcon1} alt="" className="absolute top-0 left-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
+            <Image priority width={0} height={0} src={backgroundIcon2} alt="" className="absolute top-[35%] right-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
+            <Image priority width={0} height={0} src={backgroundIcon3} alt="" className="absolute bottom-0 left-0 w-[340px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"/>
             <div className="w-full p-8 flex flex-col items-center gap-y-14 md:pt-15 2xl:gap-y-24">
                 <div className="flex flex-col items-center gap-y-1">
                     <h1 className="uppercase font-light text-[18px] md:text-[40px] 2xl:text-[64px]">Layanan Data Andalan Utama</h1>

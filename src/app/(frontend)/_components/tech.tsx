@@ -59,13 +59,15 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
   }
 
   const visibleBoxes = getVisibleBoxes()
-  console.log(techs)
-  console.log(techList)
+  
+  // debug
+  // console.log(techs)
+  // console.log(techList)
 
   return (
     <div className="w-full relative bg-[#DEE9FF]">
-      <Image width={0} height={0} src={background1} className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 " alt={""}/>
-      <Image width={0} height={0} src={background2} className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1" alt={""}/>
+      <Image priority width={0} height={0} src={background1} className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 " alt={""}/>
+      <Image priority width={0} height={0} src={background2} className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1" alt={""}/>
       <div className="py-5 px-7 lg:py-16">
         <div className="relative flex flex-col justify-center gap-y-5 sm:gap-y-8 xl:gap-y-16 2xl:gap-y-22 z-3">
           <div className="text-center flex flex-col gap-y-2.5">

@@ -14,11 +14,13 @@ import Product from "./_components/product"
 // functions
 import { getDataServices } from "./_functions/getDataServices";
 import { getDataTech } from "./_functions/getDataTech"
+import { getDataProduct } from "./_functions/getDataProducts"
 
 export default function HomePage() {
   const [fetching, setFetching] = useState(false)
   const [services, setServices] = useState<any[]>([])
   const [techs, setTechs] = useState<any[]>([])
+  const [products, setProducts] = useState<any[]>([])
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
 
   useEffect(() => {
@@ -31,6 +33,11 @@ export default function HomePage() {
       const result = await getDataTech()
       setTechs(result)
     }
+
+    const fetchDataProducts = async () => {
+      const result = await getDataProduct()
+      setProducts(result)
+    }
     
     const fetchAllData = async () => {
       setFetching(true);
@@ -38,6 +45,7 @@ export default function HomePage() {
         await Promise.all([
           fetchDataTechs(),
           fetchDataServices(),
+          fetchDataProducts()
         ]);
       } catch (error) {
         console.error("Error in fetching data:", error);
@@ -47,7 +55,6 @@ export default function HomePage() {
     };
     fetchAllData()
   }, []);
-
 
   return (
     <AnimatePresence mode="wait">
@@ -73,7 +80,7 @@ export default function HomePage() {
           <Hero />
           <Service services={services} domainBlob={domainBlob} />
           <Tech techs={techs} domainBlob={domainBlob}/>
-          <Product/>
+          <Product products={products} domainBlob={domainBlob}/>
         </motion.div>
       )}
     </AnimatePresence>
