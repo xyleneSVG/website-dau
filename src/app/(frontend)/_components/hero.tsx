@@ -46,7 +46,7 @@ export default function Hero() {
             <Image priority src={background} alt={""} className="w-[420px] md:w-[622px] h-auto absolute top-0 left-0 2xl:w-[1056px]"/>
             <div className="flex flex-col w-full items-center gap-y-1 mb-4 md:flex-row md:justify-between md:items-end">
                 <Image src={gif1} alt={""} className="hidden w-52 h-auto lg:block 2xl:w-[280px]"/>
-                <div className="font-semibold text-center md:-translate-y-18 w-full max-w-[350px] text-[18px] h-50 flex flex-col items-center justify-center lg:text-[34px] lg:w-[512px] 2xl:text-[40px] 2xl:w-[600px] 2xl:-translate-y-38">
+                <div className="font-semibold text-center md:-translate-y-18 w-full max-sm:max-w-[350px] text-[18px] h-50 flex flex-col items-center justify-center lg:text-[34px] lg:w-[512px] 2xl:text-[40px] 2xl:w-[600px] 2xl:-translate-y-38">
                     {greetings[currentIndex].type === "image-text" ? (
                         <div className="flex flex-col items-center gap-2">
                             <Image
