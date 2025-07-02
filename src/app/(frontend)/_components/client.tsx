@@ -6,6 +6,9 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
+// images
+import background from "public/assets/landing/client/background1.svg"
+
 // interfaces
 import { ClientItem } from "../_interfaces/clientItem";
 
@@ -65,7 +68,8 @@ export default function Client({ clients, domainBlob }: { clients: ClientItem[],
 
   return (
     <div className="w-full relative">
-      <div className="w-full p-4 flex flex-col items-center gap-y-7 md:pt-15 2xl:gap-y-24">
+      <Image className="absolute z-0 w-[205px] h-auto top-0 right-0 md:w-[340px] md:-top-[10%] xl:w-[450px] xl:-top-[50%]" src={background} alt={""} width={0} height={0} />
+      <div className="w-full relative z-10 p-4 flex flex-col items-center gap-y-7 md:pt-10 2xl:gap-y-24">
         <h1 className="font-light text-[18px] uppercase lg:text-[40px] 2xl:text-[64px]">KLIEN KAMI</h1>
         <div className="flex flex-row items-center gap-5 sm:gap-8">
           {clients.length > visibleCount && (
@@ -88,7 +92,7 @@ export default function Client({ clients, domainBlob }: { clients: ClientItem[],
               >
                 {firstRow.map((item) =>
                   item.clientLogo?.filename && (
-                    <div key={item.key} className="flex items-center justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]">
+                    <div key={item.key} className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]">
                       <Image
                         src={domainBlob + item.clientLogo.filename}
                         alt={`client-${item.key}`}
@@ -115,7 +119,7 @@ export default function Client({ clients, domainBlob }: { clients: ClientItem[],
               >
                 {secondRow.map((item) =>
                   item.clientLogo?.filename && (
-                    <div key={item.key} className="flex items-center justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]">
+                    <div key={item.key} className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]">
                       <Image
                         src={domainBlob + item.clientLogo.filename}
                         alt={`client-${item.key}`}
