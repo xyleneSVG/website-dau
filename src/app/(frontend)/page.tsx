@@ -10,17 +10,21 @@ import Hero from "./_components/hero"
 import Service from "./_components/service"
 import Tech from "./_components/tech"
 import Product from "./_components/product"
+import Client from "./_components/client"
 
 // functions
-import { getDataServices } from "./_functions/getDataServices";
-import { getDataTech } from "./_functions/getDataTech"
-import { getDataProduct } from "./_functions/getDataProducts"
+import { getDataServices } from "./_functions/getDataServices"
+import { getDataTechs } from "./_functions/getDataTechs"
+import { getDataProducts } from "./_functions/getDataProducts"
+import { getDataClients } from "./_functions/getDataClients"
 
 export default function HomePage() {
   const [fetching, setFetching] = useState(false)
   const [services, setServices] = useState<any[]>([])
   const [techs, setTechs] = useState<any[]>([])
   const [products, setProducts] = useState<any[]>([])
+  const [clients, setClients] = useState<any[]>([])
+
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
 
   useEffect(() => {
@@ -30,13 +34,18 @@ export default function HomePage() {
     }
     
     const fetchDataTechs = async () => {
-      const result = await getDataTech()
+      const result = await getDataTechs()
       setTechs(result)
     }
 
     const fetchDataProducts = async () => {
-      const result = await getDataProduct()
+      const result = await getDataProducts()
       setProducts(result)
+    }
+
+    const fetchDataClients = async () => {
+      const result = await getDataClients()
+      setClients(result)
     }
     
     const fetchAllData = async () => {
@@ -45,7 +54,8 @@ export default function HomePage() {
         await Promise.all([
           fetchDataTechs(),
           fetchDataServices(),
-          fetchDataProducts()
+          fetchDataProducts(),
+          fetchDataClients()
         ]);
       } catch (error) {
         console.error("Error in fetching data:", error);
@@ -79,8 +89,9 @@ export default function HomePage() {
           <Navbar />
           <Hero />
           <Service services={services} domainBlob={domainBlob} />
-          <Tech techs={techs} domainBlob={domainBlob}/>
-          <Product products={products} domainBlob={domainBlob}/>
+          <Tech techs={techs} domainBlob={domainBlob} />
+          <Product products={products} domainBlob={domainBlob} />
+          <Client clients={clients} domainBlob={domainBlob} />
         </motion.div>
       )}
     </AnimatePresence>

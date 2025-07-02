@@ -13,7 +13,7 @@ export const ClientsSection: CollectionConfig = {
       required: true,
       label: 'Client Name',
       admin: {
-        description: 'Name of the client',
+        description: "Client's name",
       },
     },
     {

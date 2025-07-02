@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Messages: CollectionConfig = {
   slug: 'messages',
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: 'senderEmail',
     group: 'Message from guests'
   },
   fields: [
@@ -18,12 +18,6 @@ export const Messages: CollectionConfig = {
       type: 'email',
       required: true,
       label: 'Sender Email'
-    },
-    {
-      name: 'senderPhone',
-      type: 'text',
-      required: true,
-      label: 'Sender Phone'
     },
     {
       name: 'senderPhone',

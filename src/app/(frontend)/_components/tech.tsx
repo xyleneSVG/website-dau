@@ -1,8 +1,9 @@
 "use client"
 
+// modules
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, scale } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 // assets
@@ -13,10 +14,11 @@ import background2 from "public/assets/landing/tech/background2.svg"
 // interfaces
 import { TechItem } from "../_interfaces/techItem"
 
-export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob: string}) {
-
+export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainBlob: string }) {
   const [startIndex, setStartIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
+  const [direction, setDirection] = useState<"next" | "prev">("next")
+  const [animationKey, setAnimationKey] = useState(0) // to trigger AnimatePresence re-render
 
   useEffect(() => {
     const updateVisibleCount = () => {
@@ -31,41 +33,51 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
   }, [])
 
   const handlePrev = () => {
-    setStartIndex((prev) =>
-      (prev - visibleCount + techs.length) % techs.length
-    )
+    setDirection("prev")
+    setStartIndex((prev) => (prev - visibleCount + techs.length) % techs.length)
+    setAnimationKey(prev => prev + 1)
   }
 
   const handleNext = () => {
-    setStartIndex((prev) =>
-      (prev + visibleCount) % techs.length
-    )
+    setDirection("next")
+    setStartIndex((prev) => (prev + visibleCount) % techs.length)
+    setAnimationKey(prev => prev + 1)
   }
 
   const getVisibleBoxes = () => {
     const items = []
-
     for (let i = 0; i < visibleCount; i++) {
       const index = (startIndex + i) % techs.length
       const tech = techs[index]
-      items.push({
-        ...tech,
-        key: i
-      })
+      items.push({ ...tech, key: i })
     }
-
     return items
   }
 
   const visibleBoxes = getVisibleBoxes()
-  
-  // debug
-  // console.log(techs)
+
+  const slideVariants = {
+    initial: (dir: "next" | "prev") => ({
+      x: dir === "next" ? 300 : -300,
+      opacity: 0
+    }),
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.7 }
+    },
+    exit: (dir: "next" | "prev") => ({
+      x: dir === "next" ? -300 : 300,
+      opacity: 0,
+      transition: { duration: 0.7 }
+    })
+  }
 
   return (
-    <div className="w-full relative bg-[#DEE9FF]">
-      <Image priority width={0} height={0} src={background1} className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 " alt={""}/>
-      <Image priority width={0} height={0} src={background2} className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1" alt={""}/>
+    <div className="w-full relative bg-[#DEE9FF] overflow-hidden">
+      <Image priority width={0} height={0} src={background1} className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 " alt={""} />
+      <Image priority width={0} height={0} src={background2} className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1" alt={""} />
+
       <div className="py-5 px-7 lg:py-16">
         <div className="relative flex flex-col justify-center gap-y-5 sm:gap-y-8 xl:gap-y-16 2xl:gap-y-22 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
@@ -88,27 +100,33 @@ export default function Tech({techs, domainBlob}:{techs: TechItem[], domainBlob:
             )}
 
             <div className="flex gap-x-3 overflow-hidden lg:gap-x-7 xl:gap-x-10">
-              <AnimatePresence mode="popLayout">
-                {visibleBoxes.map((item) => (
-                  <motion.div
-                    key={item.key}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                    className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32"
-                  >
-                    {item.techIcon?.filename && (
-                      <Image
-                        width={0}
-                        height={0}
-                        src={domainBlob + item.techIcon.filename}
-                        className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
-                        alt={item.techName}
-                      />
-                    )}
-                  </motion.div>
-                ))}
+              <AnimatePresence custom={direction} mode="wait">
+                <motion.div
+                  key={animationKey}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="flex gap-x-3 lg:gap-x-7 xl:gap-x-10 justify-center w-max"
+                >
+                  {visibleBoxes.map((item) => (
+                    <div
+                      key={item.key}
+                      className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32"
+                    >
+                      {item.techIcon?.filename && (
+                        <Image
+                          width={0}
+                          height={0}
+                          src={domainBlob + item.techIcon.filename}
+                          className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
+                          alt={item.techName}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </motion.div>
               </AnimatePresence>
             </div>
 

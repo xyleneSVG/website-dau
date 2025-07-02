@@ -8,7 +8,8 @@ export async function getDataClients() {
 
   const result = await payload.find({
     collection: "clientsSection",
-    sort: "createdAt"
+    sort: "createdAt",
+    limit: 0
   });
   console.log(result)
   return result.docs || [];

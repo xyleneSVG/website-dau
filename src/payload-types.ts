@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    messages: Message;
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaProducts: MediaProduct;
@@ -85,6 +86,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    messages: MessagesSelect<false> | MessagesSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
@@ -171,6 +173,21 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messages".
+ */
+export interface Message {
+  id: number;
+  senderName: string;
+  senderEmail: string;
+  senderPhone: string;
+  senderCompany: string;
+  senderMessage: string;
+  senderContactedVia: 'email' | 'phone' | 'whatsapp';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -314,7 +331,7 @@ export interface ProductsSection {
 export interface ClientsSection {
   id: number;
   /**
-   * Name of the client
+   * Client's name
    */
   clientName: string;
   /**
@@ -338,6 +355,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'messages';
+        value: number | Message;
       } | null)
     | ({
         relationTo: 'mediaServices';
@@ -452,6 +473,20 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messages_select".
+ */
+export interface MessagesSelect<T extends boolean = true> {
+  senderName?: T;
+  senderEmail?: T;
+  senderPhone?: T;
+  senderCompany?: T;
+  senderMessage?: T;
+  senderContactedVia?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
