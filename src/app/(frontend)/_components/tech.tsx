@@ -3,7 +3,7 @@
 // modules
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { motion, AnimatePresence, scale } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 // assets
@@ -18,7 +18,7 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainB
   const [startIndex, setStartIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
   const [direction, setDirection] = useState<"next" | "prev">("next")
-  const [animationKey, setAnimationKey] = useState(0) // to trigger AnimatePresence re-render
+  const [animationKey, setAnimationKey] = useState(0) 
 
   useEffect(() => {
     const updateVisibleCount = () => {
