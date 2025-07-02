@@ -58,18 +58,18 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainB
 
   const slideVariants = {
     initial: (dir: "next" | "prev") => ({
-      x: dir === "next" ? 300 : -300,
+      x: dir === "next" ? 100 : -100,
       opacity: 0
     }),
     animate: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.7 }
+      transition: { duration: 0.4 }
     },
     exit: (dir: "next" | "prev") => ({
-      x: dir === "next" ? -300 : 300,
+      x: dir === "next" ? -100 : 100,
       opacity: 0,
-      transition: { duration: 0.7 }
+      transition: { duration: 0.4 }
     })
   }
 
