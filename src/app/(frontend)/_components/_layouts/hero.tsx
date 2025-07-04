@@ -37,7 +37,7 @@ export default function Hero({
   }, [greetings.length])
 
   return (
-    <div className="w-full h-auto relative p-8 border">
+    <div className="w-full h-auto relative p-8">
       <Image
         width={0}
         height={0}

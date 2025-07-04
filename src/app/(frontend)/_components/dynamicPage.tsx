@@ -10,6 +10,8 @@ import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import Service from './_layouts/service'
 import Tech from './_layouts/tech'
+import Product from './_layouts/product'
+import Client from './_layouts/client'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -55,6 +57,10 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
       case 'technologySection':
         return <Tech key={index} technologySection={section} domainBlob={domainBlob} />
+      case 'productSection':
+        return <Product key={index} productSection={section} domainBlob={domainBlob} />
+      case 'clientSection':
+        return <Client key={index} clientSection={section} domainBlob={domainBlob} />
       default:
         return null
     }

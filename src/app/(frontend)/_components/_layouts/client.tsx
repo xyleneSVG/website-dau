@@ -10,15 +10,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import background from 'public/assets/landing/client/background1.svg'
 
 // interfaces
-import { ClientItem } from '../../_interfaces/clientItem'
+import { ClientSection } from '../../_interfaces/pages'
 
-export default function Client({
-  clients,
-  domainBlob,
-}: {
-  clients: ClientItem[]
-  domainBlob: string
-}) {
+export default function Client({clientSection, domainBlob}: {clientSection: ClientSection, domainBlob: string}) {
   const [visibleCount, setVisibleCount] = useState(4)
   const [startIndex, setStartIndex] = useState(0)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -37,19 +31,19 @@ export default function Client({
 
   const handlePrev = () => {
     setDirection('prev')
-    setStartIndex((prev) => (prev - visibleCount + clients.length) % clients.length)
+    setStartIndex((prev) => (prev - visibleCount + clientSection.clientLists.length) % clientSection.clientLists.length)
   }
 
   const handleNext = () => {
     setDirection('next')
-    setStartIndex((prev) => (prev + visibleCount) % clients.length)
+    setStartIndex((prev) => (prev + visibleCount) % clientSection.clientLists.length)
   }
 
   const getVisibleClient = () => {
     const items = []
     for (let i = 0; i < visibleCount; i++) {
-      const index = (startIndex + i) % clients.length
-      const tech = clients[index]
+      const index = (startIndex + i) % clientSection.clientLists.length
+      const tech = clientSection.clientLists[index]
       items.push({ ...tech, key: i })
     }
     return items
@@ -86,7 +80,7 @@ export default function Client({
           KLIEN KAMI
         </h1>
         <div className="flex flex-row items-center gap-5 sm:gap-8">
-          {clients.length > visibleCount && (
+          {clientSection.clientLists.length > visibleCount && (
             <button
               onClick={handlePrev}
               className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
@@ -159,7 +153,7 @@ export default function Client({
             </AnimatePresence>
           </div>
 
-          {clients.length > visibleCount && (
+          {clientSection.clientLists.length > visibleCount && (
             <button
               onClick={handleNext}
               className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"

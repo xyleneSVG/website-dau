@@ -54,11 +54,40 @@ export interface TechnologySection {
 }
 
 export interface TechnologyLists {
-    id: string,
-    technologyName: string,
-    technologyIcon: ImageItem,
+  id: string,
+  technologyName: string,
+  technologyIcon: ImageItem,
 }
 
+// Product
+export interface ProductSection {
+  id: string,
+  sectionProductTitle: string,
+  sectionProductSubtitle: string,
+  productLists: ProductLists[]
+}
+
+export interface ProductLists {
+  id: string,
+  productTitle: string,
+  productDisplay: ImageItem,
+}
+
+// Client
+export interface ClientSection {
+  id: string,
+  sectionClientTitle: string,
+  clientLists: ClientLists[]
+}
+
+export interface ClientLists {
+  id: string,
+  clientName: string,
+  clientLogo: ImageItem,
+}
+
+
+// Image
 export interface ImageItem {
   id: string;
   filename: string;

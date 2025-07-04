@@ -627,12 +627,12 @@ export interface PagesSelect<T extends boolean = true> {
   pageSection?:
     | T
     | {
-        heroSection?: T | HeroSectionSelect;
-        serviceSection?: T | ServiceSectionSelect;
-        technologySection?: T | ServiceSectionSelect;
-        productSection?: T | ProductSectionSelect;
-        clientSection?: T | ClientSectionSelect;
-        contactSection?: T | ContactSectionSelect;
+        heroSection?: T | HeroSectionSelect<T>;
+        serviceSection?: T | ServiceSectionSelect<T>;
+        technologySection?: T | ServiceSectionSelect<T>;
+        productSection?: T | ProductSectionSelect<T>;
+        clientSection?: T | ClientSectionSelect<T>;
+        contactSection?: T | ContactSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
