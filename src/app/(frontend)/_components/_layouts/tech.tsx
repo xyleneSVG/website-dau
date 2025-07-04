@@ -12,9 +12,9 @@ import background1 from 'public/assets/landing/tech/background1.svg'
 import background2 from 'public/assets/landing/tech/background2.svg'
 
 // interfaces
-import { TechItem } from '../../_interfaces/techItem'
+import { TechnologySection } from '../../_interfaces/pages'
 
-export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainBlob: string }) {
+export default function Tech({ technologySection, domainBlob }: { technologySection: TechnologySection; domainBlob: string }) {
   const [startIndex, setStartIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -34,21 +34,21 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainB
 
   const handlePrev = () => {
     setDirection('prev')
-    setStartIndex((prev) => (prev - visibleCount + techs.length) % techs.length)
+    setStartIndex((prev) => (prev - visibleCount + technologySection.technologyLists.length) % technologySection.technologyLists.length)
     setAnimationKey((prev) => prev + 1)
   }
 
   const handleNext = () => {
     setDirection('next')
-    setStartIndex((prev) => (prev + visibleCount) % techs.length)
+    setStartIndex((prev) => (prev + visibleCount) % technologySection.technologyLists.length)
     setAnimationKey((prev) => prev + 1)
   }
 
   const getVisibleBoxes = () => {
     const items = []
     for (let i = 0; i < visibleCount; i++) {
-      const index = (startIndex + i) % techs.length
-      const tech = techs[index]
+      const index = (startIndex + i) % technologySection.technologyLists.length
+      const tech = technologySection.technologyLists[index]
       items.push({ ...tech, key: i })
     }
     return items
@@ -113,7 +113,7 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainB
           />
 
           <div className="flex flex-row items-center gap-x-3 justify-center overflow-hidden lg:gap-x-7 xl:gap-x-9 2xl:gap-x-12">
-            {techs.length > visibleCount && (
+            {technologySection.technologyLists.length > visibleCount && (
               <button
                 onClick={handlePrev}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
@@ -138,13 +138,13 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainB
                       key={item.key}
                       className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32"
                     >
-                      {item.techIcon?.filename && (
+                      {item.technologyIcon?.filename && (
                         <Image
                           width={0}
                           height={0}
-                          src={domainBlob + item.techIcon.filename}
+                          src={domainBlob + item.technologyIcon.filename}
                           className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
-                          alt={item.techName}
+                          alt={item.technologyName}
                         />
                       )}
                     </div>
@@ -153,7 +153,7 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainB
               </AnimatePresence>
             </div>
 
-            {techs.length > visibleCount && (
+            {technologySection.technologyLists.length > visibleCount && (
               <button
                 onClick={handleNext}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
