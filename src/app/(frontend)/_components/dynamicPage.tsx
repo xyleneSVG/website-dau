@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -8,14 +9,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import Service from './_layouts/service'
+import Tech from './_layouts/tech'
 
-// types
+// interfaces
 import type { Page } from '../_interfaces/pages'
+interface DynamicPageProps {
+  slug: string;
+}
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
 
-export default function DynamicPage({ slug }: { slug: string }) {
+export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
   const router = useRouter()
@@ -48,6 +53,8 @@ export default function DynamicPage({ slug }: { slug: string }) {
         return <Hero key={index} heroSection={section} domainBlob={domainBlob} />
       case 'serviceSection':
         return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
+      case 'technologySection':
+        return <Tech key={index} technologySection={section} domainBlob={domainBlob} />
       default:
         return null
     }

@@ -8,8 +8,9 @@ export interface Page {
   createdAt: string;
 }
 
-export type PageSection = HeroSection | ServiceSection; 
+export type PageSection = HeroSection | ServiceSection | TechnologySection; 
 
+// Hero
 export interface HeroSection {
   id: string;
   blockName?: string;
@@ -26,6 +27,7 @@ export interface Greeting {
   textGreeting: string;
 }
 
+// Service
 export interface ServiceSection {
   id: string;
   blockName?: string;
@@ -40,6 +42,21 @@ export interface ServiceLists {
     serviceListTitle: string,
     serviceListDescription: string,
     serviceListIcon: ImageItem
+}
+
+// Technology
+export interface TechnologySection {
+  id: string,
+  sectionTechnologyTitle: string,
+  sectionTechnologySubtitle: string,
+  sectionTechnologyIllustration: ImageItem,
+  technologyLists: TechnologyLists[]
+}
+
+export interface TechnologyLists {
+    id: string,
+    technologyName: string,
+    technologyIcon: ImageItem,
 }
 
 export interface ImageItem {
