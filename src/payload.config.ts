@@ -9,11 +9,12 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
 
-// Media Collections
+// Storage Collections
+import { MediaHero } from './collections/landing/media/MediaHero'
 import { MediaServices } from './collections/landing/media/MediaServices'
 import { MediaTech } from './collections/landing/media/MediaTech'
+import { MediaTechnology } from './collections/landing/media/MediaTechnology'
 import { MediaProducts } from './collections/landing/media/MediaProducts'
 import { MediaClients } from './collections/landing/media/MediaClients'
 
@@ -23,8 +24,13 @@ import { TechsSection } from './collections/landing/Tech'
 import { ProductsSection } from './collections/landing/Products'
 import { ClientsSection } from './collections/landing/Clients'
 
-// Collections Message Guests
-import { Messages } from './collections/Messages'
+// Collections Advance Configuration
+import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
+
+// Collections Message From Guests
+import { MessageFromGuests } from './collections/messages/MessageFromGuests'
+
+import { Pages } from './collections/Pages'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,7 +42,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Messages, MediaServices, MediaTech, MediaProducts, MediaClients, ServicesSection, TechsSection, ProductsSection, ClientsSection],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, ServicesSection, TechsSection, ProductsSection, ClientsSection],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -52,8 +58,9 @@ export default buildConfig({
     payloadCloudPlugin(),
     vercelBlobStorage({
       enabled: true,
-      collections: { 
-        media: true,
+      collections: {
+        mediaHero: true,
+        mediaTechnology: true,
         mediaServices: true,
         mediaTech: true,
         mediaProducts: true,

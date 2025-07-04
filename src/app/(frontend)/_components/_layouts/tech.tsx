@@ -1,24 +1,24 @@
-"use client"
+'use client'
 
 // modules
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 // assets
-import icon1 from "public/assets/landing/tech/icon1.svg"
-import background1 from "public/assets/landing/tech/background1.svg"
-import background2 from "public/assets/landing/tech/background2.svg"
+import icon1 from 'public/assets/landing/tech/icon1.svg'
+import background1 from 'public/assets/landing/tech/background1.svg'
+import background2 from 'public/assets/landing/tech/background2.svg'
 
 // interfaces
-import { TechItem } from "../_interfaces/techItem"
+import { TechItem } from '../../_interfaces/techItem'
 
-export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainBlob: string }) {
+export default function Tech({ techs, domainBlob }: { techs: TechItem[]; domainBlob: string }) {
   const [startIndex, setStartIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
-  const [direction, setDirection] = useState<"next" | "prev">("next")
-  const [animationKey, setAnimationKey] = useState(0) 
+  const [direction, setDirection] = useState<'next' | 'prev'>('next')
+  const [animationKey, setAnimationKey] = useState(0)
 
   useEffect(() => {
     const updateVisibleCount = () => {
@@ -28,20 +28,20 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainB
       else setVisibleCount(3)
     }
     updateVisibleCount()
-    window.addEventListener("resize", updateVisibleCount)
-    return () => window.removeEventListener("resize", updateVisibleCount)
+    window.addEventListener('resize', updateVisibleCount)
+    return () => window.removeEventListener('resize', updateVisibleCount)
   }, [])
 
   const handlePrev = () => {
-    setDirection("prev")
+    setDirection('prev')
     setStartIndex((prev) => (prev - visibleCount + techs.length) % techs.length)
-    setAnimationKey(prev => prev + 1)
+    setAnimationKey((prev) => prev + 1)
   }
 
   const handleNext = () => {
-    setDirection("next")
+    setDirection('next')
     setStartIndex((prev) => (prev + visibleCount) % techs.length)
-    setAnimationKey(prev => prev + 1)
+    setAnimationKey((prev) => prev + 1)
   }
 
   const getVisibleBoxes = () => {
@@ -57,37 +57,60 @@ export default function Tech({ techs, domainBlob }: { techs: TechItem[], domainB
   const visibleBoxes = getVisibleBoxes()
 
   const slideVariants = {
-    initial: (dir: "next" | "prev") => ({
-      x: dir === "next" ? 100 : -100,
-      opacity: 0
+    initial: (dir: 'next' | 'prev') => ({
+      x: dir === 'next' ? 100 : -100,
+      opacity: 0,
     }),
     animate: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.4 }
+      transition: { duration: 0.4 },
     },
-    exit: (dir: "next" | "prev") => ({
-      x: dir === "next" ? -100 : 100,
+    exit: (dir: 'next' | 'prev') => ({
+      x: dir === 'next' ? -100 : 100,
       opacity: 0,
-      transition: { duration: 0.4 }
-    })
+      transition: { duration: 0.4 },
+    }),
   }
 
   return (
     <div className="w-full relative bg-[#DEE9FF] overflow-hidden">
-      <Image priority width={0} height={0} src={background1} className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 " alt={""} />
-      <Image priority width={0} height={0} src={background2} className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1" alt={""} />
+      <Image
+        priority
+        width={0}
+        height={0}
+        src={background1}
+        className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 "
+        alt={''}
+      />
+      <Image
+        priority
+        width={0}
+        height={0}
+        src={background2}
+        className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1"
+        alt={''}
+      />
 
       <div className="py-5 px-7 lg:py-16">
         <div className="relative flex flex-col justify-center gap-y-5 sm:gap-y-8 xl:gap-y-16 2xl:gap-y-22 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
-            <h1 className="font-light text-[18px] uppercase lg:text-[40px] 2xl:text-[64px]">Teknologi</h1>
+            <h1 className="font-light text-[18px] uppercase lg:text-[40px] 2xl:text-[64px]">
+              Teknologi
+            </h1>
             <p className="font-normal text-[14px] max-w-md mx-auto lg:text-[16px] lg:max-w-[610px] 2xl:text-[24px] 2xl:max-w-[980px]">
-              Apapun teknologinya, bagi kami yang paling utama adalah membangun bisnis Anda. Beragam teknologi kami gunakan untuk menghasilkan karya yang terbaik.
+              Apapun teknologinya, bagi kami yang paling utama adalah membangun bisnis Anda. Beragam
+              teknologi kami gunakan untuk menghasilkan karya yang terbaik.
             </p>
           </div>
 
-          <Image width={0} height={0} src={icon1} alt="" className="w-max h-auto mx-auto sm:w-[440px] lg:w-[720px] xl:w-[840px] 2xl:w-[1002px]" />
+          <Image
+            width={0}
+            height={0}
+            src={icon1}
+            alt=""
+            className="w-max h-auto mx-auto sm:w-[440px] lg:w-[720px] xl:w-[840px] 2xl:w-[1002px]"
+          />
 
           <div className="flex flex-row items-center gap-x-3 justify-center overflow-hidden lg:gap-x-7 xl:gap-x-9 2xl:gap-x-12">
             {techs.length > visibleCount && (

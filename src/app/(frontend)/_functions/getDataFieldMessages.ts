@@ -3,14 +3,13 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 
-export async function getDataClients() {
+export async function getDataFieldMessages() {
   const payload = await getPayload({ config: await configPromise });
 
   const result = await payload.find({
-    collection: "clientsSection",
-    sort: "createdAt",
-    limit: 0
+    collection: "messageFieldConfiguration",
+    sort: "createdAt"
   });
-  // console.log(result)
+  console.log(JSON.stringify(result.docs, null, 2));
   return result.docs || [];
 }

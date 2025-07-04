@@ -1,0 +1,80 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+
+// components
+import Navbar from './_layouts/navbar'
+import Hero from './_layouts/hero'
+import Service from './_layouts/service'
+
+// types
+import type { Page } from '../_interfaces/pages'
+
+// functions
+import { getDataPages } from '../_functions/getDataPages'
+
+export default function DynamicPage({ slug }: { slug: string }) {
+  const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState<Page | null>(null)
+  const router = useRouter()
+
+  const pageKey = slug === '' ? '/' : `/${slug}`
+  const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getDataPages(pageKey)
+        if (!result || result.length === 0) {
+          router.replace('/not-found')
+        } else {
+          setPage(result[0] as unknown as Page)
+        }
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [pageKey, router])
+
+  const renderSection = (section: any, index: number) => {
+    switch (section.blockType) {
+      case 'heroSection':
+        return <Hero key={index} heroSection={section} domainBlob={domainBlob} />
+      case 'serviceSection':
+        return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
+      default:
+        return null
+    }
+  }
+
+  if (loading) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="loading"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex items-center justify-center min-h-screen bg-white"
+        >
+          <div className="w-16 h-16 border-4 border-[#00DB05] border-t-transparent rounded-full animate-spin"></div>
+        </motion.div>
+      </AnimatePresence>
+    )
+  }
+
+  if (!page) return null
+
+  return (
+    <div>
+      <Navbar />
+      {page.pageSection?.map((section, index) => renderSection(section, index))}
+    </div>
+  )
+}

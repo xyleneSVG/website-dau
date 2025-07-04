@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const MediaServices: CollectionConfig = {
   slug: 'mediaServices',
   admin: {
-    group: 'Media Collection'
+    group: 'Storage'
   },
   access: {
     read: () => true,

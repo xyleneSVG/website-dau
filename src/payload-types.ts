@@ -67,11 +67,14 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    pages: Page;
     users: User;
-    media: Media;
-    messages: Message;
+    messageFromGuests: MessageFromGuest;
+    messageFieldConfiguration: MessageFieldConfiguration;
+    mediaHero: MediaHero;
     mediaServices: MediaService;
     mediaTech: MediaTech;
+    mediaTechnology: MediaTechnology;
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
     servicesSection: ServicesSection;
@@ -84,11 +87,14 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    pages: PagesSelect<false> | PagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    messages: MessagesSelect<false> | MessagesSelect<true>;
+    messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
+    messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
+    mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
+    mediaTechnology: MediaTechnologySelect<false> | MediaTechnologySelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     servicesSection: ServicesSectionSelect<false> | ServicesSectionSelect<true>;
@@ -133,6 +139,221 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  pageName: string;
+  /**
+   * Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)
+   */
+  pageDefault: boolean;
+  pageKey?: string | null;
+  pageSection?: (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero Section".
+ */
+export interface HeroSection {
+  greetingIllustrationLeft: number | MediaHero;
+  greetingIllustrationRight: number | MediaHero;
+  greetings: {
+    hasIncludeImage?: boolean | null;
+    imageGreeting?: (number | null) | MediaHero;
+    textGreeting: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaHero".
+ */
+export interface MediaHero {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Service Section".
+ */
+export interface ServiceSection {
+  sectionTechnologyTitle: string;
+  sectionTechnologySubtitle: string;
+  sectionTechnologyIllustration: number | MediaTechnology;
+  technologyLists: {
+    technologyName: string;
+    technologyIcon: number | MediaTechnology;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'technologySection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTechnology".
+ */
+export interface MediaTechnology {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Product Section".
+ */
+export interface ProductSection {
+  sectionProductTitle: string;
+  sectionProductSubtitle: string;
+  productLists: {
+    productTitle: string;
+    productDisplay: number | MediaProduct;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaProducts".
+ */
+export interface MediaProduct {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Client Section".
+ */
+export interface ClientSection {
+  sectionClientTitle: string;
+  clientLists: {
+    clientName: string;
+    clientLogo: number | MediaClient;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'clientSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaClients".
+ */
+export interface MediaClient {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact Section".
+ */
+export interface ContactSection {
+  sectionContactLabel: string;
+  sectionContactHeadline: string;
+  sectionContactDescription: string;
+  fieldContactLists: {
+    fieldLabel: number | MessageFieldConfiguration;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messageFieldConfiguration".
+ */
+export interface MessageFieldConfiguration {
+  id: number;
+  computedTitle?: string | null;
+  /**
+   * For show on frontend
+   */
+  fieldLabel: string;
+  fieldName: string;
+  fieldPlaceholder?: string | null;
+  fieldType: 'text' | 'email' | 'number' | 'textarea' | 'select';
+  selectOptions?:
+    | {
+        /**
+         * For show on frontend
+         */
+        optionLabel: string;
+        optionValue: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * By enabling styling, can make the current field into 2 input columns in one row
+   */
+  styling?: boolean | null;
+  /**
+   * For show on frontend
+   */
+  parallelFieldLabel?: string | null;
+  parallelFieldName?: string | null;
+  parallelFieldPlaceholder?: string | null;
+  parallelFieldType?: ('text' | 'email' | 'number') | null;
+  /**
+   * By enabling required, can make the current field mandatory on the frontend.
+   */
+  required?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -157,35 +378,22 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "messageFromGuests".
  */
-export interface Media {
+export interface MessageFromGuest {
   id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messages".
- */
-export interface Message {
-  id: number;
-  senderName: string;
-  senderEmail: string;
-  senderPhone: string;
-  senderCompany: string;
-  senderMessage: string;
-  senderContactedVia: 'email' | 'phone' | 'whatsapp';
+  /**
+   * This will store guests message based on configured
+   */
+  messageGuests?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -213,44 +421,6 @@ export interface MediaService {
  * via the `definition` "mediaTech".
  */
 export interface MediaTech {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaProducts".
- */
-export interface MediaProduct {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaClients".
- */
-export interface MediaClient {
   id: number;
   alt: string;
   updatedAt: string;
@@ -349,16 +519,24 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'messageFromGuests';
+        value: number | MessageFromGuest;
       } | null)
     | ({
-        relationTo: 'messages';
-        value: number | Message;
+        relationTo: 'messageFieldConfiguration';
+        value: number | MessageFieldConfiguration;
+      } | null)
+    | ({
+        relationTo: 'mediaHero';
+        value: number | MediaHero;
       } | null)
     | ({
         relationTo: 'mediaServices';
@@ -367,6 +545,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaTech';
         value: number | MediaTech;
+      } | null)
+    | ({
+        relationTo: 'mediaTechnology';
+        value: number | MediaTechnology;
       } | null)
     | ({
         relationTo: 'mediaProducts';
@@ -436,6 +618,113 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  pageName?: T;
+  pageDefault?: T;
+  pageKey?: T;
+  pageSection?:
+    | T
+    | {
+        heroSection?: T | HeroSectionSelect<T>;
+        serviceSection?: T | ServiceSectionSelect<T>;
+        technologySection?: T | ServiceSectionSelect<T>;
+        productSection?: T | ProductSectionSelect<T>;
+        clientSection?: T | ClientSectionSelect<T>;
+        contactSection?: T | ContactSectionSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero Section_select".
+ */
+export interface HeroSectionSelect {
+  greetingIllustrationLeft?: boolean;
+  greetingIllustrationRight?: boolean;
+  greetings?:
+    | boolean
+    | {
+        hasIncludeImage?: boolean;
+        imageGreeting?: boolean;
+        textGreeting?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Service Section_select".
+ */
+export interface ServiceSectionSelect {
+  sectionTechnologyTitle?: boolean;
+  sectionTechnologySubtitle?: boolean;
+  sectionTechnologyIllustration?: boolean;
+  technologyLists?:
+    | boolean
+    | {
+        technologyName?: boolean;
+        technologyIcon?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Product Section_select".
+ */
+export interface ProductSectionSelect {
+  sectionProductTitle?: boolean;
+  sectionProductSubtitle?: boolean;
+  productLists?:
+    | boolean
+    | {
+        productTitle?: boolean;
+        productDisplay?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Client Section_select".
+ */
+export interface ClientSectionSelect {
+  sectionClientTitle?: boolean;
+  clientLists?:
+    | boolean
+    | {
+        clientName?: boolean;
+        clientLogo?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact Section_select".
+ */
+export interface ContactSectionSelect {
+  sectionContactLabel?: boolean;
+  sectionContactHeadline?: boolean;
+  sectionContactDescription?: boolean;
+  fieldContactLists?:
+    | boolean
+    | {
+        fieldLabel?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -458,9 +747,44 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "messageFromGuests_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface MessageFromGuestsSelect<T extends boolean = true> {
+  messageGuests?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messageFieldConfiguration_select".
+ */
+export interface MessageFieldConfigurationSelect<T extends boolean = true> {
+  computedTitle?: T;
+  fieldLabel?: T;
+  fieldName?: T;
+  fieldPlaceholder?: T;
+  fieldType?: T;
+  selectOptions?:
+    | T
+    | {
+        optionLabel?: T;
+        optionValue?: T;
+        id?: T;
+      };
+  styling?: T;
+  parallelFieldLabel?: T;
+  parallelFieldName?: T;
+  parallelFieldPlaceholder?: T;
+  parallelFieldType?: T;
+  required?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaHero_select".
+ */
+export interface MediaHeroSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -473,20 +797,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messages_select".
- */
-export interface MessagesSelect<T extends boolean = true> {
-  senderName?: T;
-  senderEmail?: T;
-  senderPhone?: T;
-  senderCompany?: T;
-  senderMessage?: T;
-  senderContactedVia?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -511,6 +821,24 @@ export interface MediaServicesSelect<T extends boolean = true> {
  * via the `definition` "mediaTech_select".
  */
 export interface MediaTechSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTechnology_select".
+ */
+export interface MediaTechnologySelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
