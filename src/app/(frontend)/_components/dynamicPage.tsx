@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import Service from './_layouts/service'
+import Tech from './_layouts/tech'
 
 // types
 import type { Page } from '../_interfaces/pages'
@@ -48,6 +49,8 @@ export default function DynamicPage({ slug }: { slug: string }) {
         return <Hero key={index} heroSection={section} domainBlob={domainBlob} />
       case 'serviceSection':
         return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
+      case 'technologySection':
+        return <Tech key={index} technologySection={section} domainBlob={domainBlob} />
       default:
         return null
     }
