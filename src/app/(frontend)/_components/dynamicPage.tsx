@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -10,13 +11,16 @@ import Hero from './_layouts/hero'
 import Service from './_layouts/service'
 import Tech from './_layouts/tech'
 
-// types
+// interfaces
 import type { Page } from '../_interfaces/pages'
+interface DynamicPageProps {
+  slug: string;
+}
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
 
-export default function DynamicPage({ slug }: { slug: string }) {
+export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
   const router = useRouter()

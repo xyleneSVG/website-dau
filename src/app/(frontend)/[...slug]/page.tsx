@@ -1,6 +1,10 @@
-import DynamicPage from "../_components/dynamicPage"
+import DynamicPage from "../_components/dynamicPage";
 
-export default function Page({ params }: { params: { slug?: string[] } }) {
-  const slug = params.slug?.[0] || ''
-  return <DynamicPage slug={slug} />
+interface PageProps {
+  params: { slug?: string[] };
+}
+
+export default function Page({ params }: PageProps) {
+  const slug = params.slug?.join('/') || '';
+  return <DynamicPage slug={slug} />;
 }
