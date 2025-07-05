@@ -28,9 +28,10 @@ export const Pages: CollectionConfig = {
       type: 'checkbox',
       label: "Page Default?",
       admin: {
-        description: 'Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)'
+        description: 'Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)',
+        condition: (_, siblingData) => !siblingData?.pageGroup,
       },
-      required: true
+      defaultValue: false
     },
     {
       name: "pageKey",
@@ -40,6 +41,16 @@ export const Pages: CollectionConfig = {
         readOnly: true
       },
       defaultValue: "Save first to get the key of this page"
+    },
+    {
+      name: "pageGroup",
+      type: "relationship",
+      relationTo: "groupPage", 
+      label: "Page Group",
+      admin: {
+        description: "Example: https://{domain}/{Group}/{This Page}",
+        condition: (_, siblingData) => siblingData?.pageDefault === false,
+      },
     },
     {
       name: "pageSection",
@@ -78,6 +89,7 @@ export const Pages: CollectionConfig = {
   hooks: {
     beforeValidate: [
       async ({ data, req, originalDoc }) => {
+        console.log(data)
         if (data?.pageDefault) {
           const existingDefaultPages = await req.payload.find({
             collection: 'pages',
@@ -108,8 +120,6 @@ export const Pages: CollectionConfig = {
             throw new APIError(`There is already a page with the name "${alreadyExists.pageName}"`,400,undefined,true);
           }
         }
-      },
-      ({ data }) => {
         if (data?.pageName) {
           const slug = data.pageName
             .toLowerCase()
@@ -117,7 +127,18 @@ export const Pages: CollectionConfig = {
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
             .trim();
-          data.pageKey = slug;
+          if (data?.pageGroup) {
+            const dataPageGroup = await req.payload.findByID({
+              collection: 'groupPage',
+              id: data?.pageGroup,
+            });
+            data.pageKey = dataPageGroup?.groupKey+"/"+slug;
+          } else {
+            data.pageKey = "/"+slug;
+          }
+          if (data?.pageGroup !== null) {
+            data.pageDefault = false
+          }
         }
         if (Array.isArray(data?.blocks)) {
           data.blocks = data.blocks.map((block) => {
@@ -134,8 +155,8 @@ export const Pages: CollectionConfig = {
             return block;
           });
         }
-      return data;
-      }
+        return data;
+      },
     ]
   }
 }

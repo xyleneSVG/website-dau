@@ -26,14 +26,14 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
   const router = useRouter()
-
-  const pageKey = slug === '' ? '/' : `/${slug}`
+  console.log("a "+slug)
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getDataPages(pageKey)
+        console.log("2: "+slug)
+        const result = await getDataPages(slug)
         if (!result || result.length === 0) {
           router.replace('/not-found')
         } else {
@@ -47,7 +47,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     }
 
     fetchData()
-  }, [pageKey, router])
+  }, [router, slug])
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
