@@ -11,18 +11,13 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 
 // Storage Collections
-import { MediaHero } from './collections/landing/media/MediaHero'
-import { MediaServices } from './collections/landing/media/MediaServices'
-import { MediaTech } from './collections/landing/media/MediaTech'
-import { MediaTechnology } from './collections/landing/media/MediaTechnology'
-import { MediaProducts } from './collections/landing/media/MediaProducts'
-import { MediaClients } from './collections/landing/media/MediaClients'
-
-// Collections Landing
-import { ServicesSection } from './collections/landing/Services'
-import { TechsSection } from './collections/landing/Tech'
-import { ProductsSection } from './collections/landing/Products'
-import { ClientsSection } from './collections/landing/Clients'
+import { GroupPage } from './collections/storage/GroupPage'
+import { MediaHero } from './collections/storage/MediaHero'
+import { MediaServices } from './collections/storage/MediaServices'
+import { MediaTech } from './collections/storage/MediaTech'
+import { MediaTechnology } from './collections/storage/MediaTechnology'
+import { MediaProducts } from './collections/storage/MediaProducts'
+import { MediaClients } from './collections/storage/MediaClients'
 
 // Collections Advance Configuration
 import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
@@ -42,7 +37,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, ServicesSection, TechsSection, ProductsSection, ClientsSection],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

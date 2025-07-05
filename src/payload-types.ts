@@ -71,16 +71,13 @@ export interface Config {
     users: User;
     messageFromGuests: MessageFromGuest;
     messageFieldConfiguration: MessageFieldConfiguration;
+    groupPage: GroupPage;
     mediaHero: MediaHero;
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaTechnology: MediaTechnology;
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
-    servicesSection: ServicesSection;
-    techsSection: TechsSection;
-    productsSection: ProductsSection;
-    clientsSection: ClientsSection;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,16 +88,13 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
     messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
+    groupPage: GroupPageSelect<false> | GroupPageSelect<true>;
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaTechnology: MediaTechnologySelect<false> | MediaTechnologySelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
-    servicesSection: ServicesSectionSelect<false> | ServicesSectionSelect<true>;
-    techsSection: TechsSectionSelect<false> | TechsSectionSelect<true>;
-    productsSection: ProductsSectionSelect<false> | ProductsSectionSelect<true>;
-    clientsSection: ClientsSectionSelect<false> | ClientsSectionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -147,9 +141,25 @@ export interface Page {
   /**
    * Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)
    */
-  pageDefault: boolean;
+  pageDefault?: boolean | null;
   pageKey?: string | null;
+  /**
+   * Example: https://{domain}/{Group}/{This Page}
+   */
+  pageGroup?: (number | null) | GroupPage;
   pageSection?: (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groupPage".
+ */
+export interface GroupPage {
+  id: number;
+  groupName: string;
+  groupKey?: string | null;
+  subGroupFrom?: (number | null) | GroupPage;
   updatedAt: string;
   createdAt: string;
 }
@@ -437,82 +447,6 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "servicesSection".
- */
-export interface ServicesSection {
-  id: number;
-  /**
-   * Title for the Data Andalan Utama service
-   */
-  title: string;
-  /**
-   * Description for the Data Andalan Utama service
-   */
-  description: string;
-  /**
-   * Static URL for the Data Andalan Utama service page
-   */
-  url: string;
-  /**
-   * Icon for the service
-   */
-  icon: number | MediaService;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "techsSection".
- */
-export interface TechsSection {
-  id: number;
-  /**
-   * Name of the technology used
-   */
-  techName: string;
-  /**
-   * Technology icon used
-   */
-  techIcon: number | MediaTech;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productsSection".
- */
-export interface ProductsSection {
-  id: number;
-  /**
-   * Title for the Product Name
-   */
-  productTitle: string;
-  /**
-   * Image preview product
-   */
-  productImage: number | MediaProduct;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clientsSection".
- */
-export interface ClientsSection {
-  id: number;
-  /**
-   * Client's name
-   */
-  clientName: string;
-  /**
-   * Client's logo
-   */
-  clientLogo: number | MediaClient;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -533,6 +467,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'messageFieldConfiguration';
         value: number | MessageFieldConfiguration;
+      } | null)
+    | ({
+        relationTo: 'groupPage';
+        value: number | GroupPage;
       } | null)
     | ({
         relationTo: 'mediaHero';
@@ -557,22 +495,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaClients';
         value: number | MediaClient;
-      } | null)
-    | ({
-        relationTo: 'servicesSection';
-        value: number | ServicesSection;
-      } | null)
-    | ({
-        relationTo: 'techsSection';
-        value: number | TechsSection;
-      } | null)
-    | ({
-        relationTo: 'productsSection';
-        value: number | ProductsSection;
-      } | null)
-    | ({
-        relationTo: 'clientsSection';
-        value: number | ClientsSection;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -624,6 +546,7 @@ export interface PagesSelect<T extends boolean = true> {
   pageName?: T;
   pageDefault?: T;
   pageKey?: T;
+  pageGroup?: T;
   pageSection?:
     | T
     | {
@@ -782,6 +705,17 @@ export interface MessageFieldConfigurationSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groupPage_select".
+ */
+export interface GroupPageSelect<T extends boolean = true> {
+  groupName?: T;
+  groupKey?: T;
+  subGroupFrom?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mediaHero_select".
  */
 export interface MediaHeroSelect<T extends boolean = true> {
@@ -887,48 +821,6 @@ export interface MediaClientsSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "servicesSection_select".
- */
-export interface ServicesSectionSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  url?: T;
-  icon?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "techsSection_select".
- */
-export interface TechsSectionSelect<T extends boolean = true> {
-  techName?: T;
-  techIcon?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productsSection_select".
- */
-export interface ProductsSectionSelect<T extends boolean = true> {
-  productTitle?: T;
-  productImage?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clientsSection_select".
- */
-export interface ClientsSectionSelect<T extends boolean = true> {
-  clientName?: T;
-  clientLogo?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
