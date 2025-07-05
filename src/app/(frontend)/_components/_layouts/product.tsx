@@ -5,15 +5,9 @@ import Image from 'next/image'
 import background from 'public/assets/landing/product/background1.svg'
 
 // interfaces
-import { ProductItem } from '../../_interfaces/productItem'
+import { ProductSection } from '../../_interfaces/pages'
 
-export default function Product({
-  products,
-  domainBlob,
-}: {
-  products: ProductItem[]
-  domainBlob: string
-}) {
+export default function Product({productSection, domainBlob}: {productSection: ProductSection, domainBlob: string}) {
   return (
     <div className="w-full relative">
       <Image
@@ -35,11 +29,11 @@ export default function Product({
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 justify-items-center lg:gap-7">
-            {products.map((src, idx) => (
+            {productSection.productLists.map((src, idx) => (
               <div
                 key={idx}
                 className="rounded-[10px] shadow-md md:shadow-lg md:rounded-[20px] bg-center bg-cover overflow-hidden w-[130px] h-[90px] sm:w-[260px] sm:h-[160px] md:w-[280px] md:h-[200px] lg:w-[440px] lg:h-[300px]"
-                style={{ backgroundImage: `url('${domainBlob + src.productImage.filename}')` }}
+                style={{ backgroundImage: `url('${domainBlob + src.productDisplay.filename}')` }}
               ></div>
             ))}
           </div>
