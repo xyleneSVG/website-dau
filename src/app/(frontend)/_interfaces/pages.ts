@@ -134,64 +134,79 @@ export interface AwardLists {
   id: string,
   awardImage: ImageItem,
   awardNomination: string,
-  awardTitle: string
+  awardTitle: string,
 }
 
 // About
 export interface AboutSection {
-  id: string;
-  blockType: 'aboutSection';
-  sectionAboutLogo: ImageItem;
-  sectionAboutTitle: string;
-  sectionAboutContent: RichTextContent;
+  id: string,
+  blockType: 'aboutSection',
+  sectionAboutLogo: ImageItem,
+  sectionAboutTitle: string,
+  sectionAboutContent: RichTextContent,
 }
 
+// Vision
+export interface VisionSection {
+  id: string,
+  blockType: 'visionSection',
+  sectionVisionBanner: ImageItem,
+  sectionVisionTitle: string,
+  sectionVisionSubtitle: string,
+  visionCardLists: VisionCardLists[]
+}
+
+export interface VisionCardLists {
+  id: string,
+  visionCardTitle: string,
+  visionCardDescription: string
+}
 
 // Image
 export interface ImageItem {
-  id: string;
-  filename: string;
+  id: string,
+  filename: string,
 }
 
 // RichTextContent
 export interface RichTextContent {
   root: {
-    type: 'root';
-    format: string;
-    indent: number;
-    version: number;
-    direction: string;
-    textFormat: number;
-    children: RichTextNode[];
-  };
+    type: 'root',
+    format: string,
+    indent: number,
+    version: number,
+    direction: string,
+    textFormat: number,
+    children: RichTextNode[],
+  },
 }
 
 export type RichTextNode =
   | ParagraphNode
-  | LinebreakNode;
+  | LinebreakNode
 
 export interface ParagraphNode {
-  type: 'paragraph';
-  format: string;
-  indent: number;
-  version: number;
-  direction: string;
-  textStyle: string;
-  textFormat: number;
-  children: RichTextTextNode[];
+  type: 'paragraph',
+  format: string,
+  indent: number,
+  version: number,
+  direction: string,
+  textStyle: string,
+  textFormat: number,
+  children: RichTextTextNode[],
 }
 
 export interface LinebreakNode {
-  type: 'linebreak';
-  version: number;
+  type: 'linebreak',
+  version: number,
 }
 
 export interface RichTextTextNode {
-  type: 'text';
-  version: number;
-  mode: string;
-  text: string;
-  style: string;
-  detail: number;
-  format: number;
+  type: 'text',
+  version: number,
+  mode: string,
+  text: string,
+  style: string,
+  detail: number,
+  format: number,
 }

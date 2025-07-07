@@ -81,6 +81,7 @@ export interface Config {
     mediaContact: MediaContact;
     mediaAward: MediaAward;
     mediaAbout: MediaAbout;
+    mediaVision: MediaVision;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -101,6 +102,7 @@ export interface Config {
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
     mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
+    mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -154,7 +156,16 @@ export interface Page {
    */
   pageGroup?: (number | null) | GroupPage;
   pageSection?:
-    | (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection | AwardSection | AboutSection)[]
+    | (
+        | HeroSection
+        | ServiceSection
+        | ProductSection
+        | ClientSection
+        | ContactSection
+        | AwardSection
+        | AboutSection
+        | VisionSection
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -473,6 +484,47 @@ export interface MediaAbout {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Vision Section".
+ */
+export interface VisionSection {
+  sectionVisionBanner: number | MediaVision;
+  sectionVisionTitle: string;
+  sectionVisionSubtitle: string;
+  /**
+   * Add 3 visions
+   */
+  visionCardLists?:
+    | {
+        visionCardTitle: string;
+        visionCardDescription: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'visionSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaVision".
+ */
+export interface MediaVision {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -616,6 +668,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaAbout';
         value: number | MediaAbout;
+      } | null)
+    | ({
+        relationTo: 'mediaVision';
+        value: number | MediaVision;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -679,6 +735,7 @@ export interface PagesSelect<T extends boolean = true> {
         contactSection?: T | ContactSectionSelect<T>;
         awardSection?: T | AwardSectionSelect<T>;
         aboutSection?: T | AboutSectionSelect<T>;
+        visionSection?: T | VisionSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -796,6 +853,24 @@ export interface AboutSectionSelect {
   sectionAboutLogo?: boolean;
   sectionAboutTitle?: boolean;
   sectionAboutContent?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Vision Section_select".
+ */
+export interface VisionSectionSelect {
+  sectionVisionBanner?: boolean;
+  sectionVisionTitle?: boolean;
+  sectionVisionSubtitle?: boolean;
+  visionCardLists?:
+    | boolean
+    | {
+        visionCardTitle?: boolean;
+        visionCardDescription?: boolean;
+        id?: boolean;
+      };
   id?: boolean;
   blockName?: boolean;
 }
@@ -1016,6 +1091,24 @@ export interface MediaAwardSelect<T extends boolean = true> {
  * via the `definition` "mediaAbout_select".
  */
 export interface MediaAboutSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaVision_select".
+ */
+export interface MediaVisionSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

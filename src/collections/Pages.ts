@@ -10,6 +10,7 @@ import { ClientSection } from './block-layout/Client';
 import { ContactSection } from './block-layout/Contact';
 import { AwardSection } from './block-layout/Awards';
 import { AboutSection } from './block-layout/About';
+import { VisionSection } from './block-layout/Vision';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -75,7 +76,7 @@ export const Pages: CollectionConfig = {
     {
       name: "pageSection",
       type: 'blocks',
-      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection],
+      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection],
     }
   ],
   hooks: {
