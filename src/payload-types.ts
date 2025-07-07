@@ -78,6 +78,7 @@ export interface Config {
     mediaTechnology: MediaTechnology;
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
+    mediaContact: MediaContact;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -95,6 +96,7 @@ export interface Config {
     mediaTechnology: MediaTechnologySelect<false> | MediaTechnologySelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
+    mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -309,6 +311,7 @@ export interface MediaClient {
  * via the `definition` "Contact Section".
  */
 export interface ContactSection {
+  sectionContactIllustration: number | MediaContact;
   sectionContactLabel: string;
   sectionContactHeadline: string;
   sectionContactDescription: string;
@@ -319,6 +322,25 @@ export interface ContactSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaContact".
+ */
+export interface MediaContact {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -495,6 +517,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaClients';
         value: number | MediaClient;
+      } | null)
+    | ({
+        relationTo: 'mediaContact';
+        value: number | MediaContact;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -634,6 +660,7 @@ export interface ClientSectionSelect {
  * via the `definition` "Contact Section_select".
  */
 export interface ContactSectionSelect {
+  sectionContactIllustration?: boolean;
   sectionContactLabel?: boolean;
   sectionContactHeadline?: boolean;
   sectionContactDescription?: boolean;
@@ -809,6 +836,24 @@ export interface MediaProductsSelect<T extends boolean = true> {
  * via the `definition` "mediaClients_select".
  */
 export interface MediaClientsSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaContact_select".
+ */
+export interface MediaContactSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

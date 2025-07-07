@@ -131,7 +131,7 @@ export const Pages: CollectionConfig = {
             const dataPageGroup = await req.payload.findByID({
               collection: 'groupPage',
               id: data?.pageGroup,
-            });
+            }); 
             data.pageKey = dataPageGroup?.groupKey+"/"+slug;
           } else {
             data.pageKey = "/"+slug;

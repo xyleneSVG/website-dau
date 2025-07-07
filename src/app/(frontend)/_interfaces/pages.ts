@@ -47,6 +47,7 @@ export interface ServiceLists {
 // Technology
 export interface TechnologySection {
   id: string,
+  blockType: 'technologySection';
   sectionTechnologyTitle: string,
   sectionTechnologySubtitle: string,
   sectionTechnologyIllustration: ImageItem,
@@ -62,6 +63,7 @@ export interface TechnologyLists {
 // Product
 export interface ProductSection {
   id: string,
+  blockType: 'productSection';
   sectionProductTitle: string,
   sectionProductSubtitle: string,
   productLists: ProductLists[]
@@ -76,6 +78,7 @@ export interface ProductLists {
 // Client
 export interface ClientSection {
   id: string,
+  blockType: 'clientSection';
   sectionClientTitle: string,
   clientLists: ClientLists[]
 }
@@ -86,6 +89,37 @@ export interface ClientLists {
   clientLogo: ImageItem,
 }
 
+// Contact
+export interface ContactSection {
+  id: string,
+  blockType: 'contactSection';
+  sectionContactIllustration: ImageItem
+  sectionContactLabel: string,
+  sectionContactHeadline: string,
+  sectionContactDescription: string,
+  fieldContactLists: FieldContactLists[]
+}
+
+export interface FieldContactLists {
+  id: string,
+  fieldLabel: string,
+  fieldName: string,
+  fieldPlaceholder: string,
+  fieldType: string
+  selectOptions: SelectOptions[]
+  styling: boolean,
+  parallelFieldLabel: string,
+  parallelFieldName: string,
+  parallelFieldPlaceholder: string,
+  parallelFieldType: string,
+  required: boolean
+}
+
+export interface SelectOptions {
+  id: string,
+  optionLabel: string,
+  optionValue: string
+}
 
 // Image
 export interface ImageItem {
