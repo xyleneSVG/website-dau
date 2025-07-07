@@ -12,6 +12,7 @@ import Service from './_layouts/service'
 import Tech from './_layouts/tech'
 import Product from './_layouts/product'
 import Client from './_layouts/client'
+import Contact from './_layouts/contact'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -26,13 +27,11 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
   const router = useRouter()
-  console.log("a "+slug)
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("2: "+slug)
         const result = await getDataPages(slug)
         if (!result || result.length === 0) {
           router.replace('/not-found')
@@ -61,6 +60,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Product key={index} productSection={section} domainBlob={domainBlob} />
       case 'clientSection':
         return <Client key={index} clientSection={section} domainBlob={domainBlob} />
+      case 'contactSection':
+        return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
       default:
         return null
     }
