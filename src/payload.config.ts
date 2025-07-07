@@ -20,6 +20,7 @@ import { MediaProducts } from './collections/storage/MediaProducts'
 import { MediaClients } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaAward } from './collections/storage/MediaAward'
+import { MediaAbout } from './collections/storage/MediaAbout'
 
 // Collections Advance Configuration
 import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
@@ -39,7 +40,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -63,7 +64,8 @@ export default buildConfig({
         mediaProducts: true,
         mediaClients: true,
         mediaContact: true,
-        mediaAward: true
+        mediaAward: true,
+        mediaAbout: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN
     })
