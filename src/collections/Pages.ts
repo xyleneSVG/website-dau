@@ -17,6 +17,24 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
+      type: 'collapsible',
+      label: 'INSTRUCTION',
+      admin: {
+        initCollapsed: true
+      },
+      fields: [
+        {
+          name: 'howToUse',
+          type: 'ui',
+          admin: {
+            components: {
+              Field: '@/admin/_components/instruction',
+            },
+          },
+        },
+      ],
+    },
+    {
       name: "pageName",
       type: 'text',
       label: "Page Name",
