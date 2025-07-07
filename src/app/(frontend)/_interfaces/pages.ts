@@ -121,6 +121,22 @@ export interface SelectOptions {
   optionValue: string
 }
 
+// Award
+export interface AwardSection {
+  id: string,
+  blockType: 'awardSection',
+  sectionAwardTitle: string,
+  sectionAwardDescription: string,
+  AwardLists: AwardLists[],
+}
+
+export interface AwardLists {
+  id: string,
+  awardImage: ImageItem,
+  awardNomination: string,
+  awardTitle: string
+}
+
 // Image
 export interface ImageItem {
   id: string;

@@ -7,41 +7,16 @@ import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const slides = [
-  {
-    image: '/assets/landing/award/award.png',
-    title: 'Sertifikat MURI untuk:',
-    description: 'Desa pertama dengan data penduduk online berdasarkan status sosial mereka.',
-  },
-  {
-    image: '/assets/landing/award/award.png',
-    title: 'Penghargaan Transparansi:',
-    description: 'Pengelolaan dana desa dengan sistem digital dan transparan.',
-  },
-  {
-    image: '/assets/landing/award/award.png',
-    title: 'Award Keterbukaan Informasi:',
-    description: 'Penerapan prinsip open-data untuk kebutuhan publik.',
-  },
-  {
-    image: '/assets/landing/award/award.png',
-    title: 'Best Innovation in E-Gov:',
-    description: 'Inovasi layanan digital dalam pemerintahan desa.',
-  },
-  {
-    image: '/assets/landing/award/award.png',
-    title: 'Apresiasi Kementerian Desa:',
-    description: 'Percepatan transformasi digital desa mandiri.',
-  },
-]
+// interfaces
+import { AwardSection } from '../../_interfaces/pages'
 
-export default function Award() {
+export default function Award({awardSection,domainBlob}: {awardSection: AwardSection,domainBlob:string}) {
   const [index, setIndex] = useState(0)
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % slides.length)
-  const prevSlide = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length)
+  const nextSlide = () => setIndex((prev) => (prev + 1) % awardSection.AwardLists.length)
+  const prevSlide = () => setIndex((prev) => (prev - 1 + awardSection.AwardLists.length) % awardSection.AwardLists.length)
 
-  const current = slides[index]
+  const current = awardSection.AwardLists[index]
   return (
     <div className="min-h-screen relative flex justify-center items-center py-[30px] sm:py-[40px] md:py-[60px] xl:py-[80px]">
       <Image
@@ -71,8 +46,8 @@ export default function Award() {
         <div className="h-fit md:flex mt-[50px] md:mt-[70px]">
           <AnimatePresence mode="wait">
             <motion.img
-              key={current.image}
-              src={current.image}
+              key={current.awardImage.id}
+              src={domainBlob+current.awardImage.filename}
               alt={`Award ${index + 1}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
@@ -86,17 +61,17 @@ export default function Award() {
           <div className="flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
-                key={current.title + current.description}
+                key={current.awardNomination + current.awardTitle}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.4 }}
               >
                 <h1 className="text-[#BE9844] text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] mt-[30px] md:mt-0">
-                  {current.title}
+                  {current.awardNomination}
                 </h1>
                 <p className="font-bold text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-justify mt-[10px] mb-[20px] md:mt-[20px] xl:mt-[30px] md:mb-0">
-                  {current.description}
+                  {current.awardTitle}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -120,7 +95,7 @@ export default function Award() {
                 </svg>
               </button>
               <p className="text-[12px] md:text-[16px] xl:text-[20px] mx-[30px] md:mx-[40px] lg:mx-[50px] xl:mx-[60px]">
-                <span className="font-bold">{index + 1}</span>/{slides.length}
+                <span className="font-bold">{index + 1}</span>/{awardSection.AwardLists.length}
               </p>
               <button
                 onClick={nextSlide}

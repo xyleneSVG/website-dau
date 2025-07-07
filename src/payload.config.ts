@@ -62,7 +62,8 @@ export default buildConfig({
         mediaTech: true,
         mediaProducts: true,
         mediaClients: true,
-        mediaContact: true
+        mediaContact: true,
+        mediaAward: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN
     })
