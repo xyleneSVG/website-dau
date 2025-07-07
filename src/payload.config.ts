@@ -10,6 +10,15 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 
+// Collections Advance Configuration
+import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
+
+// Collections Message From Guests
+import { MessageFromGuests } from './collections/messages/MessageFromGuests'
+
+// Advance Configuration
+import { Pages } from './collections/Pages'
+
 // Storage Collections
 import { GroupPage } from './collections/storage/GroupPage'
 import { MediaHero } from './collections/storage/MediaHero'
@@ -21,14 +30,7 @@ import { MediaClients } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaAward } from './collections/storage/MediaAward'
 import { MediaAbout } from './collections/storage/MediaAbout'
-
-// Collections Advance Configuration
-import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
-
-// Collections Message From Guests
-import { MessageFromGuests } from './collections/messages/MessageFromGuests'
-
-import { Pages } from './collections/Pages'
+import { MediaVision } from './collections/storage/MediaVision'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -40,7 +42,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -66,6 +68,7 @@ export default buildConfig({
         mediaContact: true,
         mediaAward: true,
         mediaAbout: true,
+        mediaVision: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN
     })

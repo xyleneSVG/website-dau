@@ -15,6 +15,7 @@ import Client from './_layouts/client'
 import Contact from './_layouts/contact'
 import Award from './_layouts/award'
 import About from './_layouts/about'
+import Vision from './_layouts/vision/vision'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -68,6 +69,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Award key={index} awardSection={section} domainBlob={domainBlob} />
       case 'aboutSection':
         return <About key={index} aboutSection={section} domainBlob={domainBlob} />
+      case 'visionSection':
+        return <Vision key={index} visionSection={section} domainBlob={domainBlob} />
       default:
         return null
     }
