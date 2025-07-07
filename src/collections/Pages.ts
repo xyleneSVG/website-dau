@@ -8,6 +8,7 @@ import { TechnologySection } from './block-layout/Technology';
 import { ProductSection } from './block-layout/Product';
 import { ClientSection } from './block-layout/Client';
 import { ContactSection } from './block-layout/Contact';
+import { AwardSection } from './block-layout/Awards';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -73,35 +74,7 @@ export const Pages: CollectionConfig = {
     {
       name: "pageSection",
       type: 'blocks',
-      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection],
-      validate: (value: unknown) => {
-        if (!Array.isArray(value)) return true;
-
-        const blockCounts: Record<string, number> = {};
-        const allowedOnlyOnce = [
-          'heroSection',
-          'serviceSection',
-          'technologySection',
-          'productSection',
-          'clientSection',
-          'contactSection'
-        ];
-
-        for (const block of value) {
-          const type = block.blockType;
-          if (allowedOnlyOnce.includes(type)) {
-            blockCounts[type] = (blockCounts[type] || 0) + 1;
-          }
-        }
-
-        const duplicated = Object.entries(blockCounts).find(([_, count]) => count > 1);
-        if (duplicated) {
-          const [blockType] = duplicated;
-          return `${blockType} only once use in this page.`;
-        }
-
-        return true;
-      },
+      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection],
     }
   ],
   hooks: {

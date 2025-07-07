@@ -79,6 +79,7 @@ export interface Config {
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
     mediaContact: MediaContact;
+    mediaAward: MediaAward;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -97,6 +98,7 @@ export interface Config {
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
+    mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -149,7 +151,9 @@ export interface Page {
    * Example: https://{domain}/{Group}/{This Page}
    */
   pageGroup?: (number | null) | GroupPage;
-  pageSection?: (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection)[] | null;
+  pageSection?:
+    | (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection | AwardSection)[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -386,6 +390,42 @@ export interface MessageFieldConfiguration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Award Section".
+ */
+export interface AwardSection {
+  sectionAwardTitle: string;
+  sectionAwardDescription: string;
+  AwardLists: {
+    awardImage: number | MediaAward;
+    awardNomination: string;
+    awardTitle: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'awardSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAward".
+ */
+export interface MediaAward {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -521,6 +561,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaContact';
         value: number | MediaContact;
+      } | null)
+    | ({
+        relationTo: 'mediaAward';
+        value: number | MediaAward;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -582,6 +626,7 @@ export interface PagesSelect<T extends boolean = true> {
         productSection?: T | ProductSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
+        awardSection?: T | AwardSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -668,6 +713,24 @@ export interface ContactSectionSelect {
     | boolean
     | {
         fieldLabel?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Award Section_select".
+ */
+export interface AwardSectionSelect {
+  sectionAwardTitle?: boolean;
+  sectionAwardDescription?: boolean;
+  AwardLists?:
+    | boolean
+    | {
+        awardImage?: boolean;
+        awardNomination?: boolean;
+        awardTitle?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -854,6 +917,24 @@ export interface MediaClientsSelect<T extends boolean = true> {
  * via the `definition` "mediaContact_select".
  */
 export interface MediaContactSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAward_select".
+ */
+export interface MediaAwardSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
