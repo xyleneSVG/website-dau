@@ -27,16 +27,16 @@ export default function Contact({ contactSection, domainBlob }: { contactSection
 
   return (
     <div className="w-full border border-red-600 h-max relative">
-      <div className="w-full min-h-[calc(100vh-80px)] p-8 flex flex-col items-center gap-y-8 md:pt-15 2xl:gap-y-24 border">
-        <div className="flex flex-col items-center gap-y-6">
-          <Image className="w-[160px] h-auto" src={domainBlob+contactSection.sectionContactIllustration.filename} width={0} height={0} alt={''} />
-          <div className="flex flex-col gap-y-2">
-            <p className="font-light text-[14px]">{contactSection.sectionContactLabel}</p>
-            <h1 className="font-bold text-[18px]">{contactSection.sectionContactHeadline}</h1>
-            <p className="font-light text-[14px]">{contactSection.sectionContactDescription}</p>
+      <div className="w-full min-h-[calc(100vh-80px)] p-8 flex flex-col items-center gap-y-8 md:pt-15 2xl:gap-y-24 border md:flex-row md:gap-16 md:justify-between lg:px-24 xl:px-28">
+        <div className="flex flex-col items-center gap-y-6 xl:gap-y-10">
+          <Image className="w-[160px] h-auto md:w-[240px] xl:w-[420px]" src={domainBlob+contactSection.sectionContactIllustration.filename} width={0} height={0} alt={''} />
+          <div className="flex flex-col gap-y-2 lg:gap-y-4 lg:w-[380px] xl:w-[500px]">
+            <p className="font-light text-[14px] lg:text-[18px] xl:text-[20px]">{contactSection.sectionContactLabel}</p>
+            <h1 className="font-bold text-[18px] lg:text-[24px] lg:text-justify">{contactSection.sectionContactHeadline}</h1>
+            <p className="font-light text-[14px] lg:text-[18px] xl:text-[20px] lg:text-justify">{contactSection.sectionContactDescription}</p>
           </div>
         </div>
-        <div className="border flex flex-col w-full">
+        <div className="flex flex-col w-full gap-y-3 text-[14px] font-light lg:text-[17px] xl:text-[20px] xl:max-w-[600px] xl:gap-y-6">
           {contactSection.fieldContactLists?.map((field, index) => renderTemplate(field, index))}
         </div>
       </div>
