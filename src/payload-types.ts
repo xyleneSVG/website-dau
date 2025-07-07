@@ -80,6 +80,7 @@ export interface Config {
     mediaClients: MediaClient;
     mediaContact: MediaContact;
     mediaAward: MediaAward;
+    mediaAbout: MediaAbout;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -99,6 +100,7 @@ export interface Config {
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
+    mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -152,7 +154,7 @@ export interface Page {
    */
   pageGroup?: (number | null) | GroupPage;
   pageSection?:
-    | (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection | AwardSection)[]
+    | (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection | AwardSection | AboutSection)[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -426,6 +428,51 @@ export interface MediaAward {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About Section".
+ */
+export interface AboutSection {
+  sectionAboutLogo: number | MediaAbout;
+  sectionAboutTitle: string;
+  sectionAboutContent: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAbout".
+ */
+export interface MediaAbout {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -565,6 +612,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaAward';
         value: number | MediaAward;
+      } | null)
+    | ({
+        relationTo: 'mediaAbout';
+        value: number | MediaAbout;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -627,6 +678,7 @@ export interface PagesSelect<T extends boolean = true> {
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         awardSection?: T | AwardSectionSelect<T>;
+        aboutSection?: T | AboutSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -733,6 +785,17 @@ export interface AwardSectionSelect {
         awardTitle?: boolean;
         id?: boolean;
       };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About Section_select".
+ */
+export interface AboutSectionSelect {
+  sectionAboutLogo?: boolean;
+  sectionAboutTitle?: boolean;
+  sectionAboutContent?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -935,6 +998,24 @@ export interface MediaContactSelect<T extends boolean = true> {
  * via the `definition` "mediaAward_select".
  */
 export interface MediaAwardSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAbout_select".
+ */
+export interface MediaAboutSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
