@@ -10,8 +10,12 @@ export default async function HomeRedirectPage() {
 
   const result = await payload.find({
     collection: 'pages',
-    where: { pageDefault: { equals: true } },
-    sort: 'createdAt',
+    where: {
+      pageDefault: {
+        equals: true,
+      },
+    },
+    sort: '-createdAt',
     limit: 1,
   })
 

@@ -94,7 +94,7 @@ export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSectio
               className="shrink-0 flex justify-center"
               style={{ flex: `0 0 ${100 / visibleCount}%` }}
             >
-              <LeaderCard name={item.leaderName} position={item.leaderPosition} photo={domainBlob+item.leaderPhotoProfile} />
+              <LeaderCard name={item.leaderName} position={item.leaderPosition} photo={domainBlob+item.leaderPhotoProfile.filename} />
             </div>
           ))}
         </motion.div>
