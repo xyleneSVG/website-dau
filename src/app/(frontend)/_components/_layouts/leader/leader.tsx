@@ -7,35 +7,21 @@ import Image from 'next/image'
 // background image
 import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
+
+// components
 import LeaderCard from './LeaderCard'
 
-const originalProfiles = [
-  {
-    photo: '/assets/landing/leader/jerry-susmono.png',
-    name: 'Jerry Susmono',
-    position: 'CEO & Founder',
-  },
-  {
-    photo: '/assets/landing/leader/sentot-andalas.png',
-    name: 'Sentot Andalas',
-    position: 'CMO & Founder',
-  },
-  {
-    photo: '/assets/landing/leader/budi-wiyono.png',
-    name: 'Budi Wiyono',
-    position: 'CTO',
-  },
-]
+// interfaces
+import { LeaderSection } from '@/app/(frontend)/_interfaces/pages'
 
-export default function LeaderCarousel() {
+export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSection: LeaderSection, domainBlob:string}) {
   const [visibleCount, setVisibleCount] = useState(1)
   const [cardWidth, setCardWidth] = useState(0)
   const [index, setIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const controls = useAnimation()
 
-  const profiles = Array(10).fill(originalProfiles).flat()
-  const total = profiles.length
+  const total = leaderSection.leaderProfileLists.length
 
   useEffect(() => {
     const updateLayout = () => {
@@ -102,13 +88,13 @@ export default function LeaderCarousel() {
 
         {/* Carousel */}
         <motion.div className="flex gap-3 sm:gap-2.5 md:gap-3 lg:gap-2.5 xl:gap-2.5" animate={controls}>
-          {profiles.map((item, i) => (
+          {leaderSection.leaderProfileLists.map((item, i) => (
             <div
-              key={`${item.name}-${i}`}
+              key={`${item.id}-${i}`}
               className="shrink-0 flex justify-center"
               style={{ flex: `0 0 ${100 / visibleCount}%` }}
             >
-              <LeaderCard {...item} />
+              <LeaderCard name={item.leaderName} position={item.leaderPosition} photo={domainBlob+item.leaderPhotoProfile} />
             </div>
           ))}
         </motion.div>

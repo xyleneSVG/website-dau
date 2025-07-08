@@ -31,6 +31,7 @@ import { MediaContact } from './collections/storage/MediaContact'
 import { MediaAward } from './collections/storage/MediaAward'
 import { MediaAbout } from './collections/storage/MediaAbout'
 import { MediaVision } from './collections/storage/MediaVision'
+import { MediaLeader } from './collections/storage/MediaLeader'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -42,7 +43,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision, MediaLeader],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -68,7 +69,8 @@ export default buildConfig({
         mediaContact: true,
         mediaAward: true,
         mediaAbout: true,
-        mediaVision: true
+        mediaVision: true,
+        mediaLeader: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN
     })

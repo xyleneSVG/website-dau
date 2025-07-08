@@ -162,6 +162,20 @@ export interface VisionCardLists {
   visionCardDescription: string
 }
 
+// Leader
+export interface LeaderSection {
+  id: string,
+  sectionLeaderTitle: string,
+  leaderProfileLists: LeaderProfileLists[]
+}
+
+export interface LeaderProfileLists {
+  id: string,
+  leaderPhotoProfile: ImageItem,
+  leaderName: string,
+  leaderPosition: string
+}
+
 // Image
 export interface ImageItem {
   id: string,

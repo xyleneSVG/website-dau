@@ -82,6 +82,7 @@ export interface Config {
     mediaAward: MediaAward;
     mediaAbout: MediaAbout;
     mediaVision: MediaVision;
+    mediaLeader: MediaLeader;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -103,6 +104,7 @@ export interface Config {
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
     mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
     mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
+    mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -165,6 +167,7 @@ export interface Page {
         | AwardSection
         | AboutSection
         | VisionSection
+        | LeaderSection
       )[]
     | null;
   updatedAt: string;
@@ -525,6 +528,43 @@ export interface MediaVision {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Leader Section".
+ */
+export interface LeaderSection {
+  sectionLeaderTitle: string;
+  leaderProfileLists?:
+    | {
+        leaderPhotoProfile: number | MediaLeader;
+        leaderName: string;
+        leaderPosition: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'leaderSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaLeader".
+ */
+export interface MediaLeader {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -672,6 +712,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaVision';
         value: number | MediaVision;
+      } | null)
+    | ({
+        relationTo: 'mediaLeader';
+        value: number | MediaLeader;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -736,6 +780,7 @@ export interface PagesSelect<T extends boolean = true> {
         awardSection?: T | AwardSectionSelect<T>;
         aboutSection?: T | AboutSectionSelect<T>;
         visionSection?: T | VisionSectionSelect<T>;
+        leaderSection?: T | LeaderSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -869,6 +914,23 @@ export interface VisionSectionSelect {
     | {
         visionCardTitle?: boolean;
         visionCardDescription?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Leader Section_select".
+ */
+export interface LeaderSectionSelect {
+  sectionLeaderTitle?: boolean;
+  leaderProfileLists?:
+    | boolean
+    | {
+        leaderPhotoProfile?: boolean;
+        leaderName?: boolean;
+        leaderPosition?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1109,6 +1171,24 @@ export interface MediaAboutSelect<T extends boolean = true> {
  * via the `definition` "mediaVision_select".
  */
 export interface MediaVisionSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaLeader_select".
+ */
+export interface MediaLeaderSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
