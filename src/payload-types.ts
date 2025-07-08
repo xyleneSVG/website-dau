@@ -71,16 +71,18 @@ export interface Config {
     users: User;
     messageFromGuests: MessageFromGuest;
     messageFieldConfiguration: MessageFieldConfiguration;
+    groupPage: GroupPage;
     mediaHero: MediaHero;
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaTechnology: MediaTechnology;
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
-    servicesSection: ServicesSection;
-    techsSection: TechsSection;
-    productsSection: ProductsSection;
-    clientsSection: ClientsSection;
+    mediaContact: MediaContact;
+    mediaAward: MediaAward;
+    mediaAbout: MediaAbout;
+    mediaVision: MediaVision;
+    mediaLeader: MediaLeader;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,16 +93,18 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
     messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
+    groupPage: GroupPageSelect<false> | GroupPageSelect<true>;
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaTechnology: MediaTechnologySelect<false> | MediaTechnologySelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
-    servicesSection: ServicesSectionSelect<false> | ServicesSectionSelect<true>;
-    techsSection: TechsSectionSelect<false> | TechsSectionSelect<true>;
-    productsSection: ProductsSectionSelect<false> | ProductsSectionSelect<true>;
-    clientsSection: ClientsSectionSelect<false> | ClientsSectionSelect<true>;
+    mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
+    mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
+    mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
+    mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
+    mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -147,9 +151,37 @@ export interface Page {
   /**
    * Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)
    */
-  pageDefault: boolean;
+  pageDefault?: boolean | null;
   pageKey?: string | null;
-  pageSection?: (HeroSection | ServiceSection | ProductSection | ClientSection | ContactSection)[] | null;
+  /**
+   * Example: https://{domain}/{Group}/{This Page}
+   */
+  pageGroup?: (number | null) | GroupPage;
+  pageSection?:
+    | (
+        | HeroSection
+        | ServiceSection
+        | ProductSection
+        | ClientSection
+        | ContactSection
+        | AwardSection
+        | AboutSection
+        | VisionSection
+        | LeaderSection
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groupPage".
+ */
+export interface GroupPage {
+  id: number;
+  groupName: string;
+  groupKey?: string | null;
+  subGroupFrom?: (number | null) | GroupPage;
   updatedAt: string;
   createdAt: string;
 }
@@ -299,6 +331,7 @@ export interface MediaClient {
  * via the `definition` "Contact Section".
  */
 export interface ContactSection {
+  sectionContactIllustration: number | MediaContact;
   sectionContactLabel: string;
   sectionContactHeadline: string;
   sectionContactDescription: string;
@@ -309,6 +342,25 @@ export interface ContactSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaContact".
+ */
+export interface MediaContact {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -351,6 +403,165 @@ export interface MessageFieldConfiguration {
   required?: boolean | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Award Section".
+ */
+export interface AwardSection {
+  sectionAwardTitle: string;
+  sectionAwardDescription: string;
+  AwardLists: {
+    awardImage: number | MediaAward;
+    awardNomination: string;
+    awardTitle: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'awardSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAward".
+ */
+export interface MediaAward {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About Section".
+ */
+export interface AboutSection {
+  sectionAboutLogo: number | MediaAbout;
+  sectionAboutTitle: string;
+  sectionAboutContent: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaAbout".
+ */
+export interface MediaAbout {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Vision Section".
+ */
+export interface VisionSection {
+  sectionVisionBanner: number | MediaVision;
+  sectionVisionTitle: string;
+  sectionVisionSubtitle: string;
+  /**
+   * Add 3 visions
+   */
+  visionCardLists?:
+    | {
+        visionCardTitle: string;
+        visionCardDescription: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'visionSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaVision".
+ */
+export interface MediaVision {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Leader Section".
+ */
+export interface LeaderSection {
+  sectionLeaderTitle: string;
+  leaderProfileLists?:
+    | {
+        leaderPhotoProfile: number | MediaLeader;
+        leaderName: string;
+        leaderPosition: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'leaderSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaLeader".
+ */
+export interface MediaLeader {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -437,82 +648,6 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "servicesSection".
- */
-export interface ServicesSection {
-  id: number;
-  /**
-   * Title for the Data Andalan Utama service
-   */
-  title: string;
-  /**
-   * Description for the Data Andalan Utama service
-   */
-  description: string;
-  /**
-   * Static URL for the Data Andalan Utama service page
-   */
-  url: string;
-  /**
-   * Icon for the service
-   */
-  icon: number | MediaService;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "techsSection".
- */
-export interface TechsSection {
-  id: number;
-  /**
-   * Name of the technology used
-   */
-  techName: string;
-  /**
-   * Technology icon used
-   */
-  techIcon: number | MediaTech;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productsSection".
- */
-export interface ProductsSection {
-  id: number;
-  /**
-   * Title for the Product Name
-   */
-  productTitle: string;
-  /**
-   * Image preview product
-   */
-  productImage: number | MediaProduct;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clientsSection".
- */
-export interface ClientsSection {
-  id: number;
-  /**
-   * Client's name
-   */
-  clientName: string;
-  /**
-   * Client's logo
-   */
-  clientLogo: number | MediaClient;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -533,6 +668,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'messageFieldConfiguration';
         value: number | MessageFieldConfiguration;
+      } | null)
+    | ({
+        relationTo: 'groupPage';
+        value: number | GroupPage;
       } | null)
     | ({
         relationTo: 'mediaHero';
@@ -559,20 +698,24 @@ export interface PayloadLockedDocument {
         value: number | MediaClient;
       } | null)
     | ({
-        relationTo: 'servicesSection';
-        value: number | ServicesSection;
+        relationTo: 'mediaContact';
+        value: number | MediaContact;
       } | null)
     | ({
-        relationTo: 'techsSection';
-        value: number | TechsSection;
+        relationTo: 'mediaAward';
+        value: number | MediaAward;
       } | null)
     | ({
-        relationTo: 'productsSection';
-        value: number | ProductsSection;
+        relationTo: 'mediaAbout';
+        value: number | MediaAbout;
       } | null)
     | ({
-        relationTo: 'clientsSection';
-        value: number | ClientsSection;
+        relationTo: 'mediaVision';
+        value: number | MediaVision;
+      } | null)
+    | ({
+        relationTo: 'mediaLeader';
+        value: number | MediaLeader;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -624,6 +767,7 @@ export interface PagesSelect<T extends boolean = true> {
   pageName?: T;
   pageDefault?: T;
   pageKey?: T;
+  pageGroup?: T;
   pageSection?:
     | T
     | {
@@ -633,6 +777,10 @@ export interface PagesSelect<T extends boolean = true> {
         productSection?: T | ProductSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
+        awardSection?: T | AwardSectionSelect<T>;
+        aboutSection?: T | AboutSectionSelect<T>;
+        visionSection?: T | VisionSectionSelect<T>;
+        leaderSection?: T | LeaderSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -711,6 +859,7 @@ export interface ClientSectionSelect {
  * via the `definition` "Contact Section_select".
  */
 export interface ContactSectionSelect {
+  sectionContactIllustration?: boolean;
   sectionContactLabel?: boolean;
   sectionContactHeadline?: boolean;
   sectionContactDescription?: boolean;
@@ -718,6 +867,70 @@ export interface ContactSectionSelect {
     | boolean
     | {
         fieldLabel?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Award Section_select".
+ */
+export interface AwardSectionSelect {
+  sectionAwardTitle?: boolean;
+  sectionAwardDescription?: boolean;
+  AwardLists?:
+    | boolean
+    | {
+        awardImage?: boolean;
+        awardNomination?: boolean;
+        awardTitle?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "About Section_select".
+ */
+export interface AboutSectionSelect {
+  sectionAboutLogo?: boolean;
+  sectionAboutTitle?: boolean;
+  sectionAboutContent?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Vision Section_select".
+ */
+export interface VisionSectionSelect {
+  sectionVisionBanner?: boolean;
+  sectionVisionTitle?: boolean;
+  sectionVisionSubtitle?: boolean;
+  visionCardLists?:
+    | boolean
+    | {
+        visionCardTitle?: boolean;
+        visionCardDescription?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Leader Section_select".
+ */
+export interface LeaderSectionSelect {
+  sectionLeaderTitle?: boolean;
+  leaderProfileLists?:
+    | boolean
+    | {
+        leaderPhotoProfile?: boolean;
+        leaderName?: boolean;
+        leaderPosition?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -777,6 +990,17 @@ export interface MessageFieldConfigurationSelect<T extends boolean = true> {
   parallelFieldPlaceholder?: T;
   parallelFieldType?: T;
   required?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groupPage_select".
+ */
+export interface GroupPageSelect<T extends boolean = true> {
+  groupName?: T;
+  groupKey?: T;
+  subGroupFrom?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -890,45 +1114,93 @@ export interface MediaClientsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "servicesSection_select".
+ * via the `definition` "mediaContact_select".
  */
-export interface ServicesSectionSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
+export interface MediaContactSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
   url?: T;
-  icon?: T;
-  updatedAt?: T;
-  createdAt?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "techsSection_select".
+ * via the `definition` "mediaAward_select".
  */
-export interface TechsSectionSelect<T extends boolean = true> {
-  techName?: T;
-  techIcon?: T;
+export interface MediaAwardSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "productsSection_select".
+ * via the `definition` "mediaAbout_select".
  */
-export interface ProductsSectionSelect<T extends boolean = true> {
-  productTitle?: T;
-  productImage?: T;
+export interface MediaAboutSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clientsSection_select".
+ * via the `definition` "mediaVision_select".
  */
-export interface ClientsSectionSelect<T extends boolean = true> {
-  clientName?: T;
-  clientLogo?: T;
+export interface MediaVisionSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaLeader_select".
+ */
+export interface MediaLeaderSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

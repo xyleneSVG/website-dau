@@ -8,6 +8,10 @@ import { TechnologySection } from './block-layout/Technology';
 import { ProductSection } from './block-layout/Product';
 import { ClientSection } from './block-layout/Client';
 import { ContactSection } from './block-layout/Contact';
+import { AwardSection } from './block-layout/Awards';
+import { AboutSection } from './block-layout/About';
+import { VisionSection } from './block-layout/Vision';
+import { LeaderSection } from './block-layout/Leader';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -16,6 +20,24 @@ export const Pages: CollectionConfig = {
     group: 'Advance Configuration',
   },
   fields: [
+    {
+      type: 'collapsible',
+      label: 'INSTRUCTION',
+      admin: {
+        initCollapsed: true
+      },
+      fields: [
+        {
+          name: 'howToUse',
+          type: 'ui',
+          admin: {
+            components: {
+              Field: '@/admin/_components/instruction',
+            },
+          },
+        },
+      ],
+    },
     {
       name: "pageName",
       type: 'text',
@@ -28,9 +50,10 @@ export const Pages: CollectionConfig = {
       type: 'checkbox',
       label: "Page Default?",
       admin: {
-        description: 'Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)'
+        description: 'Enable if this page will be located at "https:{domain}/" (make sure there is no other page as the default page)',
+        condition: (_, siblingData) => !siblingData?.pageGroup,
       },
-      required: true
+      defaultValue: false
     },
     {
       name: "pageKey",
@@ -42,42 +65,25 @@ export const Pages: CollectionConfig = {
       defaultValue: "Save first to get the key of this page"
     },
     {
+      name: "pageGroup",
+      type: "relationship",
+      relationTo: "groupPage", 
+      label: "Page Group",
+      admin: {
+        description: "Example: https://{domain}/{Group}/{This Page}",
+        condition: (_, siblingData) => siblingData?.pageDefault === false,
+      },
+    },
+    {
       name: "pageSection",
       type: 'blocks',
-      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection],
-      validate: (value: unknown) => {
-        if (!Array.isArray(value)) return true;
-
-        const blockCounts: Record<string, number> = {};
-        const allowedOnlyOnce = [
-          'heroSection',
-          'serviceSection',
-          'technologySection',
-          'productSection',
-          'clientSection',
-          'contactSection'
-        ];
-
-        for (const block of value) {
-          const type = block.blockType;
-          if (allowedOnlyOnce.includes(type)) {
-            blockCounts[type] = (blockCounts[type] || 0) + 1;
-          }
-        }
-
-        const duplicated = Object.entries(blockCounts).find(([_, count]) => count > 1);
-        if (duplicated) {
-          const [blockType] = duplicated;
-          return `${blockType} only once use in this page.`;
-        }
-
-        return true;
-      },
+      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection, LeaderSection],
     }
   ],
   hooks: {
     beforeValidate: [
       async ({ data, req, originalDoc }) => {
+        console.log(data)
         if (data?.pageDefault) {
           const existingDefaultPages = await req.payload.find({
             collection: 'pages',
@@ -108,8 +114,6 @@ export const Pages: CollectionConfig = {
             throw new APIError(`There is already a page with the name "${alreadyExists.pageName}"`,400,undefined,true);
           }
         }
-      },
-      ({ data }) => {
         if (data?.pageName) {
           const slug = data.pageName
             .toLowerCase()
@@ -117,7 +121,18 @@ export const Pages: CollectionConfig = {
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
             .trim();
-          data.pageKey = slug;
+          if (data?.pageGroup) {
+            const dataPageGroup = await req.payload.findByID({
+              collection: 'groupPage',
+              id: data?.pageGroup,
+            }); 
+            data.pageKey = dataPageGroup?.groupKey+"/"+slug;
+          } else {
+            data.pageKey = "/"+slug;
+          }
+          if (data?.pageGroup !== null) {
+            data.pageDefault = false
+          }
         }
         if (Array.isArray(data?.blocks)) {
           data.blocks = data.blocks.map((block) => {
@@ -134,8 +149,8 @@ export const Pages: CollectionConfig = {
             return block;
           });
         }
-      return data;
-      }
+        return data;
+      },
     ]
   }
 }

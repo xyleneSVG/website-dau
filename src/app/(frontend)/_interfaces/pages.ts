@@ -47,6 +47,7 @@ export interface ServiceLists {
 // Technology
 export interface TechnologySection {
   id: string,
+  blockType: 'technologySection';
   sectionTechnologyTitle: string,
   sectionTechnologySubtitle: string,
   sectionTechnologyIllustration: ImageItem,
@@ -54,12 +55,172 @@ export interface TechnologySection {
 }
 
 export interface TechnologyLists {
-    id: string,
-    technologyName: string,
-    technologyIcon: ImageItem,
+  id: string,
+  technologyName: string,
+  technologyIcon: ImageItem,
 }
 
+// Product
+export interface ProductSection {
+  id: string,
+  blockType: 'productSection';
+  sectionProductTitle: string,
+  sectionProductSubtitle: string,
+  productLists: ProductLists[]
+}
+
+export interface ProductLists {
+  id: string,
+  productTitle: string,
+  productDisplay: ImageItem,
+}
+
+// Client
+export interface ClientSection {
+  id: string,
+  blockType: 'clientSection';
+  sectionClientTitle: string,
+  clientLists: ClientLists[]
+}
+
+export interface ClientLists {
+  id: string,
+  clientName: string,
+  clientLogo: ImageItem,
+}
+
+// Contact
+export interface ContactSection {
+  id: string,
+  blockType: 'contactSection';
+  sectionContactIllustration: ImageItem
+  sectionContactLabel: string,
+  sectionContactHeadline: string,
+  sectionContactDescription: string,
+  fieldContactLists: FieldContactLists[]
+}
+
+export interface FieldContactLists {
+  id: string,
+  fieldLabel: string,
+  fieldName: string,
+  fieldPlaceholder: string,
+  fieldType: string
+  selectOptions: SelectOptions[]
+  styling: boolean,
+  parallelFieldLabel: string,
+  parallelFieldName: string,
+  parallelFieldPlaceholder: string,
+  parallelFieldType: string,
+  required: boolean
+}
+
+export interface SelectOptions {
+  id: string,
+  optionLabel: string,
+  optionValue: string
+}
+
+// Award
+export interface AwardSection {
+  id: string,
+  blockType: 'awardSection',
+  sectionAwardTitle: string,
+  sectionAwardDescription: string,
+  AwardLists: AwardLists[],
+}
+
+export interface AwardLists {
+  id: string,
+  awardImage: ImageItem,
+  awardNomination: string,
+  awardTitle: string,
+}
+
+// About
+export interface AboutSection {
+  id: string,
+  blockType: 'aboutSection',
+  sectionAboutLogo: ImageItem,
+  sectionAboutTitle: string,
+  sectionAboutContent: RichTextContent,
+}
+
+// Vision
+export interface VisionSection {
+  id: string,
+  blockType: 'visionSection',
+  sectionVisionBanner: ImageItem,
+  sectionVisionTitle: string,
+  sectionVisionSubtitle: string,
+  visionCardLists: VisionCardLists[]
+}
+
+export interface VisionCardLists {
+  id: string,
+  visionCardTitle: string,
+  visionCardDescription: string
+}
+
+// Leader
+export interface LeaderSection {
+  id: string,
+  sectionLeaderTitle: string,
+  leaderProfileLists: LeaderProfileLists[]
+}
+
+export interface LeaderProfileLists {
+  id: string,
+  leaderPhotoProfile: ImageItem,
+  leaderName: string,
+  leaderPosition: string
+}
+
+// Image
 export interface ImageItem {
-  id: string;
-  filename: string;
+  id: string,
+  filename: string,
+}
+
+// RichTextContent
+export interface RichTextContent {
+  root: {
+    type: 'root',
+    format: string,
+    indent: number,
+    version: number,
+    direction: string,
+    textFormat: number,
+    children: RichTextNode[],
+  },
+}
+
+export type RichTextNode =
+  | ParagraphNode
+  | LinebreakNode
+
+export interface ParagraphNode {
+  type: 'paragraph',
+  format: string,
+  indent: number,
+  version: number,
+  direction: string,
+  textStyle: string,
+  textFormat: number,
+  children: RichTextTextNode[],
+}
+
+export interface LinebreakNode {
+  type: 'linebreak',
+  version: number,
+}
+
+export interface RichTextTextNode {
+  type: 'text',
+  version: number,
+  mode: string,
+  text: string,
+  style: string,
+  detail: number,
+  format: number,
 }

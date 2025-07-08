@@ -6,6 +6,12 @@ export const ContactSection: Block = {
   interfaceName: 'Contact Section',
   fields: [
     {
+      name: 'sectionContactIllustration',
+      type: 'upload',
+      relationTo: 'mediaContact',
+      required: true,
+    },
+    {
       name: 'sectionContactLabel',
       type: 'text',
       label: 'Section Label',

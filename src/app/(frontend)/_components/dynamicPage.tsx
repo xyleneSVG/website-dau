@@ -10,6 +10,13 @@ import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import Service from './_layouts/service'
 import Tech from './_layouts/tech'
+import Product from './_layouts/product'
+import Client from './_layouts/client'
+import Contact from './_layouts/contact'
+import Award from './_layouts/award'
+import About from './_layouts/about'
+import Vision from './_layouts/vision/vision'
+import LeaderCarousel from './_layouts/leader/leader'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -24,14 +31,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
   const router = useRouter()
-
-  const pageKey = slug === '' ? '/' : `/${slug}`
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getDataPages(pageKey)
+        const result = await getDataPages(slug)
         if (!result || result.length === 0) {
           router.replace('/not-found')
         } else {
@@ -45,7 +50,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     }
 
     fetchData()
-  }, [pageKey, router])
+  }, [router, slug])
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
@@ -55,6 +60,20 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
       case 'technologySection':
         return <Tech key={index} technologySection={section} domainBlob={domainBlob} />
+      case 'productSection':
+        return <Product key={index} productSection={section} domainBlob={domainBlob} />
+      case 'clientSection':
+        return <Client key={index} clientSection={section} domainBlob={domainBlob} />
+      case 'contactSection':
+        return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
+      case 'awardSection':
+        return <Award key={index} awardSection={section} domainBlob={domainBlob} />
+      case 'aboutSection':
+        return <About key={index} aboutSection={section} domainBlob={domainBlob} />
+      case 'visionSection':
+        return <Vision key={index} visionSection={section} domainBlob={domainBlob} />
+      case 'leaderSection':
+        return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
       default:
         return null
     }

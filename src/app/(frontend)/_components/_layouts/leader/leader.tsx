@@ -6,27 +6,14 @@ import Image from 'next/image'
 
 import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
+
+// components
 import LeaderCard from './LeaderCard'
 
-const originalProfiles = [
-  {
-    photo: '/assets/landing/leader/jerry-susmono.png',
-    name: 'Jerry Susmono',
-    position: 'CEO & Founder',
-  },
-  {
-    photo: '/assets/landing/leader/sentot-andalas.png',
-    name: 'Sentot Andalas',
-    position: 'CMO & Founder',
-  },
-  {
-    photo: '/assets/landing/leader/budi-wiyono.png',
-    name: 'Budi Wiyono',
-    position: 'CTO',
-  },
-]
+// interfaces
+import { LeaderSection } from '@/app/(frontend)/_interfaces/pages'
 
-export default function LeaderCarousel() {
+export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSection: LeaderSection, domainBlob:string}) {
   const [visibleCount, setVisibleCount] = useState(1)
   const [cardWidth, setCardWidth] = useState(0)
   const [index, setIndex] = useState(0)
@@ -34,8 +21,7 @@ export default function LeaderCarousel() {
   const containerRef = useRef<HTMLDivElement>(null)
   const controls = useAnimation()
 
-  const profiles = originalProfiles
-  const total = profiles.length
+  const total = leaderSection.leaderProfileLists.length
 
   const maxIndex = Math.max(0, total - visibleCount)
   const shouldShowButtons = total >= minItemsToShowButton
@@ -141,13 +127,13 @@ export default function LeaderCarousel() {
           className="flex gap-0"
           animate={controls}
         >
-          {profiles.map((item, i) => (
+          {leaderSection.leaderProfileLists.map((item, i) => (
             <div
-              key={`${item.name}-${i}`}
+              key={`${item.id}-${i}`}
               className="shrink-0 flex justify-center"
               style={{ flex: `0 0 ${100 / visibleCount}%` }}
             >
-              <LeaderCard {...item} />
+              <LeaderCard name={item.leaderName} position={item.leaderPosition} photo={domainBlob+item.leaderPhotoProfile.filename} />
             </div>
           ))}
         </motion.div>

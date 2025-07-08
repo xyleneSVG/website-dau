@@ -7,13 +7,13 @@ import configPromise from '@payload-config'
 export async function getDataPages(path: string) {
   const payload = await getPayload({ config: await configPromise })
 
-  const slug = path.split('/').filter(Boolean)[0] || ''
   const result = await payload.find({
     collection: 'pages',
-    where: { pageKey: { equals: slug } },
+    where: { pageKey: { equals: path } },
     sort: 'createdAt',
     limit: 1,
   })
-
+  console.log("slug "+path)
+  console.log(result)
   return result.docs
 }
