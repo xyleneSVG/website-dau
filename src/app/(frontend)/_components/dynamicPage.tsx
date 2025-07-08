@@ -16,6 +16,7 @@ import Contact from './_layouts/contact'
 import Award from './_layouts/award'
 import About from './_layouts/about'
 import Vision from './_layouts/vision/vision'
+import LeaderCarousel from './_layouts/leader/leader'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -71,6 +72,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <About key={index} aboutSection={section} domainBlob={domainBlob} />
       case 'visionSection':
         return <Vision key={index} visionSection={section} domainBlob={domainBlob} />
+      case 'leaderSection':
+        return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
       default:
         return null
     }
