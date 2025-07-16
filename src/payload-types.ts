@@ -573,12 +573,12 @@ export interface MediaLeader {
  */
 export interface TwoColumnLayoutSection {
   imageLists: {
-    TwoColumnLayoutImage: number | MediaTwoColumnLayout;
+    twoColumnLayoutImage: number | MediaTwoColumnLayout;
     id?: string | null;
   }[];
-  TwoColumnLayoutTitle?: string | null;
-  TwoColumnLayoutSubtitle: string;
-  TwoColumnLayoutDescription: {
+  twoColumnLayoutTitle?: string | null;
+  twoColumnLayoutSubtitle: string;
+  twoColumnLayoutDescription: {
     root: {
       type: string;
       children: {
@@ -1019,12 +1019,12 @@ export interface TwoColumnLayoutSectionSelect {
   imageLists?:
     | boolean
     | {
-        TwoColumnLayoutImage?: boolean;
+        twoColumnLayoutImage?: boolean;
         id?: boolean;
       };
-  TwoColumnLayoutTitle?: boolean;
-  TwoColumnLayoutSubtitle?: boolean;
-  TwoColumnLayoutDescription?: boolean;
+  twoColumnLayoutTitle?: boolean;
+  twoColumnLayoutSubtitle?: boolean;
+  twoColumnLayoutDescription?: boolean;
   hasButton?: boolean;
   buttonText?: boolean;
   buttonIcon?: boolean;
