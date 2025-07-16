@@ -32,6 +32,7 @@ import { MediaAward } from './collections/storage/MediaAward'
 import { MediaAbout } from './collections/storage/MediaAbout'
 import { MediaVision } from './collections/storage/MediaVision'
 import { MediaLeader } from './collections/storage/MediaLeader'
+import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,7 +44,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision, MediaLeader],
+  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision, MediaLeader, MediaTwoColumnLayout],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
