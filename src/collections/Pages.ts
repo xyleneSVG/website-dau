@@ -12,6 +12,7 @@ import { AwardSection } from './block-layout/Awards';
 import { AboutSection } from './block-layout/About';
 import { VisionSection } from './block-layout/Vision';
 import { LeaderSection } from './block-layout/Leader';
+import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -77,7 +78,7 @@ export const Pages: CollectionConfig = {
     {
       name: "pageSection",
       type: 'blocks',
-      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection, LeaderSection],
+      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection, LeaderSection, TwoColumnLayoutSection],
     }
   ],
   hooks: {
@@ -149,6 +150,8 @@ export const Pages: CollectionConfig = {
             return block;
           });
         }
+        // console.log('BeforeValidate Hook Triggered');
+        // console.log(JSON.stringify(data, null, 2));
         return data;
       },
     ]

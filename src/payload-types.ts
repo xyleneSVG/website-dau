@@ -83,6 +83,7 @@ export interface Config {
     mediaAbout: MediaAbout;
     mediaVision: MediaVision;
     mediaLeader: MediaLeader;
+    mediaTwoColumnLayout: MediaTwoColumnLayout;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -105,6 +106,7 @@ export interface Config {
     mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
     mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
+    mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -161,6 +163,7 @@ export interface Page {
     | (
         | HeroSection
         | ServiceSection
+        | ServiceSection
         | ProductSection
         | ClientSection
         | ContactSection
@@ -168,6 +171,7 @@ export interface Page {
         | AboutSection
         | VisionSection
         | LeaderSection
+        | TwoColumnLayoutSection
       )[]
     | null;
   updatedAt: string;
@@ -565,6 +569,72 @@ export interface MediaLeader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Two Column Layout Section".
+ */
+export interface TwoColumnLayoutSection {
+  imageLists: {
+    TwoColumnLayoutImage: number | MediaTwoColumnLayout;
+    id?: string | null;
+  }[];
+  TwoColumnLayoutTitle?: string | null;
+  TwoColumnLayoutSubtitle: string;
+  TwoColumnLayoutDescription: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  hasButton?: boolean | null;
+  buttonText?: string | null;
+  buttonIcon?: string | null;
+  buttonLink?: (number | null) | Page;
+  /**
+   * Choose a color for this button
+   */
+  buttonColor?: string | null;
+  /**
+   * If select "Right" then the image is on the left and the title, subtitle, description are on the right.
+   */
+  contentAlign: 'right' | 'left';
+  hasBackground?: boolean | null;
+  /**
+   * Choose a color for this background page
+   */
+  backgroundColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoColumnLayoutSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTwoColumnLayout".
+ */
+export interface MediaTwoColumnLayout {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -716,6 +786,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaLeader';
         value: number | MediaLeader;
+      } | null)
+    | ({
+        relationTo: 'mediaTwoColumnLayout';
+        value: number | MediaTwoColumnLayout;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -781,6 +855,7 @@ export interface PagesSelect<T extends boolean = true> {
         aboutSection?: T | AboutSectionSelect<T>;
         visionSection?: T | VisionSectionSelect<T>;
         leaderSection?: T | LeaderSectionSelect<T>;
+        twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -933,6 +1008,31 @@ export interface LeaderSectionSelect {
         leaderPosition?: boolean;
         id?: boolean;
       };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Two Column Layout Section_select".
+ */
+export interface TwoColumnLayoutSectionSelect {
+  imageLists?:
+    | boolean
+    | {
+        TwoColumnLayoutImage?: boolean;
+        id?: boolean;
+      };
+  TwoColumnLayoutTitle?: boolean;
+  TwoColumnLayoutSubtitle?: boolean;
+  TwoColumnLayoutDescription?: boolean;
+  hasButton?: boolean;
+  buttonText?: boolean;
+  buttonIcon?: boolean;
+  buttonLink?: boolean;
+  buttonColor?: boolean;
+  contentAlign?: boolean;
+  hasBackground?: boolean;
+  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -1189,6 +1289,24 @@ export interface MediaVisionSelect<T extends boolean = true> {
  * via the `definition` "mediaLeader_select".
  */
 export interface MediaLeaderSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTwoColumnLayout_select".
+ */
+export interface MediaTwoColumnLayoutSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
