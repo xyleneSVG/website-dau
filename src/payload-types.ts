@@ -163,7 +163,7 @@ export interface Page {
     | (
         | HeroSection
         | ServiceSection
-        | ServiceSection
+        | TechnologySection
         | ProductSection
         | ClientSection
         | ContactSection
@@ -172,6 +172,7 @@ export interface Page {
         | VisionSection
         | LeaderSection
         | TwoColumnLayoutSection
+        | Technology2Section
       )[]
     | null;
   updatedAt: string;
@@ -230,6 +231,46 @@ export interface MediaHero {
  * via the `definition` "Service Section".
  */
 export interface ServiceSection {
+  sectionServiceTitle: string;
+  sectionServiceSubtitle: string;
+  serviceLists: {
+    serviceListTitle: string;
+    serviceListDescription: string;
+    serviceListIcon: number | MediaService;
+    /**
+     * Select the page that explains about this service (make sure the page already exists)
+     */
+    serviceListPage?: (number | null) | Page;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaServices".
+ */
+export interface MediaService {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Technology Section".
+ */
+export interface TechnologySection {
   sectionTechnologyTitle: string;
   sectionTechnologySubtitle: string;
   sectionTechnologyIllustration: number | MediaTechnology;
@@ -635,6 +676,21 @@ export interface MediaTwoColumnLayout {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Technology 2 Section".
+ */
+export interface Technology2Section {
+  sectionTechnology2Title: string;
+  technology2Lists: {
+    technologyName: string;
+    technologyIcon: number | MediaTechnology;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'technologySection2';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -677,25 +733,6 @@ export interface MessageFromGuest {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaServices".
- */
-export interface MediaService {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -847,7 +884,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         heroSection?: T | HeroSectionSelect<T>;
         serviceSection?: T | ServiceSectionSelect<T>;
-        technologySection?: T | ServiceSectionSelect<T>;
+        technologySection?: T | TechnologySectionSelect<T>;
         productSection?: T | ProductSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
@@ -856,6 +893,7 @@ export interface PagesSelect<T extends boolean = true> {
         visionSection?: T | VisionSectionSelect<T>;
         leaderSection?: T | LeaderSectionSelect<T>;
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
+        technologySection2?: T | Technology2SectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -883,6 +921,25 @@ export interface HeroSectionSelect {
  * via the `definition` "Service Section_select".
  */
 export interface ServiceSectionSelect {
+  sectionServiceTitle?: boolean;
+  sectionServiceSubtitle?: boolean;
+  serviceLists?:
+    | boolean
+    | {
+        serviceListTitle?: boolean;
+        serviceListDescription?: boolean;
+        serviceListIcon?: boolean;
+        serviceListPage?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Technology Section_select".
+ */
+export interface TechnologySectionSelect {
   sectionTechnologyTitle?: boolean;
   sectionTechnologySubtitle?: boolean;
   sectionTechnologyIllustration?: boolean;
@@ -1033,6 +1090,22 @@ export interface TwoColumnLayoutSectionSelect {
   contentAlign?: boolean;
   hasBackground?: boolean;
   backgroundColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Technology 2 Section_select".
+ */
+export interface Technology2SectionSelect {
+  sectionTechnology2Title?: boolean;
+  technology2Lists?:
+    | boolean
+    | {
+        technologyName?: boolean;
+        technologyIcon?: boolean;
+        id?: boolean;
+      };
   id?: boolean;
   blockName?: boolean;
 }

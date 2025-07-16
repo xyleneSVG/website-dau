@@ -8,7 +8,7 @@ export interface Page {
   createdAt: string;
 }
 
-export type PageSection = HeroSection | ServiceSection | TechnologySection; 
+export type PageSection = HeroSection | ServiceSection | TechnologySection | ProductSection | ClientSection | ContactSection | AwardSection | AboutSection | VisionSection | LeaderSection | TwoColumnSection | TechnologySection2; 
 
 // Hero
 export interface HeroSection {
@@ -165,6 +165,7 @@ export interface VisionCardLists {
 // Leader
 export interface LeaderSection {
   id: string,
+  blockType: 'leaderSection'
   sectionLeaderTitle: string,
   leaderProfileLists: LeaderProfileLists[]
 }
@@ -179,6 +180,7 @@ export interface LeaderProfileLists {
 // Two Column Layout
 export interface TwoColumnSection {
   id: string,
+  blockType: 'twoColumnSection';
   twoColumnLayoutTitle: string,
   twoColumnLayoutSubtitle: string,
   twoColumnLayoutDescription: RichTextContent,
@@ -201,6 +203,20 @@ export interface ButtonLink {
 export interface TwoColumnLayoutImageLists {
   id: string,
   twoColumnLayoutImage: ImageItem
+}
+
+// Technology 2
+export interface TechnologySection2 {
+  id: string,
+  blockType: 'technologySection2';
+  sectionTechnology2Title: string,
+  technology2Lists: Technology2Lists[]
+}
+
+export interface Technology2Lists {
+  id: string,
+  technologyName: string,
+  technologyIcon: ImageItem,
 }
 
 // Image

@@ -1,31 +1,18 @@
 import type { Block } from 'payload'
 
-export const TechnologySection: Block = {
-  slug: 'technologySection',
+export const TechnologySection2: Block = {
+  slug: 'technologySection2',
   imageURL: "public/assets/landing/hero/thumbnail.png",
-  interfaceName: 'Technology Section',
+  interfaceName: 'Technology 2 Section',
   fields: [
     {
-      name: 'sectionTechnologyTitle',
+      name: 'sectionTechnology2Title',
       type: 'text',
       label: 'Section Title',
       required: true
     },
     {
-      name: 'sectionTechnologySubtitle',
-      type: 'text',
-      label: 'Section Subtitle',
-      required: true
-    },
-    {
-      name: "sectionTechnologyIllustration",
-      type: "upload",
-      relationTo: "mediaTechnology", 
-      label: "Technology Illustration",
-      required: true,
-    },
-    {
-      name: 'technologyLists',
+      name: 'technology2Lists',
       type: 'array',
       required: true,
       label: 'Technology Lists',

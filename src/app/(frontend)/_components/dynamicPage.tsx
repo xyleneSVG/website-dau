@@ -25,6 +25,7 @@ import About from './_layouts/about'
 import Vision from './_layouts/vision/vision'
 import LeaderCarousel from './_layouts/leader/leader'
 import TwoColumn from './_layouts/twoColumn'
+import Tech2 from './_layouts/tech2'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -94,6 +95,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
       case 'twoColumnLayoutSection':
         return <TwoColumn key={index} twoColumnSection={section} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
+      case 'technologySection2':
+        return <Tech2 key={index} technologySection2={section} domainBlob={domainBlob} />
       default:
         return null
     }
