@@ -4,6 +4,13 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Phone,
+  ArrowRight,
+  ChevronRight,
+  LucideIcon,
+} from 'lucide-react'
+
 
 // components
 import Navbar from './_layouts/navbar'
@@ -17,6 +24,7 @@ import Award from './_layouts/award'
 import About from './_layouts/about'
 import Vision from './_layouts/vision/vision'
 import LeaderCarousel from './_layouts/leader/leader'
+import TwoColumn from './_layouts/twoColumn'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -30,8 +38,18 @@ import { getDataPages } from '../_functions/getDataPages'
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState<Page | null>(null)
+  const iconMap: Record<string, LucideIcon> = {
+    phone: Phone,
+    arrowright: ArrowRight,
+    chevronright: ChevronRight,
+  }
   const router = useRouter()
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
+
+  function getLucideIcon(name?: string): LucideIcon | null {
+    if (!name) return null
+    return iconMap[name.toLowerCase()] || null
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +92,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Vision key={index} visionSection={section} domainBlob={domainBlob} />
       case 'leaderSection':
         return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
+      case 'twoColumnLayoutSection':
+        return <TwoColumn key={index} twoColumnSection={section} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
       default:
         return null
     }

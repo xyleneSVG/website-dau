@@ -71,7 +71,8 @@ export default buildConfig({
         mediaAward: true,
         mediaAbout: true,
         mediaVision: true,
-        mediaLeader: true
+        mediaLeader: true,
+        mediaTwoColumnLayout: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN
     })

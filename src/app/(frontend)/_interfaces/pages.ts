@@ -176,6 +176,33 @@ export interface LeaderProfileLists {
   leaderPosition: string
 }
 
+// Two Column Layout
+export interface TwoColumnSection {
+  id: string,
+  twoColumnLayoutTitle: string,
+  twoColumnLayoutSubtitle: string,
+  twoColumnLayoutDescription: RichTextContent,
+  hasButton: boolean,
+  buttonText: string,
+  buttonIcon: string,
+  buttonLink: ButtonLink,
+  buttonColor: string,
+  contentAlign: string,
+  hasBackground: boolean,
+  backgroundColor: string,
+  imageLists: TwoColumnLayoutImageLists[]
+}
+
+export interface ButtonLink {
+  id: string,
+  pageKey: string
+}
+
+export interface TwoColumnLayoutImageLists {
+  id: string,
+  twoColumnLayoutImage: ImageItem
+}
+
 // Image
 export interface ImageItem {
   id: string,
