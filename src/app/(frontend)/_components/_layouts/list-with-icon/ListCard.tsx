@@ -31,7 +31,6 @@ export default function ListCard({
           />
         )}
       </div>
-
       <p className="text-xs sm:text-sm md:text-base font-medium">{title}</p>
     </div>
   )
