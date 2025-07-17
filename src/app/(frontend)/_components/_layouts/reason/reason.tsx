@@ -8,31 +8,31 @@ const data = [
     title: 'Keamanan Data',
     description:
       'Melindungi data perusahaan dari kebocoran jika perangkat hilang atau dicuri.',
-    icon: '/assets/landing/reason/reason1.png',
+    image: '/assets/landing/reason/reason1.png',
   },
   {
     title: 'Manajemen Efisien',
     description:
       'Mengelola ratusan perangkat sekaligus secara jarak jauh.',
-    icon: '/assets/landing/reason/reason2.png',
+    image: '/assets/landing/reason/reason2.png',
   },
   {
     title: 'Produktivitas Karyawan',
     description:
       'Membatasi perangkat hanya untuk aplikasi dan aktivitas kerja.',
-    icon: '/assets/landing/reason/reason3.png',
+    image: '/assets/landing/reason/reason3.png',
   },
   {
     title: 'Kepatuhan Regulasi',
     description:
       'Memastikan perangkat mematuhi aturan seperti GDPR, HIPAA, atau ISO 27001.',
-    icon: '/assets/landing/reason/reason4.png',
+    image: '/assets/landing/reason/reason4.png',
   },
   {
     title: 'Pengelolaan BYOD (Bring Your Own Device)',
     description:
       'Memisahkan data pribadi dan perusahaan di perangkat karyawan.',
-    icon: '/assets/landing/reason/reason5.png',
+    image: '/assets/landing/reason/reason5.png',
   },
 ]
 
@@ -50,7 +50,7 @@ export default function Reason() {
           {data.map((item, index) => (
             <ReasonCard
               key={index}
-              icon={item.icon}
+              image={item.image}
               title={item.title}
               description={item.description}
             />
