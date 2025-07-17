@@ -4,11 +4,11 @@ import Image from 'next/image'
 import React from 'react'
 
 export default function ReasonCard({
-  icon,
+  image,
   title,
   description,
 }: {
-  icon: string
+  image: string
   title: string
   description: string
 }) {
@@ -16,7 +16,7 @@ export default function ReasonCard({
     <div className="w-full sm:w-[48%] lg:w-[30%] bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
       <div className="relative w-full h-40 md:h-48">
         <Image
-          src={icon}
+          src={image}
           alt={title}
           fill
           className="object-cover"
