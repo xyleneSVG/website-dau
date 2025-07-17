@@ -14,6 +14,7 @@ import { VisionSection } from './block-layout/Vision';
 import { LeaderSection } from './block-layout/Leader';
 import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout';
 import { TechnologySection2 } from './block-layout/Technology2';
+import { ListWithIconSection } from './block-layout/ListWithIcon';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -79,7 +80,7 @@ export const Pages: CollectionConfig = {
     {
       name: "pageSection",
       type: 'blocks',
-      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection, LeaderSection, TwoColumnLayoutSection, TechnologySection2],
+      blocks: [HeroSection, ServiceSection, TechnologySection, ProductSection, ClientSection, ContactSection, AwardSection, AboutSection, VisionSection, LeaderSection, TwoColumnLayoutSection, TechnologySection2, ListWithIconSection],
     }
   ],
   hooks: {

@@ -173,6 +173,7 @@ export interface Page {
         | LeaderSection
         | TwoColumnLayoutSection
         | Technology2Section
+        | ListWithIconSection
       )[]
     | null;
   updatedAt: string;
@@ -691,6 +692,33 @@ export interface Technology2Section {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon Section".
+ */
+export interface ListWithIconSection {
+  sectionListIconTitle: string;
+  /**
+   * Choose a color for this background page
+   */
+  backgroundPageColor?: string | null;
+  sectionLists: {
+    buttonIcon?: string | null;
+    contentName: string;
+    id?: string | null;
+  }[];
+  /**
+   * Choose a color for this icon
+   */
+  iconColor?: string | null;
+  /**
+   * Choose a color for this background icon
+   */
+  backgroundIconColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'listWithIconSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -894,6 +922,7 @@ export interface PagesSelect<T extends boolean = true> {
         leaderSection?: T | LeaderSectionSelect<T>;
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
         technologySection2?: T | Technology2SectionSelect<T>;
+        listWithIconSection?: T | ListWithIconSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1106,6 +1135,25 @@ export interface Technology2SectionSelect {
         technologyIcon?: boolean;
         id?: boolean;
       };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon Section_select".
+ */
+export interface ListWithIconSectionSelect {
+  sectionListIconTitle?: boolean;
+  backgroundPageColor?: boolean;
+  sectionLists?:
+    | boolean
+    | {
+        buttonIcon?: boolean;
+        contentName?: boolean;
+        id?: boolean;
+      };
+  iconColor?: boolean;
+  backgroundIconColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }

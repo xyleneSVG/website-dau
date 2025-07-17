@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import { iconPickerField } from '@innovixx/payload-icon-picker-field'
+import { customLucideIcon } from '@/admin/_fields/listIcon'
 
 export const TwoColumnLayoutSection: Block = {
   slug: 'twoColumnLayoutSection',
@@ -61,12 +62,7 @@ export const TwoColumnLayoutSection: Block = {
     iconPickerField({
       name: 'buttonIcon',
       label: 'Button Icon',
-      // Jika tambah daftar icon, tambah juga daftar iconnya di \src\app\(frontend)\_components\dynamicPage.tsx pada bagian const iconMap: Record<string, LucideIcon>. Pastikan ambil icon dari lucide-react
-      icons: {
-        Phone: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>',
-        ChevronRight: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>',
-        CircleChevronRight: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right-icon lucide-circle-chevron-right"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>'
-      },
+      icons: customLucideIcon,
       admin: {
         condition: (_, siblingData) => siblingData?.hasButton === true,
       },
