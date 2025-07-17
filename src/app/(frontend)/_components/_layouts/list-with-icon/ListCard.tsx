@@ -25,7 +25,7 @@ export default function ListCard({
       >
         {IconComponent && (
           <IconComponent
-            className="w-6 sm:w-7 md:w-8 lg:w-10"
+            className="size-6 sm:size-7 md:size-8 lg:size-12"
             strokeWidth={1.5}
             style={{ color: iconColor }}
           />
