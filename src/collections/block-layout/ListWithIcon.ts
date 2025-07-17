@@ -24,7 +24,7 @@ export const ListWithIconSection: Block = {
       },
     }),
     {
-      name: 'sectionLists',
+      name: 'contentLists',
       type: 'array',
       required: true,
       label: 'Content Lists',

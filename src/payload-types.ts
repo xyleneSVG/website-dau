@@ -700,8 +700,8 @@ export interface ListWithIconSection {
    * Choose a color for this background page
    */
   backgroundPageColor?: string | null;
-  sectionLists: {
-    buttonIcon?: string | null;
+  contentLists: {
+    buttonIcon: string;
     contentName: string;
     id?: string | null;
   }[];
@@ -1145,7 +1145,7 @@ export interface Technology2SectionSelect {
 export interface ListWithIconSectionSelect {
   sectionListIconTitle?: boolean;
   backgroundPageColor?: boolean;
-  sectionLists?:
+  contentLists?:
     | boolean
     | {
         buttonIcon?: boolean;
