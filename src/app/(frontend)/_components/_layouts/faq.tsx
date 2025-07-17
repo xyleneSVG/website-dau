@@ -60,7 +60,7 @@ export default function FAQ() {
   return (
     <div className="min-h-screen">
       <div className="w-full text-center mb-12 mx-auto bg-[#E3F1FE] px-6 pt-12 lg:pt-16 pb-24 lg:pb-30">
-        <h1 className="text-[16px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-4xl 2xl:max-w-5xl md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold text-gray-800 mx-auto">
+        <h1 className="text-[16px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-4xl 2xl:max-w-5xl md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold text-black mx-auto">
           KETAHUI INI SEBELUMNYA
         </h1>
         <p className="md:max-w-[600px] lg:max-w-[800px] xl:max-w-4xl 2xl:max-w-5xl mt-3 md:mt-5 xl:mt-7 2xl:mt-10 text-black font-light text-[14px] md:text-[16px] lg:text-[18px] xl:text-[18px] 2xl:text-[24px] mx-auto">
