@@ -219,6 +219,23 @@ export interface Technology2Lists {
   technologyIcon: ImageItem,
 }
 
+// List With Icon
+export interface ListWithIconSection {
+  id: string,
+  blockType: 'listWithIconSection';
+  sectionListIconTitle: string,
+  backgroundPageColor: string,
+  iconColor: string,
+  backgroundIconColor: string,
+  contentLists: ContentListsWithIcon[]
+}
+
+export interface ContentListsWithIcon {
+  id: string,
+  buttonIcon: string,
+  contentName: string
+}
+
 // Image
 export interface ImageItem {
   id: string,

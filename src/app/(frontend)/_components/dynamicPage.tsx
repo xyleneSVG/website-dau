@@ -9,8 +9,17 @@ import {
   ArrowRight,
   ChevronRight,
   LucideIcon,
+  Server,
+  FileCode2,
+  CodeXml,
+  Puzzle,
+  BadgeCheck,
+  Shuffle,
+  LockKeyhole,
+  File,
+  Users,
+  FileSearch,
 } from 'lucide-react'
-
 
 // components
 import Navbar from './_layouts/navbar'
@@ -30,11 +39,12 @@ import Tech2 from './_layouts/tech2'
 // interfaces
 import type { Page } from '../_interfaces/pages'
 interface DynamicPageProps {
-  slug: string;
+  slug: string
 }
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
+import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -43,6 +53,16 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     phone: Phone,
     arrowright: ArrowRight,
     chevronright: ChevronRight,
+    server: Server,
+    filecode2: FileCode2,
+    codexml: CodeXml,
+    puzzle: Puzzle,
+    badgecheck: BadgeCheck,
+    shuffle: Shuffle,
+    lockkeyhole: LockKeyhole,
+    file: File,
+    users: Users,
+    filesearch: FileSearch,
   }
   const router = useRouter()
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
@@ -94,9 +114,24 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'leaderSection':
         return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
       case 'twoColumnLayoutSection':
-        return <TwoColumn key={index} twoColumnSection={section} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
+        return (
+          <TwoColumn
+            key={index}
+            twoColumnSection={section}
+            domainBlob={domainBlob}
+            getLucideIcon={getLucideIcon}
+          />
+        )
       case 'technologySection2':
         return <Tech2 key={index} technologySection2={section} domainBlob={domainBlob} />
+      case 'listWithIconSection':
+        return (
+          <ListWithIcon
+            key={index}
+            data={section}
+            getLucideIcon={getLucideIcon}
+          />
+        )
       default:
         return null
     }
