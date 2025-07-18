@@ -52,6 +52,7 @@ import { getDataPages } from '../_functions/getDataPages'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
+import FaqSection from './_layouts/faq'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -151,6 +152,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
             getLucideIcon={getLucideIcon}
           />
         )
+      case 'faqSection':
+        return <FaqSection key={index} data={section} />
       default:
         return null
     }
