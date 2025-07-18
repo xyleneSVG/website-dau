@@ -33,6 +33,7 @@ import { MediaAbout } from './collections/storage/MediaAbout'
 import { MediaVision } from './collections/storage/MediaVision'
 import { MediaLeader } from './collections/storage/MediaLeader'
 import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
+import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoListWithIllustration'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,7 +45,26 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Users, MessageFromGuests, MessageFieldConfiguration, GroupPage, MediaHero, MediaServices, MediaTech, MediaTechnology, MediaProducts, MediaClients, MediaContact, MediaAward, MediaAbout, MediaVision, MediaLeader, MediaTwoColumnLayout],
+  collections: [
+    Pages,
+    Users,
+    MessageFromGuests,
+    MessageFieldConfiguration,
+    GroupPage,
+    MediaHero,
+    MediaServices,
+    MediaTech,
+    MediaTechnology,
+    MediaProducts,
+    MediaClients,
+    MediaContact,
+    MediaAward,
+    MediaAbout,
+    MediaVision,
+    MediaLeader,
+    MediaTwoColumnLayout,
+    MediaTwoListWithIllustration
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -72,9 +92,10 @@ export default buildConfig({
         mediaAbout: true,
         mediaVision: true,
         mediaLeader: true,
-        mediaTwoColumnLayout: true
+        mediaTwoColumnLayout: true,
+        mediaTwoListWithIllustration: true
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN
-    })
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
 })

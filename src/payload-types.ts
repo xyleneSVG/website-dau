@@ -84,6 +84,7 @@ export interface Config {
     mediaVision: MediaVision;
     mediaLeader: MediaLeader;
     mediaTwoColumnLayout: MediaTwoColumnLayout;
+    mediaTwoListWithIllustration: MediaTwoListWithIllustration;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -107,6 +108,7 @@ export interface Config {
     mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
+    mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -175,6 +177,7 @@ export interface Page {
         | Technology2Section
         | ListWithIconSection
         | ListWithIconAndDescriptionSection
+        | TwoListWithIllustrationSection
       )[]
     | null;
   updatedAt: string;
@@ -748,6 +751,61 @@ export interface ListWithIconAndDescriptionSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Two List With Illustration Section".
+ */
+export interface TwoListWithIllustrationSection {
+  sectionTitle: string;
+  sectionDescription: string;
+  sectionIllustration: number | MediaTwoListWithIllustration;
+  leftSideListTitle: string;
+  leftSideListContentArray?:
+    | {
+        leftSideListContent: string;
+        id?: string | null;
+      }[]
+    | null;
+  leftSideListColor: string;
+  rightSideListTitle: string;
+  rightSideListContentArray?:
+    | {
+        rightSideListContent: string;
+        id?: string | null;
+      }[]
+    | null;
+  rigtSideListColor: string;
+  hasButton?: boolean | null;
+  buttonText?: string | null;
+  buttonIcon?: string | null;
+  buttonLink?: (number | null) | Page;
+  /**
+   * Choose a color for this button
+   */
+  buttonColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'twoListWithIllustrationSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTwoListWithIllustration".
+ */
+export interface MediaTwoListWithIllustration {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -884,6 +942,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaTwoColumnLayout';
         value: number | MediaTwoColumnLayout;
+      } | null)
+    | ({
+        relationTo: 'mediaTwoListWithIllustration';
+        value: number | MediaTwoListWithIllustration;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -953,6 +1015,7 @@ export interface PagesSelect<T extends boolean = true> {
         technologySection2?: T | Technology2SectionSelect<T>;
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
+        twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1204,6 +1267,38 @@ export interface ListWithIconAndDescriptionSectionSelect {
       };
   iconColor?: boolean;
   backgroundIconColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Two List With Illustration Section_select".
+ */
+export interface TwoListWithIllustrationSectionSelect {
+  sectionTitle?: boolean;
+  sectionDescription?: boolean;
+  sectionIllustration?: boolean;
+  leftSideListTitle?: boolean;
+  leftSideListContentArray?:
+    | boolean
+    | {
+        leftSideListContent?: boolean;
+        id?: boolean;
+      };
+  leftSideListColor?: boolean;
+  rightSideListTitle?: boolean;
+  rightSideListContentArray?:
+    | boolean
+    | {
+        rightSideListContent?: boolean;
+        id?: boolean;
+      };
+  rigtSideListColor?: boolean;
+  hasButton?: boolean;
+  buttonText?: boolean;
+  buttonIcon?: boolean;
+  buttonLink?: boolean;
+  buttonColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -1478,6 +1573,24 @@ export interface MediaLeaderSelect<T extends boolean = true> {
  * via the `definition` "mediaTwoColumnLayout_select".
  */
 export interface MediaTwoColumnLayoutSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaTwoListWithIllustration_select".
+ */
+export interface MediaTwoListWithIllustrationSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
