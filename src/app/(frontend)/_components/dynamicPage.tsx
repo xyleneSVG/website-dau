@@ -19,6 +19,11 @@ import {
   File,
   Users,
   FileSearch,
+  Database,
+  ShieldCheck,
+  Rocket,
+  Waypoints,
+  ChartPie,
 } from 'lucide-react'
 
 // components
@@ -45,6 +50,7 @@ interface DynamicPageProps {
 // functions
 import { getDataPages } from '../_functions/getDataPages'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
+import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -63,6 +69,11 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     file: File,
     users: Users,
     filesearch: FileSearch,
+    database: Database,
+    shieldcheck: ShieldCheck,
+    rocket: Rocket,
+    waypoints: Waypoints,
+    chartpie: ChartPie,
   }
   const router = useRouter()
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
@@ -125,13 +136,9 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'technologySection2':
         return <Tech2 key={index} technologySection2={section} domainBlob={domainBlob} />
       case 'listWithIconSection':
-        return (
-          <ListWithIcon
-            key={index}
-            data={section}
-            getLucideIcon={getLucideIcon}
-          />
-        )
+        return <ListWithIcon key={index} data={section} getLucideIcon={getLucideIcon} />
+      case 'listWithIconDescSection':
+        return <ListWithIconAndDescription key={index} data={section} getLucideIcon={getLucideIcon} />
       default:
         return null
     }

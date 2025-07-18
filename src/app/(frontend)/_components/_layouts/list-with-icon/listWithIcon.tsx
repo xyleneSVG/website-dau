@@ -23,7 +23,14 @@ export default function ListWithIcon({ data, getLucideIcon }: ListWithIconProps)
         <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 lg:p-10 xl:p-14 w-full">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-x-10 lg:gap-y-14">
             {data.contentLists.map((item, index) => (
-              <ListCard key={index} icon={item.buttonIcon} title={item.contentName} getLucideIcon={getLucideIcon} backgroundIconColor={data.backgroundIconColor} iconColor={data.iconColor} />
+              <ListCard
+                key={index}
+                icon={item.contentIcon}
+                title={item.contentName}
+                getLucideIcon={getLucideIcon}
+                backgroundIconColor={data.backgroundIconColor}
+                iconColor={data.iconColor}
+              />
             ))}
           </div>
         </div>

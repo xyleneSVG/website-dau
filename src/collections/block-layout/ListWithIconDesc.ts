@@ -4,13 +4,13 @@ import { iconPickerField } from '@innovixx/payload-icon-picker-field'
 import { customLucideIcon } from '@/admin/_fields/listIcon'
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
-export const ListWithIconSection: Block = {
-  slug: 'listWithIconSection',
+export const ListWithIconDescSection: Block = {
+  slug: 'listWithIconDescSection',
   imageURL: 'public/assets/landing/hero/thumbnail.png',
-  interfaceName: 'List With Icon Section',
+  interfaceName: 'List With Icon and Description Section',
   fields: [
     {
-      name: 'sectionListIconTitle',
+      name: 'sectionListIconDescTitle',
       type: 'text',
       label: 'Section Title',
       required: true,
@@ -40,6 +40,12 @@ export const ListWithIconSection: Block = {
           type: 'text',
           required: true,
           label: 'Content Name',
+        },
+        {
+          name: 'contentDesc',
+          type: 'text',
+          required: true,
+          label: 'Content Description',
         },
       ],
     },
