@@ -40,6 +40,11 @@ import Vision from './_layouts/vision/vision'
 import LeaderCarousel from './_layouts/leader/leader'
 import TwoColumn from './_layouts/twoColumn'
 import Tech2 from './_layouts/tech2'
+import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
+import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
+import TwoListWithIllustration from './_layouts/twoListWithIllustration'
+import FaqSection from './_layouts/Faq'
+import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -49,8 +54,6 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
-import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
-import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -138,7 +141,22 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'listWithIconSection':
         return <ListWithIcon key={index} data={section} getLucideIcon={getLucideIcon} />
       case 'listWithIconDescSection':
-        return <ListWithIconAndDescription key={index} data={section} getLucideIcon={getLucideIcon} />
+        return (
+          <ListWithIconAndDescription key={index} data={section} getLucideIcon={getLucideIcon} />
+        )
+      case 'twoListWithIllustrationSection':
+        return (
+          <TwoListWithIllustration
+            key={index}
+            data={section}
+            domainBlob={domainBlob}
+            getLucideIcon={getLucideIcon}
+          />
+        )
+      case 'faqSection':
+        return <FaqSection key={index} data={section} />
+      case 'cardWithImageSection':
+        return <CardWithImageSection key={index} data={section} domainBlob={domainBlob} />
       default:
         return null
     }

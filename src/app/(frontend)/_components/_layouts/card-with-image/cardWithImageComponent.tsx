@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function ReasonCard({
+export default function CardWithImageComponent({
   image,
   title,
   description,
