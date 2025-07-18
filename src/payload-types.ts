@@ -174,6 +174,7 @@ export interface Page {
         | TwoColumnLayoutSection
         | Technology2Section
         | ListWithIconSection
+        | ListWithIconAndDescriptionSection
       )[]
     | null;
   updatedAt: string;
@@ -719,6 +720,34 @@ export interface ListWithIconSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon and Description Section".
+ */
+export interface ListWithIconAndDescriptionSection {
+  sectionListIconDescTitle: string;
+  /**
+   * Choose a color for this background page
+   */
+  backgroundPageColor?: string | null;
+  contentLists: {
+    buttonIcon: string;
+    contentName: string;
+    contentDesc: string;
+    id?: string | null;
+  }[];
+  /**
+   * Choose a color for this icon
+   */
+  iconColor?: string | null;
+  /**
+   * Choose a color for this background icon
+   */
+  backgroundIconColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'listWithIconDescSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -923,6 +952,7 @@ export interface PagesSelect<T extends boolean = true> {
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
         technologySection2?: T | Technology2SectionSelect<T>;
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
+        listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1150,6 +1180,26 @@ export interface ListWithIconSectionSelect {
     | {
         buttonIcon?: boolean;
         contentName?: boolean;
+        id?: boolean;
+      };
+  iconColor?: boolean;
+  backgroundIconColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon and Description Section_select".
+ */
+export interface ListWithIconAndDescriptionSectionSelect {
+  sectionListIconDescTitle?: boolean;
+  backgroundPageColor?: boolean;
+  contentLists?:
+    | boolean
+    | {
+        buttonIcon?: boolean;
+        contentName?: boolean;
+        contentDesc?: boolean;
         id?: boolean;
       };
   iconColor?: boolean;
