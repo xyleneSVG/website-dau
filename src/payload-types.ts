@@ -702,7 +702,7 @@ export interface ListWithIconSection {
    */
   backgroundPageColor?: string | null;
   contentLists: {
-    buttonIcon: string;
+    contentIcon: string;
     contentName: string;
     id?: string | null;
   }[];
@@ -729,7 +729,7 @@ export interface ListWithIconAndDescriptionSection {
    */
   backgroundPageColor?: string | null;
   contentLists: {
-    buttonIcon: string;
+    contentIcon: string;
     contentName: string;
     contentDesc: string;
     id?: string | null;
@@ -1178,7 +1178,7 @@ export interface ListWithIconSectionSelect {
   contentLists?:
     | boolean
     | {
-        buttonIcon?: boolean;
+        contentIcon?: boolean;
         contentName?: boolean;
         id?: boolean;
       };
@@ -1197,7 +1197,7 @@ export interface ListWithIconAndDescriptionSectionSelect {
   contentLists?:
     | boolean
     | {
-        buttonIcon?: boolean;
+        contentIcon?: boolean;
         contentName?: boolean;
         contentDesc?: boolean;
         id?: boolean;

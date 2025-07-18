@@ -232,9 +232,28 @@ export interface ListWithIconSection {
 
 export interface ContentListsWithIcon {
   id: string,
-  buttonIcon: string,
+  contentIcon: string,
   contentName: string
 }
+
+// List With Icon & Desc
+export interface ListWithIconDescSection {
+  id: string,
+  blockType: 'listWithIconDescSection';
+  sectionListIconDescTitle: string,
+  backgroundPageColor: string,
+  iconColor: string,
+  backgroundIconColor: string,
+  contentLists: ContentListsWithIcon[]
+}
+
+export interface ContentListsWithIcon {
+  id: string,
+  contentIcon: string,
+  contentName: string,
+  contentDesc: string
+}
+
 
 // Image
 export interface ImageItem {
