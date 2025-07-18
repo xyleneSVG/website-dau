@@ -267,7 +267,7 @@ export interface ContentListsWithIcon {
 // Two List With Illustration
 export interface TwoListWithIllustration {
   id: string
-  blockType: 'twoListWithIllustration'
+  blockType: 'twoListWithIllustrationSection'
   sectionTitle: string
   sectionDescription: string
   sectionIllustration: ImageItem
@@ -292,6 +292,22 @@ export interface LeftSideListContentArray {
 export interface RightSideListContentArray {
   id: string
   rightSideListContent: string
+}
+
+// FAQ
+export interface  FaqSection {
+  id: string
+  blockType: 'faqSection'
+  sectionTitle: string
+  sectionDescription: string
+  backgroundColor: string
+  sectionFaqArray: SectionFaqArray[]
+}
+
+export interface SectionFaqArray {
+  id: string
+  question: string
+  answer: string
 }
 
 // Image

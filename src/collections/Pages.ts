@@ -18,6 +18,7 @@ import { ListWithIconSection } from './block-layout/ListWithIcon'
 import ListWithIconAndDescription from '@/app/(frontend)/_components/_layouts/list-with-icon-and-description/listWithIconAndDescription'
 import { ListWithIconDescSection } from './block-layout/ListWithIconDesc'
 import { TwoListWithIllustrationSection } from './block-layout/TwoListWithIllustration'
+import { FaqSection } from './block-layout/Faq'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -99,7 +100,8 @@ export const Pages: CollectionConfig = {
         TechnologySection2,
         ListWithIconSection,
         ListWithIconDescSection,
-        TwoListWithIllustrationSection
+        TwoListWithIllustrationSection,
+        FaqSection
       ],
     },
   ],

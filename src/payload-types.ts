@@ -178,6 +178,7 @@ export interface Page {
         | ListWithIconSection
         | ListWithIconAndDescriptionSection
         | TwoListWithIllustrationSection
+        | FAQSection
       )[]
     | null;
   updatedAt: string;
@@ -806,6 +807,25 @@ export interface MediaTwoListWithIllustration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ Section".
+ */
+export interface FAQSection {
+  sectionTitle: string;
+  sectionDescription: string;
+  sectionFaqArray?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1016,6 +1036,7 @@ export interface PagesSelect<T extends boolean = true> {
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
+        faqSection?: T | FAQSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1299,6 +1320,24 @@ export interface TwoListWithIllustrationSectionSelect {
   buttonIcon?: boolean;
   buttonLink?: boolean;
   buttonColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ Section_select".
+ */
+export interface FAQSectionSelect {
+  sectionTitle?: boolean;
+  sectionDescription?: boolean;
+  sectionFaqArray?:
+    | boolean
+    | {
+        question?: boolean;
+        answer?: boolean;
+        id?: boolean;
+      };
+  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
