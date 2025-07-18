@@ -19,6 +19,11 @@ import {
   File,
   Users,
   FileSearch,
+  Database,
+  ShieldCheck,
+  Rocket,
+  Waypoints,
+  ChartPie,
 } from 'lucide-react'
 
 // components
@@ -63,6 +68,11 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     file: File,
     users: Users,
     filesearch: FileSearch,
+    database: Database,
+    shieldcheck: ShieldCheck,
+    rocket: Rocket,
+    waypoints: Waypoints,
+    chartpie: ChartPie
   }
   const router = useRouter()
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
