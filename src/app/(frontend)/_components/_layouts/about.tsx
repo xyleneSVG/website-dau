@@ -3,9 +3,15 @@ import React from 'react'
 
 // Interfaces
 import { AboutSection } from '../../_interfaces/pages'
-import { RichTextRenderer } from './richText/richTextRenderer'
+import { RichTextRenderer } from '../richText/richTextRenderer'
 
-export default function about({aboutSection,domainBlob}: {aboutSection: AboutSection,domainBlob: string}) {
+export default function about({
+  aboutSection,
+  domainBlob,
+}: {
+  aboutSection: AboutSection
+  domainBlob: string
+}) {
   return (
     <div className="min-h-screen w-full bg-[#E3F1FE] flex flex-col items-center py-[30px] sm:py-[40px] md:py-[60px] xl:py-[80px]">
       <Image

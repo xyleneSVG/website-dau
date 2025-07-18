@@ -5,7 +5,7 @@ import React from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 import { TwoColumnSection } from '../../_interfaces/pages'
-import { RichTextRenderer } from './richText/richTextRenderer'
+import { RichTextRenderer } from '../richText/richTextRenderer'
 
 interface TwoColumnProps {
   twoColumnSection: TwoColumnSection
