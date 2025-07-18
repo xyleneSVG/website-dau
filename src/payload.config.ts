@@ -34,6 +34,7 @@ import { MediaVision } from './collections/storage/MediaVision'
 import { MediaLeader } from './collections/storage/MediaLeader'
 import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
 import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoListWithIllustration'
+import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -63,7 +64,8 @@ export default buildConfig({
     MediaVision,
     MediaLeader,
     MediaTwoColumnLayout,
-    MediaTwoListWithIllustration
+    MediaTwoListWithIllustration,
+    MediaCardWithImage
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -93,7 +95,8 @@ export default buildConfig({
         mediaVision: true,
         mediaLeader: true,
         mediaTwoColumnLayout: true,
-        mediaTwoListWithIllustration: true
+        mediaTwoListWithIllustration: true,
+        mediaCardWithImage: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

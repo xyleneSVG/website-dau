@@ -19,6 +19,7 @@ import ListWithIconAndDescription from '@/app/(frontend)/_components/_layouts/li
 import { ListWithIconDescSection } from './block-layout/ListWithIconDesc'
 import { TwoListWithIllustrationSection } from './block-layout/TwoListWithIllustration'
 import { FaqSection } from './block-layout/Faq'
+import { CardWithImageSection } from './block-layout/CardWithImage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -101,7 +102,8 @@ export const Pages: CollectionConfig = {
         ListWithIconSection,
         ListWithIconDescSection,
         TwoListWithIllustrationSection,
-        FaqSection
+        FaqSection,
+        CardWithImageSection,
       ],
     },
   ],
