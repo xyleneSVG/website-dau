@@ -30,8 +30,8 @@ export const ListWithIconSection: Block = {
       label: 'Content Lists',
       fields: [
         iconPickerField({
-          name: 'buttonIcon',
-          label: 'Button Icon',
+          name: 'contentIcon',
+          label: 'Content Icon',
           required: true,
           icons: customLucideIcon,
         }),
