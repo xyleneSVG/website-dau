@@ -85,6 +85,7 @@ export interface Config {
     mediaLeader: MediaLeader;
     mediaTwoColumnLayout: MediaTwoColumnLayout;
     mediaTwoListWithIllustration: MediaTwoListWithIllustration;
+    mediaCardWithImage: MediaCardWithImage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -109,6 +110,7 @@ export interface Config {
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
     mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
+    mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -890,6 +892,25 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaCardWithImage".
+ */
+export interface MediaCardWithImage {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -966,6 +987,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaTwoListWithIllustration';
         value: number | MediaTwoListWithIllustration;
+      } | null)
+    | ({
+        relationTo: 'mediaCardWithImage';
+        value: number | MediaCardWithImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1630,6 +1655,24 @@ export interface MediaTwoColumnLayoutSelect<T extends boolean = true> {
  * via the `definition` "mediaTwoListWithIllustration_select".
  */
 export interface MediaTwoListWithIllustrationSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaCardWithImage_select".
+ */
+export interface MediaCardWithImageSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
