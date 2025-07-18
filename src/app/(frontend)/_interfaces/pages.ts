@@ -310,6 +310,22 @@ export interface SectionFaqArray {
   answer: string
 }
 
+// Card With Image
+export interface CardWithImage {
+  id: string
+  blockType: 'cardWithImageSection'
+  sectionTitle: string
+  backgroundColor: string
+  sectionCardArray: SectionCardArray[]
+}
+
+export interface SectionCardArray {
+  id: string
+  cardThumbnail: ImageItem
+  cardTitle: string
+  cardDescription: string
+}
+
 // Image
 export interface ImageItem {
   id: string
