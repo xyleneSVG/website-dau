@@ -4,39 +4,6 @@ import React from 'react'
 import CardWithImageComponent from './cardWithImageComponent'
 import type { CardWithImage } from '@/app/(frontend)/_interfaces/pages'
 
-const data = [
-  {
-    title: 'Keamanan Data',
-    description:
-      'Melindungi data perusahaan dari kebocoran jika perangkat hilang atau dicuri.',
-    image: '/assets/landing/reason/reason1.png',
-  },
-  {
-    title: 'Manajemen Efisien',
-    description:
-      'Mengelola ratusan perangkat sekaligus secara jarak jauh.',
-    image: '/assets/landing/reason/reason2.png',
-  },
-  {
-    title: 'Produktivitas Karyawan',
-    description:
-      'Membatasi perangkat hanya untuk aplikasi dan aktivitas kerja.',
-    image: '/assets/landing/reason/reason3.png',
-  },
-  {
-    title: 'Kepatuhan Regulasi',
-    description:
-      'Memastikan perangkat mematuhi aturan seperti GDPR, HIPAA, atau ISO 27001.',
-    image: '/assets/landing/reason/reason4.png',
-  },
-  {
-    title: 'Pengelolaan BYOD (Bring Your Own Device)',
-    description:
-      'Memisahkan data pribadi dan perusahaan di perangkat karyawan.',
-    image: '/assets/landing/reason/reason5.png',
-  },
-]
-
 interface CardWithImageSectionProps {
   data: CardWithImage
   domainBlob: string
