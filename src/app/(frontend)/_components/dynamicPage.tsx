@@ -51,6 +51,7 @@ interface DynamicPageProps {
 import { getDataPages } from '../_functions/getDataPages'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
+import TwoListWithIllustration from './_layouts/twoListWithIllustration'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -138,7 +139,18 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'listWithIconSection':
         return <ListWithIcon key={index} data={section} getLucideIcon={getLucideIcon} />
       case 'listWithIconDescSection':
-        return <ListWithIconAndDescription key={index} data={section} getLucideIcon={getLucideIcon} />
+        return (
+          <ListWithIconAndDescription key={index} data={section} getLucideIcon={getLucideIcon} />
+        )
+      case 'twoListWithIllustrationSection':
+        return (
+          <TwoListWithIllustration
+            key={index}
+            data={section}
+            domainBlob={domainBlob}
+            getLucideIcon={getLucideIcon}
+          />
+        )
       default:
         return null
     }
