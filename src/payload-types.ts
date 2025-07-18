@@ -181,6 +181,7 @@ export interface Page {
         | ListWithIconAndDescriptionSection
         | TwoListWithIllustrationSection
         | FAQSection
+        | CardWithImageSection
       )[]
     | null;
   updatedAt: string;
@@ -828,6 +829,44 @@ export interface FAQSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Card With Image Section".
+ */
+export interface CardWithImageSection {
+  sectionTitle: string;
+  sectionCardArray?:
+    | {
+        cardThumbnail: number | MediaCardWithImage;
+        cardTitle: string;
+        cardDescription: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cardWithImageSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaCardWithImage".
+ */
+export interface MediaCardWithImage {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -876,25 +915,6 @@ export interface MessageFromGuest {
  * via the `definition` "mediaTech".
  */
 export interface MediaTech {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaCardWithImage".
- */
-export interface MediaCardWithImage {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1062,6 +1082,7 @@ export interface PagesSelect<T extends boolean = true> {
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
         faqSection?: T | FAQSectionSelect<T>;
+        cardWithImageSection?: T | CardWithImageSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1360,6 +1381,24 @@ export interface FAQSectionSelect {
     | {
         question?: boolean;
         answer?: boolean;
+        id?: boolean;
+      };
+  backgroundColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Card With Image Section_select".
+ */
+export interface CardWithImageSectionSelect {
+  sectionTitle?: boolean;
+  sectionCardArray?:
+    | boolean
+    | {
+        cardThumbnail?: boolean;
+        cardTitle?: boolean;
+        cardDescription?: boolean;
         id?: boolean;
       };
   backgroundColor?: boolean;

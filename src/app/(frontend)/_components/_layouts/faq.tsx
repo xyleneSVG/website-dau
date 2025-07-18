@@ -3,60 +3,6 @@
 import React from 'react'
 import type { FaqSection } from '../../_interfaces/pages'
 
-const Data = [
-  {
-    question: 'Apa itu Cloud Server?',
-    answer:
-      'Cloud Server atau Virtual Private Server (VPS) adalah layanan sewa server virtual di mana Anda mendapatkan bagian tersendiri dari resource server seperti CPU, RAM, Storage. Anda mendapatkan akses root dan dapat dengan bebas melakukan pilihan instalasi OS dan konfigurasi sistem secara keseluruhan.',
-  },
-  {
-    question: 'Siapa yang cocok menggunakan Cloud Server?',
-    answer:
-      'Cloud Server cocok untuk Anda yang ingin leluasa dalam melakukan kustomisasi dan kontrol secara penuh. Cocok untuk developer, website startup, atau perusahaan yang belum butuh Dedicated Server.',
-  },
-  {
-    question:
-      'Apa hubungannya Domain dan Hosting? Apa Untungnya menggunakan Cloud Server?',
-    answer:
-      'Cloud Server mengutamakan flexibility dan scalability. Anda hanya membayar sesuai resource yang digunakan, lebih hemat dan efisien.',
-  },
-  {
-    question: 'Dimana lokasi server berada?',
-    answer:
-      'Anda dapat memilih lokasi Data Center sesuai lokasi yang terdekat dengan Anda, seperti Jakarta, Surabaya, Singapore, dan lainnya.',
-  },
-  {
-    question: 'Mengapa menggunakan Cloud Server Indonesia?',
-    answer:
-      'Karena lokasi server yang dekat sangat berpengaruh terhadap kecepatan akses. Cloud Server Indonesia cocok jika target pengguna Anda berada di Indonesia.',
-  },
-  {
-    question: 'Bagaimana cara mengelola Cloud Server?',
-    answer:
-      'Cloud Server mendukung akses full root dan control panel seperti PowerOn/Reboot/Install OS. Anda juga bisa menggunakan cPanel untuk memudahkan manajemen.',
-  },
-  {
-    question: 'Bagaimana cara agar Cloud Server Aman?',
-    answer:
-      'Gunakan password yang kuat, hindari software bajakan, update sistem secara berkala, dan jangan gunakan server untuk aktivitas ilegal.',
-  },
-  {
-    question: 'Apakah bisa dibantu untuk Install dan Konfigurasi Server?',
-    answer:
-      'Ya, kami menyediakan bantuan installasi dan konfigurasi server secara GRATIS. Untuk kelola penuh, tersedia layanan Server Management.',
-  },
-  {
-    question: 'Bagaimana jika saya ingin Cloud Server dengan Spesifikasi Khusus?',
-    answer:
-      'Kami menyediakan paket custom sesuai kebutuhan Anda. Hubungi tim kami untuk diskusi lebih lanjut.',
-  },
-  {
-    question: 'Apakah terdapat layanan backup?',
-    answer:
-      'Kami melakukan backup rutin untuk menjaga kualitas layanan dan data Anda. Disarankan tetap melakukan backup pribadi juga.',
-  },
-]
-
 export default function FaqSection({data}: {data: FaqSection}) {
   return (
     <div className="min-h-screen">
