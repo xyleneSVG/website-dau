@@ -43,7 +43,7 @@ import Tech2 from './_layouts/tech2'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
-import FaqSection from './_layouts/Faq'
+import FaqSection from './_layouts/faq'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
 
 // interfaces
