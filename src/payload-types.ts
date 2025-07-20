@@ -86,6 +86,7 @@ export interface Config {
     mediaTwoColumnLayout: MediaTwoColumnLayout;
     mediaTwoListWithIllustration: MediaTwoListWithIllustration;
     mediaCardWithImage: MediaCardWithImage;
+    mediaListWithIconAndDescription: MediaListWithIconAndDescription;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -111,6 +112,7 @@ export interface Config {
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
     mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
     mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
+    mediaListWithIconAndDescription: MediaListWithIconAndDescriptionSelect<false> | MediaListWithIconAndDescriptionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -931,6 +933,25 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaListWithIconAndDescription".
+ */
+export interface MediaListWithIconAndDescription {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1011,6 +1032,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaCardWithImage';
         value: number | MediaCardWithImage;
+      } | null)
+    | ({
+        relationTo: 'mediaListWithIconAndDescription';
+        value: number | MediaListWithIconAndDescription;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1712,6 +1737,24 @@ export interface MediaTwoListWithIllustrationSelect<T extends boolean = true> {
  * via the `definition` "mediaCardWithImage_select".
  */
 export interface MediaCardWithImageSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaListWithIconAndDescription_select".
+ */
+export interface MediaListWithIconAndDescriptionSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
