@@ -31,7 +31,7 @@ const data = [
   },
 ]
 
-export default function Function() {
+export default function ListWithIconAndDescription2() {
   return (
     <section className="w-full min-h-screen px-6 py-8 md:py-12 lg:py-20 flex flex-col justify-center items-center">
       <h2 className="text-center text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8">

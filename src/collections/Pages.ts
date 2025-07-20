@@ -20,6 +20,7 @@ import { ListWithIconDescSection } from './block-layout/ListWithIconDesc'
 import { TwoListWithIllustrationSection } from './block-layout/TwoListWithIllustration'
 import { FaqSection } from './block-layout/Faq'
 import { CardWithImageSection } from './block-layout/CardWithImage'
+import { ListWithIconDesc2Section } from './block-layout/ListWithIconDesc2'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -104,6 +105,7 @@ export const Pages: CollectionConfig = {
         TwoListWithIllustrationSection,
         FaqSection,
         CardWithImageSection,
+        ListWithIconDesc2Section
       ],
     },
   ],

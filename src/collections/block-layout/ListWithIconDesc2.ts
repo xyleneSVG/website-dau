@@ -4,25 +4,24 @@ import { iconPickerField } from '@innovixx/payload-icon-picker-field'
 import { customLucideIcon } from '@/admin/_fields/listIcon'
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
-export const ListWithIconDescSection: Block = {
-  slug: 'listWithIconDescSection',
-  imageURL: 'public/assets/landing/hero/thumbnail.png',
-  interfaceName: 'List With Icon and Description Section',
+export const ListWithIconDesc2Section: Block = {
+  slug: 'listWithIconDesc2Section',
+  imageURL: '/assets/landing/hero/thumbnail.png',
+  interfaceName: 'List With Icon and Description 2 Section',
   fields: [
     {
-      name: 'sectionListIconDescTitle',
+      name: 'sectionTitle',
       type: 'text',
       label: 'Section Title',
       required: true,
     },
-    colorPickerField({
-      name: 'backgroundPageColor',
-      label: 'Background Page Color',
-      required: false,
-      admin: {
-        description: 'Choose a color for this background page',
-      },
-    }),
+    {
+      name: 'sectionIllustration',
+      type: 'upload',
+      label: 'Section Illustration',
+      relationTo: 'mediaListWithIconAndDescription',
+      required: true
+    },
     {
       name: 'contentLists',
       type: 'array',
