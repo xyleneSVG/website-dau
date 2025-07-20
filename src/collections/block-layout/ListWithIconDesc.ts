@@ -30,6 +30,7 @@ export const ListWithIconDescSection: Block = {
     {
       name: 'contentLists',
       type: 'array',
+      minRows: 1,
       required: true,
       label: 'Content Lists',
       fields: [

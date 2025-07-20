@@ -21,8 +21,8 @@ export type PageSection =
   | LeaderSection
   | TwoColumnSection
   | TechnologySection2
-  | ListWithIconSection 
-  | ListWithIconDescSection 
+  | ListWithIconSection
+  | ListWithIconDescSection
   | TwoListWithIllustration
 
 // Hero
@@ -295,7 +295,7 @@ export interface RightSideListContentArray {
 }
 
 // FAQ
-export interface  FaqSection {
+export interface FaqSection {
   id: string
   blockType: 'faqSection'
   sectionTitle: string
@@ -324,6 +324,24 @@ export interface SectionCardArray {
   cardThumbnail: ImageItem
   cardTitle: string
   cardDescription: string
+}
+
+// List With Icon & Desc 2
+export interface ListWithIconDesc2Section {
+  id: string
+  blockType: 'listWithIconDesc2Section'
+  sectionTitle: string
+  sectionIllustration: ImageItem
+  iconColor: string
+  backgroundIconColor: string
+  contentLists: ContentListsWithIcon[]
+}
+
+export interface ContentListsWithIcon {
+  id: string
+  contentIcon: string
+  contentName: string
+  contentDesc: string
 }
 
 // Image

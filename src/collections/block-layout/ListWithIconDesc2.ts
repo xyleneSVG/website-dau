@@ -30,6 +30,7 @@ export const ListWithIconDesc2Section: Block = {
       name: 'contentLists',
       type: 'array',
       required: true,
+      minRows: 1,
       label: 'Content Lists',
       fields: [
         iconPickerField({

@@ -58,6 +58,7 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
+import ListWithIconAndDescription2 from './_layouts/listWithIconAndDescription2'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -165,6 +166,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <FaqSection key={index} data={section} />
       case 'cardWithImageSection':
         return <CardWithImageSection key={index} data={section} domainBlob={domainBlob} />
+      case 'listWithIconDesc2Section':
+        return <ListWithIconAndDescription2 key={index} data={section} domainBlob={domainBlob} getLucideIcon={getLucideIcon}/>
       default:
         return null
     }
