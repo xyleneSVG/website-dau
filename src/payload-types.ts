@@ -184,6 +184,7 @@ export interface Page {
         | TwoListWithIllustrationSection
         | FAQSection
         | CardWithImageSection
+        | ListWithIconAndDescription2Section
       )[]
     | null;
   updatedAt: string;
@@ -869,6 +870,50 @@ export interface MediaCardWithImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon and Description 2 Section".
+ */
+export interface ListWithIconAndDescription2Section {
+  sectionTitle: string;
+  sectionIllustration: number | MediaListWithIconAndDescription;
+  contentLists: {
+    contentIcon: string;
+    contentName: string;
+    contentDesc: string;
+    id?: string | null;
+  }[];
+  /**
+   * Choose a color for this icon
+   */
+  iconColor?: string | null;
+  /**
+   * Choose a color for this background icon
+   */
+  backgroundIconColor?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'listWithIconDesc2Section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaListWithIconAndDescription".
+ */
+export interface MediaListWithIconAndDescription {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -917,25 +962,6 @@ export interface MessageFromGuest {
  * via the `definition` "mediaTech".
  */
 export interface MediaTech {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaListWithIconAndDescription".
- */
-export interface MediaListWithIconAndDescription {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1108,6 +1134,7 @@ export interface PagesSelect<T extends boolean = true> {
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
         faqSection?: T | FAQSectionSelect<T>;
         cardWithImageSection?: T | CardWithImageSectionSelect<T>;
+        listWithIconDesc2Section?: T | ListWithIconAndDescription2SectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1427,6 +1454,26 @@ export interface CardWithImageSectionSelect {
         id?: boolean;
       };
   backgroundColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "List With Icon and Description 2 Section_select".
+ */
+export interface ListWithIconAndDescription2SectionSelect {
+  sectionTitle?: boolean;
+  sectionIllustration?: boolean;
+  contentLists?:
+    | boolean
+    | {
+        contentIcon?: boolean;
+        contentName?: boolean;
+        contentDesc?: boolean;
+        id?: boolean;
+      };
+  iconColor?: boolean;
+  backgroundIconColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }

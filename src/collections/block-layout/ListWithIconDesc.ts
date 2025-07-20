@@ -6,6 +6,10 @@ import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
 export const ListWithIconDescSection: Block = {
   slug: 'listWithIconDescSection',
+  labels: {
+    singular: 'List With Icon and Description Section',
+    plural: 'List With Icon and Description Sections',
+  },
   imageURL: 'public/assets/landing/hero/thumbnail.png',
   interfaceName: 'List With Icon and Description Section',
   fields: [

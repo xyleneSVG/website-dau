@@ -24,6 +24,10 @@ import {
   Rocket,
   Waypoints,
   ChartPie,
+  UserCog,
+  FilePenLine,
+  MonitorCog,
+  AppWindow,
 } from 'lucide-react'
 
 // components
@@ -77,6 +81,10 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     rocket: Rocket,
     waypoints: Waypoints,
     chartpie: ChartPie,
+    usercog: UserCog,
+    filepenline: FilePenLine,
+    monitorcog: MonitorCog,
+    appwindow: AppWindow,
   }
   const router = useRouter()
   const domainBlob = 'https://myrgdskjqrmc4clb.public.blob.vercel-storage.com/'
