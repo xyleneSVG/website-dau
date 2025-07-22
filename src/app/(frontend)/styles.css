@@ -17,3 +17,75 @@
 .scroll-container:hover {
   animation-play-state: paused;
 }
+
+/* Custom Keyframes for 404 animation */
+@keyframes outline-to-solid {
+  0% {
+    color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #00db05;
+    text-stroke-width: 3px; /* Fallback */
+    text-stroke-color: #00db05; /* Fallback */
+  }
+  50% {
+    color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #00db05;
+    text-stroke-width: 3px; /* Fallback */
+    text-stroke-color: #00db05; /* Fallback */
+  }
+  75% {
+    color: rgba(0, 219, 5, 0.5); /* Partial fill */
+    -webkit-text-stroke-width: 1.5px; /* Thinner outline */
+    -webkit-text-stroke-color: #00db05; /* Outline becomes green */
+    text-stroke-width: 1.5px; /* Fallback */
+    text-stroke-color: #00db05; /* Fallback */
+  }
+  100% {
+    color: #00db05; /* Solid fill */
+    -webkit-text-stroke-width: 0px; /* No outline */
+    -webkit-text-stroke-color: transparent;
+    text-stroke-width: 0px; /* Fallback */
+    text-stroke-color: transparent; /* Fallback */
+  }
+}
+
+/* Custom Animation Classes */
+.animate-outline-to-solid {
+  animation: outline-to-solid 1.5s ease-out forwards;
+}
+
+/* Custom Animation Delays */
+.animation-delay-0 {
+  animation-delay: 0ms;
+}
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+.animation-delay-900 {
+  animation-delay: 900ms;
+}
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
