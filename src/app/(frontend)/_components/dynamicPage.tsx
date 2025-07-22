@@ -31,6 +31,7 @@ import {
 } from 'lucide-react'
 
 // components
+import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import Service from './_layouts/service'
@@ -167,9 +168,16 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'cardWithImageSection':
         return <CardWithImageSection key={index} data={section} domainBlob={domainBlob} />
       case 'listWithIconDesc2Section':
-        return <ListWithIconAndDescription2 key={index} data={section} domainBlob={domainBlob} getLucideIcon={getLucideIcon}/>
+        return (
+          <ListWithIconAndDescription2
+            key={index}
+            data={section}
+            domainBlob={domainBlob}
+            getLucideIcon={getLucideIcon}
+          />
+        )
       default:
-        return null
+        return <NotFound />
     }
   }
 
@@ -189,7 +197,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     )
   }
 
-  if (!page) return null
+  if (!page) return <NotFound />
 
   return (
     <div>

@@ -1,8 +1,10 @@
-"use client"
+'use client'
 
-import Link from "next/link"
+import { useRouter } from 'next/navigation'
 
 export default function NotFound() {
+  const router = useRouter()
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-white text-[#D9FAD9] p-4 text-center overflow-hidden">
       <h1 className="flex text-9xl md:text-[12rem] lg:text-[15rem] font-extrabold">
@@ -14,14 +16,15 @@ export default function NotFound() {
         Oops! Halaman yang Anda cari tidak ditemukan.
       </p>
       <p className="text-base text-gray-600 max-w-md">
-        Sepertinya Anda tersesat. Jangan khawatir, kami akan membantu Anda kembali ke jalur yang benar.
+        Sepertinya Anda tersesat. Jangan khawatir, kami akan membantu Anda kembali ke jalur yang
+        benar.
       </p>
-      <Link
-        href="/"
+      <button
+        onClick={() => router.back()}
         className="mt-8 px-8 py-3 rounded-full bg-[#00DB05] text-white font-semibold text-lg shadow-lg hover:bg-opacity-90 transition-all duration-300 ease-in-out transform hover:scale-105"
       >
-        Kembali ke Beranda
-      </Link>
+        Kembali ke Halaman Sebelumnya
+      </button>
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#00DB05] to-transparent opacity-20 z-0"></div>
     </div>
   )
