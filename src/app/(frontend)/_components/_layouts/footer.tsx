@@ -7,15 +7,35 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="relative">
+      <div className="w-full flex justify-between items-end relative p-0 m-0">
+        <div className="relative aspect-[3/2] w-[100px] sm:w-[140px] md:w-[160px] lg:w-[180px]">
+          <Image
+            src="/assets/landing/footer/shape1.png"
+            alt="shape1"
+            fill
+            className="object-left object-contain"
+            priority
+          />
+        </div>
+        <div className="relative w-[200px] sm:w-[300px] md:w-[350px] lg:w-[400px] h-[40px] md:h-[50px] lg:h-[70px]">
+          <Image
+            src="/assets/landing/footer/shape2.png"
+            alt="shape2"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
+
       <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex">
         <div className="md:w-[30%] flex flex-col">
           <Image
             src={logoDataAndalanUtama}
             alt="logo"
-            className="w-[160px] sm:w-[180px] lg:w-[200px]"
+            className="w-[160px] sm:w-[180px] lg:w-[200px] h-auto object-contain"
           />
-          <h1 className="text-white font-bold text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
+          <h1 className="text-white font-bold text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px] mt-4">
             PT. Data Andalan Utama
           </h1>
           <p className="text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] text-justify">
