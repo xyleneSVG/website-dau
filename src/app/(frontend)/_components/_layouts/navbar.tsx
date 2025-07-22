@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="w-full h-max flex flex-col p-4 fixed top-0 z-50"
+        className="w-full h-max flex flex-col p-6 sm:p-8 md:px-12 min-2xl:px-20 fixed top-0 z-50"
         style={{ background: 'linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)' }}
       >
         <div className="flex flex-row justify-between items-center md:hidden">
@@ -66,7 +66,7 @@ export default function Navbar() {
           className={`transition-all duration-700 ease-in-out overflow-hidden md:overflow-visible
           ${isOpenNavbar ? 'max-h-[1000px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'} md:max-h-full md:opacity-100 md:visible md:block`}
         >
-          <div className="p-4 md:w-full md:px-12 min-2xl:px-20">
+          <div className="md:w-full">
             <div className="flex flex-col gap-8 text-[16px] font-[400px] md:flex-row xl:gap-0 md:justify-between md:items-center 2xl:text-[24px]">
               <Image
                 src={logoDataAndalanUtama}
@@ -74,7 +74,7 @@ export default function Navbar() {
                 className="w-[100px] lg:w-[135px] h-auto hidden lg:block"
               />
 
-              <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[20px]">
+              <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[20px] mt-4 md:mt-0">
                 <li className={pathname === '/' ? 'text-[#00DB05] font-semibold' : 'text-black'}>
                   Beranda
                 </li>

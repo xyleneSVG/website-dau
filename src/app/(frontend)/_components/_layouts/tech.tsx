@@ -74,7 +74,7 @@ export default function Tech({ technologySection, domainBlob }: { technologySect
   }
 
   return (
-    <div className="w-full relative bg-[#DEE9FF] overflow-hidden">
+    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 bg-[#DEE9FF] overflow-hidden ">
       <Image
         priority
         width={0}
@@ -92,13 +92,13 @@ export default function Tech({ technologySection, domainBlob }: { technologySect
         alt={''}
       />
 
-      <div className="py-5 px-7 lg:py-16">
-        <div className="relative flex flex-col justify-center gap-y-5 sm:gap-y-8 xl:gap-y-16 2xl:gap-y-22 z-3">
+      <div className='w-full'>
+        <div className="relative flex flex-col justify-center gap-y-20  2xl:gap-y-25 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
-            <h1 className="font-light text-[18px] uppercase lg:text-[40px] 2xl:text-[64px]">
+            <h1 className="font-light text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px] uppercase">
               Teknologi
             </h1>
-            <p className="font-normal text-[14px] max-w-md mx-auto lg:text-[16px] lg:max-w-[610px] 2xl:text-[24px] 2xl:max-w-[980px]">
+            <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] max-w-md mx-auto lg:max-w-[610px] 2xl:max-w-[980px]">
               Apapun teknologinya, bagi kami yang paling utama adalah membangun bisnis Anda. Beragam
               teknologi kami gunakan untuk menghasilkan karya yang terbaik.
             </p>

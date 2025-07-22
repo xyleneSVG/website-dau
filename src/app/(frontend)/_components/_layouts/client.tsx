@@ -12,7 +12,7 @@ import background from 'public/assets/landing/client/background1.svg'
 // interfaces
 import { ClientSection } from '../../_interfaces/pages'
 
-export default function Client({clientSection, domainBlob}: {clientSection: ClientSection, domainBlob: string}) {
+export default function Client({ clientSection, domainBlob }: { clientSection: ClientSection, domainBlob: string }) {
   const [visibleCount, setVisibleCount] = useState(4)
   const [startIndex, setStartIndex] = useState(0)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -41,7 +41,8 @@ export default function Client({clientSection, domainBlob}: {clientSection: Clie
 
   const getVisibleClient = () => {
     const items = []
-    for (let i = 0; i < visibleCount; i++) {
+    const actualCount = Math.min(visibleCount, clientSection.clientLists.length)
+    for (let i = 0; i < actualCount; i++) {
       const index = (startIndex + i) % clientSection.clientLists.length
       const tech = clientSection.clientLists[index]
       items.push({ ...tech, key: i })
@@ -67,19 +68,19 @@ export default function Client({clientSection, domainBlob}: {clientSection: Clie
   }
 
   return (
-    <div className="w-full relative">
+    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20">
       <Image
         className="absolute z-0 w-[205px] h-auto top-0 right-0 md:w-[340px] md:-top-[10%] xl:w-[450px] xl:-top-[50%]"
         src={background}
-        alt={''}
+        alt=""
         width={0}
         height={0}
       />
-      <div className="w-full relative z-10 p-4 flex flex-col items-center gap-y-7 md:pt-10 2xl:gap-y-24">
-        <h1 className="font-light text-[18px] uppercase lg:text-[40px] 2xl:text-[64px]">
+      <div className="w-full relative z-10 flex flex-col items-center gap-y-7 md:pt-10 2xl:gap-y-24">
+        <h1 className="font-light uppercase text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px]">
           KLIEN KAMI
         </h1>
-        <div className="flex flex-row items-center gap-5 sm:gap-8">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-8">
           {clientSection.clientLists.length > visibleCount && (
             <button
               onClick={handlePrev}
@@ -93,7 +94,7 @@ export default function Client({clientSection, domainBlob}: {clientSection: Clie
             <AnimatePresence mode="wait" custom={{ direction }}>
               <motion.div
                 key={`row1-${startIndex}`}
-                className="grid grid-cols-2 gap-4 justify-center sm:grid-cols-3 sm:gap-6 md:grid-cols-5 lg:gap-8"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 justify-center"
                 custom={{ direction }}
                 variants={slideVariants}
                 initial="enter"
@@ -124,7 +125,7 @@ export default function Client({clientSection, domainBlob}: {clientSection: Clie
             <AnimatePresence mode="wait" custom={{ direction }}>
               <motion.div
                 key={`row2-${startIndex}`}
-                className="grid grid-cols-2 gap-4 justify-center sm:grid-cols-3 sm:gap-6 md:grid-cols-5 lg:gap-8"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 justify-center"
                 custom={{ direction }}
                 variants={slideVariants}
                 initial="enter"
