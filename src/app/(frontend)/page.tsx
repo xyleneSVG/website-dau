@@ -22,7 +22,7 @@ export default async function HomeRedirectPage() {
   const page = result.docs?.[0]
   if (page?.pageKey) {
     return <DynamicPage slug={page?.pageKey} />;
-  }
+  } 
 
   return notFound();
 }
