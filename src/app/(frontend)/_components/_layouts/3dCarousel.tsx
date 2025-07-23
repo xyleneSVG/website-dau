@@ -29,7 +29,7 @@ const data = [
   },
 ]
 
-export default function MDMCarousel() {
+export default function ThreeDimensionCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
 

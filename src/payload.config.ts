@@ -36,6 +36,7 @@ import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout
 import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoListWithIllustration'
 import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
 import { MediaListWithIconAndDescription } from './collections/storage/MediaListWithIconAndDescription'
+import { MediaThreeDimensionCarousel } from './collections/storage/MediaThreeDimensionCarousel'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -68,6 +69,7 @@ export default buildConfig({
     MediaTwoListWithIllustration,
     MediaCardWithImage,
     MediaListWithIconAndDescription,
+    MediaThreeDimensionCarousel
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -100,6 +102,7 @@ export default buildConfig({
         mediaTwoListWithIllustration: true,
         mediaCardWithImage: true,
         mediaListWithIconAndDescription: true,
+        mediaThreeDimensionCarousel: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
