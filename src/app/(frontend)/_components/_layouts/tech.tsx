@@ -72,7 +72,7 @@ export default function Tech({
   }
 
   return (
-    <div className="p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24 bg-[#DEE9FF] overflow-hidden">
+    <div className="p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#DEE9FF] overflow-hidden">
       <Image
         src={background1}
         alt=""

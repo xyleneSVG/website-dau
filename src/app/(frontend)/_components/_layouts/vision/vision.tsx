@@ -7,7 +7,7 @@ import { VisionSection } from '@/app/(frontend)/_interfaces/pages'
 export default function Vision({visionSection, domainBlob}:{visionSection:VisionSection, domainBlob:string}) {
   return (
     <div className=''>
-        <div className="relative w-full h-[70px] md:h-[160px] lg:h-[300px] 2xl:h-[400px]">
+        <div className="relative w-full h-[100px] sm:h-[120px] md:h-[160px] lg:h-[300px] 2xl:h-[400px]">
           <Image
             src={domainBlob + visionSection.sectionVisionBanner.filename}
             alt={visionSection.sectionVisionBanner.filename}
