@@ -75,7 +75,7 @@ export interface Config {
     mediaHero: MediaHero;
     mediaServices: MediaService;
     mediaTech: MediaTech;
-    mediaTechnology: MediaTechnology;
+    mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
     mediaProducts: MediaProduct;
     mediaClients: MediaClient;
     mediaContact: MediaContact;
@@ -103,7 +103,7 @@ export interface Config {
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
-    mediaTechnology: MediaTechnologySelect<false> | MediaTechnologySelect<true>;
+    mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
     mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
@@ -173,7 +173,7 @@ export interface Page {
     | (
         | HeroSection
         | ZigZagListsSection
-        | TechnologySection
+        | IIllustrationWithCarouselSection
         | ProductSection
         | ClientSection
         | ContactSection
@@ -286,26 +286,27 @@ export interface MediaService {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Technology Section".
+ * via the `definition` "IIllustration With Carousel Section".
  */
-export interface TechnologySection {
-  sectionTechnologyTitle: string;
-  sectionTechnologySubtitle: string;
-  sectionTechnologyIllustration: number | MediaTechnology;
-  technologyLists: {
-    technologyName: string;
-    technologyIcon: number | MediaTechnology;
+export interface IIllustrationWithCarouselSection {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  sectionIllustration: number | MediaIllustrationWithCarousel;
+  carouselLists: {
+    itemName: string;
+    itemIcon: number | MediaIllustrationWithCarousel;
     id?: string | null;
   }[];
+  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'technologySection';
+  blockType: 'illustrationWithCarouselSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTechnology".
+ * via the `definition` "mediaIllustrationWithCarousel".
  */
-export interface MediaTechnology {
+export interface MediaIllustrationWithCarousel {
   id: number;
   alt: string;
   updatedAt: string;
@@ -700,7 +701,7 @@ export interface Technology2Section {
   sectionTechnology2Title: string;
   technology2Lists: {
     technologyName: string;
-    technologyIcon: number | MediaTechnology;
+    technologyIcon: number | GroupPage;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1105,8 +1106,8 @@ export interface PayloadLockedDocument {
         value: number | MediaTech;
       } | null)
     | ({
-        relationTo: 'mediaTechnology';
-        value: number | MediaTechnology;
+        relationTo: 'mediaIllustrationWithCarousel';
+        value: number | MediaIllustrationWithCarousel;
       } | null)
     | ({
         relationTo: 'mediaProducts';
@@ -1216,7 +1217,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         heroSection?: T | HeroSectionSelect<T>;
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
-        technologySection?: T | TechnologySectionSelect<T>;
+        illustrationWithCarouselSection?: T | IIllustrationWithCarouselSectionSelect<T>;
         productSection?: T | ProductSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
@@ -1277,19 +1278,20 @@ export interface ZigZagListsSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Technology Section_select".
+ * via the `definition` "IIllustration With Carousel Section_select".
  */
-export interface TechnologySectionSelect {
-  sectionTechnologyTitle?: boolean;
-  sectionTechnologySubtitle?: boolean;
-  sectionTechnologyIllustration?: boolean;
-  technologyLists?:
+export interface IIllustrationWithCarouselSectionSelect {
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
+  sectionIllustration?: boolean;
+  carouselLists?:
     | boolean
     | {
-        technologyName?: boolean;
-        technologyIcon?: boolean;
+        itemName?: boolean;
+        itemIcon?: boolean;
         id?: boolean;
       };
+  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -1728,9 +1730,9 @@ export interface MediaTechSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTechnology_select".
+ * via the `definition` "mediaIllustrationWithCarousel_select".
  */
-export interface MediaTechnologySelect<T extends boolean = true> {
+export interface MediaIllustrationWithCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

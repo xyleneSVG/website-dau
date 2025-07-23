@@ -4,7 +4,7 @@ import { APIError, CollectionConfig } from 'payload'
 // block
 import { HeroSection } from './block-layout/Hero'
 import { ZigZagListSection } from './block-layout/ZigZagLists'
-import { TechnologySection } from './block-layout/Technology'
+import { IllustrationWithCarouselSection } from './block-layout/IllustrationWithCarousel'
 import { ProductSection } from './block-layout/Product'
 import { ClientSection } from './block-layout/Client'
 import { ContactSection } from './block-layout/Contact'
@@ -91,7 +91,7 @@ export const Pages: CollectionConfig = {
       blocks: [
         HeroSection,
         ZigZagListSection,
-        TechnologySection,
+        IllustrationWithCarouselSection,
         ProductSection,
         ClientSection,
         ContactSection,

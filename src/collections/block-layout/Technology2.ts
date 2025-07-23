@@ -30,7 +30,7 @@ export const TechnologySection2: Block = {
         {
           name: 'technologyIcon',
           type: 'upload',
-          relationTo: 'mediaTechnology',
+          relationTo: 'groupPage',
           required: true,
           label: 'Technology Icon',
         },

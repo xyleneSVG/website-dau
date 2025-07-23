@@ -8,17 +8,19 @@ import icon1 from 'public/assets/landing/tech/icon1.svg'
 import background1 from 'public/assets/landing/tech/background1.svg'
 import background2 from 'public/assets/landing/tech/background2.svg'
 
-import { TechnologySection } from '../../_interfaces/pages'
+import { IllustrationWithCarouselSection } from '../../_interfaces/pages'
 
-export default function Tech({
-  technologySection,
-  domainBlob,
-}: {
-  technologySection: TechnologySection
+interface IllustrationWithCarouselProps {
+  data: IllustrationWithCarouselSection
   domainBlob: string
-}) {
+}
+
+export default function IllustrationWithCarousel({
+  data,
+  domainBlob,
+}: IllustrationWithCarouselProps) {
   const [visibleCount, setVisibleCount] = useState(3)
-  const [items, setItems] = useState(technologySection.technologyLists)
+  const [items, setItems] = useState(data.carouselLists)
   const [isSliding, setIsSliding] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -72,7 +74,7 @@ export default function Tech({
   }
 
   return (
-    <div className="p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#DEE9FF] overflow-hidden">
+    <div className={`p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[${data.backgroundColor}] overflow-hidden`}>
       <Image
         src={background1}
         alt=""
@@ -88,11 +90,10 @@ export default function Tech({
         <div className="relative flex flex-col justify-center gap-y-20 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
             <h1 className="font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] uppercase">
-              Teknologi
+              {data.sectionTitle}
             </h1>
             <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] max-w-md mx-auto lg:max-w-[610px] 2xl:max-w-[980px]">
-              Apapun teknologinya, bagi kami yang paling utama adalah membangun bisnis Anda. Beragam
-              teknologi kami gunakan untuk menghasilkan karya yang terbaik.
+              {data.sectionSubtitle}
             </p>
           </div>
 
@@ -128,10 +129,10 @@ export default function Tech({
                     style={{ width: `${100 / items.length}%` }}
                   >
                     <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
-                      {item?.technologyIcon?.filename && (
+                      {item?.itemIcon?.filename && (
                         <Image
-                          src={domainBlob + item.technologyIcon.filename}
-                          alt={item.technologyName}
+                          src={domainBlob + item.itemIcon.filename}
+                          alt={item.itemName}
                           width={40}
                           height={40}
                           className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"

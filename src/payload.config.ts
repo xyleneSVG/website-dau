@@ -24,7 +24,7 @@ import { GroupPage } from './collections/storage/GroupPage'
 import { MediaHero } from './collections/storage/MediaHero'
 import { MediaServices } from './collections/storage/MediaServices'
 import { MediaTech } from './collections/storage/MediaTech'
-import { MediaTechnology } from './collections/storage/MediaTechnology'
+import { MediaIllustrationWithCarousel } from './collections/storage/MediaIllustrationWithCarousel'
 import { MediaProducts } from './collections/storage/MediaProducts'
 import { MediaClients } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
@@ -58,7 +58,7 @@ export default buildConfig({
     MediaHero,
     MediaServices,
     MediaTech,
-    MediaTechnology,
+    MediaIllustrationWithCarousel,
     MediaProducts,
     MediaClients,
     MediaContact,
@@ -90,7 +90,7 @@ export default buildConfig({
       enabled: true,
       collections: {
         mediaHero: true,
-        mediaTechnology: true,
+        mediaIllustrationWithCarousel: true,
         mediaServices: true,
         mediaTech: true,
         mediaProducts: true,
