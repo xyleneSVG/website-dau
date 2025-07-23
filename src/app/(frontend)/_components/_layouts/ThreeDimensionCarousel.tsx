@@ -7,30 +7,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ThreeDimensionCarouselSection } from '../../_interfaces/pages'
 import { RichTextRenderer } from '../richText/richTextRenderer'
 
-const data = [
-  {
-    id: 1,
-    title: 'Easy Deployment',
-    description:
-      'Mudah diterapkan dengan adanya teknologi zero touch untuk membantu proses enrollment di perusahaan Anda dengan cepat dan efisien. Solusi ini juga dapat melakukan block update OS di setiap mobile device untuk menyesuaikan aplikasi mobile yang dimiliki perusahaan.',
-    icon: '/assets/landing/advantage/image2.png',
-  },
-  {
-    id: 2,
-    title: 'Support',
-    description:
-      'Layanan dukungan profesional untuk membantu pengguna dan memastikan kelancaran penggunaan perangkat.',
-    icon: '/assets/landing/advantage/image1.png',
-  },
-  {
-    id: 3,
-    title: 'Device Control',
-    description:
-      'Mengatur perangkat dari jarak jauh dengan kebijakan dan kontrol akses yang tepat.',
-    icon: '/assets/landing/advantage/image3.png',
-  },
-]
-
 interface ThreeDimensionCarouselProps {
   data: ThreeDimensionCarouselSection
   domainBlob: string

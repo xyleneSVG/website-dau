@@ -61,6 +61,7 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
+import Hero2 from './_layouts/hero2'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -179,6 +180,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         )
       case 'threeDimensionCarouselSection':
         return <ThreeDimensionCarousel key={index} data={section} domainBlob={domainBlob} />
+      case 'hero2Section':
+        return <Hero2 key={index} data={section} domainBlob={domainBlob} />
       default:
         return <NotFound />
     }

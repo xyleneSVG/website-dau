@@ -88,6 +88,7 @@ export interface Config {
     mediaCardWithImage: MediaCardWithImage;
     mediaListWithIconAndDescription: MediaListWithIconAndDescription;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarousel;
+    mediaHero2: MediaHero2;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -115,6 +116,7 @@ export interface Config {
     mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
     mediaListWithIconAndDescription: MediaListWithIconAndDescriptionSelect<false> | MediaListWithIconAndDescriptionSelect<true>;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarouselSelect<false> | MediaThreeDimensionCarouselSelect<true>;
+    mediaHero2: MediaHero2Select<false> | MediaHero2Select<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1033,6 +1035,25 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaHero2".
+ */
+export interface MediaHero2 {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1121,6 +1142,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaThreeDimensionCarousel';
         value: number | MediaThreeDimensionCarousel;
+      } | null)
+    | ({
+        relationTo: 'mediaHero2';
+        value: number | MediaHero2;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1897,6 +1922,24 @@ export interface MediaListWithIconAndDescriptionSelect<T extends boolean = true>
  * via the `definition` "mediaThreeDimensionCarousel_select".
  */
 export interface MediaThreeDimensionCarouselSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaHero2_select".
+ */
+export interface MediaHero2Select<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
