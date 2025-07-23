@@ -663,7 +663,7 @@ export interface TwoColumnLayoutSection {
   /**
    * Reverse alignment of the content
    */
-  reverseContent: boolean;
+  reverseContent?: boolean | null;
   hasBackground?: boolean | null;
   /**
    * Choose a color for this background page
