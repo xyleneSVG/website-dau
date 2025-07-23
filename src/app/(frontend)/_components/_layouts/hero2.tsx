@@ -11,7 +11,7 @@ interface Hero2SectionProps {
 
 export default function Hero2({ data, domainBlob }: Hero2SectionProps) {
   return (
-    <div className="w-full min-h-[90vh] lg:min-h-[80vh] xl:min-h-[90vh] relative overflow-hidden">
+    <div className="w-full min-h-screen relative overflow-hidden">
       <Image
         src={domainBlob+data.sectionBackground.filename}
         alt="Globe Background"
