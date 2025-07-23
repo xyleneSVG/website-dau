@@ -2,7 +2,7 @@ import type { Block } from 'payload'
 
 export const HeroSection: Block = {
   slug: 'heroSection',
-  imageURL: "public/assets/landing/hero/thumbnail.png",
+  imageURL: "/assets/skeleton/heroSection.svg",
   interfaceName: 'Hero Section',
   fields: [
     {
