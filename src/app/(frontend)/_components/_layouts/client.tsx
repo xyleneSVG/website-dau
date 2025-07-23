@@ -12,7 +12,13 @@ import background from 'public/assets/landing/client/background1.svg'
 // interfaces
 import { ClientSection } from '../../_interfaces/pages'
 
-export default function Client({ clientSection, domainBlob }: { clientSection: ClientSection, domainBlob: string }) {
+export default function Client({
+  clientSection,
+  domainBlob,
+}: {
+  clientSection: ClientSection
+  domainBlob: string
+}) {
   const [visibleCount, setVisibleCount] = useState(4)
   const [startIndex, setStartIndex] = useState(0)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -31,7 +37,10 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
 
   const handlePrev = () => {
     setDirection('prev')
-    setStartIndex((prev) => (prev - visibleCount + clientSection.clientLists.length) % clientSection.clientLists.length)
+    setStartIndex(
+      (prev) =>
+        (prev - visibleCount + clientSection.clientLists.length) % clientSection.clientLists.length,
+    )
   }
 
   const handleNext = () => {
@@ -93,39 +102,8 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
           <div className="flex flex-col gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12">
             <AnimatePresence mode="wait" custom={{ direction }}>
               <motion.div
-                key={`row1-${startIndex}`}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center"
-                custom={{ direction }}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4 }}
-              >
-                {firstRow.map(
-                  (item) =>
-                    item.clientLogo?.filename && (
-                      <div
-                        key={item.key}
-                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
-                      >
-                        <Image
-                          src={domainBlob + item.clientLogo.filename}
-                          alt={`client-${item.key}`}
-                          width={0}
-                          height={0}
-                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
-                        />
-                      </div>
-                    ),
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            <AnimatePresence mode="wait" custom={{ direction }}>
-              <motion.div
-                key={`row2-${startIndex}`}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center"
+                key={startIndex}
+                className="flex flex-col gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12"
                 custom={{ direction }}
                 variants={slideVariants}
                 initial="enter"
@@ -133,23 +111,45 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
                 exit="exit"
                 transition={{ duration: 0.5 }}
               >
-                {secondRow.map(
-                  (item) =>
-                    item.clientLogo?.filename && (
-                      <div
-                        key={item.key}
-                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
-                      >
-                        <Image
-                          src={domainBlob + item.clientLogo.filename}
-                          alt={`client-${item.key}`}
-                          width={0}
-                          height={0}
-                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
-                        />
-                      </div>
-                    ),
-                )}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center">
+                  {firstRow.map((item) => (
+                    <motion.div
+                      key={item.key}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
+                    >
+                      <Image
+                        src={domainBlob + item.clientLogo.filename}
+                        alt={`client-${item.key}`}
+                        width={70}
+                        height={70}
+                        className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center">
+                  {secondRow.map((item) => (
+                    <motion.div
+                      key={item.key}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.3 }}
+                      className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
+                    >
+                      <Image
+                        src={domainBlob + item.clientLogo.filename}
+                        alt={`client-${item.key}`}
+                        width={70}
+                        height={70}
+                        className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
