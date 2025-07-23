@@ -41,11 +41,11 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="w-full h-max flex flex-col p-6 sm:p-8 md:px-12 min-2xl:px-20 fixed top-0 z-50"
+        className="w-full h-max flex flex-col p-6 md:px-12 min-2xl:px-20 fixed top-0 z-50"
         style={{ background: 'linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)' }}
       >
         <div className="flex flex-row justify-between items-center md:hidden">
-          <Image src={logoDataAndalanUtama} alt={''} className="w-28 h-auto md:hidden" />
+          <Image src={logoDataAndalanUtama} alt={''} className="w-24 lg:w-28 h-auto md:hidden" />
           <div className="block md:hidden">
             {isOpenNavbar ? (
               <X
@@ -74,7 +74,7 @@ export default function Navbar() {
                 className="w-[100px] lg:w-[135px] h-auto hidden lg:block"
               />
 
-              <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[20px] mt-4 md:mt-0">
+              <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px] mt-4 md:mt-0">
                 <li className={pathname === '/' ? 'text-[#00DB05] font-semibold' : 'text-black'}>
                   Beranda
                 </li>
@@ -105,12 +105,12 @@ export default function Navbar() {
                   >
                     <div className="w-full h-1.5 bg-[#00DB05]" />
 
-                    <ul className="p-4 space-y-2">
+                    <ul className="p-4 space-y-2 lg:space-y-3">
                       {layananData.map((item) => (
                         <li key={item.title} className="relative group">
                           <button className="flex items-center justify-between w-full text-left hover:text-[#00DB05] gap-4">
                             <div className="flex items-center gap-3">
-                              <div className="bg-gray-200 rounded-md flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 p-1 sm:p-1.5 md:p-2 lg:p-2.5">
+                              <div className="bg-gray-200 rounded-md flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 p-1 sm:p-1.5 md:p-2 lg:p-2.5 text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px]">
                                 <Image
                                   src={item.url}
                                   alt={item.title}
@@ -151,7 +151,7 @@ export default function Navbar() {
                   >
                     <div className="w-full h-1.5 bg-[#00DB05]" />
 
-                    <ul className="p-4 space-y-2">
+                    <ul className="p-4 space-y-2 lg:space-y-3">
                       {portofolioData.map((item) => (
                         <li key={item.title} className="relative group">
                           <button className="flex items-center justify-between w-full text-left hover:text-[#00DB05] gap-4">
@@ -181,7 +181,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     href={'/contact'}
-                    className="bg-[#00DB05] text-white text-[12px] sm:text-[14px] md:text-[16px] xl:text-[20px] flex items-center w-max gap-x-2.5 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-md sm:rounded-lg md:rounded-xl md:px-5"
+                    className="bg-[#00DB05] text-white text-[12px] sm:text-[14px] md:text-[16px] xl:text-[18px] 2xl:text-[20px] flex items-center w-max gap-x-2.5 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-md sm:rounded-lg md:rounded-xl md:px-5"
                   >
                     Hubungi Kami
                     <Phone className="size-3 md:size-4 fill-current stroke-none" />

@@ -23,7 +23,7 @@ export default function Service({
   domainBlob: string
 }) {
   return (
-    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20">
+    <div className="w-full flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24">
       <Image
         priority
         width={0}
