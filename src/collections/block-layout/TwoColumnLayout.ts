@@ -93,7 +93,7 @@ export const TwoColumnLayoutSection: Block = {
         description: 'Reverse alignment of the content',
       },
       label: 'Reverse Content',
-      required: true
+      defaultValue: false,
     },
     {
       name: 'hasBackground',
