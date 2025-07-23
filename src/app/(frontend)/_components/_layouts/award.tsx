@@ -36,7 +36,7 @@ export default function Award({awardSection,domainBlob}: {awardSection: AwardSec
         className="absolute bottom-0 left-0 w-[240px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"
       />
       <div className="w-full p-8 flex flex-col items-center md:pt-15 2xl:gap-y-24 max-md:max-w-[440px] lg:w-[1000px] 2xl:w-[1200px]">
-        <h1 className="uppercase font-light text-[18px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
+        <h1 className="uppercase font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
           media & awards
         </h1>
         <q className="text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-center mt-[10px] md:mt-[30px] xl:mt-[50px] 2xl:mt-[60px]">
