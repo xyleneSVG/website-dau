@@ -68,7 +68,7 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
   }
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20">
+    <div className="w-full relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24">
       <Image
         className="absolute z-0 w-[205px] h-auto top-0 right-0 md:w-[340px] md:-top-[10%] xl:w-[450px] xl:-top-[50%]"
         src={background}
@@ -76,11 +76,11 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
         width={0}
         height={0}
       />
-      <div className="w-full relative z-10 flex flex-col items-center gap-y-7 md:pt-10 2xl:gap-y-24">
+      <div className="w-full relative z-10 flex flex-col items-center gap-y-6 md:pt-10 sm:gap-y-8 md:gap-y-10 lg:gap-y-12 xl:gap-y-14 2xl:gap-y-18">
         <h1 className="font-light uppercase text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px]">
           KLIEN KAMI
         </h1>
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-8">
+        <div className="flex flex-row items-center justify-center gap-4 sm:gap-8">
           {clientSection.clientLists.length > visibleCount && (
             <button
               onClick={handlePrev}
@@ -90,11 +90,11 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
             </button>
           )}
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12">
             <AnimatePresence mode="wait" custom={{ direction }}>
               <motion.div
                 key={`row1-${startIndex}`}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 justify-center"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center"
                 custom={{ direction }}
                 variants={slideVariants}
                 initial="enter"
@@ -107,14 +107,14 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
                     item.clientLogo?.filename && (
                       <div
                         key={item.key}
-                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]"
+                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
                       >
                         <Image
                           src={domainBlob + item.clientLogo.filename}
                           alt={`client-${item.key}`}
                           width={0}
                           height={0}
-                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px]"
+                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
                         />
                       </div>
                     ),
@@ -125,7 +125,7 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
             <AnimatePresence mode="wait" custom={{ direction }}>
               <motion.div
                 key={`row2-${startIndex}`}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 justify-center"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 md:gap-8 xl:gap-10 2xl:gap-12 justify-center"
                 custom={{ direction }}
                 variants={slideVariants}
                 initial="enter"
@@ -138,14 +138,14 @@ export default function Client({ clientSection, domainBlob }: { clientSection: C
                     item.clientLogo?.filename && (
                       <div
                         key={item.key}
-                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[80px] sm:w-[100px] sm:h-[90px] lg:w-[120px] lg:h-[110px]"
+                        className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
                       >
                         <Image
                           src={domainBlob + item.clientLogo.filename}
                           alt={`client-${item.key}`}
                           width={0}
                           height={0}
-                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px]"
+                          className="w-[40px] h-auto sm:w-[55px] lg:w-[70px] xl:w-[90px] 2xl:w-[120px]"
                         />
                       </div>
                     ),

@@ -1,99 +1,91 @@
 'use client'
 
-// modules
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-// assets
 import icon1 from 'public/assets/landing/tech/icon1.svg'
 import background1 from 'public/assets/landing/tech/background1.svg'
 import background2 from 'public/assets/landing/tech/background2.svg'
 
-// interfaces
 import { TechnologySection } from '../../_interfaces/pages'
 
-export default function Tech({ technologySection, domainBlob }: { technologySection: TechnologySection; domainBlob: string }) {
-  const [startIndex, setStartIndex] = useState(0)
+export default function Tech({
+  technologySection,
+  domainBlob,
+}: {
+  technologySection: TechnologySection
+  domainBlob: string
+}) {
   const [visibleCount, setVisibleCount] = useState(3)
-  const [direction, setDirection] = useState<'next' | 'prev'>('next')
-  const [animationKey, setAnimationKey] = useState(0)
+  const [items, setItems] = useState(technologySection.technologyLists)
+  const [isSliding, setIsSliding] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const updateVisibleCount = () => {
+    const width = window.innerWidth
+    if (width >= 768) setVisibleCount(5)
+    else if (width >= 640) setVisibleCount(4)
+    else setVisibleCount(3)
+  }
 
   useEffect(() => {
-    const updateVisibleCount = () => {
-      const width = window.innerWidth
-      if (width >= 768) setVisibleCount(5)
-      else if (width >= 640) setVisibleCount(4)
-      else setVisibleCount(3)
-    }
     updateVisibleCount()
     window.addEventListener('resize', updateVisibleCount)
     return () => window.removeEventListener('resize', updateVisibleCount)
   }, [])
 
-  const handlePrev = () => {
-    setDirection('prev')
-    setStartIndex((prev) => (prev - visibleCount + technologySection.technologyLists.length) % technologySection.technologyLists.length)
-    setAnimationKey((prev) => prev + 1)
-  }
+  const slide = (dir: 'left' | 'right') => {
+    if (isSliding) return
+    setIsSliding(true)
 
-  const handleNext = () => {
-    setDirection('next')
-    setStartIndex((prev) => (prev + visibleCount) % technologySection.technologyLists.length)
-    setAnimationKey((prev) => prev + 1)
-  }
+    const container = containerRef.current
+    if (!container) return
 
-  const getVisibleBoxes = () => {
-    const items = []
-    for (let i = 0; i < visibleCount; i++) {
-      const index = (startIndex + i) % technologySection.technologyLists.length
-      const tech = technologySection.technologyLists[index]
-      items.push({ ...tech, key: i })
-    }
-    return items
-  }
+    // Lebar 1 item relatif terhadap container
+    const shiftPercent = 100 / items.length
 
-  const visibleBoxes = getVisibleBoxes()
+    container.style.transition = 'transform 0.3s ease'
+    container.style.transform = `translateX(${dir === 'left' ? shiftPercent : -shiftPercent}%)`
 
-  const slideVariants = {
-    initial: (dir: 'next' | 'prev') => ({
-      x: dir === 'next' ? 100 : -100,
-      opacity: 0,
-    }),
-    animate: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.4 },
-    },
-    exit: (dir: 'next' | 'prev') => ({
-      x: dir === 'next' ? -100 : 100,
-      opacity: 0,
-      transition: { duration: 0.4 },
-    }),
+    setTimeout(() => {
+      container.style.transition = 'none'
+      container.style.transform = 'translateX(0)'
+
+      setItems((prev) => {
+        const copy = [...prev]
+        if (dir === 'left') {
+          const last = copy.pop()
+          if (last) copy.unshift(last)
+        } else {
+          const first = copy.shift()
+          if (first) copy.push(first)
+        }
+        return copy
+      })
+
+      setTimeout(() => {
+        container.style.transition = 'transform 0.3s ease'
+        setIsSliding(false)
+      }, 30)
+    }, 300)
   }
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 bg-[#DEE9FF] overflow-hidden ">
+    <div className="p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24 bg-[#DEE9FF] overflow-hidden">
       <Image
-        priority
-        width={0}
-        height={0}
         src={background1}
-        className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1 "
-        alt={''}
+        alt=""
+        className="absolute top-0 right-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1"
       />
       <Image
-        priority
-        width={0}
-        height={0}
         src={background2}
+        alt=""
         className="absolute bottom-0 left-0 w-[230px] md:w-[420px] lg:w-[540px] 2xl:w-[730px] z-1"
-        alt={''}
       />
 
-      <div className='w-full'>
-        <div className="relative flex flex-col justify-center gap-y-20  2xl:gap-y-25 z-3">
+      <div className="w-full">
+        <div className="relative flex flex-col justify-center gap-y-20 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
             <h1 className="font-light text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px] uppercase">
               Teknologi
@@ -105,57 +97,55 @@ export default function Tech({ technologySection, domainBlob }: { technologySect
           </div>
 
           <Image
-            width={0}
-            height={0}
             src={icon1}
             alt=""
-            className="w-max h-auto mx-auto sm:w-[440px] lg:w-[720px] xl:w-[840px] 2xl:w-[1002px]"
+            className="w-max h-auto mx-auto sm:w-[440px] lg:w-[560px] xl:w-[740px] 2xl:w-[850px]"
           />
 
-          <div className="flex flex-row items-center gap-x-3 justify-center overflow-hidden lg:gap-x-7 xl:gap-x-9 2xl:gap-x-12">
-            {technologySection.technologyLists.length > visibleCount && (
+          <div className="flex items-center justify-center gap-x-4 lg:gap-x-6 2xl:gap-x-8">
+            {items.length > visibleCount && (
               <button
-                onClick={handlePrev}
+                onClick={() => slide('left')}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
               >
                 <ChevronLeft className="text-white w-4 h-4 lg:w-8 lg:h-8" />
               </button>
             )}
 
-            <div className="flex gap-x-3 overflow-hidden lg:gap-x-7 xl:gap-x-10">
-              <AnimatePresence custom={direction} mode="wait">
-                <motion.div
-                  key={animationKey}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  className="flex gap-x-3 lg:gap-x-7 xl:gap-x-10 justify-center w-max"
-                >
-                  {visibleBoxes.map((item) => (
-                    <div
-                      key={item.key}
-                      className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32"
-                    >
-                      {item.technologyIcon?.filename && (
+            <div className="overflow-hidden w-[75%] sm:w-[70%] md:w-[60%] xl:w-[55%]">
+              <div
+                ref={containerRef}
+                className="flex"
+                style={{
+                  width: `${(items.length * 100) / visibleCount}%`,
+                  transform: 'translateX(0)',
+                }}
+              >
+                {items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-shrink-0 px-2 transition-transform duration-300 ease-in-out"
+                    style={{ width: `${100 / items.length}%` }}
+                  >
+                    <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
+                      {item?.technologyIcon?.filename && (
                         <Image
-                          width={0}
-                          height={0}
                           src={domainBlob + item.technologyIcon.filename}
-                          className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
                           alt={item.technologyName}
+                          width={40}
+                          height={40}
+                          className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
                         />
                       )}
                     </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {technologySection.technologyLists.length > visibleCount && (
+            {items.length > visibleCount && (
               <button
-                onClick={handleNext}
+                onClick={() => slide('right')}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
               >
                 <ChevronRight className="text-white w-4 h-4 lg:w-8 lg:h-8" />
