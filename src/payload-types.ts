@@ -187,6 +187,7 @@ export interface Page {
         | FAQSection
         | CardWithImageSection
         | ListWithIconAndDescription2Section
+        | DCarouselSection
       )[]
     | null;
   updatedAt: string;
@@ -916,6 +917,58 @@ export interface MediaListWithIconAndDescription {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "3D Carousel Section".
+ */
+export interface DCarouselSection {
+  sectionTitle?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Carousel items must be 3
+   */
+  carouselItems: {
+    title: string;
+    description: string;
+    icon: number | MediaThreeDimensionCarousel;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'threeDimensionCarouselSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaThreeDimensionCarousel".
+ */
+export interface MediaThreeDimensionCarousel {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -964,25 +1017,6 @@ export interface MessageFromGuest {
  * via the `definition` "mediaTech".
  */
 export interface MediaTech {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaThreeDimensionCarousel".
- */
-export interface MediaThreeDimensionCarousel {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1160,6 +1194,7 @@ export interface PagesSelect<T extends boolean = true> {
         faqSection?: T | FAQSectionSelect<T>;
         cardWithImageSection?: T | CardWithImageSectionSelect<T>;
         listWithIconDesc2Section?: T | ListWithIconAndDescription2SectionSelect<T>;
+        threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1499,6 +1534,23 @@ export interface ListWithIconAndDescription2SectionSelect {
       };
   iconColor?: boolean;
   backgroundIconColor?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "3D Carousel Section_select".
+ */
+export interface DCarouselSectionSelect {
+  sectionTitle?: boolean;
+  carouselItems?:
+    | boolean
+    | {
+        title?: boolean;
+        description?: boolean;
+        icon?: boolean;
+        id?: boolean;
+      };
   id?: boolean;
   blockName?: boolean;
 }

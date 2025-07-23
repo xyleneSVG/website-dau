@@ -50,6 +50,8 @@ import ListWithIconAndDescription from './_layouts/list-with-icon-and-descriptio
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
 import FaqSection from './_layouts/faq'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
+import ListWithIconAndDescription2 from './_layouts/listWithIconAndDescription2'
+import ThreeDimensionCarousel from './_layouts/ThreeDimensionCarousel'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -59,7 +61,6 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
-import ListWithIconAndDescription2 from './_layouts/listWithIconAndDescription2'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -176,6 +177,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
             getLucideIcon={getLucideIcon}
           />
         )
+      case 'threeDimensionCarouselSection':
+        return <ThreeDimensionCarousel key={index} data={section} domainBlob={domainBlob} />
       default:
         return <NotFound />
     }

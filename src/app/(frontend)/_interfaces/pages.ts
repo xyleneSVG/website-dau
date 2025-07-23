@@ -24,6 +24,10 @@ export type PageSection =
   | ListWithIconSection
   | ListWithIconDescSection
   | TwoListWithIllustration
+  | FaqSection
+  | CardWithImage
+  | ListWithIconDesc2Section
+  | ThreeDimensionCarouselSection
 
 // Hero
 export interface HeroSection {
@@ -342,6 +346,21 @@ export interface ContentListsWithIcon {
   contentIcon: string
   contentName: string
   contentDesc: string
+}
+
+// Three Dimension Carousel
+export interface ThreeDimensionCarouselSection {
+  id: string
+  blockType: 'threeDimensionCarousel'
+  sectionTitle: RichTextContent
+  carouselItems: ThreeDimensionCarouselItems[]
+}
+
+export interface ThreeDimensionCarouselItems {
+  id: string
+  title: string
+  description: string
+  icon: ImageItem
 }
 
 // Image

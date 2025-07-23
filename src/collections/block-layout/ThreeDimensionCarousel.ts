@@ -1,8 +1,8 @@
 import type { Block } from 'payload'
 
-export const ThreeDimensionCarousel: Block = {
-  slug: 'threeDimensionCarousel',
-  imageURL: 'public/assets/landing/hero/thumbnail.png',
+export const ThreeDimensionCarouselSection: Block = {
+  slug: 'threeDimensionCarouselSection',
+  imageURL: '/assets/landing/hero/thumbnail.png',
   labels: {
     singular: '3D Carousel Section',
     plural: '3D Carousel Sections',
