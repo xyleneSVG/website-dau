@@ -86,7 +86,7 @@ export default function Client({
         height={0}
       />
       <div className="w-full relative z-10 flex flex-col items-center gap-y-6 md:pt-10 sm:gap-y-8 md:gap-y-10 lg:gap-y-12 xl:gap-y-14 2xl:gap-y-18">
-        <h1 className="font-light uppercase text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px]">
+        <h1 className="font-light uppercase text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
           KLIEN KAMI
         </h1>
         <div className="flex flex-row items-center justify-center gap-4 sm:gap-8">

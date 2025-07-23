@@ -21,7 +21,7 @@ export default function Product({productSection, domainBlob}: {productSection: P
       <div className="w-full 2xl:gap-y-24 z-10 relative">
         <div className="flex flex-col items-center justify-center gap-y-8 sm:gap-y-12 md:gap-y-16">
           <div className="text-center space-y-3">
-            <h1 className="uppercase font-light text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px]">
+            <h1 className="uppercase font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
               produk kami
             </h1>
             <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[24px]">

@@ -87,7 +87,7 @@ export default function Tech({
       <div className="w-full">
         <div className="relative flex flex-col justify-center gap-y-20 z-3">
           <div className="text-center flex flex-col gap-y-2.5">
-            <h1 className="font-light text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px] uppercase">
+            <h1 className="font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] uppercase">
               Teknologi
             </h1>
             <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] max-w-md mx-auto lg:max-w-[610px] 2xl:max-w-[980px]">

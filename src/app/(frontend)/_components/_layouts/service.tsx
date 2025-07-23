@@ -50,7 +50,7 @@ export default function Service({
       />
       <div className="w-full flex flex-col items-center gap-y-14 md:pt-15 2xl:gap-y-24">
         <div className="flex flex-col items-center gap-y-1">
-          <h1 className="uppercase font-light text-[18px] sm:text-[24px] md:text-[32px] lg:text-[40px] 2xl:text-[64px]">
+          <h1 className="uppercase font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
             {serviceSection.sectionServiceTitle}
           </h1>
           <p className="font-bold text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px]">
