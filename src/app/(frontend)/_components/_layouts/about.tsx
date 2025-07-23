@@ -13,7 +13,7 @@ export default function about({
   domainBlob: string
 }) {
   return (
-    <div className="flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#E3F1FE]">
+    <div className="flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#E3F1FE] relative">
       <Image
         src={domainBlob + aboutSection.sectionAboutLogo.filename}
         alt={'logo'}
