@@ -77,7 +77,7 @@ export default function Client({
   }
 
   return (
-    <div className="w-full relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24">
+    <div className="w-full relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
         className="absolute z-0 w-[205px] h-auto top-0 right-0 md:w-[340px] md:-top-[10%] xl:w-[450px] xl:-top-[50%]"
         src={background}

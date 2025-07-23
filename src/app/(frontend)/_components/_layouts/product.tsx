@@ -7,9 +7,15 @@ import background from 'public/assets/landing/product/background1.svg'
 // interfaces
 import { ProductSection } from '../../_interfaces/pages'
 
-export default function Product({productSection, domainBlob}: {productSection: ProductSection, domainBlob: string}) {
+export default function Product({
+  productSection,
+  domainBlob,
+}: {
+  productSection: ProductSection
+  domainBlob: string
+}) {
   return (
-    <div className="w-full relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24">
+    <div className="w-full relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
         priority
         className="h-auto w-[160px] absolute bottom-0 left-0 z-0 sm:w-[340px] md:w-[430px]"

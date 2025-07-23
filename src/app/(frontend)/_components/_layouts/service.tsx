@@ -23,7 +23,7 @@ export default function Service({
   domainBlob: string
 }) {
   return (
-    <div className="w-full flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-12 sm:py-14 md:py-16 lg:py-18 xl:md:py-20 2xl:py-24">
+    <div className="w-full flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
         priority
         width={0}
@@ -80,7 +80,13 @@ export default function Service({
                   <p className="font-light md:max-w-[480px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] 2xl:max-w-[700px]">
                     {item.serviceListDescription}
                   </p>
-                  <Link href={""} className="border bg-white border-[#00DB05] flex flex-row gap-x-1 text-[#00DB05] w-max items-center rounded-[10px] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] py-1 px-2 md:py-2 md:px-3 2xl:text-[20px] 2xl:py-3 2xl:px-4">Selengkapnya <ArrowRight className='size-[14px] md:size-[16px] lg:size-[18px] xl:size-[20px] 2xl:size-[24px]' /></Link>
+                  <Link
+                    href={''}
+                    className="border bg-white border-[#00DB05] flex flex-row gap-x-1 text-[#00DB05] w-max items-center rounded-[10px] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] py-1 px-2 md:py-2 md:px-3 2xl:text-[20px] 2xl:py-3 2xl:px-4"
+                  >
+                    Selengkapnya{' '}
+                    <ArrowRight className="size-[14px] md:size-[16px] lg:size-[18px] xl:size-[20px] 2xl:size-[24px]" />
+                  </Link>
                 </div>
               </div>
             ),
