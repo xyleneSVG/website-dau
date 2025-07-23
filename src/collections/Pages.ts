@@ -3,7 +3,7 @@ import { APIError, CollectionConfig } from 'payload'
 
 // block
 import { HeroSection } from './block-layout/Hero'
-import { ServiceSection } from './block-layout/Service'
+import { ZigZagListSection } from './block-layout/ZigZagLists'
 import { TechnologySection } from './block-layout/Technology'
 import { ProductSection } from './block-layout/Product'
 import { ClientSection } from './block-layout/Client'
@@ -90,7 +90,7 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         HeroSection,
-        ServiceSection,
+        ZigZagListSection,
         TechnologySection,
         ProductSection,
         ClientSection,

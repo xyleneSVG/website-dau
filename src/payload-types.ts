@@ -172,7 +172,7 @@ export interface Page {
   pageSection?:
     | (
         | HeroSection
-        | ServiceSection
+        | ZigZagListsSection
         | TechnologySection
         | ProductSection
         | ClientSection
@@ -246,24 +246,24 @@ export interface MediaHero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Service Section".
+ * via the `definition` "Zig Zag Lists Section".
  */
-export interface ServiceSection {
-  sectionServiceTitle: string;
-  sectionServiceSubtitle: string;
-  serviceLists: {
-    serviceListTitle: string;
-    serviceListDescription: string;
-    serviceListIcon: number | MediaService;
+export interface ZigZagListsSection {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  contentLists: {
+    contentListTitle: string;
+    contentListDescription: string;
+    contentListIcon: number | MediaService;
     /**
      * Select the page that explains about this service (make sure the page already exists)
      */
-    serviceListPage?: (number | null) | Page;
+    contentReferencePage?: (number | null) | Page;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'serviceSection';
+  blockType: 'zigZagListSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1215,7 +1215,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         heroSection?: T | HeroSectionSelect<T>;
-        serviceSection?: T | ServiceSectionSelect<T>;
+        zigZagListSection?: T | ZigZagListsSectionSelect<T>;
         technologySection?: T | TechnologySectionSelect<T>;
         productSection?: T | ProductSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
@@ -1258,18 +1258,18 @@ export interface HeroSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Service Section_select".
+ * via the `definition` "Zig Zag Lists Section_select".
  */
-export interface ServiceSectionSelect {
-  sectionServiceTitle?: boolean;
-  sectionServiceSubtitle?: boolean;
-  serviceLists?:
+export interface ZigZagListsSectionSelect {
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
+  contentLists?:
     | boolean
     | {
-        serviceListTitle?: boolean;
-        serviceListDescription?: boolean;
-        serviceListIcon?: boolean;
-        serviceListPage?: boolean;
+        contentListTitle?: boolean;
+        contentListDescription?: boolean;
+        contentListIcon?: boolean;
+        contentReferencePage?: boolean;
         id?: boolean;
       };
   id?: boolean;

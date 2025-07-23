@@ -34,7 +34,7 @@ import {
 import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
-import Service from './_layouts/service'
+import ZigZagList from './_layouts/zigZagList'
 import Tech from './_layouts/tech'
 import Product from './_layouts/product'
 import Client from './_layouts/client'
@@ -121,8 +121,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     switch (section.blockType) {
       case 'heroSection':
         return <Hero key={index} heroSection={section} domainBlob={domainBlob} />
-      case 'serviceSection':
-        return <Service key={index} serviceSection={section} domainBlob={domainBlob} />
+      case 'zigZagListSection':
+        return <ZigZagList key={index} data={section} domainBlob={domainBlob} />
       case 'technologySection':
         return <Tech key={index} technologySection={section} domainBlob={domainBlob} />
       case 'productSection':
