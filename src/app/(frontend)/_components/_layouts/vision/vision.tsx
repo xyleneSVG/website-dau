@@ -7,7 +7,7 @@ import { VisionSection } from '@/app/(frontend)/_interfaces/pages'
 export default function Vision({visionSection, domainBlob}:{visionSection:VisionSection, domainBlob:string}) {
   return (
     <div className=''>
-        <div className="relative w-full h-[100px] sm:h-[120px] md:h-[160px] lg:h-[300px] 2xl:h-[400px]">
+        <div className="relative w-full h-[100px] sm:h-[120px] md:h-[160px] lg:h-[250px] xl:h-[300px] 2xl:h-[400px]">
           <Image
             src={domainBlob + visionSection.sectionVisionBanner.filename}
             alt={visionSection.sectionVisionBanner.filename}
@@ -24,7 +24,7 @@ export default function Vision({visionSection, domainBlob}:{visionSection:Vision
             </p>
           </div>
         </div>
-        <div className="relative z-10 flex flex-wrap justify-center gap-[20px] xl:gap-[30px] 2xl:gap-[50px] justify-items-center px-[20px] sm:px-[40px] md:px-[80px] xl:px-[150px] mt-[20px] md:mt-[-3.5%]">
+        <div className="relative z-10 flex flex-wrap justify-center gap-[20px] xl:gap-[30px] 2xl:gap-[50px] justify-items-center px-6 sm:px-8 md:px-12 min-2xl:px-20 pb-14 sm:pb-16 md:pb-18 lg:pb-20 xl:md:pb-24 2xl:pb-30 mt-[20px] md:mt-[-3%] lg:mt-[-4%]">
           {visionSection.visionCardLists.map((item, index) => (
             <VisionCard
               key={index}
