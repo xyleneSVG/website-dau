@@ -2,7 +2,7 @@ import type { Block } from 'payload'
 
 export const ZigZagListSection: Block = {
   slug: 'zigZagListSection',
-  imageURL: '/assets/skeleton/zigZagList.svg',
+  imageURL: '/assets/skeleton/zigZagLists.svg',
   labels: {
     singular: 'Zig Zag Lists Section',
     plural: 'Zig Zag Lists Sections',

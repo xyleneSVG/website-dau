@@ -11,7 +11,7 @@ export interface Page {
 export type PageSection =
   | HeroSection
   | ZigZagListSection
-  | TechnologySection
+  | IllustrationWithCarouselSection
   | ProductSection
   | ClientSection
   | ContactSection
@@ -63,20 +63,21 @@ export interface ContentLists {
   contentListIcon: ImageItem
 }
 
-// Technology
-export interface TechnologySection {
+// Illustration With Carousel
+export interface IllustrationWithCarouselSection {
   id: string
-  blockType: 'technologySection'
-  sectionTechnologyTitle: string
-  sectionTechnologySubtitle: string
-  sectionTechnologyIllustration: ImageItem
-  technologyLists: TechnologyLists[]
+  blockType: 'illustrationWithCarouselSection'
+  sectionTitle: string
+  sectionSubtitle: string
+  sectionIllustration: ImageItem
+  carouselLists: IllustrationWithCarouselLists[]
+  backgroundColor: string
 }
 
-export interface TechnologyLists {
+export interface IllustrationWithCarouselLists {
   id: string
-  technologyName: string
-  technologyIcon: ImageItem
+  itemName: string
+  itemIcon: ImageItem
 }
 
 // Product
