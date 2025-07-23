@@ -13,7 +13,13 @@ import LeaderCard from './LeaderCard'
 // interfaces
 import { LeaderSection } from '@/app/(frontend)/_interfaces/pages'
 
-export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSection: LeaderSection, domainBlob:string}) {
+export default function LeaderCarousel({
+  leaderSection,
+  domainBlob,
+}: {
+  leaderSection: LeaderSection
+  domainBlob: string
+}) {
   const [visibleCount, setVisibleCount] = useState(1)
   const [cardWidth, setCardWidth] = useState(0)
   const [index, setIndex] = useState(0)
@@ -75,7 +81,7 @@ export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSectio
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 md:px-20">
+    <div className="p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 relative">
       <Image
         priority
         width={0}
@@ -105,35 +111,36 @@ export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSectio
           <button
             onClick={prev}
             disabled={index <= 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 ${
+              index <= 0 ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`}
           >
             <svg
-              className={`rotate-180 ${
-                index <= 0 ? 'opacity-40' : ''
-              } w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] lg:w-[50px] lg:h-[50px]`}
-              viewBox="0 0 50 50"
+              viewBox="0 0 29 29"
               fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] lg:w-[50px] lg:h-[50px]"
             >
-              <circle cx="25" cy="25" r="25" fill={index <= 0 ? '#ccc' : '#00DB05'} />
               <path
-                d="M40 25C40 28.9782 38.4196 32.7936 35.6066 35.6066C32.7936 38.4196 28.9782 40 25 40C23.0302 40 21.0796 39.612 19.2597 38.8582C17.4399 38.1044 15.7863 36.9995 14.3934 35.6066C11.5804 32.7936 10 28.9782 10 25C10 21.0218 11.5804 17.2064 14.3934 14.3934C17.2064 11.5804 21.0218 10 25 10C26.9698 10 28.9204 10.388 30.7403 11.1418C32.5601 11.8956 34.2137 13.0005 35.6066 14.3934C36.9995 15.7863 38.1044 17.4399 38.8582 19.2597C39.612 21.0796 40 23.0302 40 25ZM37 25C37 21.8174 35.7357 18.7652 33.4853 16.5147C31.2348 14.2643 28.1826 13 25 13C21.8174 13 18.7652 14.2643 16.5147 16.5147C14.2643 18.7652 13 21.8174 13 25C13 28.1826 14.2643 31.2348 16.5147 33.4853C18.7652 35.7357 21.8174 37 25 37C28.1826 37 31.2348 35.7357 33.4853 33.4853C35.7357 31.2348 37 28.1826 37 25ZM19.9 31.9L26.8 25L19.9 18.1L22 16L31 25L22 34L19.9 31.9Z"
-                fill="white"
+                d="M28.4926 14.2462C28.4926 18.0245 26.9916 21.6481 24.3199 24.3198C21.6482 26.9914 18.0246 28.4924 14.2463 28.4924C12.3754 28.4924 10.5229 28.1239 8.79447 27.4079C7.06603 26.692 5.49553 25.6426 4.17264 24.3198C1.50094 21.6481 0 18.0245 0 14.2462C0 10.4679 1.50094 6.84429 4.17264 4.17261C6.84434 1.50093 10.4679 0 14.2463 0C16.1171 0 17.9697 0.368488 19.6981 1.08443C21.4266 1.80036 22.9971 2.84973 24.3199 4.17261C25.6428 5.49549 26.6922 7.06598 27.4082 8.7944C28.1241 10.5228 28.4926 12.3753 28.4926 14.2462ZM25.6433 14.2462C25.6433 11.2235 24.4426 8.32467 22.3052 6.18732C20.1679 4.04998 17.269 2.84924 14.2463 2.84924C11.2236 2.84924 8.32473 4.04998 6.18737 6.18732C4.05001 8.32467 2.84926 11.2235 2.84926 14.2462C2.84926 17.2688 4.05001 20.1677 6.18737 22.305C8.32473 24.4424 11.2236 25.6431 14.2463 25.6431C17.269 25.6431 20.1679 24.4424 22.3052 22.305C24.4426 20.1677 25.6433 17.2688 25.6433 14.2462ZM19.09 20.7994L12.5367 14.2462L19.09 7.69294L17.0956 5.69847L8.54778 14.2462L17.0956 22.7939L19.09 20.7994Z"
+                fill={index <= 0 ? '#CECFDB' : '#00DB05'}
               />
             </svg>
           </button>
         )}
 
-        <motion.div
-          className="flex gap-0"
-          animate={controls}
-        >
+        <motion.div className="flex gap-0" animate={controls}>
           {leaderSection.leaderProfileLists.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
               className="shrink-0 flex justify-center"
               style={{ flex: `0 0 ${100 / visibleCount}%` }}
             >
-              <LeaderCard name={item.leaderName} position={item.leaderPosition} photo={domainBlob+item.leaderPhotoProfile.filename} />
+              <LeaderCard
+                name={item.leaderName}
+                position={item.leaderPosition}
+                photo={domainBlob + item.leaderPhotoProfile.filename}
+              />
             </div>
           ))}
         </motion.div>
@@ -142,19 +149,19 @@ export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSectio
           <button
             onClick={next}
             disabled={index >= maxIndex}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 ${
+              index >= maxIndex ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`}
           >
             <svg
-              className={`${
-                index >= maxIndex ? 'opacity-40' : ''
-              } w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] lg:w-[50px] lg:h-[50px]`}
-              viewBox="0 0 50 50"
+              viewBox="0 0 29 29"
               fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-[36px] h-[36px] sm:w-[42px] sm:h-[42px] lg:w-[50px] lg:h-[50px]"
             >
-              <circle cx="25" cy="25" r="25" fill={index >= maxIndex ? '#ccc' : '#00DB05'} />
               <path
-                d="M40 25C40 28.9782 38.4196 32.7936 35.6066 35.6066C32.7936 38.4196 28.9782 40 25 40C23.0302 40 21.0796 39.612 19.2597 38.8582C17.4399 38.1044 15.7863 36.9995 14.3934 35.6066C11.5804 32.7936 10 28.9782 10 25C10 21.0218 11.5804 17.2064 14.3934 14.3934C17.2064 11.5804 21.0218 10 25 10C26.9698 10 28.9204 10.388 30.7403 11.1418C32.5601 11.8956 34.2137 13.0005 35.6066 14.3934C36.9995 15.7863 38.1044 17.4399 38.8582 19.2597C39.612 21.0796 40 23.0302 40 25ZM37 25C37 21.8174 35.7357 18.7652 33.4853 16.5147C31.2348 14.2643 28.1826 13 25 13C21.8174 13 18.7652 14.2643 16.5147 16.5147C14.2643 18.7652 13 21.8174 13 25C13 28.1826 14.2643 31.2348 16.5147 33.4853C18.7652 35.7357 21.8174 37 25 37C28.1826 37 31.2348 35.7357 33.4853 33.4853C35.7357 31.2348 37 28.1826 37 25ZM19.9 31.9L26.8 25L19.9 18.1L22 16L31 25L22 34L19.9 31.9Z"
-                fill="white"
+                d="M28.9997 14.2462C28.9997 18.0245 27.4987 21.6481 24.827 24.3198C22.1553 26.9914 18.5317 28.4924 14.7534 28.4924C12.8825 28.4924 11.03 28.1239 9.30155 27.4079C7.57311 26.692 6.00261 25.6426 4.67972 24.3198C2.00802 21.6481 0.50708 18.0245 0.50708 14.2462C0.50708 10.4679 2.00802 6.84429 4.67972 4.17261C7.35142 1.50093 10.975 0 14.7534 0C16.6242 0 18.4768 0.368488 20.2052 1.08443C21.9336 1.80036 23.5041 2.84973 24.827 4.17261C26.1499 5.49549 27.1993 7.06598 27.9152 8.7944C28.6312 10.5228 28.9997 12.3753 28.9997 14.2462ZM26.1504 14.2462C26.1504 11.2235 24.9497 8.32467 22.8123 6.18732C20.6749 4.04998 17.7761 2.84924 14.7534 2.84924C11.7307 2.84924 8.83181 4.04998 6.69445 6.18732C4.5571 8.32467 3.35634 11.2235 3.35634 14.2462C3.35634 17.2688 4.5571 20.1677 6.69445 22.305C8.83181 24.4424 11.7307 25.6431 14.7534 25.6431C17.7761 25.6431 20.6749 24.4424 22.8123 22.305C24.9497 20.1677 26.1504 17.2688 26.1504 14.2462ZM9.90963 20.7994L16.4629 14.2462L9.90963 7.69294L11.9041 5.69847L20.4519 14.2462L11.9041 22.7939L9.90963 20.7994Z"
+                fill={index >= maxIndex ? '#CECFDB' : '#00DB05'}
               />
             </svg>
           </button>
@@ -162,7 +169,7 @@ export default function LeaderCarousel({leaderSection, domainBlob}:{leaderSectio
       </div>
 
       {shouldShowButtons && maxIndex > 0 && (
-        <div className="flex items-center gap-2 mt-6">
+        <div className="flex items-center justify-center gap-2 mt-6">
           {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <div
               key={i}

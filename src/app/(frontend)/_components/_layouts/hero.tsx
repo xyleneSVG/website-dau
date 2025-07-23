@@ -37,7 +37,7 @@ export default function Hero({
   }, [greetings.length])
 
   return (
-    <div className="w-full min-h-[88vh] lg:min-h-[80vh] flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20">
+    <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20">
       <div className='w-full '>
         <Image
           width={0}

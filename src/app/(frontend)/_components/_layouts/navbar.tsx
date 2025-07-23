@@ -198,8 +198,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      <div className="w-full h-[78px] lg:h-[108px]"></div>
     </>
   )
 }
