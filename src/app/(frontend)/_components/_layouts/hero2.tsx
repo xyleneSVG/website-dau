@@ -2,12 +2,18 @@
 
 import Image from 'next/image'
 import React from 'react'
+import { Hero2Section } from '../../_interfaces/pages'
 
-export default function HeroSection() {
+interface Hero2SectionProps {
+  data: Hero2Section
+  domainBlob: string
+}
+
+export default function Hero2({ data, domainBlob }: Hero2SectionProps) {
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
       <Image
-        src="/assets/landing/hero2/background-hero2.png"
+        src={domainBlob+data.sectionBackground.filename}
         alt="Globe Background"
         fill
         className="object-cover z-0"
@@ -19,10 +25,10 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-20 flex justify-center lg:justify-end items-center px-4 sm:px-8 xl:pr-16">
         <div className="text-center lg:max-w-[50%]">
           <h1 className="text-white text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] font-bold uppercase leading-snug">
-            “We Take You to the Internet of Things”
+            {data.sectionTextBold}
           </h1>
           <p className="text-white mt-4 text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] xl:text-[32px] 2xl:text-[40px] tracking-[0.4em] font-light uppercase">
-            Data Andalan Utama
+            {data.sectionTextLight}
           </p>
         </div>
       </div>

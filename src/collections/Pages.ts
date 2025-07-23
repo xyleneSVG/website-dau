@@ -21,6 +21,7 @@ import { FaqSection } from './block-layout/Faq'
 import { CardWithImageSection } from './block-layout/CardWithImage'
 import { ListWithIconDesc2Section } from './block-layout/ListWithIconDesc2'
 import { ThreeDimensionCarouselSection } from './block-layout/ThreeDimensionCarousel'
+import { Hero2Section } from './block-layout/Hero2'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -107,6 +108,7 @@ export const Pages: CollectionConfig = {
         CardWithImageSection,
         ListWithIconDesc2Section,
         ThreeDimensionCarouselSection,
+        Hero2Section
       ],
     },
   ],

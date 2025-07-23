@@ -363,6 +363,15 @@ export interface ThreeDimensionCarouselItems {
   icon: ImageItem
 }
 
+// Hero 2
+export interface Hero2Section {
+  id: string
+  blockType: 'hero2Section'
+  sectionTextBold: string
+  sectionTextLight: string
+  sectionBackground: ImageItem
+}
+
 // Image
 export interface ImageItem {
   id: string
