@@ -19,7 +19,7 @@ export default function TwoColumn({ twoColumnSection, domainBlob, getLucideIcon 
     twoColumnLayoutSubtitle,
     twoColumnLayoutDescription,
     imageLists,
-    contentAlign,
+    reverseContent,
     hasBackground,
     backgroundColor,
     hasButton,
@@ -29,7 +29,6 @@ export default function TwoColumn({ twoColumnSection, domainBlob, getLucideIcon 
     buttonLink,
   } = twoColumnSection
 
-  const isLeftAligned = contentAlign === 'left'
   const IconComponent = getLucideIcon?.(buttonIcon)
 
   return (
@@ -39,7 +38,7 @@ export default function TwoColumn({ twoColumnSection, domainBlob, getLucideIcon 
     >
       <div
         className={`container mx-auto px-4 flex flex-col ${
-          isLeftAligned ? 'lg:flex-row' : 'lg:flex-row-reverse'
+          reverseContent ? 'lg:flex-row-reverse' : 'lg:flex-row'
         } items-center gap-4 md:gap-10 xl:gap-14 2xl:gap-20`}
       >
         <div className="w-full lg:w-1/2 flex flex-col items-center gap-4 mb-6 lg:mb-0">

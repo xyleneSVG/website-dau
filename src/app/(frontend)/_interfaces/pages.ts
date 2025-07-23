@@ -208,7 +208,7 @@ export interface TwoColumnSection {
   buttonIcon: string
   buttonLink: ButtonLink
   buttonColor: string
-  contentAlign: string
+  reverseContent: boolean
   hasBackground: boolean
   backgroundColor: string
   imageLists: TwoColumnLayoutImageLists[]

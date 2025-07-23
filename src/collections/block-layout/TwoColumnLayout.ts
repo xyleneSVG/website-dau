@@ -87,16 +87,12 @@ export const TwoColumnLayoutSection: Block = {
       },
     }),
     {
-      name: 'contentAlign',
-      type: 'select',
-      options: [
-        {label: 'Right', value: 'right'},
-        {label: 'Left', value: 'left'},
-      ],
+      name: 'reverseContent',
+      type: 'checkbox',
       admin: {
-        description: 'If select "Right" then the image is on the left and the title, subtitle, description are on the right.'
+        description: 'Reverse alignment of the content',
       },
-      label: 'Section Content Align',
+      label: 'Reverse Content',
       required: true
     },
     {

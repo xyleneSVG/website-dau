@@ -661,9 +661,9 @@ export interface TwoColumnLayoutSection {
    */
   buttonColor?: string | null;
   /**
-   * If select "Right" then the image is on the left and the title, subtitle, description are on the right.
+   * Reverse alignment of the content
    */
-  contentAlign: 'right' | 'left';
+  reverseContent: boolean;
   hasBackground?: boolean | null;
   /**
    * Choose a color for this background page
@@ -1067,25 +1067,6 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaHero2".
- */
-export interface MediaHero2 {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1446,7 +1427,7 @@ export interface TwoColumnLayoutSectionSelect {
   buttonIcon?: boolean;
   buttonLink?: boolean;
   buttonColor?: boolean;
-  contentAlign?: boolean;
+  reverseContent?: boolean;
   hasBackground?: boolean;
   backgroundColor?: boolean;
   id?: boolean;
