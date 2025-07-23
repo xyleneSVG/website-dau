@@ -13,15 +13,17 @@ import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
 
 // interfaces
-import { ServiceLists, ServiceSection } from '../../_interfaces/pages'
+import { ContentLists, ZigZagListSection } from '../../_interfaces/pages'
 
-export default function Service({
-  serviceSection,
-  domainBlob,
-}: {
-  serviceSection: ServiceSection
+interface ZigZagListProps {
+  data: ZigZagListSection
   domainBlob: string
-}) {
+}
+
+export default function ZigZagList({
+  data,
+  domainBlob,
+}: ZigZagListProps) {
   return (
     <div className="w-full flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
@@ -51,21 +53,21 @@ export default function Service({
       <div className="w-full flex flex-col items-center gap-y-14 md:pt-15 2xl:gap-y-24">
         <div className="flex flex-col items-center gap-y-1">
           <h1 className="uppercase font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
-            {serviceSection.sectionServiceTitle}
+            {data.sectionTitle}
           </h1>
           <p className="font-bold text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px]">
-            {serviceSection.sectionServiceSubtitle}
+            {data.sectionSubtitle}
           </p>
         </div>
-        {serviceSection.serviceLists.map(
-          (item: ServiceLists, index: number) =>
-            item.serviceListIcon?.filename && (
+        {data.contentLists.map(
+          (item: ContentLists, index: number) =>
+            item.contentListIcon?.filename && (
               <div
                 key={item.id}
                 className={`flex flex-col gap-y-6 items-center max-md:max-w-[440px] ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} md:justify-start md:items-center lg:w-[1000px] md:gap-x-6 2xl:gap-x-12 2xl:w-[1200px]`}
               >
                 <Image
-                  src={domainBlob + item.serviceListIcon?.filename}
+                  src={domainBlob + item.contentListIcon?.filename}
                   width={0}
                   height={0}
                   alt=""
@@ -75,10 +77,10 @@ export default function Service({
                   className={`flex flex-col gap-y-4 text-[14px] ${index % 2 === 1 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}
                 >
                   <p className="uppercase text-[#00DB05] font-bold text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px]">
-                    {item.serviceListTitle}
+                    {item.contentListTitle}
                   </p>
                   <p className="font-light md:max-w-[480px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] 2xl:max-w-[700px]">
-                    {item.serviceListDescription}
+                    {item.contentListDescription}
                   </p>
                   <Link
                     href={''}

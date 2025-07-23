@@ -10,7 +10,7 @@ export interface Page {
 
 export type PageSection =
   | HeroSection
-  | ServiceSection
+  | ZigZagListSection
   | TechnologySection
   | ProductSection
   | ClientSection
@@ -47,20 +47,20 @@ export interface Greeting {
 }
 
 // Service
-export interface ServiceSection {
+export interface ZigZagListSection {
   id: string
   blockName?: string
-  blockType: 'serviceSection'
-  sectionServiceTitle: string
-  sectionServiceSubtitle: string
-  serviceLists: ServiceLists[]
+  blockType: 'zigZagListSection'
+  sectionTitle: string
+  sectionSubtitle: string
+  contentLists: ContentLists[]
 }
 
-export interface ServiceLists {
+export interface ContentLists {
   id: string
-  serviceListTitle: string
-  serviceListDescription: string
-  serviceListIcon: ImageItem
+  contentListTitle: string
+  contentListDescription: string
+  contentListIcon: ImageItem
 }
 
 // Technology
