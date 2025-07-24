@@ -8,7 +8,7 @@ import { IllustrationWithCarouselSection } from './block-layout/IllustrationWith
 import { QuadGridSection } from './block-layout/QuadGrid'
 import { GridCarouselSection } from './block-layout/GridCarousel'
 import { ContactSection } from './block-layout/Contact'
-import { AwardSection } from './block-layout/Awards'
+import { IllustrationWithTextAndCarouselSection } from './block-layout/IllustrationWithTextAndCarousel'
 import { AboutSection } from './block-layout/About'
 import { VisionSection } from './block-layout/Vision'
 import { LeaderSection } from './block-layout/Leader'
@@ -28,9 +28,6 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'pageName',
     group: 'Advance Configuration',
-    // livePreview: {
-    //   url: 'http://localhost:3000/about',
-    // },
   },
   fields: [
     {
@@ -98,7 +95,7 @@ export const Pages: CollectionConfig = {
         QuadGridSection,
         GridCarouselSection,
         ContactSection,
-        AwardSection,
+        IllustrationWithTextAndCarouselSection,
         AboutSection,
         VisionSection,
         LeaderSection,
@@ -179,8 +176,8 @@ export const Pages: CollectionConfig = {
             data.pageDefault = false
           }
         }
-        if (Array.isArray(data?.blocks)) {
-          data.blocks = data.blocks.map((block) => {
+        if (Array.isArray(data?.pageSection)) {
+          data.pageSection = data.pageSection.map((block) => {
             if (block.blockType === 'heroSection') {
               const greetingArray = block.greetings || []
               const updatedGreetings = greetingArray.map((g: any) => {

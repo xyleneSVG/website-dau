@@ -8,22 +8,21 @@ import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // interfaces
-import { AwardSection } from '../../_interfaces/pages'
+import { IllustrationWithTextAndCarouselSection } from '../../_interfaces/pages'
 
-export default function Award({
-  awardSection,
-  domainBlob,
-}: {
-  awardSection: AwardSection
+interface IllustrationWithTextAndCarouselProps {
+  data: IllustrationWithTextAndCarouselSection
   domainBlob: string
-}) {
+}
+
+export default function IllustrationWithTextAndCarousel({ data, domainBlob }: IllustrationWithTextAndCarouselProps) {
   const [index, setIndex] = useState(0)
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % awardSection.AwardLists.length)
+  const nextSlide = () => setIndex((prev) => (prev + 1) % data.carouselLists.length)
   const prevSlide = () =>
-    setIndex((prev) => (prev - 1 + awardSection.AwardLists.length) % awardSection.AwardLists.length)
+    setIndex((prev) => (prev - 1 + data.carouselLists.length) % data.carouselLists.length)
 
-  const current = awardSection.AwardLists[index]
+  const current = data.carouselLists[index]
   return (
     <div className="flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 relative">
       <Image
@@ -44,17 +43,16 @@ export default function Award({
       />
       <div className="w-full flex flex-col items-center md:pt-15 2xl:gap-y-24 max-md:max-w-[440px] lg:w-[1000px] 2xl:w-[1200px]">
         <h1 className="uppercase font-light text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
-          media & awards
+          {data.sectionTitle}
         </h1>
         <q className="text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-center mt-[10px] md:mt-[30px] xl:mt-[50px] 2xl:mt-[60px]">
-          Publikasi dan penghargaan adalah ukuran bagaimana kita berkontribusi dalam menciptakan
-          kehidupan yang lebih baik bagi klien dan mitra kita.
+          {data.sectionDescription}
         </q>
         <div className="h-fit md:flex mt-[50px] md:mt-[70px] md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
           <AnimatePresence mode="wait">
             <motion.img
-              key={current.awardImage.id}
-              src={domainBlob + current.awardImage.filename}
+              key={current.id}
+              src={domainBlob + current.carouselImage.filename}
               alt={`Award ${index + 1}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
@@ -68,17 +66,17 @@ export default function Award({
           <div className="flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
-                key={current.awardNomination + current.awardTitle}
+                key={current.carouselTitle + current.carouselDescription}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.4 }}
               >
                 <h1 className="text-[#BE9844] text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] mt-[30px] md:mt-0">
-                  {current.awardNomination}
+                  {current.carouselTitle}
                 </h1>
                 <p className="font-bold text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-justify mt-[10px] mb-[20px] md:mt-[20px] xl:mt-[30px] md:mb-0">
-                  {current.awardTitle}
+                  {current.carouselDescription}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -106,13 +104,13 @@ export default function Award({
               </button>
 
               <p className="text-[12px] md:text-[16px] xl:text-[20px] mx-[20px] md:mx-[30px] lg:mx-[40px] xl:mx-[50px]">
-                <span className="font-bold">{index + 1}</span>/{awardSection.AwardLists.length}
+                <span className="font-bold">{index + 1}</span>/{data.carouselLists.length}
               </p>
               <button
                 onClick={nextSlide}
-                disabled={index === awardSection.AwardLists.length - 1}
+                disabled={index === data.carouselLists.length - 1}
                 className={`w-[15px] h-[15px] md:w-[20px] md:h-[20px] lg:w-[28px] lg:h-[28px] ${
-                  index === awardSection.AwardLists.length - 1
+                  index === data.carouselLists.length - 1
                     ? 'cursor-not-allowed'
                     : 'cursor-pointer'
                 }`}
@@ -125,7 +123,7 @@ export default function Award({
                 >
                   <path
                     d="M28.9997 14.2462C28.9997 18.0245 27.4987 21.6481 24.827 24.3198C22.1553 26.9914 18.5317 28.4924 14.7534 28.4924C12.8825 28.4924 11.03 28.1239 9.30155 27.4079C7.57311 26.692 6.00261 25.6426 4.67972 24.3198C2.00802 21.6481 0.50708 18.0245 0.50708 14.2462C0.50708 10.4679 2.00802 6.84429 4.67972 4.17261C7.35142 1.50093 10.975 0 14.7534 0C16.6242 0 18.4768 0.368488 20.2052 1.08443C21.9336 1.80036 23.5041 2.84973 24.827 4.17261C26.1499 5.49549 27.1993 7.06598 27.9152 8.7944C28.6312 10.5228 28.9997 12.3753 28.9997 14.2462ZM26.1504 14.2462C26.1504 11.2235 24.9497 8.32467 22.8123 6.18732C20.6749 4.04998 17.7761 2.84924 14.7534 2.84924C11.7307 2.84924 8.83181 4.04998 6.69445 6.18732C4.5571 8.32467 3.35634 11.2235 3.35634 14.2462C3.35634 17.2688 4.5571 20.1677 6.69445 22.305C8.83181 24.4424 11.7307 25.6431 14.7534 25.6431C17.7761 25.6431 20.6749 24.4424 22.8123 22.305C24.9497 20.1677 26.1504 17.2688 26.1504 14.2462ZM9.90963 20.7994L16.4629 14.2462L9.90963 7.69294L11.9041 5.69847L20.4519 14.2462L11.9041 22.7939L9.90963 20.7994Z"
-                    fill={index === awardSection.AwardLists.length - 1 ? '#CECFDB' : '#00DB05'}
+                    fill={index === data.carouselLists.length - 1 ? '#CECFDB' : '#00DB05'}
                   />
                 </svg>
               </button>

@@ -4,7 +4,11 @@ import type { Block } from 'payload'
 export const IllustrationWithCarouselSection: Block = {
   slug: 'illustrationWithCarouselSection',
   imageURL: '/assets/skeleton/illustrationWithCarousel.svg',
-  interfaceName: 'IIllustration With Carousel Section',
+  labels: {
+    singular: 'Illustration With Carousel Section',
+    plural: 'Illustration With Carousel Sections',
+  },
+  interfaceName: 'Illustration With Carousel Section',
   fields: [
     {
       name: 'sectionTitle',
@@ -49,7 +53,7 @@ export const IllustrationWithCarouselSection: Block = {
     colorPickerField({
       name: 'backgroundColor',
       label: 'Background Color',
-      required: false,
+      defaultValue: '#ffffff',
     }),
   ],
 }

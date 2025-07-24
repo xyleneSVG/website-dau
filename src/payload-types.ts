@@ -79,7 +79,7 @@ export interface Config {
     mediaQuadGrid: MediaQuadGrid;
     mediaGridCarousel: MediaGridCarousel;
     mediaContact: MediaContact;
-    mediaAward: MediaAward;
+    mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarousel;
     mediaAbout: MediaAbout;
     mediaVision: MediaVision;
     mediaLeader: MediaLeader;
@@ -107,7 +107,7 @@ export interface Config {
     mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
     mediaGridCarousel: MediaGridCarouselSelect<false> | MediaGridCarouselSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
-    mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
+    mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarouselSelect<false> | MediaIllustrationWithTextAndCarouselSelect<true>;
     mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
     mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
@@ -173,11 +173,11 @@ export interface Page {
     | (
         | HeroSection
         | ZigZagListsSection
-        | IIllustrationWithCarouselSection
+        | IllustrationWithCarouselSection
         | QuadGridSection
         | GridCarouselSection
         | ContactSection
-        | AwardSection
+        | IllustrationWithTextAndCarouselSection
         | AboutSection
         | VisionSection
         | LeaderSection
@@ -286,9 +286,9 @@ export interface MediaService {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IIllustration With Carousel Section".
+ * via the `definition` "Illustration With Carousel Section".
  */
-export interface IIllustrationWithCarouselSection {
+export interface IllustrationWithCarouselSection {
   sectionTitle: string;
   sectionSubtitle: string;
   sectionIllustration: number | MediaIllustrationWithCarousel;
@@ -451,26 +451,26 @@ export interface MessageFieldConfiguration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Award Section".
+ * via the `definition` "Illustration With Text and Carousel Section".
  */
-export interface AwardSection {
-  sectionAwardTitle: string;
-  sectionAwardDescription: string;
-  AwardLists: {
-    awardImage: number | MediaAward;
-    awardNomination: string;
-    awardTitle: string;
+export interface IllustrationWithTextAndCarouselSection {
+  sectionTitle: string;
+  sectionDescription: string;
+  carouselLists: {
+    carouselImage: number | MediaIllustrationWithTextAndCarousel;
+    carouselDescription: string;
+    carouselTitle: string;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'awardSection';
+  blockType: 'illustrationWithTextAndCarouselSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaAward".
+ * via the `definition` "mediaIllustrationWithTextAndCarousel".
  */
-export interface MediaAward {
+export interface MediaIllustrationWithTextAndCarousel {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1122,8 +1122,8 @@ export interface PayloadLockedDocument {
         value: number | MediaContact;
       } | null)
     | ({
-        relationTo: 'mediaAward';
-        value: number | MediaAward;
+        relationTo: 'mediaIllustrationWithTextAndCarousel';
+        value: number | MediaIllustrationWithTextAndCarousel;
       } | null)
     | ({
         relationTo: 'mediaAbout';
@@ -1217,11 +1217,11 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         heroSection?: T | HeroSectionSelect<T>;
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
-        illustrationWithCarouselSection?: T | IIllustrationWithCarouselSectionSelect<T>;
+        illustrationWithCarouselSection?: T | IllustrationWithCarouselSectionSelect<T>;
         quadGridSection?: T | QuadGridSectionSelect<T>;
         gridCarouselSection?: T | GridCarouselSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
-        awardSection?: T | AwardSectionSelect<T>;
+        illustrationWithTextAndCarouselSection?: T | IllustrationWithTextAndCarouselSectionSelect<T>;
         aboutSection?: T | AboutSectionSelect<T>;
         visionSection?: T | VisionSectionSelect<T>;
         leaderSection?: T | LeaderSectionSelect<T>;
@@ -1278,9 +1278,9 @@ export interface ZigZagListsSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IIllustration With Carousel Section_select".
+ * via the `definition` "Illustration With Carousel Section_select".
  */
-export interface IIllustrationWithCarouselSectionSelect {
+export interface IllustrationWithCarouselSectionSelect {
   sectionTitle?: boolean;
   sectionSubtitle?: boolean;
   sectionIllustration?: boolean;
@@ -1348,17 +1348,17 @@ export interface ContactSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Award Section_select".
+ * via the `definition` "Illustration With Text and Carousel Section_select".
  */
-export interface AwardSectionSelect {
-  sectionAwardTitle?: boolean;
-  sectionAwardDescription?: boolean;
-  AwardLists?:
+export interface IllustrationWithTextAndCarouselSectionSelect {
+  sectionTitle?: boolean;
+  sectionDescription?: boolean;
+  carouselLists?:
     | boolean
     | {
-        awardImage?: boolean;
-        awardNomination?: boolean;
-        awardTitle?: boolean;
+        carouselImage?: boolean;
+        carouselDescription?: boolean;
+        carouselTitle?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1802,9 +1802,9 @@ export interface MediaContactSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaAward_select".
+ * via the `definition` "mediaIllustrationWithTextAndCarousel_select".
  */
-export interface MediaAwardSelect<T extends boolean = true> {
+export interface MediaIllustrationWithTextAndCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
