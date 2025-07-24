@@ -52,10 +52,11 @@ export default buildConfig({
       url: ({ data, collectionConfig }) => {
         if (collectionConfig?.slug === 'pages') {
           const key = data?.pageKey?.startsWith('/') ? data.pageKey : `${data?.pageKey || ''}`
-          return `http://localhost:3000${key}`
+          return `${process.env.NEXT_PUBLIC_SERVER_URL}${key}`
         }
 
-        return 'http://localhost:3000'
+        // Always return a string, never undefined
+        return process.env.NEXT_PUBLIC_SERVER_URL || '';
       },
       collections: ['pages'],
     },

@@ -9,7 +9,7 @@ export const RefreshRouteOnSave: React.FC = () => {
   return (
     <PayloadLivePreview
       refresh={() => router.refresh()}
-      serverURL="https://website-dau.vercel.app"
+      serverURL={process.env.NEXT_PUBLIC_SERVER_URL ?? ''}
     />
   )
 }

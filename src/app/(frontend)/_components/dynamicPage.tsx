@@ -120,7 +120,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
 
   const { data: page } = useLivePreview<Page>({
     initialData: fetchedPage ?? ({} as Page),
-    serverURL: "https://website-dau.vercel.app",
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
     depth: 2,
   })
 
