@@ -1,34 +1,34 @@
 import type { Block } from 'payload'
 
-export const ClientSection: Block = {
-  slug: 'clientSection',
+export const GridCarouselSection: Block = {
+  slug: 'gridCarouselSection',
   imageURL: "public/assets/landing/hero/thumbnail.png",
-  interfaceName: 'Client Section',
+  interfaceName: 'Grid Carousel Section',
   fields: [
     {
-      name: 'sectionClientTitle',
+      name: 'sectionTitle',
       type: 'text',
       label: 'Section Title',
       required: true
     },
     {
-      name: 'clientLists',
+      name: 'gridLists',
       type: 'array',
       required: true,
-      label: 'Client Lists',
+      label: 'Grid Lists',
       fields: [
         {
-          name: 'clientName',
+          name: 'itemName',
           type: 'text',
           required: true,
-          label: 'Client Name',
+          label: 'Item Name',
         },
         {
-          name: 'clientLogo',
+          name: 'itemImage',
           type: 'upload',
-          relationTo: 'mediaClients',
+          relationTo: 'groupPage',
           required: true,
-          label: 'Client Logo',
+          label: 'Item Image',
         },
       ]
     },

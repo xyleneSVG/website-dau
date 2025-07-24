@@ -2,7 +2,7 @@ import type { Block } from 'payload'
 
 export const QuadGridSection: Block = {
   slug: 'quadGridSection',
-  imageURL: "/assets/landing/hero/thumbnail.png",
+  imageURL: "/assets/skeleton/quadGrid.svg",
   labels: {
     singular: 'Quad Grid Section',
     plural: 'Quad Grid Sections',
