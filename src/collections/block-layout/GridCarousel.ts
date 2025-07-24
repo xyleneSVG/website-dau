@@ -2,7 +2,7 @@ import type { Block } from 'payload'
 
 export const GridCarouselSection: Block = {
   slug: 'gridCarouselSection',
-  imageURL: "public/assets/landing/hero/thumbnail.png",
+  imageURL: "/assets/skeleton/gridCarousel.svg",
   interfaceName: 'Grid Carousel Section',
   fields: [
     {
