@@ -65,7 +65,7 @@ export default function LeaderCarousel({
   useEffect(() => {
     if (cardWidth === 0) return
     controls.start({
-      x: -index * (cardWidth + 12),
+      x: -index * cardWidth,
       transition: { duration: 0.4 },
     })
   }, [index, cardWidth])
@@ -129,18 +129,23 @@ export default function LeaderCarousel({
           </button>
         )}
 
-        <motion.div className="flex gap-0" animate={controls}>
+        <motion.div 
+          className="flex"
+          animate={controls}
+        >
           {leaderSection.leaderProfileLists.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
-              className="shrink-0 flex justify-center"
-              style={{ flex: `0 0 ${100 / visibleCount}%` }}
+              className="shrink-0"
+              style={{ width: `${100 / visibleCount}%` }}
             >
-              <LeaderCard
-                name={item.leaderName}
-                position={item.leaderPosition}
-                photo={domainBlob + item.leaderPhotoProfile.filename}
-              />
+              <div className="flex justify-center items-center h-full px-2 sm:px-3 md:px-4">
+                <LeaderCard
+                  name={item.leaderName}
+                  position={item.leaderPosition}
+                  photo={domainBlob + item.leaderPhotoProfile.filename}
+                />
+              </div>
             </div>
           ))}
         </motion.div>
