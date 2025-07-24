@@ -124,6 +124,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     depth: 2,
   })
 
+  const pageData = { ...fetchedPage, ...livePreviewData };
+
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
       case 'heroSection':
@@ -210,12 +212,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     )
   }
 
-  if (!livePreviewData) return <NotFound />
+  if (!pageData) return <NotFound />
 
   return (
     <div>
       <Navbar />
-      {livePreviewData.pageSection?.map((section, index) => renderSection(section, index))}
+      {pageData.pageSection?.map((section, index) => renderSection(section, index))}
     </div>
   )
 }
