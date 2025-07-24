@@ -21,6 +21,7 @@
     "@innovixx/payload-color-picker-field": "^2.0.2",
     "@innovixx/payload-icon-picker-field": "1.0.0-beta.6",
     "@payloadcms/db-vercel-postgres": "3.45.0",
+    "@payloadcms/live-preview-react": "^3.48.0",
     "@payloadcms/next": "3.45.0",
     "@payloadcms/payload-cloud": "3.45.0",
     "@payloadcms/richtext-lexical": "3.45.0",

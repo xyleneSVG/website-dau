@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { useLivePreview } from '@payloadcms/live-preview-react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -34,6 +35,7 @@ import {
 import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
+import Hero2 from './_layouts/hero2'
 import ZigZagList from './_layouts/zigZagList'
 import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
 import QuadGrid from './_layouts/quadGrid'
@@ -61,11 +63,10 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
-import Hero2 from './_layouts/hero2'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState<Page | null>(null)
+  const [fetchedPage, setFetchedPage] = useState<Page | null>(null)
   const iconMap: Record<string, LucideIcon> = {
     phone: Phone,
     arrowright: ArrowRight,
@@ -105,7 +106,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         if (!result || result.length === 0) {
           router.replace('/not-found')
         } else {
-          setPage(result[0] as unknown as Page)
+          setFetchedPage(result[0] as unknown as Page)
         }
       } catch (err) {
         console.error(err)
@@ -116,6 +117,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
 
     fetchData()
   }, [router, slug])
+
+  const { data: page } = useLivePreview<Page>({
+    initialData: fetchedPage ?? ({} as Page),
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
+    depth: 2,
+  })
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {

@@ -48,6 +48,17 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      url: ({ data, collectionConfig }) => {
+        if (collectionConfig?.slug === 'pages') {
+          const key = data?.pageKey?.startsWith('/') ? data.pageKey : `${data?.pageKey || ''}`
+          return `http://localhost:3000${key}`
+        }
+
+        return 'http://localhost:3000'
+      },
+      collections: ['pages'],
+    },
   },
   collections: [
     Pages,
@@ -71,7 +82,7 @@ export default buildConfig({
     MediaCardWithImage,
     MediaListWithIconAndDescription,
     MediaThreeDimensionCarousel,
-    MediaHero2
+    MediaHero2,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
