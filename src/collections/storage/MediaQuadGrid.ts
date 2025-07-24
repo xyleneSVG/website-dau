@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const MediaProducts: CollectionConfig = {
-  slug: 'mediaProducts',
+export const MediaQuadGrid: CollectionConfig = {
+  slug: 'mediaQuadGrid',
   admin: {
     group: 'Storage'
   },

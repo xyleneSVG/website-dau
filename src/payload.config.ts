@@ -25,7 +25,7 @@ import { MediaHero } from './collections/storage/MediaHero'
 import { MediaServices } from './collections/storage/MediaServices'
 import { MediaTech } from './collections/storage/MediaTech'
 import { MediaIllustrationWithCarousel } from './collections/storage/MediaIllustrationWithCarousel'
-import { MediaProducts } from './collections/storage/MediaProducts'
+import { MediaQuadGrid } from './collections/storage/MediaQuadGrid'
 import { MediaClients } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaAward } from './collections/storage/MediaAward'
@@ -59,7 +59,7 @@ export default buildConfig({
     MediaServices,
     MediaTech,
     MediaIllustrationWithCarousel,
-    MediaProducts,
+    MediaQuadGrid,
     MediaClients,
     MediaContact,
     MediaAward,
@@ -93,7 +93,7 @@ export default buildConfig({
         mediaIllustrationWithCarousel: true,
         mediaServices: true,
         mediaTech: true,
-        mediaProducts: true,
+        mediaQuadGrid: true,
         mediaClients: true,
         mediaContact: true,
         mediaAward: true,

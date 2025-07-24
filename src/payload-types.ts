@@ -76,7 +76,7 @@ export interface Config {
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
-    mediaProducts: MediaProduct;
+    mediaQuadGrid: MediaQuadGrid;
     mediaClients: MediaClient;
     mediaContact: MediaContact;
     mediaAward: MediaAward;
@@ -104,7 +104,7 @@ export interface Config {
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
-    mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
+    mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
@@ -174,7 +174,7 @@ export interface Page {
         | HeroSection
         | ZigZagListsSection
         | IIllustrationWithCarouselSection
-        | ProductSection
+        | QuadGridSection
         | ClientSection
         | ContactSection
         | AwardSection
@@ -323,25 +323,25 @@ export interface MediaIllustrationWithCarousel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Product Section".
+ * via the `definition` "Quad Grid Section".
  */
-export interface ProductSection {
-  sectionProductTitle: string;
-  sectionProductSubtitle: string;
-  productLists: {
-    productTitle: string;
-    productDisplay: number | MediaProduct;
+export interface QuadGridSection {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  gridLists: {
+    itemTitle: string;
+    itemImage: number | MediaQuadGrid;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'productSection';
+  blockType: 'quadGridSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaProducts".
+ * via the `definition` "mediaQuadGrid".
  */
-export interface MediaProduct {
+export interface MediaQuadGrid {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1110,8 +1110,8 @@ export interface PayloadLockedDocument {
         value: number | MediaIllustrationWithCarousel;
       } | null)
     | ({
-        relationTo: 'mediaProducts';
-        value: number | MediaProduct;
+        relationTo: 'mediaQuadGrid';
+        value: number | MediaQuadGrid;
       } | null)
     | ({
         relationTo: 'mediaClients';
@@ -1218,7 +1218,7 @@ export interface PagesSelect<T extends boolean = true> {
         heroSection?: T | HeroSectionSelect<T>;
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
         illustrationWithCarouselSection?: T | IIllustrationWithCarouselSectionSelect<T>;
-        productSection?: T | ProductSectionSelect<T>;
+        quadGridSection?: T | QuadGridSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         awardSection?: T | AwardSectionSelect<T>;
@@ -1297,16 +1297,16 @@ export interface IIllustrationWithCarouselSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Product Section_select".
+ * via the `definition` "Quad Grid Section_select".
  */
-export interface ProductSectionSelect {
-  sectionProductTitle?: boolean;
-  sectionProductSubtitle?: boolean;
-  productLists?:
+export interface QuadGridSectionSelect {
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
+  gridLists?:
     | boolean
     | {
-        productTitle?: boolean;
-        productDisplay?: boolean;
+        itemTitle?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1748,9 +1748,9 @@ export interface MediaIllustrationWithCarouselSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaProducts_select".
+ * via the `definition` "mediaQuadGrid_select".
  */
-export interface MediaProductsSelect<T extends boolean = true> {
+export interface MediaQuadGridSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

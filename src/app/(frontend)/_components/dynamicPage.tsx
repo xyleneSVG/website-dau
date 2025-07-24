@@ -36,7 +36,7 @@ import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import ZigZagList from './_layouts/zigZagList'
 import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
-import Product from './_layouts/product'
+import QuadGrid from './_layouts/quadGrid'
 import Client from './_layouts/client'
 import Contact from './_layouts/contact'
 import Award from './_layouts/award'
@@ -125,8 +125,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <ZigZagList key={index} data={section} domainBlob={domainBlob} />
       case 'illustrationWithCarouselSection':
         return <IllustrationWithCarousel key={index} data={section} domainBlob={domainBlob} />
-      case 'productSection':
-        return <Product key={index} productSection={section} domainBlob={domainBlob} />
+      case 'quadGridSection':
+        return <QuadGrid key={index} data={section} domainBlob={domainBlob} />
       case 'clientSection':
         return <Client key={index} clientSection={section} domainBlob={domainBlob} />
       case 'contactSection':
