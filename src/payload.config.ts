@@ -26,7 +26,7 @@ import { MediaServices } from './collections/storage/MediaServices'
 import { MediaTech } from './collections/storage/MediaTech'
 import { MediaIllustrationWithCarousel } from './collections/storage/MediaIllustrationWithCarousel'
 import { MediaQuadGrid } from './collections/storage/MediaQuadGrid'
-import { MediaClients } from './collections/storage/MediaClients'
+import { MediaGridCarousel } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaAward } from './collections/storage/MediaAward'
 import { MediaAbout } from './collections/storage/MediaAbout'
@@ -48,6 +48,18 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      url: ({ data, collectionConfig }) => {
+        if (collectionConfig?.slug === 'pages') {
+          const key = data?.pageKey?.startsWith('/') ? data.pageKey : `${data?.pageKey || ''}`
+          return `${process.env.NEXT_PUBLIC_SERVER_URL}${key}`
+        }
+
+        // Always return a string, never undefined
+        return process.env.NEXT_PUBLIC_SERVER_URL || '';
+      },
+      collections: ['pages'],
+    },
   },
   collections: [
     Pages,
@@ -60,7 +72,7 @@ export default buildConfig({
     MediaTech,
     MediaIllustrationWithCarousel,
     MediaQuadGrid,
-    MediaClients,
+    MediaGridCarousel,
     MediaContact,
     MediaAward,
     MediaAbout,
@@ -71,7 +83,7 @@ export default buildConfig({
     MediaCardWithImage,
     MediaListWithIconAndDescription,
     MediaThreeDimensionCarousel,
-    MediaHero2
+    MediaHero2,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -94,7 +106,7 @@ export default buildConfig({
         mediaServices: true,
         mediaTech: true,
         mediaQuadGrid: true,
-        mediaClients: true,
+        mediaGridCarousel: true,
         mediaContact: true,
         mediaAward: true,
         mediaAbout: true,

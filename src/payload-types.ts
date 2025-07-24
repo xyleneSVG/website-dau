@@ -77,7 +77,7 @@ export interface Config {
     mediaTech: MediaTech;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
     mediaQuadGrid: MediaQuadGrid;
-    mediaClients: MediaClient;
+    mediaGridCarousel: MediaGridCarousel;
     mediaContact: MediaContact;
     mediaAward: MediaAward;
     mediaAbout: MediaAbout;
@@ -105,7 +105,7 @@ export interface Config {
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
     mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
-    mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
+    mediaGridCarousel: MediaGridCarouselSelect<false> | MediaGridCarouselSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
     mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
@@ -175,7 +175,7 @@ export interface Page {
         | ZigZagListsSection
         | IIllustrationWithCarouselSection
         | QuadGridSection
-        | ClientSection
+        | GridCarouselSection
         | ContactSection
         | AwardSection
         | AboutSection
@@ -358,37 +358,18 @@ export interface MediaQuadGrid {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Client Section".
+ * via the `definition` "Grid Carousel Section".
  */
-export interface ClientSection {
-  sectionClientTitle: string;
-  clientLists: {
-    clientName: string;
-    clientLogo: number | MediaClient;
+export interface GridCarouselSection {
+  sectionTitle: string;
+  gridLists: {
+    itemName: string;
+    itemImage: number | GroupPage;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'clientSection';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaClients".
- */
-export interface MediaClient {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+  blockType: 'gridCarouselSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1068,6 +1049,25 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaGridCarousel".
+ */
+export interface MediaGridCarousel {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1114,8 +1114,8 @@ export interface PayloadLockedDocument {
         value: number | MediaQuadGrid;
       } | null)
     | ({
-        relationTo: 'mediaClients';
-        value: number | MediaClient;
+        relationTo: 'mediaGridCarousel';
+        value: number | MediaGridCarousel;
       } | null)
     | ({
         relationTo: 'mediaContact';
@@ -1219,7 +1219,7 @@ export interface PagesSelect<T extends boolean = true> {
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
         illustrationWithCarouselSection?: T | IIllustrationWithCarouselSectionSelect<T>;
         quadGridSection?: T | QuadGridSectionSelect<T>;
-        clientSection?: T | ClientSectionSelect<T>;
+        gridCarouselSection?: T | GridCarouselSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         awardSection?: T | AwardSectionSelect<T>;
         aboutSection?: T | AboutSectionSelect<T>;
@@ -1314,15 +1314,15 @@ export interface QuadGridSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Client Section_select".
+ * via the `definition` "Grid Carousel Section_select".
  */
-export interface ClientSectionSelect {
-  sectionClientTitle?: boolean;
-  clientLists?:
+export interface GridCarouselSectionSelect {
+  sectionTitle?: boolean;
+  gridLists?:
     | boolean
     | {
-        clientName?: boolean;
-        clientLogo?: boolean;
+        itemName?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1766,9 +1766,9 @@ export interface MediaQuadGridSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaClients_select".
+ * via the `definition` "mediaGridCarousel_select".
  */
-export interface MediaClientsSelect<T extends boolean = true> {
+export interface MediaGridCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

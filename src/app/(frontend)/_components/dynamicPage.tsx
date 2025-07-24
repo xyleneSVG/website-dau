@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { useLivePreview } from '@payloadcms/live-preview-react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -34,10 +35,11 @@ import {
 import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
+import Hero2 from './_layouts/hero2'
 import ZigZagList from './_layouts/zigZagList'
 import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
 import QuadGrid from './_layouts/quadGrid'
-import Client from './_layouts/client'
+import GridCarousel from './_layouts/gridCarousel'
 import Contact from './_layouts/contact'
 import Award from './_layouts/award'
 import About from './_layouts/about'
@@ -61,11 +63,10 @@ interface DynamicPageProps {
 
 // functions
 import { getDataPages } from '../_functions/getDataPages'
-import Hero2 from './_layouts/hero2'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState<Page | null>(null)
+  const [fetchedPage, setFetchedPage] = useState<Page | null>(null)
   const iconMap: Record<string, LucideIcon> = {
     phone: Phone,
     arrowright: ArrowRight,
@@ -105,7 +106,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         if (!result || result.length === 0) {
           router.replace('/not-found')
         } else {
-          setPage(result[0] as unknown as Page)
+          setFetchedPage(result[0] as unknown as Page)
         }
       } catch (err) {
         console.error(err)
@@ -117,6 +118,14 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     fetchData()
   }, [router, slug])
 
+  const { data: livePreviewData } = useLivePreview<Page>({
+    initialData: fetchedPage ?? ({} as Page),
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
+    depth: 2,
+  })
+
+  const pageData = { ...fetchedPage, ...livePreviewData };
+
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
       case 'heroSection':
@@ -127,8 +136,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <IllustrationWithCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'quadGridSection':
         return <QuadGrid key={index} data={section} domainBlob={domainBlob} />
-      case 'clientSection':
-        return <Client key={index} clientSection={section} domainBlob={domainBlob} />
+      case 'gridCarouselSection':
+        return <GridCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'contactSection':
         return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
       case 'awardSection':
@@ -203,12 +212,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     )
   }
 
-  if (!page) return <NotFound />
+  if (!pageData) return <NotFound />
 
   return (
     <div>
       <Navbar />
-      {page.pageSection?.map((section, index) => renderSection(section, index))}
+      {pageData.pageSection?.map((section, index) => renderSection(section, index))}
     </div>
   )
 }
