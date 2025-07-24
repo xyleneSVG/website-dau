@@ -6,7 +6,7 @@ import { HeroSection } from './block-layout/Hero'
 import { ZigZagListSection } from './block-layout/ZigZagLists'
 import { IllustrationWithCarouselSection } from './block-layout/IllustrationWithCarousel'
 import { QuadGridSection } from './block-layout/QuadGrid'
-import { ClientSection } from './block-layout/Client'
+import { GridCarouselSection } from './block-layout/GridCarousel'
 import { ContactSection } from './block-layout/Contact'
 import { AwardSection } from './block-layout/Awards'
 import { AboutSection } from './block-layout/About'
@@ -96,7 +96,7 @@ export const Pages: CollectionConfig = {
         ZigZagListSection,
         IllustrationWithCarouselSection,
         QuadGridSection,
-        ClientSection,
+        GridCarouselSection,
         ContactSection,
         AwardSection,
         AboutSection,

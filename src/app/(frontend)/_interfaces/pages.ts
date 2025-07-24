@@ -13,7 +13,7 @@ export type PageSection =
   | ZigZagListSection
   | IllustrationWithCarouselSection
   | QuadGridSection
-  | ClientSection
+  | GridCarouselSection
   | ContactSection
   | AwardSection
   | AboutSection
@@ -46,7 +46,7 @@ export interface Greeting {
   textGreeting: string
 }
 
-// Service
+// Zig Zag List
 export interface ZigZagListSection {
   id: string
   blockName?: string
@@ -95,18 +95,18 @@ export interface GridCardLists {
   itemImage: ImageItem
 }
 
-// Client
-export interface ClientSection {
+// Grid Carousel
+export interface GridCarouselSection {
   id: string
-  blockType: 'clientSection'
-  sectionClientTitle: string
-  clientLists: ClientLists[]
+  blockType: 'gridCarouselSection'
+  sectionTitle: string
+  gridLists: GridCarouselLists[]
 }
 
-export interface ClientLists {
+export interface GridCarouselLists {
   id: string
-  clientName: string
-  clientLogo: ImageItem
+  itemName: string
+  itemImage: ImageItem
 }
 
 // Contact

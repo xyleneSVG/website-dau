@@ -10,15 +10,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import background from 'public/assets/landing/client/background1.svg'
 
 // interfaces
-import { ClientSection } from '../../_interfaces/pages'
+import { GridCarouselSection } from '../../_interfaces/pages'
 
-export default function Client({
-  clientSection,
-  domainBlob,
-}: {
-  clientSection: ClientSection
+interface GridCarouselSectionProps {
+  data: GridCarouselSection
   domainBlob: string
-}) {
+}
+
+export default function GridCarousel({ data, domainBlob }: GridCarouselSectionProps) {
   const [visibleCount, setVisibleCount] = useState(4)
   const [startIndex, setStartIndex] = useState(0)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -39,21 +38,21 @@ export default function Client({
     setDirection('prev')
     setStartIndex(
       (prev) =>
-        (prev - visibleCount + clientSection.clientLists.length) % clientSection.clientLists.length,
+        (prev - visibleCount + data.gridLists.length) % data.gridLists.length,
     )
   }
 
   const handleNext = () => {
     setDirection('next')
-    setStartIndex((prev) => (prev + visibleCount) % clientSection.clientLists.length)
+    setStartIndex((prev) => (prev + visibleCount) % data.gridLists.length)
   }
 
   const getVisibleClient = () => {
     const items = []
-    const actualCount = Math.min(visibleCount, clientSection.clientLists.length)
+    const actualCount = Math.min(visibleCount, data.gridLists.length)
     for (let i = 0; i < actualCount; i++) {
-      const index = (startIndex + i) % clientSection.clientLists.length
-      const tech = clientSection.clientLists[index]
+      const index = (startIndex + i) % data.gridLists.length
+      const tech = data.gridLists[index]
       items.push({ ...tech, key: i })
     }
     return items
@@ -87,10 +86,10 @@ export default function Client({
       />
       <div className="w-full relative z-10 flex flex-col items-center gap-y-6 md:pt-10 sm:gap-y-8 md:gap-y-10 lg:gap-y-12 xl:gap-y-14 2xl:gap-y-18">
         <h1 className="font-light uppercase text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px]">
-          KLIEN KAMI
+          {data.sectionTitle}
         </h1>
         <div className="flex flex-row items-center justify-center gap-4 sm:gap-8">
-          {clientSection.clientLists.length > visibleCount && (
+          {data.gridLists.length > visibleCount && (
             <button
               onClick={handlePrev}
               className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
@@ -121,7 +120,7 @@ export default function Client({
                       className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
                     >
                       <Image
-                        src={domainBlob + item.clientLogo.filename}
+                        src={domainBlob + item.itemImage.filename}
                         alt={`client-${item.key}`}
                         width={70}
                         height={70}
@@ -141,7 +140,7 @@ export default function Client({
                       className="flex items-center bg-white justify-center rounded-[10px] shadow-lg w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] 2xl:w-[180px] 2xl:h-[180px]"
                     >
                       <Image
-                        src={domainBlob + item.clientLogo.filename}
+                        src={domainBlob + item.itemImage.filename}
                         alt={`client-${item.key}`}
                         width={70}
                         height={70}
@@ -154,7 +153,7 @@ export default function Client({
             </AnimatePresence>
           </div>
 
-          {clientSection.clientLists.length > visibleCount && (
+          {data.gridLists.length > visibleCount && (
             <button
               onClick={handleNext}
               className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
