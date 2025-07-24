@@ -5,7 +5,7 @@ import { TechnologySection2 } from '../../_interfaces/pages'
 
 export default function Tech2({technologySection2, domainBlob}:{technologySection2:TechnologySection2, domainBlob: string}) {
   return (
-    <div className="w-full px-6 py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16 2xl:py-20">
+    <div className="w-full p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <h1 className='text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-black font-light uppercase mb-4 sm:mb-6 md:mb-8 xl:mb-10 text-center'>
         {technologySection2.sectionTechnology2Title}
       </h1>
