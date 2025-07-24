@@ -5,7 +5,7 @@ import { APIError, CollectionConfig } from 'payload'
 import { HeroSection } from './block-layout/Hero'
 import { ZigZagListSection } from './block-layout/ZigZagLists'
 import { IllustrationWithCarouselSection } from './block-layout/IllustrationWithCarousel'
-import { ProductSection } from './block-layout/Product'
+import { QuadGridSection } from './block-layout/QuadGrid'
 import { ClientSection } from './block-layout/Client'
 import { ContactSection } from './block-layout/Contact'
 import { AwardSection } from './block-layout/Awards'
@@ -28,6 +28,9 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'pageName',
     group: 'Advance Configuration',
+    // livePreview: {
+    //   url: 'http://localhost:3000/about',
+    // },
   },
   fields: [
     {
@@ -92,7 +95,7 @@ export const Pages: CollectionConfig = {
         HeroSection,
         ZigZagListSection,
         IllustrationWithCarouselSection,
-        ProductSection,
+        QuadGridSection,
         ClientSection,
         ContactSection,
         AwardSection,
@@ -108,7 +111,7 @@ export const Pages: CollectionConfig = {
         CardWithImageSection,
         ListWithIconDesc2Section,
         ThreeDimensionCarouselSection,
-        Hero2Section
+        Hero2Section,
       ],
     },
   ],

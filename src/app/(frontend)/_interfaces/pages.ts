@@ -12,7 +12,7 @@ export type PageSection =
   | HeroSection
   | ZigZagListSection
   | IllustrationWithCarouselSection
-  | ProductSection
+  | QuadGridSection
   | ClientSection
   | ContactSection
   | AwardSection
@@ -80,19 +80,19 @@ export interface IllustrationWithCarouselLists {
   itemIcon: ImageItem
 }
 
-// Product
-export interface ProductSection {
+// Quad Grid
+export interface QuadGridSection {
   id: string
-  blockType: 'productSection'
-  sectionProductTitle: string
-  sectionProductSubtitle: string
-  productLists: ProductLists[]
+  blockType: 'quadGridSection'
+  sectionTitle: string
+  sectionSubtitle: string
+  gridLists: GridCardLists[]
 }
 
-export interface ProductLists {
+export interface GridCardLists {
   id: string
-  productTitle: string
-  productDisplay: ImageItem
+  itemTitle: string
+  itemImage: ImageItem
 }
 
 // Client

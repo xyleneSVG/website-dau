@@ -76,7 +76,7 @@ export interface Config {
     mediaServices: MediaService;
     mediaTech: MediaTech;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
-    mediaProducts: MediaProduct;
+    mediaQuadGrid: MediaQuadGrid;
     mediaClients: MediaClient;
     mediaContact: MediaContact;
     mediaAward: MediaAward;
@@ -104,7 +104,7 @@ export interface Config {
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
-    mediaProducts: MediaProductsSelect<false> | MediaProductsSelect<true>;
+    mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
     mediaClients: MediaClientsSelect<false> | MediaClientsSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaAward: MediaAwardSelect<false> | MediaAwardSelect<true>;
@@ -330,31 +330,12 @@ export interface ProductSection {
   sectionProductSubtitle: string;
   productLists: {
     productTitle: string;
-    productDisplay: number | MediaProduct;
+    productDisplay: number | GroupPage;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'productSection';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaProducts".
- */
-export interface MediaProduct {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1068,6 +1049,25 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaQuadGrid".
+ */
+export interface MediaQuadGrid {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1110,8 +1110,8 @@ export interface PayloadLockedDocument {
         value: number | MediaIllustrationWithCarousel;
       } | null)
     | ({
-        relationTo: 'mediaProducts';
-        value: number | MediaProduct;
+        relationTo: 'mediaQuadGrid';
+        value: number | MediaQuadGrid;
       } | null)
     | ({
         relationTo: 'mediaClients';
@@ -1748,9 +1748,9 @@ export interface MediaIllustrationWithCarouselSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaProducts_select".
+ * via the `definition` "mediaQuadGrid_select".
  */
-export interface MediaProductsSelect<T extends boolean = true> {
+export interface MediaQuadGridSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
