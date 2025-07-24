@@ -118,7 +118,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     fetchData()
   }, [router, slug])
 
-  const { data: page } = useLivePreview<Page>({
+  const { data: livePreviewData } = useLivePreview<Page>({
     initialData: fetchedPage ?? ({} as Page),
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
     depth: 2,
@@ -210,12 +210,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     )
   }
 
-  if (!page) return <NotFound />
+  if (!livePreviewData) return <NotFound />
 
   return (
     <div>
       <Navbar />
-      {page.pageSection?.map((section, index) => renderSection(section, index))}
+      {livePreviewData.pageSection?.map((section, index) => renderSection(section, index))}
     </div>
   )
 }
