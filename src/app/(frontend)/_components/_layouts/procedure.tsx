@@ -50,7 +50,7 @@ const images = [
 export default function Function() {
   return (
     <section className="w-full px-6 py-10 md:py-16 lg:py-20 bg-white">
-      <h2 className="text-center text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8 lg:mb-20">
+      <h2 className="text-center text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8 lg:mb-20">
         Cara UI/UX Designer DAU Membantu Perusahaan Anda
       </h2>
 
@@ -91,7 +91,10 @@ export default function Function() {
 
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end gap-6">
           {images.map((image, index) => (
-            <div key={index} className="relative w-[50%] lg:w-[80%] max-w-[400px] 2xl:max-w-[500px] aspect-square ">
+            <div
+              key={index}
+              className="relative w-[50%] lg:w-[80%] max-w-[400px] 2xl:max-w-[500px] aspect-square "
+            >
               <Image src={image.url} alt={image.name} fill className="object-contain" />
             </div>
           ))}
