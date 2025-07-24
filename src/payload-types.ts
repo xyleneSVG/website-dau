@@ -174,7 +174,7 @@ export interface Page {
         | HeroSection
         | ZigZagListsSection
         | IIllustrationWithCarouselSection
-        | ProductSection
+        | QuadGridSection
         | ClientSection
         | ContactSection
         | AwardSection
@@ -323,19 +323,38 @@ export interface MediaIllustrationWithCarousel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Product Section".
+ * via the `definition` "Quad Grid Section".
  */
-export interface ProductSection {
-  sectionProductTitle: string;
-  sectionProductSubtitle: string;
-  productLists: {
-    productTitle: string;
-    productDisplay: number | GroupPage;
+export interface QuadGridSection {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  gridLists: {
+    itemTitle: string;
+    itemImage: number | MediaQuadGrid;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'productSection';
+  blockType: 'quadGridSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaQuadGrid".
+ */
+export interface MediaQuadGrid {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1049,25 +1068,6 @@ export interface MediaTech {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaQuadGrid".
- */
-export interface MediaQuadGrid {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1218,7 +1218,7 @@ export interface PagesSelect<T extends boolean = true> {
         heroSection?: T | HeroSectionSelect<T>;
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
         illustrationWithCarouselSection?: T | IIllustrationWithCarouselSectionSelect<T>;
-        productSection?: T | ProductSectionSelect<T>;
+        quadGridSection?: T | QuadGridSectionSelect<T>;
         clientSection?: T | ClientSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         awardSection?: T | AwardSectionSelect<T>;
@@ -1297,16 +1297,16 @@ export interface IIllustrationWithCarouselSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Product Section_select".
+ * via the `definition` "Quad Grid Section_select".
  */
-export interface ProductSectionSelect {
-  sectionProductTitle?: boolean;
-  sectionProductSubtitle?: boolean;
-  productLists?:
+export interface QuadGridSectionSelect {
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
+  gridLists?:
     | boolean
     | {
-        productTitle?: boolean;
-        productDisplay?: boolean;
+        itemTitle?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
   id?: boolean;

@@ -125,7 +125,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <ZigZagList key={index} data={section} domainBlob={domainBlob} />
       case 'illustrationWithCarouselSection':
         return <IllustrationWithCarousel key={index} data={section} domainBlob={domainBlob} />
-      case 'productSection':
+      case 'quadGridSection':
         return <QuadGrid key={index} data={section} domainBlob={domainBlob} />
       case 'clientSection':
         return <Client key={index} clientSection={section} domainBlob={domainBlob} />
