@@ -43,7 +43,7 @@ import GridCarousel from './_layouts/gridCarousel'
 import Contact from './_layouts/contact'
 import IllustrationWithTextAndCarousel from './_layouts/illustrationWithTextAndCarousel'
 import ImageHeaderParagraph from './_layouts/imageHeaderParagraph'
-import Vision from './_layouts/vision/vision'
+import ImageHeaderThreeCard from './_layouts/Image-Header-With-Three-Column/imageHeaderThreeColumn'
 import LeaderCarousel from './_layouts/leader/leader'
 import TwoColumn from './_layouts/twoColumn'
 import Tech2 from './_layouts/tech2'
@@ -144,8 +144,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <IllustrationWithTextAndCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'imageHeaderParagraphSection':
         return <ImageHeaderParagraph key={index} data={section} domainBlob={domainBlob} />
-      case 'visionSection':
-        return <Vision key={index} visionSection={section} domainBlob={domainBlob} />
+      case 'imageHeaderThreeColumnSection':
+        return <ImageHeaderThreeCard key={index} data={section} domainBlob={domainBlob} />
       case 'leaderSection':
         return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
       case 'twoColumnLayoutSection':

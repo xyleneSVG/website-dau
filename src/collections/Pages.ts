@@ -10,7 +10,7 @@ import { GridCarouselSection } from './block-layout/GridCarousel'
 import { ContactSection } from './block-layout/Contact'
 import { IllustrationWithTextAndCarouselSection } from './block-layout/IllustrationWithTextAndCarousel'
 import { ImageHeaderParagraphSection } from './block-layout/ImageHeaderParagraph'
-import { VisionSection } from './block-layout/Vision'
+import { ImageHeaderThreeColumnSection } from './block-layout/ImageHeaderThreeColumn'
 import { LeaderSection } from './block-layout/Leader'
 import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout'
 import { TechnologySection2 } from './block-layout/Technology2'
@@ -97,7 +97,7 @@ export const Pages: CollectionConfig = {
         ContactSection,
         IllustrationWithTextAndCarouselSection,
         ImageHeaderParagraphSection,
-        VisionSection,
+        ImageHeaderThreeColumnSection,
         LeaderSection,
         TwoColumnLayoutSection,
         TechnologySection2,

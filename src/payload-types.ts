@@ -81,7 +81,7 @@ export interface Config {
     mediaContact: MediaContact;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarousel;
     mediaImageHeaderParagraph: MediaImageHeaderParagraph;
-    mediaVision: MediaVision;
+    mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumn;
     mediaLeader: MediaLeader;
     mediaTwoColumnLayout: MediaTwoColumnLayout;
     mediaTwoListWithIllustration: MediaTwoListWithIllustration;
@@ -109,7 +109,7 @@ export interface Config {
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarouselSelect<false> | MediaIllustrationWithTextAndCarouselSelect<true>;
     mediaImageHeaderParagraph: MediaImageHeaderParagraphSelect<false> | MediaImageHeaderParagraphSelect<true>;
-    mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
+    mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumnSelect<false> | MediaImageHeaderThreeColumnSelect<true>;
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
     mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
@@ -179,7 +179,7 @@ export interface Page {
         | ContactSection
         | IllustrationWithTextAndCarouselSection
         | ImageHeaderParagraphSection
-        | VisionSection
+        | ImageHeaderThreeColumnSection
         | LeaderSection
         | TwoColumnLayoutSection
         | Technology2Section
@@ -532,31 +532,31 @@ export interface MediaImageHeaderParagraph {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Vision Section".
+ * via the `definition` "Image Header Three Column Section".
  */
-export interface VisionSection {
-  sectionVisionBanner: number | MediaVision;
-  sectionVisionTitle: string;
-  sectionVisionSubtitle: string;
+export interface ImageHeaderThreeColumnSection {
+  sectionHeaderImage: number | MediaImageHeaderThreeColumn;
+  sectionTitle: string;
+  sectionSubtitle: string;
   /**
-   * Add 3 visions
+   * Add 3 Grid
    */
-  visionCardLists?:
+  gridLists?:
     | {
-        visionCardTitle: string;
-        visionCardDescription: string;
+        itemTitle: string;
+        itemDescription: string;
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'visionSection';
+  blockType: 'imageHeaderThreeColumnSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaVision".
+ * via the `definition` "mediaImageHeaderThreeColumn".
  */
-export interface MediaVision {
+export interface MediaImageHeaderThreeColumn {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1130,8 +1130,8 @@ export interface PayloadLockedDocument {
         value: number | MediaImageHeaderParagraph;
       } | null)
     | ({
-        relationTo: 'mediaVision';
-        value: number | MediaVision;
+        relationTo: 'mediaImageHeaderThreeColumn';
+        value: number | MediaImageHeaderThreeColumn;
       } | null)
     | ({
         relationTo: 'mediaLeader';
@@ -1223,7 +1223,7 @@ export interface PagesSelect<T extends boolean = true> {
         contactSection?: T | ContactSectionSelect<T>;
         illustrationWithTextAndCarouselSection?: T | IllustrationWithTextAndCarouselSectionSelect<T>;
         imageHeaderParagraphSection?: T | ImageHeaderParagraphSectionSelect<T>;
-        visionSection?: T | VisionSectionSelect<T>;
+        imageHeaderThreeColumnSection?: T | ImageHeaderThreeColumnSectionSelect<T>;
         leaderSection?: T | LeaderSectionSelect<T>;
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
         technologySection2?: T | Technology2SectionSelect<T>;
@@ -1377,17 +1377,17 @@ export interface ImageHeaderParagraphSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Vision Section_select".
+ * via the `definition` "Image Header Three Column Section_select".
  */
-export interface VisionSectionSelect {
-  sectionVisionBanner?: boolean;
-  sectionVisionTitle?: boolean;
-  sectionVisionSubtitle?: boolean;
-  visionCardLists?:
+export interface ImageHeaderThreeColumnSectionSelect {
+  sectionHeaderImage?: boolean;
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
+  gridLists?:
     | boolean
     | {
-        visionCardTitle?: boolean;
-        visionCardDescription?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1838,9 +1838,9 @@ export interface MediaImageHeaderParagraphSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaVision_select".
+ * via the `definition` "mediaImageHeaderThreeColumn_select".
  */
-export interface MediaVisionSelect<T extends boolean = true> {
+export interface MediaImageHeaderThreeColumnSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

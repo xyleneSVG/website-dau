@@ -17,7 +17,7 @@ export type PageSection =
   | ContactSection
   | IllustrationWithTextAndCarouselSection
   | ImageHeaderParagraphSection
-  | VisionSection
+  | ImageHeaderThreeColumnSection
   | LeaderSection
   | TwoColumnSection
   | TechnologySection2
@@ -158,7 +158,7 @@ export interface IllustrationWithTextAndCarouselLists {
   carouselTitle: string
 }
 
-// ImageHeaderParagraphSection
+// Image Header With Paragraph
 export interface ImageHeaderParagraphSection {
   id: string
   blockType: 'imageHeaderParagraphSection'
@@ -167,20 +167,20 @@ export interface ImageHeaderParagraphSection {
   sectionParagraph: RichTextContent
 }
 
-// Vision
-export interface VisionSection {
+// Image Header With Three Column
+export interface ImageHeaderThreeColumnSection {
   id: string
-  blockType: 'visionSection'
-  sectionVisionBanner: ImageItem
-  sectionVisionTitle: string
-  sectionVisionSubtitle: string
-  visionCardLists: VisionCardLists[]
+  blockType: 'imageHeaderThreeColumnSection'
+  sectionHeaderImage: ImageItem
+  sectionTitle: string
+  sectionSubtitle: string
+  gridLists: GridImageHeaderThreeColumnLists[]
 }
 
-export interface VisionCardLists {
+export interface GridImageHeaderThreeColumnLists {
   id: string
-  visionCardTitle: string
-  visionCardDescription: string
+  itemTitle: string
+  itemDescription: string
 }
 
 // Leader
