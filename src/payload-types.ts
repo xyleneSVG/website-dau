@@ -82,7 +82,7 @@ export interface Config {
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarousel;
     mediaImageHeaderParagraph: MediaImageHeaderParagraph;
     mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumn;
-    mediaLeader: MediaLeader;
+    mediaCircleImageGrid: MediaCircleImageGrid;
     mediaTwoColumnLayout: MediaTwoColumnLayout;
     mediaTwoListWithIllustration: MediaTwoListWithIllustration;
     mediaCardWithImage: MediaCardWithImage;
@@ -110,7 +110,7 @@ export interface Config {
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarouselSelect<false> | MediaIllustrationWithTextAndCarouselSelect<true>;
     mediaImageHeaderParagraph: MediaImageHeaderParagraphSelect<false> | MediaImageHeaderParagraphSelect<true>;
     mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumnSelect<false> | MediaImageHeaderThreeColumnSelect<true>;
-    mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
+    mediaCircleImageGrid: MediaCircleImageGridSelect<false> | MediaCircleImageGridSelect<true>;
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
     mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
     mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
@@ -180,7 +180,7 @@ export interface Page {
         | IllustrationWithTextAndCarouselSection
         | ImageHeaderParagraphSection
         | ImageHeaderThreeColumnSection
-        | LeaderSection
+        | CircleImageGridSection
         | TwoColumnLayoutSection
         | Technology2Section
         | ListWithIconSection
@@ -573,27 +573,27 @@ export interface MediaImageHeaderThreeColumn {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Leader Section".
+ * via the `definition` "Circle Image Grid Section".
  */
-export interface LeaderSection {
-  sectionLeaderTitle: string;
-  leaderProfileLists?:
+export interface CircleImageGridSection {
+  sectionTitle: string;
+  gridLists?:
     | {
-        leaderPhotoProfile: number | MediaLeader;
-        leaderName: string;
-        leaderPosition: string;
+        itemImage: number | MediaCircleImageGrid;
+        itemName: string;
+        itemDescription: string;
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'leaderSection';
+  blockType: 'circleImageGridSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaLeader".
+ * via the `definition` "mediaCircleImageGrid".
  */
-export interface MediaLeader {
+export interface MediaCircleImageGrid {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1134,8 +1134,8 @@ export interface PayloadLockedDocument {
         value: number | MediaImageHeaderThreeColumn;
       } | null)
     | ({
-        relationTo: 'mediaLeader';
-        value: number | MediaLeader;
+        relationTo: 'mediaCircleImageGrid';
+        value: number | MediaCircleImageGrid;
       } | null)
     | ({
         relationTo: 'mediaTwoColumnLayout';
@@ -1224,7 +1224,7 @@ export interface PagesSelect<T extends boolean = true> {
         illustrationWithTextAndCarouselSection?: T | IllustrationWithTextAndCarouselSectionSelect<T>;
         imageHeaderParagraphSection?: T | ImageHeaderParagraphSectionSelect<T>;
         imageHeaderThreeColumnSection?: T | ImageHeaderThreeColumnSectionSelect<T>;
-        leaderSection?: T | LeaderSectionSelect<T>;
+        circleImageGridSection?: T | CircleImageGridSectionSelect<T>;
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
         technologySection2?: T | Technology2SectionSelect<T>;
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
@@ -1395,16 +1395,16 @@ export interface ImageHeaderThreeColumnSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Leader Section_select".
+ * via the `definition` "Circle Image Grid Section_select".
  */
-export interface LeaderSectionSelect {
-  sectionLeaderTitle?: boolean;
-  leaderProfileLists?:
+export interface CircleImageGridSectionSelect {
+  sectionTitle?: boolean;
+  gridLists?:
     | boolean
     | {
-        leaderPhotoProfile?: boolean;
-        leaderName?: boolean;
-        leaderPosition?: boolean;
+        itemImage?: boolean;
+        itemName?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1856,9 +1856,9 @@ export interface MediaImageHeaderThreeColumnSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaLeader_select".
+ * via the `definition` "mediaCircleImageGrid_select".
  */
-export interface MediaLeaderSelect<T extends boolean = true> {
+export interface MediaCircleImageGridSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -8,18 +8,17 @@ import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 import backgroundIcon3 from 'public/assets/landing/service/backgroundIcon3.svg'
 
 // components
-import LeaderCard from './LeaderCard'
+import GridCard from './GridCard'
 
 // interfaces
-import { LeaderSection } from '@/app/(frontend)/_interfaces/pages'
+import { CircleImageGridSection } from '@/app/(frontend)/_interfaces/pages'
 
-export default function LeaderCarousel({
-  leaderSection,
-  domainBlob,
-}: {
-  leaderSection: LeaderSection
+interface props {
+  data: CircleImageGridSection
   domainBlob: string
-}) {
+}
+
+export default function CircleImageGrid({ data, domainBlob }: props) {
   const [visibleCount, setVisibleCount] = useState(1)
   const [cardWidth, setCardWidth] = useState(0)
   const [index, setIndex] = useState(0)
@@ -27,10 +26,13 @@ export default function LeaderCarousel({
   const containerRef = useRef<HTMLDivElement>(null)
   const controls = useAnimation()
 
-  const total = leaderSection.leaderProfileLists.length
+  const total = data.gridLists?.length
 
   const maxIndex = Math.max(0, total - visibleCount)
   const shouldShowButtons = total >= minItemsToShowButton
+
+  const hasTitle = data.sectionTitle
+  const hasGrid = data.gridLists && data.gridLists.length > 0
 
   useEffect(() => {
     const updateLayout = () => {
@@ -99,9 +101,11 @@ export default function LeaderCarousel({
         className="absolute bottom-0 left-0 w-[240px] h-auto -z-10 md:w-[420px] 2xl:w-[620px]"
       />
 
-      <h1 className="text-[18px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] font-light uppercase mb-6 text-center">
-        Tim Kepemimpinan
-      </h1>
+      {hasTitle && (
+        <h1 className="text-[18px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] font-light uppercase mb-6 text-center">
+          {data.sectionTitle}
+        </h1>
+      )}
 
       <div
         className="relative w-full overflow-hidden mt-[20px] sm:mt-[30px] md:mt-[40px] lg:mt-[60px] xl:mt-[80px] 2xl:mt-[100px]"
@@ -129,25 +133,24 @@ export default function LeaderCarousel({
           </button>
         )}
 
-        <motion.div 
-          className="flex"
-          animate={controls}
-        >
-          {leaderSection.leaderProfileLists.map((item, i) => (
-            <div
-              key={`${item.id}-${i}`}
-              className="shrink-0"
-              style={{ width: `${100 / visibleCount}%` }}
-            >
-              <div className="flex justify-center items-center h-full px-2 sm:px-3 md:px-4">
-                <LeaderCard
-                  name={item.leaderName}
-                  position={item.leaderPosition}
-                  photo={domainBlob + item.leaderPhotoProfile.filename}
-                />
+        <motion.div className="flex" animate={controls}>
+          {hasGrid &&
+            data.gridLists.map((item, i) => (
+              <div
+                key={`${item.id}-${i}`}
+                className="shrink-0"
+                style={{ width: `${100 / visibleCount}%` }}
+              >
+                <div className="flex justify-center items-center h-full px-2 sm:px-3 md:px-4">
+                  <GridCard
+                    title={item.itemName}
+                    description={item.itemDescription}
+                    photo={domainBlob + item.itemImage?.filename}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </motion.div>
 
         {shouldShowButtons && (

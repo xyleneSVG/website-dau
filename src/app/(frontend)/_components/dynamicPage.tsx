@@ -44,7 +44,7 @@ import Contact from './_layouts/contact'
 import IllustrationWithTextAndCarousel from './_layouts/illustrationWithTextAndCarousel'
 import ImageHeaderParagraph from './_layouts/imageHeaderParagraph'
 import ImageHeaderThreeCard from './_layouts/Image-Header-With-Three-Column/imageHeaderThreeColumn'
-import LeaderCarousel from './_layouts/leader/leader'
+import CircleImageGrid from './_layouts/circle-image-grid/circleImageGrid'
 import TwoColumn from './_layouts/twoColumn'
 import Tech2 from './_layouts/tech2'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
@@ -146,8 +146,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <ImageHeaderParagraph key={index} data={section} domainBlob={domainBlob} />
       case 'imageHeaderThreeColumnSection':
         return <ImageHeaderThreeCard key={index} data={section} domainBlob={domainBlob} />
-      case 'leaderSection':
-        return <LeaderCarousel key={index} leaderSection={section} domainBlob={domainBlob} />
+      case 'circleImageGridSection':
+        return <CircleImageGrid key={index} data={section} domainBlob={domainBlob} />
       case 'twoColumnLayoutSection':
         return (
           <TwoColumn

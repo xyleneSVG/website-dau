@@ -31,7 +31,7 @@ import { MediaContact } from './collections/storage/MediaContact'
 import { MediaIllustrationWithTextAndCarousel } from './collections/storage/MediaIllustrationWithTextAndCarousel'
 import { MediaImageHeaderParagraph } from './collections/storage/MediaImageHeaderParagraph'
 import { MediaImageHeaderThreeColumn } from './collections/storage/MediaImageHeaderThreeColumn'
-import { MediaLeader } from './collections/storage/MediaLeader'
+import { MediaCircleImageGrid } from './collections/storage/MediaCircleImageGrid'
 import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
 import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoListWithIllustration'
 import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
@@ -77,7 +77,7 @@ export default buildConfig({
     MediaIllustrationWithTextAndCarousel,
     MediaImageHeaderParagraph,
     MediaImageHeaderThreeColumn,
-    MediaLeader,
+    MediaCircleImageGrid,
     MediaTwoColumnLayout,
     MediaTwoListWithIllustration,
     MediaCardWithImage,
@@ -111,7 +111,7 @@ export default buildConfig({
         mediaIllustrationWithTextAndCarousel: true,
         mediaImageHeaderParagraph: true,
         mediaImageHeaderThreeColumn: true,
-        mediaLeader: true,
+        mediaCircleImageGrid: true,
         mediaTwoColumnLayout: true,
         mediaTwoListWithIllustration: true,
         mediaCardWithImage: true,
