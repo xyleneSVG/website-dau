@@ -4,48 +4,52 @@ import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import { iconPickerField } from '@innovixx/payload-icon-picker-field'
 import { customLucideIcon } from '@/admin/_fields/listIcon'
 
-export const TwoColumnLayoutSection: Block = {
-  slug: 'twoColumnLayoutSection',
-  imageURL: "public/assets/landing/hero/thumbnail.png",
-  interfaceName: 'Two Column Layout Section',
+export const TextWithImageClusterSection: Block = {
+  slug: 'textWithImageClusterSection',
+  imageURL: '/assets/skeleton/textWithImageCluster.svg',
+  interfaceName: 'Text With Image Cluster Section',
   labels: {
-    singular: 'Two Column Layout Section',
-    plural: 'Two Column Layout Sections',
+    singular: 'Text With Image Cluster Section',
+    plural: 'Text With Image Cluster Sections',
   },
   fields: [
     {
       name: 'imageLists',
       type: 'array',
       required: true,
-      label: 'Two Column Layout Image Lists',
+      label: 'Image Lists',
       maxRows: 3,
       minRows: 1,
+      admin: {
+        description: 'Max 3 image',
+      },
       fields: [
         {
-            name: 'twoColumnLayoutImage',
-            type: 'upload',
-            relationTo: 'mediaTwoColumnLayout',
-            required: true
+          name: 'itemImage',
+          type: 'upload',
+          relationTo: 'mediaTextWithImageCluster',
+          label: 'Item Image',
+          required: true,
         },
-      ]
+      ],
     },
     {
-      name: 'twoColumnLayoutTitle',
+      name: 'sectionHeadline',
+      type: 'text',
+      label: 'Section Headline',
+      required: false,
+    },
+    {
+      name: 'sectionTitle',
       type: 'text',
       label: 'Section Title',
-      required: false
+      required: true,
     },
     {
-      name: 'twoColumnLayoutSubtitle',
-      type: 'text',
-      label: 'Section Subtitle',
-      required: true
-    },
-    {
-      name: 'twoColumnLayoutDescription',
+      name: 'sectionDescription',
       type: 'richText',
       label: 'Section Description',
-      required: true
+      required: true,
     },
     {
       name: 'hasButton',
@@ -114,5 +118,5 @@ export const TwoColumnLayoutSection: Block = {
         condition: (_, siblingData) => siblingData?.hasBackground === true,
       },
     }),
-  ]
+  ],
 }

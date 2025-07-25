@@ -83,7 +83,7 @@ export interface Config {
     mediaImageHeaderParagraph: MediaImageHeaderParagraph;
     mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumn;
     mediaCircleImageGrid: MediaCircleImageGrid;
-    mediaTwoColumnLayout: MediaTwoColumnLayout;
+    mediaTextWithImageCluster: MediaTextWithImageCluster;
     mediaTwoListWithIllustration: MediaTwoListWithIllustration;
     mediaCardWithImage: MediaCardWithImage;
     mediaListWithIconAndDescription: MediaListWithIconAndDescription;
@@ -111,7 +111,7 @@ export interface Config {
     mediaImageHeaderParagraph: MediaImageHeaderParagraphSelect<false> | MediaImageHeaderParagraphSelect<true>;
     mediaImageHeaderThreeColumn: MediaImageHeaderThreeColumnSelect<false> | MediaImageHeaderThreeColumnSelect<true>;
     mediaCircleImageGrid: MediaCircleImageGridSelect<false> | MediaCircleImageGridSelect<true>;
-    mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
+    mediaTextWithImageCluster: MediaTextWithImageClusterSelect<false> | MediaTextWithImageClusterSelect<true>;
     mediaTwoListWithIllustration: MediaTwoListWithIllustrationSelect<false> | MediaTwoListWithIllustrationSelect<true>;
     mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
     mediaListWithIconAndDescription: MediaListWithIconAndDescriptionSelect<false> | MediaListWithIconAndDescriptionSelect<true>;
@@ -181,7 +181,7 @@ export interface Page {
         | ImageHeaderParagraphSection
         | ImageHeaderThreeColumnSection
         | CircleImageGridSection
-        | TwoColumnLayoutSection
+        | TextWithImageClusterSection
         | Technology2Section
         | ListWithIconSection
         | ListWithIconAndDescriptionSection
@@ -610,16 +610,19 @@ export interface MediaCircleImageGrid {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Two Column Layout Section".
+ * via the `definition` "Text With Image Cluster Section".
  */
-export interface TwoColumnLayoutSection {
+export interface TextWithImageClusterSection {
+  /**
+   * Max 3 image
+   */
   imageLists: {
-    twoColumnLayoutImage: number | MediaTwoColumnLayout;
+    itemImage: number | MediaTextWithImageCluster;
     id?: string | null;
   }[];
-  twoColumnLayoutTitle?: string | null;
-  twoColumnLayoutSubtitle: string;
-  twoColumnLayoutDescription: {
+  sectionHeadline?: string | null;
+  sectionTitle: string;
+  sectionDescription: {
     root: {
       type: string;
       children: {
@@ -653,13 +656,13 @@ export interface TwoColumnLayoutSection {
   backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'twoColumnLayoutSection';
+  blockType: 'textWithImageClusterSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTwoColumnLayout".
+ * via the `definition` "mediaTextWithImageCluster".
  */
-export interface MediaTwoColumnLayout {
+export interface MediaTextWithImageCluster {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1138,8 +1141,8 @@ export interface PayloadLockedDocument {
         value: number | MediaCircleImageGrid;
       } | null)
     | ({
-        relationTo: 'mediaTwoColumnLayout';
-        value: number | MediaTwoColumnLayout;
+        relationTo: 'mediaTextWithImageCluster';
+        value: number | MediaTextWithImageCluster;
       } | null)
     | ({
         relationTo: 'mediaTwoListWithIllustration';
@@ -1225,7 +1228,7 @@ export interface PagesSelect<T extends boolean = true> {
         imageHeaderParagraphSection?: T | ImageHeaderParagraphSectionSelect<T>;
         imageHeaderThreeColumnSection?: T | ImageHeaderThreeColumnSectionSelect<T>;
         circleImageGridSection?: T | CircleImageGridSectionSelect<T>;
-        twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
+        textWithImageClusterSection?: T | TextWithImageClusterSectionSelect<T>;
         technologySection2?: T | Technology2SectionSelect<T>;
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
@@ -1412,18 +1415,18 @@ export interface CircleImageGridSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Two Column Layout Section_select".
+ * via the `definition` "Text With Image Cluster Section_select".
  */
-export interface TwoColumnLayoutSectionSelect {
+export interface TextWithImageClusterSectionSelect {
   imageLists?:
     | boolean
     | {
-        twoColumnLayoutImage?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
-  twoColumnLayoutTitle?: boolean;
-  twoColumnLayoutSubtitle?: boolean;
-  twoColumnLayoutDescription?: boolean;
+  sectionHeadline?: boolean;
+  sectionTitle?: boolean;
+  sectionDescription?: boolean;
   hasButton?: boolean;
   buttonText?: boolean;
   buttonIcon?: boolean;
@@ -1874,9 +1877,9 @@ export interface MediaCircleImageGridSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTwoColumnLayout_select".
+ * via the `definition` "mediaTextWithImageCluster_select".
  */
-export interface MediaTwoColumnLayoutSelect<T extends boolean = true> {
+export interface MediaTextWithImageClusterSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

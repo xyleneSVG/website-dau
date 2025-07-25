@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const MediaTwoColumnLayout: CollectionConfig = {
-  slug: 'mediaTwoColumnLayout',
+export const MediaTextWithImageCluster: CollectionConfig = {
+  slug: 'mediaTextWithImageCluster',
   admin: {
     group: 'Storage'
   },

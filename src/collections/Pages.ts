@@ -12,7 +12,7 @@ import { IllustrationWithTextAndCarouselSection } from './block-layout/Illustrat
 import { ImageHeaderParagraphSection } from './block-layout/ImageHeaderParagraph'
 import { ImageHeaderThreeColumnSection } from './block-layout/ImageHeaderThreeColumn'
 import { CircleImageGridSection } from './block-layout/CircleImageGrid'
-import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout'
+import { TextWithImageClusterSection } from './block-layout/TextWithImageCluster'
 import { TechnologySection2 } from './block-layout/Technology2'
 import { ListWithIconSection } from './block-layout/ListWithIcon'
 import { ListWithIconDescSection } from './block-layout/ListWithIconDesc'
@@ -99,7 +99,7 @@ export const Pages: CollectionConfig = {
         ImageHeaderParagraphSection,
         ImageHeaderThreeColumnSection,
         CircleImageGridSection,
-        TwoColumnLayoutSection,
+        TextWithImageClusterSection,
         TechnologySection2,
         ListWithIconSection,
         ListWithIconDescSection,

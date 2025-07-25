@@ -45,7 +45,7 @@ import IllustrationWithTextAndCarousel from './_layouts/illustrationWithTextAndC
 import ImageHeaderParagraph from './_layouts/imageHeaderParagraph'
 import ImageHeaderThreeCard from './_layouts/Image-Header-With-Three-Column/imageHeaderThreeColumn'
 import CircleImageGrid from './_layouts/circle-image-grid/circleImageGrid'
-import TwoColumn from './_layouts/twoColumn'
+import TextWithImageCluster from './_layouts/textWithImageCluster'
 import Tech2 from './_layouts/tech2'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
@@ -124,7 +124,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     depth: 2,
   })
 
-  const pageData = { ...fetchedPage, ...livePreviewData };
+  const pageData = { ...fetchedPage, ...livePreviewData }
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
@@ -141,18 +141,20 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'contactSection':
         return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
       case 'illustrationWithTextAndCarouselSection':
-        return <IllustrationWithTextAndCarousel key={index} data={section} domainBlob={domainBlob} />
+        return (
+          <IllustrationWithTextAndCarousel key={index} data={section} domainBlob={domainBlob} />
+        )
       case 'imageHeaderParagraphSection':
         return <ImageHeaderParagraph key={index} data={section} domainBlob={domainBlob} />
       case 'imageHeaderThreeColumnSection':
         return <ImageHeaderThreeCard key={index} data={section} domainBlob={domainBlob} />
       case 'circleImageGridSection':
         return <CircleImageGrid key={index} data={section} domainBlob={domainBlob} />
-      case 'twoColumnLayoutSection':
+      case 'textWithImageClusterSection':
         return (
-          <TwoColumn
+          <TextWithImageCluster
             key={index}
-            twoColumnSection={section}
+            data={section}
             domainBlob={domainBlob}
             getLucideIcon={getLucideIcon}
           />

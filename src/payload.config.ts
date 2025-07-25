@@ -32,7 +32,7 @@ import { MediaIllustrationWithTextAndCarousel } from './collections/storage/Medi
 import { MediaImageHeaderParagraph } from './collections/storage/MediaImageHeaderParagraph'
 import { MediaImageHeaderThreeColumn } from './collections/storage/MediaImageHeaderThreeColumn'
 import { MediaCircleImageGrid } from './collections/storage/MediaCircleImageGrid'
-import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
+import { MediaTextWithImageCluster } from './collections/storage/MediaTextWithImageCluster'
 import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoListWithIllustration'
 import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
 import { MediaListWithIconAndDescription } from './collections/storage/MediaListWithIconAndDescription'
@@ -54,8 +54,6 @@ export default buildConfig({
           const key = data?.pageKey?.startsWith('/') ? data.pageKey : `${data?.pageKey || ''}`
           return `${process.env.NEXT_PUBLIC_SERVER_URL}${key}`
         }
-
-        // Always return a string, never undefined
         return process.env.NEXT_PUBLIC_SERVER_URL || '';
       },
       collections: ['pages'],
@@ -78,7 +76,7 @@ export default buildConfig({
     MediaImageHeaderParagraph,
     MediaImageHeaderThreeColumn,
     MediaCircleImageGrid,
-    MediaTwoColumnLayout,
+    MediaTextWithImageCluster,
     MediaTwoListWithIllustration,
     MediaCardWithImage,
     MediaListWithIconAndDescription,
@@ -112,7 +110,7 @@ export default buildConfig({
         mediaImageHeaderParagraph: true,
         mediaImageHeaderThreeColumn: true,
         mediaCircleImageGrid: true,
-        mediaTwoColumnLayout: true,
+        mediaTextWithImageCluster: true,
         mediaTwoListWithIllustration: true,
         mediaCardWithImage: true,
         mediaListWithIconAndDescription: true,

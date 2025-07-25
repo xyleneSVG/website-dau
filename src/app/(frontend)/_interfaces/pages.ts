@@ -19,7 +19,7 @@ export type PageSection =
   | ImageHeaderParagraphSection
   | ImageHeaderThreeColumnSection
   | CircleImageGridSection
-  | TwoColumnSection
+  | TextWithImageClusterSection
   | TechnologySection2
   | ListWithIconSection
   | ListWithIconDescSection
@@ -198,13 +198,13 @@ export interface GridCircleImageLists {
   itemDescription: string
 }
 
-// Two Column Layout
-export interface TwoColumnSection {
+// Text With Image Cluster
+export interface TextWithImageClusterSection {
   id: string
-  blockType: 'twoColumnSection'
-  twoColumnLayoutTitle: string
-  twoColumnLayoutSubtitle: string
-  twoColumnLayoutDescription: RichTextContent
+  blockType: 'textWithImageClusterSection'
+  sectionHeadline: string
+  sectionTitle: string
+  sectionDescription: RichTextContent
   hasButton: boolean
   buttonText: string
   buttonIcon: string
@@ -213,12 +213,12 @@ export interface TwoColumnSection {
   reverseContent: boolean
   hasBackground: boolean
   backgroundColor: string
-  imageLists: TwoColumnLayoutImageLists[]
+  imageLists: TextWithImageClusterImageLists[]
 }
 
-export interface TwoColumnLayoutImageLists {
+export interface TextWithImageClusterImageLists {
   id: string
-  twoColumnLayoutImage: ImageItem
+  itemImage: ImageItem
 }
 
 // Technology 2
