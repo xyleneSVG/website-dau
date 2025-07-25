@@ -22,7 +22,7 @@ export default function Hero2({ data, domainBlob }: Hero2SectionProps) {
 
       <div className="absolute inset-0 bg-black/20 z-10" />
 
-      <div className="absolute inset-0 z-20 flex justify-center lg:justify-end items-center px-4 sm:px-8 xl:pr-16">
+      <div className="absolute inset-0 z-20 flex justify-center lg:justify-end items-center p-6 sm:p-8 md:pr-12 min-2xl:pr-20">
         <div className="text-center lg:max-w-[50%]">
           <h1 className="text-white text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] font-bold uppercase leading-snug">
             {data.sectionTextBold}

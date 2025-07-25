@@ -10,10 +10,9 @@ import { RichTextRenderer } from '../richText/richTextRenderer'
 interface ThreeDimensionCarouselProps {
   data: ThreeDimensionCarouselSection
   domainBlob: string
-  
 }
 
-export default function ThreeDimensionCarousel({data, domainBlob}: ThreeDimensionCarouselProps) {
+export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimensionCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -35,8 +34,10 @@ export default function ThreeDimensionCarousel({data, domainBlob}: ThreeDimensio
   const getPosition = (index: number): 'prev' | 'active' | 'next' | 'hidden' => {
     if (index === activeIndex) return 'active'
     if (isMobile) return 'hidden'
-    if (index === (activeIndex === 0 ? data.carouselItems.length - 1 : activeIndex - 1)) return 'prev'
-    if (index === (activeIndex === data.carouselItems.length - 1 ? 0 : activeIndex + 1)) return 'next'
+    if (index === (activeIndex === 0 ? data.carouselItems.length - 1 : activeIndex - 1))
+      return 'prev'
+    if (index === (activeIndex === data.carouselItems.length - 1 ? 0 : activeIndex + 1))
+      return 'next'
     return 'hidden'
   }
 
@@ -85,7 +86,12 @@ export default function ThreeDimensionCarousel({data, domainBlob}: ThreeDimensio
                   }`}
                 >
                   <div className="relative w-full h-full">
-                    <Image src={domainBlob+item.icon.filename} alt={item.title} fill className="object-contain" />
+                    <Image
+                      src={domainBlob + item.icon.filename}
+                      alt={item.title}
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                 </motion.div>
               )
@@ -110,7 +116,9 @@ export default function ThreeDimensionCarousel({data, domainBlob}: ThreeDimensio
             transition={{ duration: 0.3 }}
             className="mt-4 md:mt-8 text-center max-w-3xl mx-auto px-2"
           >
-            <h3 className="text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold mb-2">{data.carouselItems[activeIndex].title}</h3>
+            <h3 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold mb-2">
+              {data.carouselItems[activeIndex].title}
+            </h3>
             <p className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[18px] 2xl:text-[24px] text-justify">
               {data.carouselItems[activeIndex].description}
             </p>

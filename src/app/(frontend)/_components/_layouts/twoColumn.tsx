@@ -7,6 +7,8 @@ import type { LucideIcon } from 'lucide-react'
 import { TwoColumnSection } from '../../_interfaces/pages'
 import { RichTextRenderer } from '../richText/richTextRenderer'
 
+import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
+
 interface TwoColumnProps {
   twoColumnSection: TwoColumnSection
   domainBlob: string
@@ -33,17 +35,26 @@ export default function TwoColumn({ twoColumnSection, domainBlob, getLucideIcon 
 
   return (
     <div
-      className="w-full min-h-screen flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30"
-      style={{ backgroundColor: hasBackground ? backgroundColor : '#ffffff' }}
+      className="w-full relative min-h-screen flex items-center justify-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30"
+      style={{
+        ...(hasBackground
+          ? { backgroundColor: backgroundColor || '#ffffff' }
+          : {
+              backgroundImage: `url(${backgroundIcon2.src})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'top right',
+              backgroundSize: 'contain',
+            }),
+      }}
     >
       <div
         className={`container mx-auto flex flex-col ${
-          reverseContent ?  'lg:flex-row' : 'lg:flex-row-reverse'
+          reverseContent ? 'lg:flex-row' : 'lg:flex-row-reverse'
         } items-center gap-4 md:gap-10 xl:gap-14 2xl:gap-20`}
       >
-        <div className="w-full lg:w-1/2 flex flex-col items-center gap-4 mb-6 lg:mb-0">
+        <div className="w-full lg:w-1/2 flex flex-col items-center gap-4 mb-0">
           {imageLists.length > 0 && (
-            <div className="w-[70%] sm:w-[50%] lg:w-full relative aspect-[4/3] rounded-3xl sm:rounded-4xl overflow-hidden">
+            <div className="w-[70%] sm:w-[50%] lg:w-full relative aspect-[4/3] rounded-2xl lg:rounded-4xl overflow-hidden">
               <Image
                 src={domainBlob + imageLists[0].twoColumnLayoutImage.filename}
                 alt="Image"
@@ -75,7 +86,7 @@ export default function TwoColumn({ twoColumnSection, domainBlob, getLucideIcon 
           <h3 className="italic text-black text-[18px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] mb-2 font-extralight">
             {twoColumnLayoutTitle}
           </h3>
-          <h2 className="font-bold text-black text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] mb-4 mt-[20px] xl:mt-[35px]">
+          <h2 className="font-bold text-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] mb-4 mt-[20px] xl:mt-[35px]">
             {twoColumnLayoutSubtitle}
           </h2>
           <div className="text-gray-600 whitespace-pre-line mb-6 sm:mb-8 md:mb-10 text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[20px] font-light text-justify">

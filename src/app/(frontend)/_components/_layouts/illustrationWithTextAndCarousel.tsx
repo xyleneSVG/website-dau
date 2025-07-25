@@ -75,7 +75,7 @@ export default function IllustrationWithTextAndCarousel({ data, domainBlob }: Il
                 <h1 className="text-[#BE9844] text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] mt-[30px] md:mt-0">
                   {current.carouselTitle}
                 </h1>
-                <p className="font-bold text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-justify mt-[10px] mb-[20px] md:mt-[20px] xl:mt-[30px] md:mb-0">
+                <p className="font-bold text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] text-justify mt-[10px] mb-[20px] md:mt-[20px] xl:mt-[30px] md:mb-0">
                   {current.carouselDescription}
                 </p>
               </motion.div>

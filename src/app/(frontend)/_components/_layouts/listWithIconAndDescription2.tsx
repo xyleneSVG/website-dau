@@ -18,7 +18,7 @@ export default function ListWithIconAndDescription2({
 }: ListWithIconDesc2SectionProps) {
   return (
     <section className="w-full min-h-screen px-6 py-8 md:py-12 lg:py-20 flex flex-col justify-center items-center">
-      <h2 className="text-center text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8">
+      <h2 className="text-center text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8">
         {data.sectionTitle}
       </h2>
 
@@ -39,7 +39,9 @@ export default function ListWithIconAndDescription2({
             const IconComponent = getLucideIcon?.(item.contentIcon)
             return (
               <div key={index} className="flex items-center gap-4 sm:gap-6">
-                <div className="p-2 sm:p-2 md:p-3 xl:p-4 bg-[#D9FAD9] rounded-full">
+                <div
+                  className={`p-2 sm:p-2 md:p-3 xl:p-4 bg-[${data.backgroundIconColor}] rounded-full`}
+                >
                   {IconComponent && (
                     <IconComponent
                       className="size-6 sm:size-7 md:size-8 lg:size-12"

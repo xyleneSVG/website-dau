@@ -20,10 +20,7 @@ interface ZigZagListProps {
   domainBlob: string
 }
 
-export default function ZigZagList({
-  data,
-  domainBlob,
-}: ZigZagListProps) {
+export default function ZigZagList({ data, domainBlob }: ZigZagListProps) {
   return (
     <div className="w-full flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
@@ -76,7 +73,7 @@ export default function ZigZagList({
                 <div
                   className={`flex flex-col gap-y-4 text-[14px] ${index % 2 === 1 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}
                 >
-                  <p className="uppercase text-[#00DB05] font-bold text-[14px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px]">
+                  <p className="uppercase text-[#00DB05] font-bold text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px]">
                     {item.contentListTitle}
                   </p>
                   <p className="font-light md:max-w-[480px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] 2xl:max-w-[700px]">
