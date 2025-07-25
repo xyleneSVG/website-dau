@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type { CardWithImage } from '@/app/(frontend)/_interfaces/pages'
-import CardWithImageComponent from './CardWithImageComponent'
+import CardWithImageComponent from './cardWithImageComponent'
 
 interface CardWithImageSectionProps {
   data: CardWithImage
