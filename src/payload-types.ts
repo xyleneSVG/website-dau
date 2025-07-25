@@ -74,7 +74,7 @@ export interface Config {
     groupPage: GroupPage;
     mediaHero: MediaHero;
     mediaServices: MediaService;
-    mediaTech: MediaTech;
+    mediaLoopingCarousel: MediaLoopingCarousel;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
     mediaQuadGrid: MediaQuadGrid;
     mediaGridCarousel: MediaGridCarousel;
@@ -102,7 +102,7 @@ export interface Config {
     groupPage: GroupPageSelect<false> | GroupPageSelect<true>;
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
-    mediaTech: MediaTechSelect<false> | MediaTechSelect<true>;
+    mediaLoopingCarousel: MediaLoopingCarouselSelect<false> | MediaLoopingCarouselSelect<true>;
     mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
     mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
     mediaGridCarousel: MediaGridCarouselSelect<false> | MediaGridCarouselSelect<true>;
@@ -182,7 +182,7 @@ export interface Page {
         | ImageHeaderThreeColumnSection
         | CircleImageGridSection
         | TextWithImageClusterSection
-        | Technology2Section
+        | LoopingCarouselSection
         | ListWithIconSection
         | ListWithIconAndDescriptionSection
         | TwoListWithIllustrationSection
@@ -679,18 +679,36 @@ export interface MediaTextWithImageCluster {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Technology 2 Section".
+ * via the `definition` "Looping Carousel Section".
  */
-export interface Technology2Section {
-  sectionTechnology2Title: string;
-  technology2Lists: {
-    technologyName: string;
-    technologyIcon: number | GroupPage;
+export interface LoopingCarouselSection {
+  sectionTitle: string;
+  carouselLists: {
+    itemImage: number | MediaLoopingCarousel;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'technologySection2';
+  blockType: 'loopingCarouselSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaLoopingCarousel".
+ */
+export interface MediaLoopingCarousel {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1033,25 +1051,6 @@ export interface MessageFromGuest {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTech".
- */
-export interface MediaTech {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mediaGridCarousel".
  */
 export interface MediaGridCarousel {
@@ -1105,8 +1104,8 @@ export interface PayloadLockedDocument {
         value: number | MediaService;
       } | null)
     | ({
-        relationTo: 'mediaTech';
-        value: number | MediaTech;
+        relationTo: 'mediaLoopingCarousel';
+        value: number | MediaLoopingCarousel;
       } | null)
     | ({
         relationTo: 'mediaIllustrationWithCarousel';
@@ -1229,7 +1228,7 @@ export interface PagesSelect<T extends boolean = true> {
         imageHeaderThreeColumnSection?: T | ImageHeaderThreeColumnSectionSelect<T>;
         circleImageGridSection?: T | CircleImageGridSectionSelect<T>;
         textWithImageClusterSection?: T | TextWithImageClusterSectionSelect<T>;
-        technologySection2?: T | Technology2SectionSelect<T>;
+        loopingCarouselSection?: T | LoopingCarouselSectionSelect<T>;
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
@@ -1440,15 +1439,14 @@ export interface TextWithImageClusterSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Technology 2 Section_select".
+ * via the `definition` "Looping Carousel Section_select".
  */
-export interface Technology2SectionSelect {
-  sectionTechnology2Title?: boolean;
-  technology2Lists?:
+export interface LoopingCarouselSectionSelect {
+  sectionTitle?: boolean;
+  carouselLists?:
     | boolean
     | {
-        technologyName?: boolean;
-        technologyIcon?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1715,9 +1713,9 @@ export interface MediaServicesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaTech_select".
+ * via the `definition` "mediaLoopingCarousel_select".
  */
-export interface MediaTechSelect<T extends boolean = true> {
+export interface MediaLoopingCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

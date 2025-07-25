@@ -46,7 +46,7 @@ import ImageHeaderParagraph from './_layouts/imageHeaderParagraph'
 import ImageHeaderThreeCard from './_layouts/Image-Header-With-Three-Column/imageHeaderThreeColumn'
 import CircleImageGrid from './_layouts/circle-image-grid/circleImageGrid'
 import TextWithImageCluster from './_layouts/textWithImageCluster'
-import Tech2 from './_layouts/tech2'
+import LoopingCarousel from './_layouts/loopingCarousel'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
@@ -159,8 +159,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
             getLucideIcon={getLucideIcon}
           />
         )
-      case 'technologySection2':
-        return <Tech2 key={index} technologySection2={section} domainBlob={domainBlob} />
+      case 'loopingCarouselSection':
+        return <LoopingCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'listWithIconSection':
         return <ListWithIcon key={index} data={section} getLucideIcon={getLucideIcon} />
       case 'listWithIconDescSection':
