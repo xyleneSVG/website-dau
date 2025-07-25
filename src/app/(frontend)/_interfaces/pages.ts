@@ -238,7 +238,7 @@ export interface LoopingCarouselLists {
 export interface ListWithIconSection {
   id: string
   blockType: 'listWithIconSection'
-  sectionListIconTitle: string
+  sectionTitle: string
   backgroundPageColor: string
   iconColor: string
   backgroundIconColor: string
@@ -255,7 +255,7 @@ export interface ContentListsWithIcon {
 export interface ListWithIconDescSection {
   id: string
   blockType: 'listWithIconDescSection'
-  sectionListIconDescTitle: string
+  sectionTitle: string
   backgroundPageColor: string
   iconColor: string
   backgroundIconColor: string

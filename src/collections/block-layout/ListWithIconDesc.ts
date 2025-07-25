@@ -10,11 +10,11 @@ export const ListWithIconDescSection: Block = {
     singular: 'List With Icon and Description Section',
     plural: 'List With Icon and Description Sections',
   },
-  imageURL: 'public/assets/landing/hero/thumbnail.png',
+  imageURL: '/assets/skeleton/listWithIconDescription.svg',
   interfaceName: 'List With Icon and Description Section',
   fields: [
     {
-      name: 'sectionListIconDescTitle',
+      name: 'sectionTitle',
       type: 'text',
       label: 'Section Title',
       required: true,

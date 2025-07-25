@@ -23,7 +23,10 @@ export default function ListCard({
   const IconComponent = getLucideIcon?.(icon)
   return (
     <div className="bg-white rounded-xl shadow-md p-6 xl:p-8 flex flex-col items-center text-center hover:shadow-lg transition">
-      <div className={`bg-[${backgroundIconColor}] flex items-center justify-center rounded-full w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mb-4`}>
+      <div
+        className="flex items-center justify-center rounded-full w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mb-4"
+        style={{ backgroundColor: backgroundIconColor }}
+      >
         {IconComponent && (
           <IconComponent
             className="size-6 sm:size-7 md:size-8 lg:size-12"

@@ -715,7 +715,7 @@ export interface MediaLoopingCarousel {
  * via the `definition` "List With Icon Section".
  */
 export interface ListWithIconSection {
-  sectionListIconTitle: string;
+  sectionTitle: string;
   /**
    * Choose a color for this background page
    */
@@ -742,7 +742,7 @@ export interface ListWithIconSection {
  * via the `definition` "List With Icon and Description Section".
  */
 export interface ListWithIconAndDescriptionSection {
-  sectionListIconDescTitle: string;
+  sectionTitle: string;
   /**
    * Choose a color for this background page
    */
@@ -1457,7 +1457,7 @@ export interface LoopingCarouselSectionSelect {
  * via the `definition` "List With Icon Section_select".
  */
 export interface ListWithIconSectionSelect {
-  sectionListIconTitle?: boolean;
+  sectionTitle?: boolean;
   backgroundPageColor?: boolean;
   contentLists?:
     | boolean
@@ -1476,7 +1476,7 @@ export interface ListWithIconSectionSelect {
  * via the `definition` "List With Icon and Description Section_select".
  */
 export interface ListWithIconAndDescriptionSectionSelect {
-  sectionListIconDescTitle?: boolean;
+  sectionTitle?: boolean;
   backgroundPageColor?: boolean;
   contentLists?:
     | boolean
