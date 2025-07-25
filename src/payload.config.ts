@@ -23,7 +23,7 @@ import { Pages } from './collections/Pages'
 import { GroupPage } from './collections/storage/GroupPage'
 import { MediaHero } from './collections/storage/MediaHero'
 import { MediaServices } from './collections/storage/MediaServices'
-import { MediaTech } from './collections/storage/MediaTech'
+import { MediaLoopingCarousel } from './collections/storage/MediaLoopingCarousel'
 import { MediaIllustrationWithCarousel } from './collections/storage/MediaIllustrationWithCarousel'
 import { MediaQuadGrid } from './collections/storage/MediaQuadGrid'
 import { MediaGridCarousel } from './collections/storage/MediaClients'
@@ -67,7 +67,7 @@ export default buildConfig({
     GroupPage,
     MediaHero,
     MediaServices,
-    MediaTech,
+    MediaLoopingCarousel,
     MediaIllustrationWithCarousel,
     MediaQuadGrid,
     MediaGridCarousel,
@@ -102,11 +102,11 @@ export default buildConfig({
         mediaHero: true,
         mediaIllustrationWithCarousel: true,
         mediaServices: true,
-        mediaTech: true,
         mediaQuadGrid: true,
         mediaGridCarousel: true,
         mediaContact: true,
         mediaIllustrationWithTextAndCarousel: true,
+        mediaLoopingCarousel: true,
         mediaImageHeaderParagraph: true,
         mediaImageHeaderThreeColumn: true,
         mediaCircleImageGrid: true,

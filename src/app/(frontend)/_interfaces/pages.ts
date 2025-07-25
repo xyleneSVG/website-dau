@@ -20,7 +20,7 @@ export type PageSection =
   | ImageHeaderThreeColumnSection
   | CircleImageGridSection
   | TextWithImageClusterSection
-  | TechnologySection2
+  | LoopingCarouselSection
   | ListWithIconSection
   | ListWithIconDescSection
   | TwoListWithIllustration
@@ -221,18 +221,17 @@ export interface TextWithImageClusterImageLists {
   itemImage: ImageItem
 }
 
-// Technology 2
-export interface TechnologySection2 {
+// Looping Carousel
+export interface LoopingCarouselSection {
   id: string
-  blockType: 'technologySection2'
-  sectionTechnology2Title: string
-  technology2Lists: Technology2Lists[]
+  blockType: 'loopingCarouselSection'
+  sectionTitle: string
+  carouselLists: LoopingCarouselLists[]
 }
 
-export interface Technology2Lists {
+export interface LoopingCarouselLists {
   id: string
-  technologyName: string
-  technologyIcon: ImageItem
+  itemImage: ImageItem
 }
 
 // List With Icon
