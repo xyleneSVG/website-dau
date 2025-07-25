@@ -7,6 +7,10 @@ export const TwoListWithIllustrationSection: Block = {
   slug: 'twoListWithIllustrationSection',
   imageURL: 'public/assets/landing/hero/thumbnail.png',
   interfaceName: 'Two List With Illustration Section',
+  labels: {
+    singular: 'Two List With Illustration Section',
+    plural: 'Two List With Illustration Sections',
+  },
   fields: [
     {
       name: 'sectionTitle',

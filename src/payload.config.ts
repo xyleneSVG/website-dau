@@ -29,7 +29,7 @@ import { MediaQuadGrid } from './collections/storage/MediaQuadGrid'
 import { MediaGridCarousel } from './collections/storage/MediaClients'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaIllustrationWithTextAndCarousel } from './collections/storage/MediaIllustrationWithTextAndCarousel'
-import { MediaAbout } from './collections/storage/MediaAbout'
+import { MediaImageHeaderParagraph } from './collections/storage/MediaImageHeaderParagraph'
 import { MediaVision } from './collections/storage/MediaVision'
 import { MediaLeader } from './collections/storage/MediaLeader'
 import { MediaTwoColumnLayout } from './collections/storage/MediaTwoColumnLayout'
@@ -75,7 +75,7 @@ export default buildConfig({
     MediaGridCarousel,
     MediaContact,
     MediaIllustrationWithTextAndCarousel,
-    MediaAbout,
+    MediaImageHeaderParagraph,
     MediaVision,
     MediaLeader,
     MediaTwoColumnLayout,
@@ -109,7 +109,7 @@ export default buildConfig({
         mediaGridCarousel: true,
         mediaContact: true,
         mediaIllustrationWithTextAndCarousel: true,
-        mediaAbout: true,
+        mediaImageHeaderParagraph: true,
         mediaVision: true,
         mediaLeader: true,
         mediaTwoColumnLayout: true,

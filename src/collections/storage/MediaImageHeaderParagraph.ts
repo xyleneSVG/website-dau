@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const MediaAbout: CollectionConfig = {
-  slug: 'mediaAbout',
+export const MediaImageHeaderParagraph: CollectionConfig = {
+  slug: 'mediaImageHeaderParagraph',
   admin: {
     group: 'Storage'
   },

@@ -9,7 +9,7 @@ import { QuadGridSection } from './block-layout/QuadGrid'
 import { GridCarouselSection } from './block-layout/GridCarousel'
 import { ContactSection } from './block-layout/Contact'
 import { IllustrationWithTextAndCarouselSection } from './block-layout/IllustrationWithTextAndCarousel'
-import { AboutSection } from './block-layout/About'
+import { ImageHeaderParagraphSection } from './block-layout/ImageHeaderParagraph'
 import { VisionSection } from './block-layout/Vision'
 import { LeaderSection } from './block-layout/Leader'
 import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout'
@@ -96,7 +96,7 @@ export const Pages: CollectionConfig = {
         GridCarouselSection,
         ContactSection,
         IllustrationWithTextAndCarouselSection,
-        AboutSection,
+        ImageHeaderParagraphSection,
         VisionSection,
         LeaderSection,
         TwoColumnLayoutSection,

@@ -8,6 +8,10 @@ export const ListWithIconSection: Block = {
   slug: 'listWithIconSection',
   imageURL: 'public/assets/landing/hero/thumbnail.png',
   interfaceName: 'List With Icon Section',
+  labels: {
+    singular: 'List With Icon Section',
+    plural: 'List With Icon Sections',
+  },
   fields: [
     {
       name: 'sectionListIconTitle',

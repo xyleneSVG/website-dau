@@ -80,7 +80,7 @@ export interface Config {
     mediaGridCarousel: MediaGridCarousel;
     mediaContact: MediaContact;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarousel;
-    mediaAbout: MediaAbout;
+    mediaImageHeaderParagraph: MediaImageHeaderParagraph;
     mediaVision: MediaVision;
     mediaLeader: MediaLeader;
     mediaTwoColumnLayout: MediaTwoColumnLayout;
@@ -108,7 +108,7 @@ export interface Config {
     mediaGridCarousel: MediaGridCarouselSelect<false> | MediaGridCarouselSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarouselSelect<false> | MediaIllustrationWithTextAndCarouselSelect<true>;
-    mediaAbout: MediaAboutSelect<false> | MediaAboutSelect<true>;
+    mediaImageHeaderParagraph: MediaImageHeaderParagraphSelect<false> | MediaImageHeaderParagraphSelect<true>;
     mediaVision: MediaVisionSelect<false> | MediaVisionSelect<true>;
     mediaLeader: MediaLeaderSelect<false> | MediaLeaderSelect<true>;
     mediaTwoColumnLayout: MediaTwoColumnLayoutSelect<false> | MediaTwoColumnLayoutSelect<true>;
@@ -178,7 +178,7 @@ export interface Page {
         | GridCarouselSection
         | ContactSection
         | IllustrationWithTextAndCarouselSection
-        | AboutSection
+        | ImageHeaderParagraphSection
         | VisionSection
         | LeaderSection
         | TwoColumnLayoutSection
@@ -487,12 +487,12 @@ export interface MediaIllustrationWithTextAndCarousel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "About Section".
+ * via the `definition` "Image Header Paragraph Section".
  */
-export interface AboutSection {
-  sectionAboutLogo: number | MediaAbout;
-  sectionAboutTitle: string;
-  sectionAboutContent: {
+export interface ImageHeaderParagraphSection {
+  sectionImage: number | MediaImageHeaderParagraph;
+  sectionTitle: string;
+  sectionParagraph: {
     root: {
       type: string;
       children: {
@@ -509,13 +509,13 @@ export interface AboutSection {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'aboutSection';
+  blockType: 'imageHeaderParagraphSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaAbout".
+ * via the `definition` "mediaImageHeaderParagraph".
  */
-export interface MediaAbout {
+export interface MediaImageHeaderParagraph {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1126,8 +1126,8 @@ export interface PayloadLockedDocument {
         value: number | MediaIllustrationWithTextAndCarousel;
       } | null)
     | ({
-        relationTo: 'mediaAbout';
-        value: number | MediaAbout;
+        relationTo: 'mediaImageHeaderParagraph';
+        value: number | MediaImageHeaderParagraph;
       } | null)
     | ({
         relationTo: 'mediaVision';
@@ -1222,7 +1222,7 @@ export interface PagesSelect<T extends boolean = true> {
         gridCarouselSection?: T | GridCarouselSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         illustrationWithTextAndCarouselSection?: T | IllustrationWithTextAndCarouselSectionSelect<T>;
-        aboutSection?: T | AboutSectionSelect<T>;
+        imageHeaderParagraphSection?: T | ImageHeaderParagraphSectionSelect<T>;
         visionSection?: T | VisionSectionSelect<T>;
         leaderSection?: T | LeaderSectionSelect<T>;
         twoColumnLayoutSection?: T | TwoColumnLayoutSectionSelect<T>;
@@ -1366,12 +1366,12 @@ export interface IllustrationWithTextAndCarouselSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "About Section_select".
+ * via the `definition` "Image Header Paragraph Section_select".
  */
-export interface AboutSectionSelect {
-  sectionAboutLogo?: boolean;
-  sectionAboutTitle?: boolean;
-  sectionAboutContent?: boolean;
+export interface ImageHeaderParagraphSectionSelect {
+  sectionImage?: boolean;
+  sectionTitle?: boolean;
+  sectionParagraph?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -1820,9 +1820,9 @@ export interface MediaIllustrationWithTextAndCarouselSelect<T extends boolean = 
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaAbout_select".
+ * via the `definition` "mediaImageHeaderParagraph_select".
  */
-export interface MediaAboutSelect<T extends boolean = true> {
+export interface MediaImageHeaderParagraphSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
