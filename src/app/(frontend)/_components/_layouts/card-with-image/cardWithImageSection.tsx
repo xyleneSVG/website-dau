@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import CardWithImageComponent from './cardWithImageComponent'
 import type { CardWithImage } from '@/app/(frontend)/_interfaces/pages'
+import CardWithImageComponent from './CardWithImageComponent'
 
 interface CardWithImageSectionProps {
   data: CardWithImage
