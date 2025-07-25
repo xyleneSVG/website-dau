@@ -15,7 +15,7 @@ export type PageSection =
   | QuadGridSection
   | GridCarouselSection
   | ContactSection
-  | AwardSection
+  | IllustrationWithTextAndCarouselSection
   | AboutSection
   | VisionSection
   | LeaderSection
@@ -66,6 +66,7 @@ export interface ContentLists {
 // Illustration With Carousel
 export interface IllustrationWithCarouselSection {
   id: string
+  blockName?: string
   blockType: 'illustrationWithCarouselSection'
   sectionTitle: string
   sectionSubtitle: string
@@ -141,20 +142,20 @@ export interface SelectOptions {
   optionValue: string
 }
 
-// Award
-export interface AwardSection {
+// Illustration With Text And Carousel
+export interface IllustrationWithTextAndCarouselSection {
   id: string
-  blockType: 'awardSection'
-  sectionAwardTitle: string
-  sectionAwardDescription: string
-  AwardLists: AwardLists[]
+  blockType: 'illustrationWithTextAndCarouselSection'
+  sectionTitle: string
+  sectionDescription: string
+  carouselLists: IllustrationWithTextAndCarouselLists[]
 }
 
-export interface AwardLists {
+export interface IllustrationWithTextAndCarouselLists {
   id: string
-  awardImage: ImageItem
-  awardNomination: string
-  awardTitle: string
+  carouselImage: ImageItem
+  carouselDescription: string
+  carouselTitle: string
 }
 
 // About

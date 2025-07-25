@@ -41,7 +41,7 @@ import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
 import QuadGrid from './_layouts/quadGrid'
 import GridCarousel from './_layouts/gridCarousel'
 import Contact from './_layouts/contact'
-import Award from './_layouts/award'
+import IllustrationWithTextAndCarousel from './_layouts/illustrationWithTextAndCarousel'
 import About from './_layouts/about'
 import Vision from './_layouts/vision/vision'
 import LeaderCarousel from './_layouts/leader/leader'
@@ -141,7 +141,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'contactSection':
         return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
       case 'awardSection':
-        return <Award key={index} awardSection={section} domainBlob={domainBlob} />
+        return <IllustrationWithTextAndCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'aboutSection':
         return <About key={index} aboutSection={section} domainBlob={domainBlob} />
       case 'visionSection':
