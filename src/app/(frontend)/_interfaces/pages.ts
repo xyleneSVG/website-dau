@@ -277,9 +277,11 @@ export interface TwoListWithIllustration {
   sectionDescription: string
   sectionIllustration: ImageItem
   leftSideListTitle: string
+  leftSideListTitleColor: string
   leftSideListColor: string
   rightSideListTitle: string
-  rigtSideListColor: string
+  rightSideListTitleColor: string
+  rightSideListColor: string
   hasButton: boolean
   buttonText: string
   buttonIcon: string

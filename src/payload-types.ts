@@ -780,6 +780,7 @@ export interface TwoListWithIllustrationSection {
         id?: string | null;
       }[]
     | null;
+  leftSideListTitleColor: string;
   leftSideListColor: string;
   rightSideListTitle: string;
   rightSideListContentArray?:
@@ -788,7 +789,8 @@ export interface TwoListWithIllustrationSection {
         id?: string | null;
       }[]
     | null;
-  rigtSideListColor: string;
+  rightSideListTitleColor: string;
+  rightSideListColor: string;
   hasButton?: boolean | null;
   buttonText?: string | null;
   buttonIcon?: string | null;
@@ -1506,6 +1508,7 @@ export interface TwoListWithIllustrationSectionSelect {
         leftSideListContent?: boolean;
         id?: boolean;
       };
+  leftSideListTitleColor?: boolean;
   leftSideListColor?: boolean;
   rightSideListTitle?: boolean;
   rightSideListContentArray?:
@@ -1514,7 +1517,8 @@ export interface TwoListWithIllustrationSectionSelect {
         rightSideListContent?: boolean;
         id?: boolean;
       };
-  rigtSideListColor?: boolean;
+  rightSideListTitleColor?: boolean;
+  rightSideListColor?: boolean;
   hasButton?: boolean;
   buttonText?: boolean;
   buttonIcon?: boolean;

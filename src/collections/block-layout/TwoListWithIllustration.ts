@@ -5,7 +5,7 @@ import type { Block } from 'payload'
 
 export const TwoListWithIllustrationSection: Block = {
   slug: 'twoListWithIllustrationSection',
-  imageURL: 'public/assets/landing/hero/thumbnail.png',
+  imageURL: '/assets/skeleton/twoListWithIllustration.svg',
   interfaceName: 'Two List With Illustration Section',
   labels: {
     singular: 'Two List With Illustration Section',
@@ -45,6 +45,11 @@ export const TwoListWithIllustrationSection: Block = {
               type: 'text',
               required: true,
             },
+            colorPickerField({
+              name: 'leftSideListTitleColor',
+              label: 'Left Side List Title Color',
+              required: true,
+            }),
             {
               name: 'leftSideListContentArray',
               dbName: 'left_list_arr',
@@ -77,6 +82,11 @@ export const TwoListWithIllustrationSection: Block = {
               type: 'text',
               required: true,
             },
+            colorPickerField({
+              name: 'rightSideListTitleColor',
+              label: 'Right Side List Title Color',
+              required: true,
+            }),
             {
               name: 'rightSideListContentArray',
               dbName: 'right_list_arr',
@@ -93,7 +103,7 @@ export const TwoListWithIllustrationSection: Block = {
               ],
             },
             colorPickerField({
-              name: 'rigtSideListColor',
+              name: 'rightSideListColor',
               label: 'Right Side List Color',
               required: true,
             }),

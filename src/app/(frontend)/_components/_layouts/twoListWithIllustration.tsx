@@ -34,16 +34,21 @@ export default function TwoListWithIllustration({
           <div className="w-full md:flex-[1] order-2 md:order-1">
             <div className="rounded-2xl border border-gray-200 bg-white shadow-lg text-center h-full">
               <div
-                className={`text-white bg-[${data.leftSideListColor}] font-bold text-xl mb-4 py-6 rounded-t-2xl`}
+                className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
+                style={{
+                  backgroundColor: data.leftSideListColor,
+                  color: data.leftSideListTitleColor,
+                }}
               >
-                {data.leftSideListTitle}
+                {data?.leftSideListTitle}
               </div>
               <ul className="space-y-2 text-sm md:text-base text-gray-800 px-6 pb-6">
-                {data.leftSideListContentArray.map((item, index) => (
-                  <li className="text-start" key={index}>
-                    {item.leftSideListContent}
-                  </li>
-                ))}
+                {Array.isArray(data?.leftSideListContentArray) &&
+                  data.leftSideListContentArray.map((item, index) => (
+                    <li className="text-start" key={index}>
+                      {item.leftSideListContent}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
@@ -52,8 +57,8 @@ export default function TwoListWithIllustration({
           <div className="w-full md:flex-[2] order-1 md:order-2 flex justify-center">
             <div className="relative w-full max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
               <Image
-                src={domainBlob + data.sectionIllustration.filename}
-                alt={data.sectionIllustration.filename}
+                src={domainBlob + data.sectionIllustration?.filename}
+                alt=""
                 fill
                 className="object-contain"
                 priority
@@ -65,16 +70,21 @@ export default function TwoListWithIllustration({
           <div className="w-full md:flex-[1] order-3 md:order-3">
             <div className="rounded-2xl border border-gray-200 bg-white shadow-lg text-center h-full">
               <div
-                className={`text-white bg-[${data.rigtSideListColor}] font-bold text-xl mb-4 py-6 rounded-t-2xl`}
+                className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
+                style={{
+                  backgroundColor: data.rightSideListColor,
+                  color: data.rightSideListTitleColor,
+                }}
               >
-                {data.rightSideListTitle}
+                {data?.rightSideListTitle}
               </div>
               <ul className="space-y-2 text-sm md:text-base text-gray-800 px-6 pb-6">
-                {data.rightSideListContentArray.map((item, index) => (
-                  <li className="text-start" key={index}>
-                    {item.rightSideListContent}
-                  </li>
-                ))}
+                {Array.isArray(data?.rightSideListContentArray) &&
+                  data.rightSideListContentArray.map((item, index) => (
+                    <li className="text-start" key={index}>
+                      {item.rightSideListContent}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>
@@ -84,8 +94,12 @@ export default function TwoListWithIllustration({
       {data.hasButton && (
         <div className="mt-6 sm:mt-10 lg:mt-10">
           <a
-            href={data.buttonLink.pageKey || '#'}
-            className={`inline-flex items-center px-5 py-2 rounded-lg text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[20px] border border-[${data.buttonColor}] text-[${data.buttonColor}]`}
+            href={data.buttonLink?.pageKey || '#'}
+            className="inline-flex items-center px-5 py-2 rounded-lg text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[20px] border"
+            style={{
+              borderColor: data.buttonColor,
+              color: data.buttonColor,
+            }}
           >
             {data.buttonText}
             {IconComponent && <IconComponent className="ml-2 w-5 h-5" strokeWidth={2} />}
