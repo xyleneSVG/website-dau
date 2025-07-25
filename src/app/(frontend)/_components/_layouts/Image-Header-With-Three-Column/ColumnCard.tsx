@@ -1,11 +1,11 @@
 import React from 'react'
 
-type VisionCardProps = {
+type ColumnCardProps = {
   title: string;
   description: string;
 }
 
-export default function VisionCard({title, description}: VisionCardProps) {
+export default function ColumnCard({title, description}: ColumnCardProps) {
   return (
     <div className='w-full md:w-[47%] xl:w-[30%] bg-white p-[15px] rounded-[24px] 2xl:min-h-[680px] shadow-md'>
         <div className='h-full border-[2px] border-[#CECFDB] px-[24px] py-[32px] rounded-[16px]'>
