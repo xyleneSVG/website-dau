@@ -4,6 +4,10 @@ export const GridCarouselSection: Block = {
   slug: 'gridCarouselSection',
   imageURL: "/assets/skeleton/gridCarousel.svg",
   interfaceName: 'Grid Carousel Section',
+  labels: {
+    singular: 'Grid Carousel Section',
+    plural: 'Grid Carousel Sections',
+  },
   fields: [
     {
       name: 'sectionTitle',

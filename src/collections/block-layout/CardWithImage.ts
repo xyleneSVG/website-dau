@@ -5,6 +5,10 @@ export const CardWithImageSection: Block = {
   slug: 'cardWithImageSection',
   imageURL: '/assets/landing/hero/thumbnail.png',
   interfaceName: 'Card With Image Section',
+  labels: {
+    singular: 'Card With Image Section',
+    plural: 'Card With Image Sections',
+  },
   fields: [
     {
       name: 'sectionTitle',

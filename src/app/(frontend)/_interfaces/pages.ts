@@ -16,7 +16,7 @@ export type PageSection =
   | GridCarouselSection
   | ContactSection
   | IllustrationWithTextAndCarouselSection
-  | AboutSection
+  | ImageHeaderParagraphSection
   | VisionSection
   | LeaderSection
   | TwoColumnSection
@@ -158,13 +158,13 @@ export interface IllustrationWithTextAndCarouselLists {
   carouselTitle: string
 }
 
-// About
-export interface AboutSection {
+// ImageHeaderParagraphSection
+export interface ImageHeaderParagraphSection {
   id: string
-  blockType: 'aboutSection'
-  sectionAboutLogo: ImageItem
-  sectionAboutTitle: string
-  sectionAboutContent: RichTextContent
+  blockType: 'imageHeaderParagraphSection'
+  sectionImage: ImageItem
+  sectionTitle: string
+  sectionParagraph: RichTextContent
 }
 
 // Vision

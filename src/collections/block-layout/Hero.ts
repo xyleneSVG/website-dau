@@ -4,6 +4,10 @@ export const HeroSection: Block = {
   slug: 'heroSection',
   imageURL: "/assets/skeleton/heroSection.svg",
   interfaceName: 'Hero Section',
+  labels: {
+    singular: 'Hero Section',
+    plural: 'Hero Sections',
+  },
   fields: [
     {
       name: 'greetingIllustrationLeft',

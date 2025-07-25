@@ -8,6 +8,10 @@ export const TwoColumnLayoutSection: Block = {
   slug: 'twoColumnLayoutSection',
   imageURL: "public/assets/landing/hero/thumbnail.png",
   interfaceName: 'Two Column Layout Section',
+  labels: {
+    singular: 'Two Column Layout Section',
+    plural: 'Two Column Layout Sections',
+  },
   fields: [
     {
       name: 'imageLists',
