@@ -49,15 +49,15 @@ const images = [
 
 export default function Function() {
   return (
-    <section className="w-full px-6 py-10 md:py-16 lg:py-20 bg-white">
+    <section className="w-full p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-white">
       <h2 className="text-center text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8 lg:mb-20">
         Cara UI/UX Designer DAU Membantu Perusahaan Anda
       </h2>
 
       <div className="lg:w-[80%] xl:w-[75%] flex flex-col-reverse lg:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 mx-auto">
-        <div className="w-full sm:w-[90%] md:w-[85%] lg:w-1/2 space-y-4 sm:space-y-5 md:space-y-6">
+        <div className="w-full sm:w-[90%] md:w-[85%] lg:w-[55%] space-y-6 lg:space-y-8 xl:space-y-10 2xl:space-y-12">
           {data.map((item, index) => (
-            <div key={index} className="flex items-center gap-4 sm:gap-6">
+            <div key={index} className="flex items-center gap-4 sm:gap-6 lg:gap-8">
               <div className="w-12 h-12 md:w-14 md:h-14 lg:w-18 lg:h-18 xl:w-24 xl:h-24 2xl:w-28 2xl:h-28 bg-white rounded-full overflow-hidden relative">
                 <div
                   className="absolute inset-0 z-10"
@@ -89,11 +89,11 @@ export default function Function() {
           ))}
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end gap-6">
+        <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-end gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14">
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative w-[50%] lg:w-[80%] max-w-[400px] 2xl:max-w-[500px] aspect-square "
+              className="relative w-[45%] sm:w-[50%] lg:w-[85%] max-w-[400px] 2xl:max-w-[500px] aspect-square "
             >
               <Image src={image.url} alt={image.name} fill className="object-contain" />
             </div>
