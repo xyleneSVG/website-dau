@@ -18,7 +18,7 @@ export type PageSection =
   | IllustrationWithTextAndCarouselSection
   | ImageHeaderParagraphSection
   | ImageHeaderThreeColumnSection
-  | LeaderSection
+  | CircleImageGridSection
   | TwoColumnSection
   | TechnologySection2
   | ListWithIconSection
@@ -183,19 +183,19 @@ export interface GridImageHeaderThreeColumnLists {
   itemDescription: string
 }
 
-// Leader
-export interface LeaderSection {
+// Circle Image Grid
+export interface CircleImageGridSection {
   id: string
-  blockType: 'leaderSection'
-  sectionLeaderTitle: string
-  leaderProfileLists: LeaderProfileLists[]
+  blockType: 'circleImageGridSection'
+  sectionTitle: string
+  gridLists: GridCircleImageLists[]
 }
 
-export interface LeaderProfileLists {
+export interface GridCircleImageLists {
   id: string
-  leaderPhotoProfile: ImageItem
-  leaderName: string
-  leaderPosition: string
+  itemImage: ImageItem
+  itemName: string
+  itemDescription: string
 }
 
 // Two Column Layout

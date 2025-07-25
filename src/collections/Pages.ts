@@ -11,7 +11,7 @@ import { ContactSection } from './block-layout/Contact'
 import { IllustrationWithTextAndCarouselSection } from './block-layout/IllustrationWithTextAndCarousel'
 import { ImageHeaderParagraphSection } from './block-layout/ImageHeaderParagraph'
 import { ImageHeaderThreeColumnSection } from './block-layout/ImageHeaderThreeColumn'
-import { LeaderSection } from './block-layout/Leader'
+import { CircleImageGridSection } from './block-layout/CircleImageGrid'
 import { TwoColumnLayoutSection } from './block-layout/TwoColumnLayout'
 import { TechnologySection2 } from './block-layout/Technology2'
 import { ListWithIconSection } from './block-layout/ListWithIcon'
@@ -98,7 +98,7 @@ export const Pages: CollectionConfig = {
         IllustrationWithTextAndCarouselSection,
         ImageHeaderParagraphSection,
         ImageHeaderThreeColumnSection,
-        LeaderSection,
+        CircleImageGridSection,
         TwoColumnLayoutSection,
         TechnologySection2,
         ListWithIconSection,

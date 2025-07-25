@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const MediaLeader: CollectionConfig = {
-  slug: 'mediaLeader',
+export const MediaCircleImageGrid: CollectionConfig = {
+  slug: 'mediaCircleImageGrid',
   admin: {
     group: 'Storage'
   },
