@@ -645,9 +645,6 @@ export interface TextWithImageClusterSection {
    * Choose a color for this button
    */
   buttonColor?: string | null;
-  /**
-   * Reverse alignment of the content
-   */
   reverseContent?: boolean | null;
   hasBackground?: boolean | null;
   /**
@@ -774,22 +771,22 @@ export interface TwoListWithIllustrationSection {
   sectionDescription: string;
   sectionIllustration: number | MediaTwoListWithIllustration;
   leftSideListTitle: string;
+  leftSideListTitleColor: string;
   leftSideListContentArray?:
     | {
         leftSideListContent: string;
         id?: string | null;
       }[]
     | null;
-  leftSideListTitleColor: string;
   leftSideListColor: string;
   rightSideListTitle: string;
+  rightSideListTitleColor: string;
   rightSideListContentArray?:
     | {
         rightSideListContent: string;
         id?: string | null;
       }[]
     | null;
-  rightSideListTitleColor: string;
   rightSideListColor: string;
   hasButton?: boolean | null;
   buttonText?: string | null;
@@ -1502,22 +1499,22 @@ export interface TwoListWithIllustrationSectionSelect {
   sectionDescription?: boolean;
   sectionIllustration?: boolean;
   leftSideListTitle?: boolean;
+  leftSideListTitleColor?: boolean;
   leftSideListContentArray?:
     | boolean
     | {
         leftSideListContent?: boolean;
         id?: boolean;
       };
-  leftSideListTitleColor?: boolean;
   leftSideListColor?: boolean;
   rightSideListTitle?: boolean;
+  rightSideListTitleColor?: boolean;
   rightSideListContentArray?:
     | boolean
     | {
         rightSideListContent?: boolean;
         id?: boolean;
       };
-  rightSideListTitleColor?: boolean;
   rightSideListColor?: boolean;
   hasButton?: boolean;
   buttonText?: boolean;

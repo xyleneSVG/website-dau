@@ -95,13 +95,24 @@ export const TextWithImageClusterSection: Block = {
       },
     }),
     {
-      name: 'reverseContent',
-      type: 'checkbox',
+      type: 'collapsible',
+      label: 'Reverse Layout Content?',
       admin: {
-        description: 'Reverse alignment of the content',
+        initCollapsed: true,
       },
-      label: 'Reverse Content',
-      defaultValue: false,
+      fields: [
+        {
+          name: 'reverseContent',
+          type: 'checkbox',
+          label: 'Enable',
+          defaultValue: false,
+          admin: {
+            components: {
+              Field: '@/admin/_components/example-of-change/reverseContentTextWithImageCluster',
+            }
+          }
+        },
+      ],
     },
     {
       name: 'hasBackground',
