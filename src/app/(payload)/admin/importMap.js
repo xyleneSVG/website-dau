@@ -24,6 +24,7 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997e
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { IconPickerFieldComponent as IconPickerFieldComponent_d9823501c0742f88e9fd2fbf482c1246 } from '@innovixx/payload-icon-picker-field/components'
+import { default as default_c92c455f774f1b933e94bdc8becbb7df } from '@/admin/_components/example-of-change/reverseContentTextWithImageCluster'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
@@ -53,5 +54,6 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@innovixx/payload-icon-picker-field/components#IconPickerFieldComponent": IconPickerFieldComponent_d9823501c0742f88e9fd2fbf482c1246,
+  "@/admin/_components/example-of-change/reverseContentTextWithImageCluster#default": default_c92c455f774f1b933e94bdc8becbb7df,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }
