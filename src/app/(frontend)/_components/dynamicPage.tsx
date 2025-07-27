@@ -50,7 +50,7 @@ import LoopingCarousel from './_layouts/loopingCarousel'
 import ListWithIcon from './_layouts/list-with-icon/listWithIcon'
 import ListWithIconAndDescription from './_layouts/list-with-icon-and-description/listWithIconAndDescription'
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
-import FaqSection from './_layouts/faq'
+import TextGrid from './_layouts/textGrid'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
 import ListWithIconAndDescription2 from './_layouts/listWithIconAndDescription2'
 import ThreeDimensionCarousel from './_layouts/ThreeDimensionCarousel'
@@ -176,8 +176,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
             getLucideIcon={getLucideIcon}
           />
         )
-      case 'faqSection':
-        return <FaqSection key={index} data={section} />
+      case 'textGridSection':
+        return <TextGrid key={index} data={section} />
       case 'cardWithImageSection':
         return <CardWithImageSection key={index} data={section} domainBlob={domainBlob} />
       case 'listWithIconDesc2Section':

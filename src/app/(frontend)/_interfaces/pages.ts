@@ -23,8 +23,8 @@ export type PageSection =
   | LoopingCarouselSection
   | ListWithIconSection
   | ListWithIconDescSection
-  | TwoListWithIllustration
-  | FaqSection
+  | TwoListWithIllustrationSection
+  | TextGridSection
   | CardWithImage
   | ListWithIconDesc2Section
   | ThreeDimensionCarouselSection
@@ -270,7 +270,7 @@ export interface ContentListsWithIcon {
 }
 
 // Two List With Illustration
-export interface TwoListWithIllustration {
+export interface TwoListWithIllustrationSection {
   id: string
   blockType: 'twoListWithIllustrationSection'
   sectionTitle: string
@@ -301,20 +301,20 @@ export interface RightSideListContentArray {
   rightSideListContent: string
 }
 
-// FAQ
-export interface FaqSection {
+// Text Grid
+export interface TextGridSection {
   id: string
-  blockType: 'faqSection'
+  blockType: 'textGridSection'
   sectionTitle: string
   sectionDescription: string
-  backgroundColor: string
-  sectionFaqArray: SectionFaqArray[]
+  headerColor: string
+  gridArray: GridTextLists[]
 }
 
-export interface SectionFaqArray {
+export interface GridTextLists {
   id: string
-  question: string
-  answer: string
+  itemTitle: string
+  itemDescription: string
 }
 
 // Card With Image

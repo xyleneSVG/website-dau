@@ -5,7 +5,7 @@ import React from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 import { TextWithImageClusterSection } from '../../_interfaces/pages'
-import { RichTextRenderer } from '../richText/richTextRenderer'
+import { RichTextRenderer } from '../_richText/richTextRenderer'
 
 import backgroundIcon2 from 'public/assets/landing/service/backgroundIcon2.svg'
 
