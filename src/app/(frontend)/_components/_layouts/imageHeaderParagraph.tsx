@@ -3,7 +3,7 @@ import React from 'react'
 
 // Interfaces
 import { ImageHeaderParagraphSection } from '../../_interfaces/pages'
-import { RichTextRenderer } from '../richText/richTextRenderer'
+import { RichTextRenderer } from '../_richText/richTextRenderer'
 
 interface Props {
   data: ImageHeaderParagraphSection

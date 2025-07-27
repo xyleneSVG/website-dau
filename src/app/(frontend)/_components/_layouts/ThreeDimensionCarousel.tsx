@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ThreeDimensionCarouselSection } from '../../_interfaces/pages'
-import { RichTextRenderer } from '../richText/richTextRenderer'
+import { RichTextRenderer } from '../_richText/richTextRenderer'
 
 interface ThreeDimensionCarouselProps {
   data: ThreeDimensionCarouselSection

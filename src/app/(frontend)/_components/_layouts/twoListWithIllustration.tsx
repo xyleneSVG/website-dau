@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import React from 'react'
-import type { TwoListWithIllustration } from '../../_interfaces/pages'
+import type { TwoListWithIllustrationSection } from '../../_interfaces/pages'
 import { LucideIcon } from 'lucide-react'
 
 interface TwoListWithIllustrationProps {
-  data: TwoListWithIllustration
+  data: TwoListWithIllustrationSection
   domainBlob: string
   getLucideIcon: (name?: string) => LucideIcon | null
 }

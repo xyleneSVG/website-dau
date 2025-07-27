@@ -1,12 +1,14 @@
-import { customLucideIcon } from '@/admin/_fields/listIcon'
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
-import { iconPickerField } from '@innovixx/payload-icon-picker-field'
 import type { Block } from 'payload'
 
-export const FaqSection: Block = {
-  slug: 'faqSection',
-  imageURL: '/assets/landing/hero/thumbnail.png',
-  interfaceName: 'FAQ Section',
+export const TextGridSection: Block = {
+  slug: 'textGridSection',
+  imageURL: '/assets/skeleton/TextGridSection.svg',
+  labels: {
+    singular: 'Text Grid Section',
+    plural: 'Text Grid Sections',
+  },
+  interfaceName: 'Text Grid Section',
   fields: [
     {
       name: 'sectionTitle',
@@ -20,30 +22,30 @@ export const FaqSection: Block = {
       type: 'textarea',
       required: true,
     },
+    colorPickerField({
+      name: 'headerColor',
+      label: 'Header Color',
+      required: true,
+    }),
     {
-      name: 'sectionFaqArray',
-      label: 'FAQ Array',
+      name: 'gridArray',
+      label: 'Grid Array',
       type: 'array',
       minRows: 1,
       fields: [
         {
-          name: 'question',
-          label: 'Question',
+          name: 'itemTitle',
+          label: 'Item Title',
           type: 'text',
           required: true,
         },
         {
-          name: 'answer',
-          label: 'Answer',
+          name: 'itemDescription',
+          label: 'Item Description',
           type: 'textarea',
           required: true,
         },
       ],
     },
-    colorPickerField({
-      name: 'backgroundColor',
-      label: 'Background Color',
-      required: true,
-    }),
   ],
 }

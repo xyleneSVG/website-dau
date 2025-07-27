@@ -186,7 +186,7 @@ export interface Page {
         | ListWithIconSection
         | ListWithIconAndDescriptionSection
         | TwoListWithIllustrationSection
-        | FAQSection
+        | TextGridSection
         | CardWithImageSection
         | ListWithIconAndDescription2Section
         | DCarouselSection
@@ -821,22 +821,22 @@ export interface MediaTwoListWithIllustration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQ Section".
+ * via the `definition` "Text Grid Section".
  */
-export interface FAQSection {
+export interface TextGridSection {
   sectionTitle: string;
   sectionDescription: string;
-  sectionFaqArray?:
+  headerColor: string;
+  gridArray?:
     | {
-        question: string;
-        answer: string;
+        itemTitle: string;
+        itemDescription: string;
         id?: string | null;
       }[]
     | null;
-  backgroundColor: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'faqSection';
+  blockType: 'textGridSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1231,7 +1231,7 @@ export interface PagesSelect<T extends boolean = true> {
         listWithIconSection?: T | ListWithIconSectionSelect<T>;
         listWithIconDescSection?: T | ListWithIconAndDescriptionSectionSelect<T>;
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
-        faqSection?: T | FAQSectionSelect<T>;
+        textGridSection?: T | TextGridSectionSelect<T>;
         cardWithImageSection?: T | CardWithImageSectionSelect<T>;
         listWithIconDesc2Section?: T | ListWithIconAndDescription2SectionSelect<T>;
         threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
@@ -1526,19 +1526,19 @@ export interface TwoListWithIllustrationSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQ Section_select".
+ * via the `definition` "Text Grid Section_select".
  */
-export interface FAQSectionSelect {
+export interface TextGridSectionSelect {
   sectionTitle?: boolean;
   sectionDescription?: boolean;
-  sectionFaqArray?:
+  headerColor?: boolean;
+  gridArray?:
     | boolean
     | {
-        question?: boolean;
-        answer?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
-  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
