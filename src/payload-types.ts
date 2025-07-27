@@ -844,15 +844,15 @@ export interface TextGridSection {
  */
 export interface CardWithImageSection {
   sectionTitle: string;
-  sectionCardArray?:
+  headerColor: string;
+  cardArray?:
     | {
-        cardThumbnail: number | MediaCardWithImage;
-        cardTitle: string;
-        cardDescription: string;
+        itemThumbnail: number | MediaCardWithImage;
+        itemTitle: string;
+        itemDescription: string;
         id?: string | null;
       }[]
     | null;
-  backgroundColor: string;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cardWithImageSection';
@@ -1548,15 +1548,15 @@ export interface TextGridSectionSelect {
  */
 export interface CardWithImageSectionSelect {
   sectionTitle?: boolean;
-  sectionCardArray?:
+  headerColor?: boolean;
+  cardArray?:
     | boolean
     | {
-        cardThumbnail?: boolean;
-        cardTitle?: boolean;
-        cardDescription?: boolean;
+        itemThumbnail?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
-  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }

@@ -1,18 +1,18 @@
 'use client'
 
 import React from 'react'
-import type { CardWithImage } from '@/app/(frontend)/_interfaces/pages'
+import { CardWithImageSection } from '@/app/(frontend)/_interfaces/pages'
 import CardWithImageComponent from './cardWithImageComponent'
 
-interface CardWithImageSectionProps {
-  data: CardWithImage
+interface Props {
+  data: CardWithImageSection
   domainBlob: string
 }
 
-export default function CardWithImageSection({data, domainBlob}: CardWithImageSectionProps) {
+export default function CardWithImage({ data, domainBlob }: Props) {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative py-16 px-6 overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[15%] sm:h-[20%] lg:h-[30%] bg-[#E3F1FE] z-0" />
+      <div className="absolute top-0 left-0 w-full h-[15%] sm:h-[20%] lg:h-[30%] z-0" style={{backgroundColor: data.headerColor}}/>
 
       <div className="relative z-10 md:w-[85%] xl:max-w-6xl mx-auto">
         <h2 className="text-center text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 uppercase">
@@ -20,14 +20,15 @@ export default function CardWithImageSection({data, domainBlob}: CardWithImageSe
         </h2>
 
         <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-          {data.sectionCardArray.map((item, index) => (
-            <CardWithImageComponent
-              key={index}
-              image={domainBlob+item.cardThumbnail.filename}
-              title={item.cardTitle}
-              description={item.cardDescription}
-            />
-          ))}
+          {Array.isArray(data.cardArray) &&
+            data.cardArray.map((item, index) => (
+              <CardWithImageComponent
+                key={index}
+                image={domainBlob + item.itemThumbnail?.filename}
+                title={item.itemTitle}
+                description={item.itemDescription}
+              />
+            ))}
         </div>
       </div>
     </section>

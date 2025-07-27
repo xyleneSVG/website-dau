@@ -17,7 +17,7 @@ export default function CardWithImageComponent({
       <div className="relative w-full h-40 md:h-48">
         <Image
           src={image}
-          alt={title}
+          alt={title || ''}
           fill
           className="object-cover"
         />
