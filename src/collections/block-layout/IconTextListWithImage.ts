@@ -4,14 +4,14 @@ import { iconPickerField } from '@innovixx/payload-icon-picker-field'
 import { customLucideIcon } from '@/admin/_fields/listIcon'
 import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
-export const ListWithIconDesc2Section: Block = {
-  slug: 'listWithIconDesc2Section',
+export const IconTextListWithImageSection: Block = {
+  slug: 'iconTextListWithImageSection',
   labels: {
-    singular: 'List With Icon and Description 2 Section',
-    plural: 'List With Icon and Description 2 Sections',
+    singular: 'Icon Text List With Image Section',
+    plural: 'Icon Text List With Image Sections',
   },
-  imageURL: '/assets/landing/hero/thumbnail.png',
-  interfaceName: 'List With Icon and Description 2 Section',
+  imageURL: '/assets/skeleton/iconTextListWithImage.svg',
+  interfaceName: 'Icon Text List With Image Section',
   fields: [
     {
       name: 'sectionTitle',
@@ -23,7 +23,7 @@ export const ListWithIconDesc2Section: Block = {
       name: 'sectionIllustration',
       type: 'upload',
       label: 'Section Illustration',
-      relationTo: 'mediaListWithIconAndDescription',
+      relationTo: 'mediaIconTextListWithImage',
       required: true
     },
     {
@@ -34,29 +34,28 @@ export const ListWithIconDesc2Section: Block = {
       label: 'Content Lists',
       fields: [
         iconPickerField({
-          name: 'contentIcon',
-          label: 'Content Icon',
+          name: 'itemIcon',
+          label: 'Item Icon',
           required: true,
           icons: customLucideIcon,
         }),
         {
-          name: 'contentName',
+          name: 'itemTitle',
           type: 'text',
           required: true,
-          label: 'Content Name',
+          label: 'Item Title',
         },
         {
-          name: 'contentDesc',
+          name: 'itemDescription',
           type: 'textarea',
           required: true,
-          label: 'Content Description',
+          label: 'Item Description',
         },
       ],
     },
     colorPickerField({
       name: 'iconColor',
       label: 'Icon Color',
-      required: false,
       admin: {
         description: 'Choose a color for this icon',
       },
@@ -64,7 +63,6 @@ export const ListWithIconDesc2Section: Block = {
     colorPickerField({
       name: 'backgroundIconColor',
       label: 'Background Icon Color',
-      required: false,
       admin: {
         description: 'Choose a color for this background icon',
       },

@@ -38,6 +38,7 @@ import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
 import { MediaListWithIconAndDescription } from './collections/storage/MediaListWithIconAndDescription'
 import { MediaThreeDimensionCarousel } from './collections/storage/MediaThreeDimensionCarousel'
 import { MediaHero2 } from './collections/storage/MediaHero2'
+import { MediaIconTextListWithImage } from './collections/storage/MediaIconTextListWithImage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -82,6 +83,7 @@ export default buildConfig({
     MediaListWithIconAndDescription,
     MediaThreeDimensionCarousel,
     MediaHero2,
+    MediaIconTextListWithImage
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -114,6 +116,7 @@ export default buildConfig({
         mediaTwoListWithIllustration: true,
         mediaCardWithImage: true,
         mediaListWithIconAndDescription: true,
+        mediaIconTextListWithImage: true,
         mediaThreeDimensionCarousel: true,
         mediaHero2: true,
       },

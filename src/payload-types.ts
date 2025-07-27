@@ -89,6 +89,7 @@ export interface Config {
     mediaListWithIconAndDescription: MediaListWithIconAndDescription;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarousel;
     mediaHero2: MediaHero2;
+    mediaIconTextListWithImage: MediaIconTextListWithImage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -117,6 +118,7 @@ export interface Config {
     mediaListWithIconAndDescription: MediaListWithIconAndDescriptionSelect<false> | MediaListWithIconAndDescriptionSelect<true>;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarouselSelect<false> | MediaThreeDimensionCarouselSelect<true>;
     mediaHero2: MediaHero2Select<false> | MediaHero2Select<true>;
+    mediaIconTextListWithImage: MediaIconTextListWithImageSelect<false> | MediaIconTextListWithImageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -188,7 +190,7 @@ export interface Page {
         | TwoListWithIllustrationSection
         | TextGridSection
         | CardWithImageSection
-        | ListWithIconAndDescription2Section
+        | IconTextListWithImageSection
         | DCarouselSection
         | Hero2Section
       )[]
@@ -878,15 +880,15 @@ export interface MediaCardWithImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "List With Icon and Description 2 Section".
+ * via the `definition` "Icon Text List With Image Section".
  */
-export interface ListWithIconAndDescription2Section {
+export interface IconTextListWithImageSection {
   sectionTitle: string;
-  sectionIllustration: number | MediaListWithIconAndDescription;
+  sectionIllustration: number | MediaIconTextListWithImage;
   contentLists: {
-    contentIcon: string;
-    contentName: string;
-    contentDesc: string;
+    itemIcon: string;
+    itemTitle: string;
+    itemDescription: string;
     id?: string | null;
   }[];
   /**
@@ -899,13 +901,13 @@ export interface ListWithIconAndDescription2Section {
   backgroundIconColor?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'listWithIconDesc2Section';
+  blockType: 'iconTextListWithImageSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaListWithIconAndDescription".
+ * via the `definition` "mediaIconTextListWithImage".
  */
-export interface MediaListWithIconAndDescription {
+export interface MediaIconTextListWithImage {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1069,6 +1071,25 @@ export interface MediaGridCarousel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaListWithIconAndDescription".
+ */
+export interface MediaListWithIconAndDescription {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1161,6 +1182,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaHero2';
         value: number | MediaHero2;
+      } | null)
+    | ({
+        relationTo: 'mediaIconTextListWithImage';
+        value: number | MediaIconTextListWithImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1233,7 +1258,7 @@ export interface PagesSelect<T extends boolean = true> {
         twoListWithIllustrationSection?: T | TwoListWithIllustrationSectionSelect<T>;
         textGridSection?: T | TextGridSectionSelect<T>;
         cardWithImageSection?: T | CardWithImageSectionSelect<T>;
-        listWithIconDesc2Section?: T | ListWithIconAndDescription2SectionSelect<T>;
+        iconTextListWithImageSection?: T | IconTextListWithImageSectionSelect<T>;
         threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
         hero2Section?: T | Hero2SectionSelect<T>;
       };
@@ -1562,17 +1587,17 @@ export interface CardWithImageSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "List With Icon and Description 2 Section_select".
+ * via the `definition` "Icon Text List With Image Section_select".
  */
-export interface ListWithIconAndDescription2SectionSelect {
+export interface IconTextListWithImageSectionSelect {
   sectionTitle?: boolean;
   sectionIllustration?: boolean;
   contentLists?:
     | boolean
     | {
-        contentIcon?: boolean;
-        contentName?: boolean;
-        contentDesc?: boolean;
+        itemIcon?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
   iconColor?: boolean;
@@ -1969,6 +1994,24 @@ export interface MediaThreeDimensionCarouselSelect<T extends boolean = true> {
  * via the `definition` "mediaHero2_select".
  */
 export interface MediaHero2Select<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaIconTextListWithImage_select".
+ */
+export interface MediaIconTextListWithImageSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
