@@ -318,19 +318,19 @@ export interface GridTextLists {
 }
 
 // Card With Image
-export interface CardWithImage {
+export interface CardWithImageSection {
   id: string
   blockType: 'cardWithImageSection'
   sectionTitle: string
-  backgroundColor: string
-  sectionCardArray: SectionCardArray[]
+  headerColor: string
+  cardArray: SectionCardArray[]
 }
 
 export interface SectionCardArray {
   id: string
-  cardThumbnail: ImageItem
-  cardTitle: string
-  cardDescription: string
+  itemThumbnail: ImageItem
+  itemTitle: string
+  itemDescription: string
 }
 
 // List With Icon & Desc 2

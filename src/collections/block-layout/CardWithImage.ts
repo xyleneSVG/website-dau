@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 
 export const CardWithImageSection: Block = {
   slug: 'cardWithImageSection',
-  imageURL: '/assets/landing/hero/thumbnail.png',
+  imageURL: '/assets/skeleton/cardWithImage.svg',
   interfaceName: 'Card With Image Section',
   labels: {
     singular: 'Card With Image Section',
@@ -16,37 +16,37 @@ export const CardWithImageSection: Block = {
       type: 'text',
       required: true,
     },
+    colorPickerField({
+      name: 'headerColor',
+      label: 'Header Color',
+      required: true,
+    }),
     {
-      name: 'sectionCardArray',
+      name: 'cardArray',
       label: 'Card Array',
       type: 'array',
       minRows: 1,
       fields: [
         {
-          name: 'cardThumbnail',
-          label: 'Thumbnail',
+          name: 'itemThumbnail',
+          label: 'Item Thumbnail',
           type: 'upload',
           relationTo: 'mediaCardWithImage',
           required: true,
         },
         {
-          name: 'cardTitle',
-          label: 'Title',
+          name: 'itemTitle',
+          label: 'Item Title',
           type: 'text',
           required: true,
         },
         {
-          name: 'cardDescription',
-          label: 'Description',
+          name: 'itemDescription',
+          label: 'Item Description',
           type: 'textarea',
           required: true,
         },
       ],
     },
-    colorPickerField({
-      name: 'backgroundColor',
-      label: 'Background Color',
-      required: true,
-    }),
   ],
 }
