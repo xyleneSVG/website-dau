@@ -19,7 +19,7 @@ import { ListWithIconDescSection } from './block-layout/ListWithIconDesc'
 import { TwoListWithIllustrationSection } from './block-layout/TwoListWithIllustration'
 import { TextGridSection } from './block-layout/TextGridSection'
 import { CardWithImageSection } from './block-layout/CardWithImage'
-import { ListWithIconDesc2Section } from './block-layout/ListWithIconDesc2'
+import { IconTextListWithImageSection } from './block-layout/IconTextListWithImage'
 import { ThreeDimensionCarouselSection } from './block-layout/ThreeDimensionCarousel'
 import { Hero2Section } from './block-layout/Hero2'
 
@@ -106,7 +106,7 @@ export const Pages: CollectionConfig = {
         TwoListWithIllustrationSection,
         TextGridSection,
         CardWithImageSection,
-        ListWithIconDesc2Section,
+        IconTextListWithImageSection,
         ThreeDimensionCarouselSection,
         Hero2Section,
       ],

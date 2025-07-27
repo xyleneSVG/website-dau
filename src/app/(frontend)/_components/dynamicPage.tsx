@@ -52,7 +52,7 @@ import ListWithIconAndDescription from './_layouts/list-with-icon-and-descriptio
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
 import TextGrid from './_layouts/textGrid'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
-import ListWithIconAndDescription2 from './_layouts/listWithIconAndDescription2'
+import IconTextListWithImage from './_layouts/IconTextListWithImage'
 import ThreeDimensionCarousel from './_layouts/ThreeDimensionCarousel'
 
 // interfaces
@@ -180,9 +180,9 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <TextGrid key={index} data={section} />
       case 'cardWithImageSection':
         return <CardWithImageSection key={index} data={section} domainBlob={domainBlob} />
-      case 'listWithIconDesc2Section':
+      case 'iconTextListWithImageSection':
         return (
-          <ListWithIconAndDescription2
+          <IconTextListWithImage
             key={index}
             data={section}
             domainBlob={domainBlob}
