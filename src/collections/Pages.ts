@@ -22,6 +22,7 @@ import { CardWithImageSection } from './block-layout/CardWithImage'
 import { IconTextListWithImageSection } from './block-layout/IconTextListWithImage'
 import { ThreeDimensionCarouselSection } from './block-layout/ThreeDimensionCarousel'
 import { LayeredTextOnImageSection } from './block-layout/LayeredTextOnImage'
+import { TextAlignCenterSection } from './block-layout/TextAlignCenter'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -109,6 +110,7 @@ export const Pages: CollectionConfig = {
         IconTextListWithImageSection,
         ThreeDimensionCarouselSection,
         LayeredTextOnImageSection,
+        TextAlignCenterSection
       ],
     },
   ],

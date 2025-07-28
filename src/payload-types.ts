@@ -193,6 +193,7 @@ export interface Page {
         | IconTextListWithImageSection
         | DCarouselSection
         | LayeredTextOnImageSection
+        | TextAlignCenterSection
       )[]
     | null;
   updatedAt: string;
@@ -1007,6 +1008,17 @@ export interface MediaLayeredTextOnImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text Align Center Section".
+ */
+export interface TextAlignCenterSection {
+  sectionTitle: string;
+  sectionDescription: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textAlignCenterSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1261,6 +1273,7 @@ export interface PagesSelect<T extends boolean = true> {
         iconTextListWithImageSection?: T | IconTextListWithImageSectionSelect<T>;
         threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
         layeredTextOnImageSection?: T | LayeredTextOnImageSectionSelect<T>;
+        textAlignCenterSection?: T | TextAlignCenterSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1630,6 +1643,16 @@ export interface LayeredTextOnImageSectionSelect {
   sectionTitle?: boolean;
   sectionSubtitle?: boolean;
   sectionBackground?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text Align Center Section_select".
+ */
+export interface TextAlignCenterSectionSelect {
+  sectionTitle?: boolean;
+  sectionDescription?: boolean;
   id?: boolean;
   blockName?: boolean;
 }

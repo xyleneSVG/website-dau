@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 
 export const TextGridSection: Block = {
   slug: 'textGridSection',
-  imageURL: '/assets/skeleton/TextGridSection.svg',
+  imageURL: '/assets/skeleton/textGridSection.svg',
   labels: {
     singular: 'Text Grid Section',
     plural: 'Text Grid Sections',
