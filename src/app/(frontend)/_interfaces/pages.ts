@@ -354,16 +354,16 @@ export interface ContentIconTextLists {
 // Three Dimension Carousel
 export interface ThreeDimensionCarouselSection {
   id: string
-  blockType: 'threeDimensionCarousel'
+  blockType: 'threeDimensionCarouselSection'
   sectionTitle: RichTextContent
   carouselItems: ThreeDimensionCarouselItems[]
 }
 
 export interface ThreeDimensionCarouselItems {
   id: string
-  title: string
-  description: string
-  icon: ImageItem
+  itemTitle: string
+  itemDescription: string
+  itemIcon: ImageItem
 }
 
 // Hero 2

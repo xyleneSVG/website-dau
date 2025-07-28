@@ -946,9 +946,9 @@ export interface DCarouselSection {
    * Carousel items must be 3
    */
   carouselItems: {
-    title: string;
-    description: string;
-    icon: number | MediaThreeDimensionCarousel;
+    itemTitle: string;
+    itemDescription: string;
+    itemIcon: number | MediaThreeDimensionCarousel;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1614,9 +1614,9 @@ export interface DCarouselSectionSelect {
   carouselItems?:
     | boolean
     | {
-        title?: boolean;
-        description?: boolean;
-        icon?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
+        itemIcon?: boolean;
         id?: boolean;
       };
   id?: boolean;

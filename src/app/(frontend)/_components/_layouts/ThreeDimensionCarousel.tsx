@@ -15,6 +15,7 @@ interface ThreeDimensionCarouselProps {
 export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimensionCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const hasRichText = data.sectionTitle?.root?.children?.length > 0
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640)
@@ -53,7 +54,7 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
       <div className="w-full bg-[#E3F1FE]">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="text-start text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] font-light uppercase">
-            <RichTextRenderer content={data.sectionTitle.root} />
+            {hasRichText && <RichTextRenderer content={data.sectionTitle.root} />}
           </div>
         </div>
       </div>
@@ -69,33 +70,34 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
           </button>
 
           <div className="relative w-full sm:w-[80%] h-full flex items-center justify-center">
-            {data.carouselItems.map((item, index) => {
-              const position = getPosition(index)
-              if (position === 'hidden') return null
+            {Array.isArray(data.carouselItems) &&
+              data.carouselItems.map((item, index) => {
+                const position = getPosition(index)
+                if (position === 'hidden') return null
 
-              return (
-                <motion.div
-                  key={item.id}
-                  variants={imageVariants}
-                  animate={position}
-                  transition={{ duration: 0.4 }}
-                  className={`absolute ${
-                    position === 'active'
-                      ? 'w-[120px] sm:w-[180px] md:w-[250px] h-[120px] sm:h-[180px] md:h-[250px]'
-                      : 'w-[80px] sm:w-[120px] md:w-[150px] h-[80px] sm:h-[120px] md:h-[150px]'
-                  }`}
-                >
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={domainBlob + item.icon.filename}
-                      alt={item.title}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </motion.div>
-              )
-            })}
+                return (
+                  <motion.div
+                    key={item.id}
+                    variants={imageVariants}
+                    animate={position}
+                    transition={{ duration: 0.4 }}
+                    className={`absolute ${
+                      position === 'active'
+                        ? 'w-[120px] sm:w-[180px] md:w-[250px] h-[120px] sm:h-[180px] md:h-[250px]'
+                        : 'w-[80px] sm:w-[120px] md:w-[150px] h-[80px] sm:h-[120px] md:h-[150px]'
+                    }`}
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={domainBlob + item.itemIcon?.filename}
+                        alt={item.itemTitle || ''}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </motion.div>
+                )
+              })}
           </div>
 
           <button
@@ -107,23 +109,25 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
         </div>
 
         {/* Description */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={data.carouselItems[activeIndex].id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="mt-4 md:mt-8 text-center max-w-3xl mx-auto px-2"
-          >
-            <h3 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold mb-2">
-              {data.carouselItems[activeIndex].title}
-            </h3>
-            <p className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[18px] 2xl:text-[24px] text-justify">
-              {data.carouselItems[activeIndex].description}
-            </p>
-          </motion.div>
-        </AnimatePresence>
+        {Array.isArray(data.carouselItems) && data.carouselItems.length > 0 && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={data.carouselItems[activeIndex].id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 md:mt-8 text-center max-w-3xl mx-auto px-2"
+            >
+              <h3 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-bold mb-2">
+                {data.carouselItems[activeIndex]?.itemTitle}
+              </h3>
+              <p className="text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[18px] 2xl:text-[24px] text-justify">
+                {data.carouselItems[activeIndex]?.itemDescription}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </div>
   )

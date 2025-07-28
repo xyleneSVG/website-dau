@@ -2,7 +2,7 @@ import type { Block } from 'payload'
 
 export const ThreeDimensionCarouselSection: Block = {
   slug: 'threeDimensionCarouselSection',
-  imageURL: '/assets/landing/hero/thumbnail.png',
+  imageURL: '/assets/skeleton/threeDimensionCarousel.svg',
   labels: {
     singular: '3D Carousel Section',
     plural: '3D Carousel Sections',
@@ -23,22 +23,22 @@ export const ThreeDimensionCarouselSection: Block = {
       label: 'Carousel Items',
       fields: [
         {
-          name: 'title',
+          name: 'itemTitle',
           type: 'text',
-          label: 'Title',
+          label: 'Item Title',
           required: true,
         },
         {
-          name: 'description',
+          name: 'itemDescription',
           type: 'textarea',
-          label: 'Description',
+          label: 'Item Description',
           required: true,
         },
         {
-          name: 'icon',
+          name: 'itemIcon',
           type: 'upload',
           relationTo: 'mediaThreeDimensionCarousel',
-          label: 'Icon',
+          label: 'Item Icon',
           required: true,
         },
       ],
