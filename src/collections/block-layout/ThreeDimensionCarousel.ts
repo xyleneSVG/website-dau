@@ -13,6 +13,7 @@ export const ThreeDimensionCarouselSection: Block = {
       name: 'sectionTitle',
       type: 'richText',
       label: 'Section Title',
+      required: true
     },
     {
       name: 'carouselItems',

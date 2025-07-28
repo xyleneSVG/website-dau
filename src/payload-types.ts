@@ -90,6 +90,7 @@ export interface Config {
     mediaThreeDimensionCarousel: MediaThreeDimensionCarousel;
     mediaLayeredTextOnImage: MediaLayeredTextOnImage;
     mediaIconTextListWithImage: MediaIconTextListWithImage;
+    mediaGridImage: MediaGridImage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -119,6 +120,7 @@ export interface Config {
     mediaThreeDimensionCarousel: MediaThreeDimensionCarouselSelect<false> | MediaThreeDimensionCarouselSelect<true>;
     mediaLayeredTextOnImage: MediaLayeredTextOnImageSelect<false> | MediaLayeredTextOnImageSelect<true>;
     mediaIconTextListWithImage: MediaIconTextListWithImageSelect<false> | MediaIconTextListWithImageSelect<true>;
+    mediaGridImage: MediaGridImageSelect<false> | MediaGridImageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -194,6 +196,7 @@ export interface Page {
         | DCarouselSection
         | LayeredTextOnImageSection
         | TextAlignCenterSection
+        | GridImageSection
       )[]
     | null;
   updatedAt: string;
@@ -928,7 +931,7 @@ export interface MediaIconTextListWithImage {
  * via the `definition` "3D Carousel Section".
  */
 export interface DCarouselSection {
-  sectionTitle?: {
+  sectionTitle: {
     root: {
       type: string;
       children: {
@@ -942,7 +945,7 @@ export interface DCarouselSection {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
+  };
   /**
    * Carousel items must be 3
    */
@@ -1016,6 +1019,56 @@ export interface TextAlignCenterSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'textAlignCenterSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Grid Image Section".
+ */
+export interface GridImageSection {
+  sectionTitle: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  gridImage?:
+    | {
+        image: number | MediaGridImage;
+        imageDescription: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gridImageSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaGridImage".
+ */
+export interface MediaGridImage {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1198,6 +1251,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaIconTextListWithImage';
         value: number | MediaIconTextListWithImage;
+      } | null)
+    | ({
+        relationTo: 'mediaGridImage';
+        value: number | MediaGridImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1274,6 +1331,7 @@ export interface PagesSelect<T extends boolean = true> {
         threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
         layeredTextOnImageSection?: T | LayeredTextOnImageSectionSelect<T>;
         textAlignCenterSection?: T | TextAlignCenterSectionSelect<T>;
+        gridImageSection?: T | GridImageSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1658,6 +1716,22 @@ export interface TextAlignCenterSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Grid Image Section_select".
+ */
+export interface GridImageSectionSelect {
+  sectionTitle?: boolean;
+  gridImage?:
+    | boolean
+    | {
+        image?: boolean;
+        imageDescription?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -2035,6 +2109,24 @@ export interface MediaLayeredTextOnImageSelect<T extends boolean = true> {
  * via the `definition` "mediaIconTextListWithImage_select".
  */
 export interface MediaIconTextListWithImageSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaGridImage_select".
+ */
+export interface MediaGridImageSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
