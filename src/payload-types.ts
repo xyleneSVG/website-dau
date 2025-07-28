@@ -88,7 +88,7 @@ export interface Config {
     mediaCardWithImage: MediaCardWithImage;
     mediaListWithIconAndDescription: MediaListWithIconAndDescription;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarousel;
-    mediaHero2: MediaHero2;
+    mediaLayeredTextOnImage: MediaLayeredTextOnImage;
     mediaIconTextListWithImage: MediaIconTextListWithImage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -117,7 +117,7 @@ export interface Config {
     mediaCardWithImage: MediaCardWithImageSelect<false> | MediaCardWithImageSelect<true>;
     mediaListWithIconAndDescription: MediaListWithIconAndDescriptionSelect<false> | MediaListWithIconAndDescriptionSelect<true>;
     mediaThreeDimensionCarousel: MediaThreeDimensionCarouselSelect<false> | MediaThreeDimensionCarouselSelect<true>;
-    mediaHero2: MediaHero2Select<false> | MediaHero2Select<true>;
+    mediaLayeredTextOnImage: MediaLayeredTextOnImageSelect<false> | MediaLayeredTextOnImageSelect<true>;
     mediaIconTextListWithImage: MediaIconTextListWithImageSelect<false> | MediaIconTextListWithImageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -192,7 +192,7 @@ export interface Page {
         | CardWithImageSection
         | IconTextListWithImageSection
         | DCarouselSection
-        | Hero2Section
+        | LayeredTextOnImageSection
       )[]
     | null;
   updatedAt: string;
@@ -976,21 +976,21 @@ export interface MediaThreeDimensionCarousel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero2 Section".
+ * via the `definition` "Layered Text On Image Section".
  */
-export interface Hero2Section {
-  sectionTextBold: string;
-  sectionTextLight: string;
-  sectionBackground: number | MediaHero2;
+export interface LayeredTextOnImageSection {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  sectionBackground: number | MediaLayeredTextOnImage;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'hero2Section';
+  blockType: 'layeredTextOnImageSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaHero2".
+ * via the `definition` "mediaLayeredTextOnImage".
  */
-export interface MediaHero2 {
+export interface MediaLayeredTextOnImage {
   id: number;
   alt: string;
   updatedAt: string;
@@ -1180,8 +1180,8 @@ export interface PayloadLockedDocument {
         value: number | MediaThreeDimensionCarousel;
       } | null)
     | ({
-        relationTo: 'mediaHero2';
-        value: number | MediaHero2;
+        relationTo: 'mediaLayeredTextOnImage';
+        value: number | MediaLayeredTextOnImage;
       } | null)
     | ({
         relationTo: 'mediaIconTextListWithImage';
@@ -1260,7 +1260,7 @@ export interface PagesSelect<T extends boolean = true> {
         cardWithImageSection?: T | CardWithImageSectionSelect<T>;
         iconTextListWithImageSection?: T | IconTextListWithImageSectionSelect<T>;
         threeDimensionCarouselSection?: T | DCarouselSectionSelect<T>;
-        hero2Section?: T | Hero2SectionSelect<T>;
+        layeredTextOnImageSection?: T | LayeredTextOnImageSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1624,11 +1624,11 @@ export interface DCarouselSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero2 Section_select".
+ * via the `definition` "Layered Text On Image Section_select".
  */
-export interface Hero2SectionSelect {
-  sectionTextBold?: boolean;
-  sectionTextLight?: boolean;
+export interface LayeredTextOnImageSectionSelect {
+  sectionTitle?: boolean;
+  sectionSubtitle?: boolean;
   sectionBackground?: boolean;
   id?: boolean;
   blockName?: boolean;
@@ -1991,9 +1991,9 @@ export interface MediaThreeDimensionCarouselSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaHero2_select".
+ * via the `definition` "mediaLayeredTextOnImage_select".
  */
-export interface MediaHero2Select<T extends boolean = true> {
+export interface MediaLayeredTextOnImageSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -21,7 +21,7 @@ import { TextGridSection } from './block-layout/TextGridSection'
 import { CardWithImageSection } from './block-layout/CardWithImage'
 import { IconTextListWithImageSection } from './block-layout/IconTextListWithImage'
 import { ThreeDimensionCarouselSection } from './block-layout/ThreeDimensionCarousel'
-import { Hero2Section } from './block-layout/Hero2'
+import { LayeredTextOnImageSection } from './block-layout/LayeredTextOnImage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -108,7 +108,7 @@ export const Pages: CollectionConfig = {
         CardWithImageSection,
         IconTextListWithImageSection,
         ThreeDimensionCarouselSection,
-        Hero2Section,
+        LayeredTextOnImageSection,
       ],
     },
   ],
