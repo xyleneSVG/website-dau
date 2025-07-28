@@ -28,6 +28,7 @@ export type PageSection =
   | CardWithImageSection
   | IconTextListWithImageSection
   | ThreeDimensionCarouselSection
+  | LayeredTextOnImageSection
 
 // Hero
 export interface HeroSection {
@@ -366,12 +367,12 @@ export interface ThreeDimensionCarouselItems {
   itemIcon: ImageItem
 }
 
-// Hero 2
-export interface Hero2Section {
+// Layered Text On Image
+export interface LayeredTextOnImageSection {
   id: string
-  blockType: 'hero2Section'
-  sectionTextBold: string
-  sectionTextLight: string
+  blockType: 'layeredTextOnImageSection'
+  sectionTitle: string
+  sectionSubtitle: string
   sectionBackground: ImageItem
 }
 

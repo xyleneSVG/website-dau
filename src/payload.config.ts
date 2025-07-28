@@ -37,7 +37,7 @@ import { MediaTwoListWithIllustration } from './collections/storage/MediaTwoList
 import { MediaCardWithImage } from './collections/storage/MediaCardWithImage'
 import { MediaListWithIconAndDescription } from './collections/storage/MediaListWithIconAndDescription'
 import { MediaThreeDimensionCarousel } from './collections/storage/MediaThreeDimensionCarousel'
-import { MediaHero2 } from './collections/storage/MediaHero2'
+import { MediaLayeredTextOnImage } from './collections/storage/MediaLayeredTextOnImage'
 import { MediaIconTextListWithImage } from './collections/storage/MediaIconTextListWithImage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -82,7 +82,7 @@ export default buildConfig({
     MediaCardWithImage,
     MediaListWithIconAndDescription,
     MediaThreeDimensionCarousel,
-    MediaHero2,
+    MediaLayeredTextOnImage,
     MediaIconTextListWithImage
   ],
   editor: lexicalEditor(),
@@ -118,7 +118,7 @@ export default buildConfig({
         mediaListWithIconAndDescription: true,
         mediaIconTextListWithImage: true,
         mediaThreeDimensionCarousel: true,
-        mediaHero2: true,
+        mediaLayeredTextOnImage: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

@@ -35,7 +35,7 @@ import {
 import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
-import Hero2 from './_layouts/hero2'
+import LayeredTextOnImage from './_layouts/layeredTextOnImage'
 import ZigZagList from './_layouts/zigZagList'
 import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
 import QuadGrid from './_layouts/quadGrid'
@@ -191,8 +191,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         )
       case 'threeDimensionCarouselSection':
         return <ThreeDimensionCarousel key={index} data={section} domainBlob={domainBlob} />
-      case 'hero2Section':
-        return <Hero2 key={index} data={section} domainBlob={domainBlob} />
+      case 'layeredTextOnImageSection':
+        return <LayeredTextOnImage key={index} data={section} domainBlob={domainBlob} />
       default:
         return <NotFound />
     }
