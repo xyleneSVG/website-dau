@@ -52,8 +52,8 @@ import ListWithIconAndDescription from './_layouts/list-with-icon-and-descriptio
 import TwoListWithIllustration from './_layouts/twoListWithIllustration'
 import TextGrid from './_layouts/textGrid'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
-import IconTextListWithImage from './_layouts/IconTextListWithImage'
-import ThreeDimensionCarousel from './_layouts/ThreeDimensionCarousel'
+import IconTextListWithImage from './_layouts/iconTextListWithImage'
+import ThreeDimensionCarousel from './_layouts/threeDimensionCarousel'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
