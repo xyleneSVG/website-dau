@@ -31,6 +31,7 @@ export type PageSection =
   | LayeredTextOnImageSection
   | TextAlignCenterSection
   | GridImageSection
+  | IconListWithSideImagesSection
 
 // Hero
 export interface HeroSection {
@@ -398,6 +399,26 @@ export interface GridImageLists {
   id: string,
   image: ImageItem
   imageDescription: string
+}
+
+// Icon List With Side Images
+export interface IconListWithSideImagesSection {
+  id: string
+  sectionTitle: string
+  sectionIllustrationArray: IllustrationArray[]
+  sectionContent: IconListWithSideImagesContentArray[]
+}
+
+export interface IllustrationArray {
+  id: string
+  sectionIllustration: ImageItem
+}
+
+export interface IconListWithSideImagesContentArray {
+  id: string
+  itemImage: ImageItem
+  itemTitle: string
+  itemDescription: string
 }
 
 // Image

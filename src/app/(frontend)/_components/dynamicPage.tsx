@@ -56,6 +56,7 @@ import IconTextListWithImage from './_layouts/iconTextListWithImage'
 import ThreeDimensionCarousel from './_layouts/threeDimensionCarousel'
 import TextAlignCenter from './_layouts/textAlignCenter'
 import GridImage from './_layouts/grid-image/gridImage'
+import IconListWithSideImages from './_layouts/iconListWithSideImages'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -199,6 +200,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <TextAlignCenter key={index} data={section} />
       case 'gridImageSection':
         return <GridImage key={index} data={section} domainBlob={domainBlob} />
+      case 'iconListWithSideImagesSection':
+        return <IconListWithSideImages key={index} data={section} domainBlob={domainBlob} />
       default:
         return <NotFound />
     }
