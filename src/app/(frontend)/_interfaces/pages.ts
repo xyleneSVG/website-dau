@@ -30,6 +30,7 @@ export type PageSection =
   | ThreeDimensionCarouselSection
   | LayeredTextOnImageSection
   | TextAlignCenterSection
+  | GridImageSection
 
 // Hero
 export interface HeroSection {
@@ -383,6 +384,20 @@ export interface TextAlignCenterSection {
   blockType: 'textAlignCenterSection'
   sectionTitle: string
   sectionDescription: string
+}
+
+// Grid Image
+export interface GridImageSection {
+  id: string,
+  blockType: 'gridImageSection',
+  sectionTitle: RichTextContent,
+  gridImage: GridImageLists[]
+}
+
+export interface GridImageLists {
+  id: string,
+  image: ImageItem
+  imageDescription: string
 }
 
 // Image
