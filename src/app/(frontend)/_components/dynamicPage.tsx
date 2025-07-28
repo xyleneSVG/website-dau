@@ -54,6 +54,7 @@ import TextGrid from './_layouts/textGrid'
 import CardWithImageSection from './_layouts/card-with-image/cardWithImageSection'
 import IconTextListWithImage from './_layouts/iconTextListWithImage'
 import ThreeDimensionCarousel from './_layouts/threeDimensionCarousel'
+import TextAlignCenter from './_layouts/textAlignCenter'
 
 // interfaces
 import type { Page } from '../_interfaces/pages'
@@ -193,6 +194,8 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <ThreeDimensionCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'layeredTextOnImageSection':
         return <LayeredTextOnImage key={index} data={section} domainBlob={domainBlob} />
+      case 'textAlignCenterSection':
+        return <TextAlignCenter key={index} data={section} />
       default:
         return <NotFound />
     }
