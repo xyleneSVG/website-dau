@@ -29,6 +29,7 @@ export type PageSection =
   | IconTextListWithImageSection
   | ThreeDimensionCarouselSection
   | LayeredTextOnImageSection
+  | TextAlignCenterSection
 
 // Hero
 export interface HeroSection {
@@ -374,6 +375,14 @@ export interface LayeredTextOnImageSection {
   sectionTitle: string
   sectionSubtitle: string
   sectionBackground: ImageItem
+}
+
+// Text Align Center
+export interface TextAlignCenterSection {
+  id: string
+  blockType: 'textAlignCenterSection'
+  sectionTitle: string
+  sectionDescription: string
 }
 
 // Image
