@@ -91,6 +91,7 @@ export interface Config {
     mediaLayeredTextOnImage: MediaLayeredTextOnImage;
     mediaIconTextListWithImage: MediaIconTextListWithImage;
     mediaGridImage: MediaGridImage;
+    mediaIconListWithSideImages: MediaIconListWithSideImage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -121,6 +122,7 @@ export interface Config {
     mediaLayeredTextOnImage: MediaLayeredTextOnImageSelect<false> | MediaLayeredTextOnImageSelect<true>;
     mediaIconTextListWithImage: MediaIconTextListWithImageSelect<false> | MediaIconTextListWithImageSelect<true>;
     mediaGridImage: MediaGridImageSelect<false> | MediaGridImageSelect<true>;
+    mediaIconListWithSideImages: MediaIconListWithSideImagesSelect<false> | MediaIconListWithSideImagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -197,6 +199,7 @@ export interface Page {
         | LayeredTextOnImageSection
         | TextAlignCenterSection
         | GridImageSection
+        | IconListWithSideImagesSection
       )[]
     | null;
   updatedAt: string;
@@ -1072,6 +1075,45 @@ export interface MediaGridImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Icon List With Side Images Section".
+ */
+export interface IconListWithSideImagesSection {
+  sectionTitle: string;
+  sectionIllustrationArray: {
+    sectionIllustration: number | MediaIconListWithSideImage;
+    id?: string | null;
+  }[];
+  sectionContent: {
+    itemImage: number | MediaIconListWithSideImage;
+    itemTitle: string;
+    itemDescription: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'iconListWithSideImagesSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaIconListWithSideImages".
+ */
+export interface MediaIconListWithSideImage {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1255,6 +1297,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaGridImage';
         value: number | MediaGridImage;
+      } | null)
+    | ({
+        relationTo: 'mediaIconListWithSideImages';
+        value: number | MediaIconListWithSideImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1332,6 +1378,7 @@ export interface PagesSelect<T extends boolean = true> {
         layeredTextOnImageSection?: T | LayeredTextOnImageSectionSelect<T>;
         textAlignCenterSection?: T | TextAlignCenterSectionSelect<T>;
         gridImageSection?: T | GridImageSectionSelect<T>;
+        iconListWithSideImagesSection?: T | IconListWithSideImagesSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1725,6 +1772,29 @@ export interface GridImageSectionSelect {
     | {
         image?: boolean;
         imageDescription?: boolean;
+        id?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Icon List With Side Images Section_select".
+ */
+export interface IconListWithSideImagesSectionSelect {
+  sectionTitle?: boolean;
+  sectionIllustrationArray?:
+    | boolean
+    | {
+        sectionIllustration?: boolean;
+        id?: boolean;
+      };
+  sectionContent?:
+    | boolean
+    | {
+        itemImage?: boolean;
+        itemTitle?: boolean;
+        itemDescription?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -2127,6 +2197,24 @@ export interface MediaIconTextListWithImageSelect<T extends boolean = true> {
  * via the `definition` "mediaGridImage_select".
  */
 export interface MediaGridImageSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaIconListWithSideImages_select".
+ */
+export interface MediaIconListWithSideImagesSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
