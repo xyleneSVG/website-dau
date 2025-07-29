@@ -38,6 +38,9 @@ export default function Hero({
     return () => clearInterval(interval)
   }, [greetings.length])
 
+  useEffect(() => {
+    setCurrentIndex(0) 
+  }, [heroSection.greetings])
 
   return (
     <div className="w-full min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">

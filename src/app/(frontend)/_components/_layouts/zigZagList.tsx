@@ -57,40 +57,39 @@ export default function ZigZagList({ data, domainBlob }: ZigZagListProps) {
           </p>
         </div>
         {Array.isArray(data.contentLists) &&
-          data.contentLists.map(
-            (item: ContentLists, index: number) =>
-              item.contentListIcon?.filename && (
-                <div
-                  key={item.id}
-                  className={`flex flex-col gap-y-6 items-center max-md:max-w-[440px] ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} md:justify-start md:items-center lg:w-[1000px] md:gap-x-6 2xl:gap-x-12 2xl:w-[1200px]`}
+          data.contentLists.map((item: ContentLists, index: number) => (
+            <div
+              key={item.id}
+              className={`flex flex-col gap-y-6 items-center max-md:max-w-[440px] ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} md:justify-start md:items-center lg:w-[1000px] md:gap-x-6 2xl:gap-x-12 2xl:w-[1200px]`}
+            >
+              {item.contentListIcon?.filename && (
+                <Image
+                  src={domainBlob + item.contentListIcon.filename}
+                  width={0}
+                  height={0}
+                  alt=""
+                  className="w-40 h-auto md:w-70 2xl:w-[430px]"
+                />
+              )}
+              <div
+                className={`flex flex-col gap-y-4 text-[14px] ${index % 2 === 1 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}
+              >
+                <p className="uppercase text-[#00DB05] font-bold text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px]">
+                  {item.contentListTitle}
+                </p>
+                <p className="font-light md:max-w-[480px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] 2xl:max-w-[700px]">
+                  {item.contentListDescription}
+                </p>
+                <Link
+                  href={''}
+                  className="border bg-white border-[#00DB05] flex flex-row gap-x-1 text-[#00DB05] w-max items-center rounded-[10px] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] py-1 px-2 md:py-2 md:px-3 2xl:text-[20px] 2xl:py-3 2xl:px-4"
                 >
-                  <Image
-                    src={domainBlob + item.contentListIcon?.filename}
-                    width={0}
-                    height={0}
-                    alt=""
-                    className="w-40 h-auto md:w-70 2xl:w-[430px]"
-                  />
-                  <div
-                    className={`flex flex-col gap-y-4 text-[14px] ${index % 2 === 1 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}
-                  >
-                    <p className="uppercase text-[#00DB05] font-bold text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px]">
-                      {item.contentListTitle}
-                    </p>
-                    <p className="font-light md:max-w-[480px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] 2xl:max-w-[700px]">
-                      {item.contentListDescription}
-                    </p>
-                    <Link
-                      href={''}
-                      className="border bg-white border-[#00DB05] flex flex-row gap-x-1 text-[#00DB05] w-max items-center rounded-[10px] text-[12px] md:text-[14px] lg:text-[16px] xl:text-[18px] py-1 px-2 md:py-2 md:px-3 2xl:text-[20px] 2xl:py-3 2xl:px-4"
-                    >
-                      Selengkapnya{' '}
-                      <ArrowRight className="size-[14px] md:size-[16px] lg:size-[18px] xl:size-[20px] 2xl:size-[24px]" />
-                    </Link>
-                  </div>
-                </div>
-              ),
-          )}
+                  Selengkapnya{' '}
+                  <ArrowRight className="size-[14px] md:size-[16px] lg:size-[18px] xl:size-[20px] 2xl:size-[24px]" />
+                </Link>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   )
