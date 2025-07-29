@@ -41,13 +41,13 @@ export default function Navbar() {
   return (
     <>
       <div
-        className="w-full h-max flex flex-col p-6 md:px-12 min-2xl:px-20 fixed top-0 z-50"
+        className="w-full h-max flex flex-col p-6 md:px-12 min-2xl:px-20 sticky top-0 z-50"
         style={{ background: 'linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)' }}
       >
         <div className="flex flex-row justify-between items-center md:hidden">
           <Image src={logoDataAndalanUtama} alt={''} className="w-24 lg:w-28 h-auto md:hidden" />
           <div className="block md:hidden">
-            {isOpenNavbar ? (
+            {isOpenNavbar ? (  
               <X
                 size={30}
                 onClick={toggleNavbar}

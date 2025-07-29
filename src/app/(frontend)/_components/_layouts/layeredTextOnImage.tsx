@@ -11,7 +11,7 @@ interface Props {
 
 export default function LayeredTextOnImage({ data, domainBlob }: Props) {
   return (
-    <div className="w-full min-h-screen relative overflow-hidden">
+    <div className="w-full min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] relative overflow-hidden">
       <Image
         src={domainBlob+data.sectionBackground?.filename}
         alt={data.sectionBackground?.id || ''}
@@ -24,9 +24,9 @@ export default function LayeredTextOnImage({ data, domainBlob }: Props) {
 
       <div className="absolute inset-0 z-20 flex justify-center lg:justify-end items-center p-6 sm:p-8 md:pr-12 min-2xl:pr-20">
         <div className="text-center lg:max-w-[50%]">
-          <h1 className="text-white text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] font-bold uppercase leading-snug">
+          <q className="text-white text-[18px] sm:text-[20px] md:text-[28px] lg:text-[32px] xl:text-[48px] 2xl:text-[64px] font-bold uppercase leading-snug">
             {data.sectionTitle}
-          </h1>
+          </q>
           <p className="text-white mt-4 text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] xl:text-[32px] 2xl:text-[40px] tracking-[0.4em] font-light uppercase">
             {data.sectionSubtitle}
           </p>
