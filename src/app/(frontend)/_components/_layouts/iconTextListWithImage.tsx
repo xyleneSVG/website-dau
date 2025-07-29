@@ -13,7 +13,7 @@ interface Props {
 
 export default function IconTextListWithImage({ data, domainBlob, getLucideIcon }: Props) {
   return (
-    <section className="w-full min-h-screen px-6 py-8 md:py-12 lg:py-20 flex flex-col justify-center items-center">
+    <section className="w-full min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] px-6 py-8 md:py-12 lg:py-20 flex flex-col justify-center items-center">
       <h2 className="text-center text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-8">
         {data.sectionTitle}
       </h2>

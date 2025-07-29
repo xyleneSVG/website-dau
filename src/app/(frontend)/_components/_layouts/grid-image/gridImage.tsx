@@ -14,8 +14,8 @@ export default function GridImage({ data, domainBlob }: Props) {
   const hasRichText = data.sectionTitle?.root?.children?.length > 0
   return (
     <div className="relative overflow-hidden pb-14 sm:pb-16 md:pb-18 lg:pb-20 xl:md:pb-24 2xl:pb-30">
-      <div className="w-full text-center mx-auto mb-6 sm:mb-8 bg-[#E3F1FE] px-6 pt-6 sm:pt-8 md:pt-12 min-2xl:pt-20 pb-6 sm:pb-10 lg:pb-30 xl:pb-34 2xl:pb-40">
-        <div className="text-start text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] font-light sm:pl-[1.5%] md:pl-[9.5%] lg:pl-[10%] xl:pl-[12%] 2xl:pl-[11.5%] uppercase">
+      <div className="w-full text-center mx-auto mb-6 sm:mb-8 bg-[#E3F1FE] px-6 pt-14 sm:pt-16 md:pt-18 lg:pt-20 xl:md:pt-24 2xl:pt-30 pb-6 sm:pb-10 lg:pb-30 xl:pb-34 2xl:pb-40">
+        <div className="text-start text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] sm:pl-[1.5%] md:pl-[9.5%] lg:pl-[10%] xl:pl-[12%] 2xl:pl-[11.5%] uppercase">
           {hasRichText && <RichTextRenderer content={data.sectionTitle.root} />}
         </div>
       </div>

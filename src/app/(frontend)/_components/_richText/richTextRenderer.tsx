@@ -8,12 +8,12 @@ export const RichTextRenderer = ({ content }: { content: any }) => {
 
     if (child.type === 'text') {
       const style = []
-      if (child.format & 1) style.push('font-bold')       // Bold
-      if (child.format & 2) style.push('italic')          // Italic
-      if (child.format & 4) style.push('line-through')    // Strikethrough
-      if (child.format & 8) style.push('underline')       // Underline
-      if (child.format & 16) style.push('subscript')      // Subscript
-      if (child.format & 32) style.push('superscript')    // Superscript
+      if (child.format & 1) style.push('font-bold') // Bold
+      if (child.format & 2) style.push('italic') // Italic
+      if (child.format & 4) style.push('line-through') // Strikethrough
+      if (child.format & 8) style.push('underline') // Underline
+      if (child.format & 16) style.push('subscript') // Subscript
+      if (child.format & 32) style.push('superscript') // Superscript
       if (child.format & 64) style.push('font-mono bg-gray-200 px-1 rounded') // Inline code
 
       return (
@@ -46,7 +46,7 @@ export const RichTextRenderer = ({ content }: { content: any }) => {
         className="text-blue-600 underline hover:text-blue-800"
       >
         {children?.map((child: any, j: number) =>
-          child.type === 'text' ? renderTextNode(child, j) : null
+          child.type === 'text' ? renderTextNode(child, j) : null,
         )}
       </a>
     )
@@ -62,12 +62,12 @@ export const RichTextRenderer = ({ content }: { content: any }) => {
   }
 
   return (
-    <div className="text-black text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px] mt-[20px] md:mt-[30px] lg:mt-[40px] xl:mt-[50px] text-justify">
+    <div className="font-extralight text-black text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
       {content.children.map((node: any, i: number) => {
         switch (node.type) {
           case 'paragraph':
             return (
-              <p key={i} className="mb-4">
+              <p key={i} className="mb-2">
                 {renderChildren(node.children || [])}
               </p>
             )
@@ -75,7 +75,7 @@ export const RichTextRenderer = ({ content }: { content: any }) => {
           case 'heading':
             const HeadingTag = `h${node.tag || 2}` as keyof JSX.IntrinsicElements
             return (
-              <HeadingTag key={i} className="font-bold mt-6 mb-3 text-2xl md:text-3xl lg:text-4xl">
+              <HeadingTag key={i} className="font-extrabold mt-6 mb-3 text-2xl md:text-3xl lg:text-4xl">
                 {renderChildren(node.children || [])}
               </HeadingTag>
             )
