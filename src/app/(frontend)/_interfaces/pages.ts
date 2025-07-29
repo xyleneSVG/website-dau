@@ -11,9 +11,9 @@ export interface Page {
 export type PageSection =
   | HeroSection
   | ZigZagListSection
-  | IllustrationWithCarouselSection
+  | ImageWithCarouselSection
   | QuadGridSection
-  | GridCarouselSection
+  | ImageGridCarouselSection
   | ContactSection
   | IllustrationWithTextAndCarouselSection
   | ImageHeaderParagraphSection
@@ -67,22 +67,21 @@ export interface ContentLists {
   contentListIcon: ImageItem
 }
 
-// Illustration With Carousel
-export interface IllustrationWithCarouselSection {
+// Image With Carousel
+export interface ImageWithCarouselSection {
   id: string
   blockName?: string
-  blockType: 'illustrationWithCarouselSection'
+  blockType: 'imageWithCarouselSection'
   sectionTitle: string
-  sectionSubtitle: string
+  sectionDescription: string
   sectionIllustration: ImageItem
-  carouselLists: IllustrationWithCarouselLists[]
   backgroundColor: string
+  carouselImage: ImageCarousel[]
 }
 
-export interface IllustrationWithCarouselLists {
+export interface ImageCarousel {
   id: string
-  itemName: string
-  itemIcon: ImageItem
+  itemImage: ImageItem
 }
 
 // Quad Grid
@@ -100,17 +99,16 @@ export interface GridCardLists {
   itemImage: ImageItem
 }
 
-// Grid Carousel
-export interface GridCarouselSection {
+// Image Grid Carousel
+export interface ImageGridCarouselSection {
   id: string
-  blockType: 'gridCarouselSection'
+  blockType: 'imageGridCarouselSection'
   sectionTitle: string
   gridLists: GridCarouselLists[]
 }
 
 export interface GridCarouselLists {
   id: string
-  itemName: string
   itemImage: ImageItem
 }
 

@@ -1,12 +1,12 @@
 import type { Block } from 'payload'
 
-export const GridCarouselSection: Block = {
-  slug: 'gridCarouselSection',
-  imageURL: "/assets/skeleton/gridCarousel.svg",
-  interfaceName: 'Grid Carousel Section',
+export const ImageGridCarouselSection: Block = {
+  slug: 'imageGridCarouselSection',
+  imageURL: "/assets/skeleton/imageGridCarousel.svg",
+  interfaceName: 'Image Grid Carousel Section',
   labels: {
-    singular: 'Grid Carousel Section',
-    plural: 'Grid Carousel Sections',
+    singular: 'Image Grid Carousel Section',
+    plural: 'Image Grid Carousel Sections',
   },
   fields: [
     {
@@ -22,15 +22,9 @@ export const GridCarouselSection: Block = {
       label: 'Grid Lists',
       fields: [
         {
-          name: 'itemName',
-          type: 'text',
-          required: true,
-          label: 'Item Name',
-        },
-        {
           name: 'itemImage',
           type: 'upload',
-          relationTo: 'groupPage',
+          relationTo: 'mediaImageGridCarousel',
           required: true,
           label: 'Item Image',
         },

@@ -24,9 +24,9 @@ import { GroupPage } from './collections/storage/GroupPage'
 import { MediaHero } from './collections/storage/MediaHero'
 import { MediaServices } from './collections/storage/MediaServices'
 import { MediaLoopingCarousel } from './collections/storage/MediaLoopingCarousel'
-import { MediaIllustrationWithCarousel } from './collections/storage/MediaIllustrationWithCarousel'
+import { MediaImageWithCarousel } from './collections/storage/MediaImageWithCarousel'
 import { MediaQuadGrid } from './collections/storage/MediaQuadGrid'
-import { MediaGridCarousel } from './collections/storage/MediaClients'
+import { MediaImageGridCarousel } from './collections/storage/MediaImageGridCarousel copy'
 import { MediaContact } from './collections/storage/MediaContact'
 import { MediaIllustrationWithTextAndCarousel } from './collections/storage/MediaIllustrationWithTextAndCarousel'
 import { MediaImageHeaderParagraph } from './collections/storage/MediaImageHeaderParagraph'
@@ -71,9 +71,9 @@ export default buildConfig({
     MediaHero,
     MediaServices,
     MediaLoopingCarousel,
-    MediaIllustrationWithCarousel,
+    MediaImageWithCarousel,
     MediaQuadGrid,
-    MediaGridCarousel,
+    MediaImageGridCarousel,
     MediaContact,
     MediaIllustrationWithTextAndCarousel,
     MediaImageHeaderParagraph,
@@ -106,10 +106,9 @@ export default buildConfig({
       enabled: true,
       collections: {
         mediaHero: true,
-        mediaIllustrationWithCarousel: true,
         mediaServices: true,
         mediaQuadGrid: true,
-        mediaGridCarousel: true,
+        mediaImageGridCarousel: true,
         mediaContact: true,
         mediaIllustrationWithTextAndCarousel: true,
         mediaLoopingCarousel: true,
@@ -124,7 +123,8 @@ export default buildConfig({
         mediaThreeDimensionCarousel: true,
         mediaLayeredTextOnImage: true,
         mediaGridImage: true,
-        mediaIconListWithSideImages: true
+        mediaIconListWithSideImages: true,
+        mediaImageWithCarousel: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

@@ -34,13 +34,14 @@ export default function QuadGrid({ data, domainBlob }: QuadGridProps) {
             </p>
           </div>
           <div className="grid grid-cols-2 justify-items-center gap-4 sm:gap-6 md:gap-8 xl:gap-10 2xl:gap-12">
-            {data.gridLists.map((src, idx) => (
-              <div
-                key={idx}
-                className="rounded-[10px] shadow-md md:shadow-lg md:rounded-[20px] bg-center bg-cover overflow-hidden w-[130px] h-[90px] sm:w-[260px] sm:h-[160px] md:w-[280px] md:h-[200px] lg:w-[340px] lg:h-[240px] xl:w-[440px] xl:h-[300px]"
-                style={{ backgroundImage: `url('${domainBlob + src.itemImage.filename}')` }}
-              ></div>
-            ))}
+            {Array.isArray(data.gridLists) &&
+              data.gridLists.map((src, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-[10px] shadow-md md:shadow-lg md:rounded-[20px] bg-center bg-cover overflow-hidden w-[130px] h-[90px] sm:w-[260px] sm:h-[160px] md:w-[280px] md:h-[200px] lg:w-[340px] lg:h-[240px] xl:w-[440px] xl:h-[300px]"
+                  style={{ backgroundImage: `url('${domainBlob + src.itemImage?.filename}')` }}
+                ></div>
+              ))}
           </div>
         </div>
       </div>

@@ -20,11 +20,13 @@ export default function Hero({
   heroSection: HeroSection
   domainBlob: string
 }) {
-  const greetings = heroSection.greetings.map((item) => ({
-    type: item.hasIncludeImage ? 'image-text' : 'text',
-    image: item.hasIncludeImage ? `${domainBlob}${item.imageGreeting.filename}` : null,
-    text: item.textGreeting,
-  }))
+  const greetings = Array.isArray(heroSection?.greetings)
+    ? heroSection.greetings.map((item) => ({
+        type: item.hasIncludeImage ? 'image-text' : 'text',
+        image: item.hasIncludeImage ? `${domainBlob}${item.imageGreeting?.filename}` : null,
+        text: item.textGreeting,
+      }))
+    : []
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -38,7 +40,7 @@ export default function Hero({
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
-      <div className='w-full '>
+      <div className="w-full ">
         <Image
           width={0}
           height={0}
@@ -51,41 +53,42 @@ export default function Hero({
           <Image
             width={0}
             height={0}
-            src={domainBlob + heroSection.greetingIllustrationLeft.filename}
+            src={domainBlob + heroSection.greetingIllustrationLeft?.filename}
             alt={''}
             className="hidden w-52 h-auto lg:block 2xl:w-[280px]"
           />
           <div className="font-semibold text-center md:-translate-y-18 w-full max-sm:max-w-[350px] text-[18px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] h-50 flex flex-col items-center justify-center lg:w-[512px] 2xl:w-[600px] 2xl:-translate-y-38">
-            {greetings[currentIndex].type === 'image-text' ? (
+            {Array.isArray(greetings) && greetings[currentIndex]?.type === 'image-text' ? (
               <div className="flex flex-col items-center gap-2">
                 <Image
-                  src={greetings[currentIndex].image ?? ''}
+                  src={greetings[currentIndex]?.image ?? ''}
                   width={0}
                   height={0}
                   alt="logo"
                   className="w-[250px] h-auto 2xl:w-[500px]"
                 />
-                <p>{greetings[currentIndex].text}</p>
+                <p>{greetings[currentIndex]?.text}</p>
               </div>
             ) : (
-              <p>{greetings[currentIndex].text}</p>
+              <p>{greetings[currentIndex]?.text}</p>
             )}
           </div>
           <Image
             width={0}
             height={0}
-            src={domainBlob + heroSection.greetingIllustrationRight.filename}
+            src={domainBlob + heroSection.greetingIllustrationRight?.filename}
             alt={''}
             className="w-90 h-auto 2xl:w-[620px]"
           />
         </div>
         <div className="flex flex-row gap-x-2 justify-center mt-6">
-          {greetings.map((_, index) => (
-            <Circle
-              key={index}
-              className={`size-3 stroke-none ${index === currentIndex ? 'text-[#00DB05]' : 'text-[#D9D9D9]'} fill-current`}
-            />
-          ))}
+          {Array.isArray(greetings) &&
+            greetings.map((_, index) => (
+              <Circle
+                key={index}
+                className={`size-3 stroke-none ${index === currentIndex ? 'text-[#00DB05]' : 'text-[#D9D9D9]'} fill-current`}
+              />
+            ))}
         </div>
       </div>
     </div>

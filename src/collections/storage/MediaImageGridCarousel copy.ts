@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const MediaIllustrationWithCarousel: CollectionConfig = {
-  slug: 'mediaIllustrationWithCarousel',
+export const MediaImageGridCarousel: CollectionConfig = {
+  slug: 'mediaImageGridCarousel',
   admin: {
     group: 'Storage'
   },
