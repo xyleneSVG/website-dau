@@ -37,9 +37,9 @@ import Navbar from './_layouts/navbar'
 import Hero from './_layouts/hero'
 import LayeredTextOnImage from './_layouts/layeredTextOnImage'
 import ZigZagList from './_layouts/zigZagList'
-import IllustrationWithCarousel from './_layouts/illustrationWithCarousel'
+import ImageWithCarousel from './_layouts/imageWithCarousel'
 import QuadGrid from './_layouts/quadGrid'
-import GridCarousel from './_layouts/gridCarousel'
+import ImageGridCarousel from './_layouts/imageGridCarousel'
 import Contact from './_layouts/contact'
 import IllustrationWithTextAndCarousel from './_layouts/illustrationWithTextAndCarousel'
 import ImageHeaderParagraph from './_layouts/imageHeaderParagraph'
@@ -135,12 +135,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         return <Hero key={index} heroSection={section} domainBlob={domainBlob} />
       case 'zigZagListSection':
         return <ZigZagList key={index} data={section} domainBlob={domainBlob} />
-      case 'illustrationWithCarouselSection':
-        return <IllustrationWithCarousel key={index} data={section} domainBlob={domainBlob} />
+      case 'imageWithCarouselSection':
+        return <ImageWithCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'quadGridSection':
         return <QuadGrid key={index} data={section} domainBlob={domainBlob} />
-      case 'gridCarouselSection':
-        return <GridCarousel key={index} data={section} domainBlob={domainBlob} />
+      case 'imageGridCarouselSection':
+        return <ImageGridCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'contactSection':
         return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
       case 'illustrationWithTextAndCarouselSection':

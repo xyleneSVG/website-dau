@@ -8,19 +8,18 @@ import icon1 from 'public/assets/landing/tech/icon1.svg'
 import background1 from 'public/assets/landing/tech/background1.svg'
 import background2 from 'public/assets/landing/tech/background2.svg'
 
-import { IllustrationWithCarouselSection } from '../../_interfaces/pages'
+import { ImageWithCarouselSection } from '../../_interfaces/pages'
 
-interface IllustrationWithCarouselProps {
-  data: IllustrationWithCarouselSection
+interface Props {
+  data: ImageWithCarouselSection
   domainBlob: string
 }
 
-export default function IllustrationWithCarousel({
-  data,
-  domainBlob,
-}: IllustrationWithCarouselProps) {
+export default function ImageWithCarousel({ data, domainBlob }: Props) {
   const [visibleCount, setVisibleCount] = useState(3)
-  const [items, setItems] = useState(data.carouselLists)
+  const [items, setItems] = useState(() =>
+    Array.isArray(data.carouselImage) ? data.carouselImage : [],
+  )
   const [isSliding, setIsSliding] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -44,7 +43,6 @@ export default function IllustrationWithCarousel({
     const container = containerRef.current
     if (!container) return
 
-    // Lebar 1 item relatif terhadap container
     const shiftPercent = 100 / items.length
 
     container.style.transition = 'transform 0.3s ease'
@@ -74,7 +72,10 @@ export default function IllustrationWithCarousel({
   }
 
   return (
-    <div className={`p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[${data.backgroundColor}] overflow-hidden`}>
+    <div
+      className={`p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 overflow-hidden`}
+      style={{ backgroundColor: data.backgroundColor }}
+    >
       <Image
         src={background1}
         alt=""
@@ -93,12 +94,14 @@ export default function IllustrationWithCarousel({
               {data.sectionTitle}
             </h1>
             <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[24px] max-w-md mx-auto lg:max-w-[610px] 2xl:max-w-[980px]">
-              {data.sectionSubtitle}
+              {data.sectionDescription}
             </p>
           </div>
 
           <Image
-            src={icon1}
+            width={0}
+            height={0}
+            src={domainBlob + data.sectionIllustration?.filename}
             alt=""
             className="w-max h-auto mx-auto sm:w-[440px] lg:w-[560px] xl:w-[740px] 2xl:w-[850px]"
           />
@@ -122,25 +125,26 @@ export default function IllustrationWithCarousel({
                   transform: 'translateX(0)',
                 }}
               >
-                {items.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex-shrink-0 px-2 transition-transform duration-300 ease-in-out"
-                    style={{ width: `${100 / items.length}%` }}
-                  >
-                    <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
-                      {item?.itemIcon?.filename && (
-                        <Image
-                          src={domainBlob + item.itemIcon.filename}
-                          alt={item.itemName}
-                          width={40}
-                          height={40}
-                          className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
-                        />
-                      )}
+                {Array.isArray(data.carouselImage) &&
+                  data.carouselImage?.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex-shrink-0 px-2 transition-transform duration-300 ease-in-out"
+                      style={{ width: `${100 / items.length}%` }}
+                    >
+                      <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
+                        {item?.itemImage?.filename && (
+                          <Image
+                            src={domainBlob + item.itemImage?.filename}
+                            alt={item.itemImage.filename || ''}
+                            width={40}
+                            height={40}
+                            className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
 

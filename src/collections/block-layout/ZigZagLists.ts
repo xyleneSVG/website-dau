@@ -35,7 +35,7 @@ export const ZigZagListSection: Block = {
         },
         {
           name: 'contentListDescription',
-          type: 'text',
+          type: 'textarea',
           label: 'Content Description',
           required: true,
         },

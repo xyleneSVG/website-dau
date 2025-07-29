@@ -4,9 +4,9 @@ import { APIError, CollectionConfig } from 'payload'
 // block
 import { HeroSection } from './block-layout/Hero'
 import { ZigZagListSection } from './block-layout/ZigZagLists'
-import { IllustrationWithCarouselSection } from './block-layout/IllustrationWithCarousel'
+import { ImageWithCarouselSection } from './block-layout/ImageWithCarousel'
 import { QuadGridSection } from './block-layout/QuadGrid'
-import { GridCarouselSection } from './block-layout/GridCarousel'
+import { ImageGridCarouselSection } from './block-layout/ImageGridCarousel'
 import { ContactSection } from './block-layout/Contact'
 import { IllustrationWithTextAndCarouselSection } from './block-layout/IllustrationWithTextAndCarousel'
 import { ImageHeaderParagraphSection } from './block-layout/ImageHeaderParagraph'
@@ -94,9 +94,9 @@ export const Pages: CollectionConfig = {
       blocks: [
         HeroSection,
         ZigZagListSection,
-        IllustrationWithCarouselSection,
+        ImageWithCarouselSection,
         QuadGridSection,
-        GridCarouselSection,
+        ImageGridCarouselSection,
         ContactSection,
         IllustrationWithTextAndCarouselSection,
         ImageHeaderParagraphSection,

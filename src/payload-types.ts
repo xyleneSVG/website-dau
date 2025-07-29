@@ -75,9 +75,9 @@ export interface Config {
     mediaHero: MediaHero;
     mediaServices: MediaService;
     mediaLoopingCarousel: MediaLoopingCarousel;
-    mediaIllustrationWithCarousel: MediaIllustrationWithCarousel;
+    mediaImageWithCarousel: MediaImageWithCarousel;
     mediaQuadGrid: MediaQuadGrid;
-    mediaGridCarousel: MediaGridCarousel;
+    mediaImageGridCarousel: MediaImageGridCarousel;
     mediaContact: MediaContact;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarousel;
     mediaImageHeaderParagraph: MediaImageHeaderParagraph;
@@ -106,9 +106,9 @@ export interface Config {
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
     mediaLoopingCarousel: MediaLoopingCarouselSelect<false> | MediaLoopingCarouselSelect<true>;
-    mediaIllustrationWithCarousel: MediaIllustrationWithCarouselSelect<false> | MediaIllustrationWithCarouselSelect<true>;
+    mediaImageWithCarousel: MediaImageWithCarouselSelect<false> | MediaImageWithCarouselSelect<true>;
     mediaQuadGrid: MediaQuadGridSelect<false> | MediaQuadGridSelect<true>;
-    mediaGridCarousel: MediaGridCarouselSelect<false> | MediaGridCarouselSelect<true>;
+    mediaImageGridCarousel: MediaImageGridCarouselSelect<false> | MediaImageGridCarouselSelect<true>;
     mediaContact: MediaContactSelect<false> | MediaContactSelect<true>;
     mediaIllustrationWithTextAndCarousel: MediaIllustrationWithTextAndCarouselSelect<false> | MediaIllustrationWithTextAndCarouselSelect<true>;
     mediaImageHeaderParagraph: MediaImageHeaderParagraphSelect<false> | MediaImageHeaderParagraphSelect<true>;
@@ -179,9 +179,9 @@ export interface Page {
     | (
         | HeroSection
         | ZigZagListsSection
-        | IllustrationWithCarouselSection
+        | ImageWithCarouselSection
         | QuadGridSection
-        | GridCarouselSection
+        | ImageGridCarouselSection
         | ContactSection
         | IllustrationWithTextAndCarouselSection
         | ImageHeaderParagraphSection
@@ -295,27 +295,26 @@ export interface MediaService {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Illustration With Carousel Section".
+ * via the `definition` "Image With Carousel Section".
  */
-export interface IllustrationWithCarouselSection {
+export interface ImageWithCarouselSection {
   sectionTitle: string;
-  sectionSubtitle: string;
-  sectionIllustration: number | MediaIllustrationWithCarousel;
-  carouselLists: {
-    itemName: string;
-    itemIcon: number | MediaIllustrationWithCarousel;
+  sectionDescription: string;
+  sectionIllustration?: (number | null) | MediaImageWithCarousel;
+  backgroundColor: string;
+  carouselImage: {
+    itemImage?: (number | null) | MediaImageWithCarousel;
     id?: string | null;
   }[];
-  backgroundColor?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'illustrationWithCarouselSection';
+  blockType: 'imageWithCarouselSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaIllustrationWithCarousel".
+ * via the `definition` "mediaImageWithCarousel".
  */
-export interface MediaIllustrationWithCarousel {
+export interface MediaImageWithCarousel {
   id: number;
   alt: string;
   updatedAt: string;
@@ -367,18 +366,36 @@ export interface MediaQuadGrid {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Grid Carousel Section".
+ * via the `definition` "Image Grid Carousel Section".
  */
-export interface GridCarouselSection {
+export interface ImageGridCarouselSection {
   sectionTitle: string;
   gridLists: {
-    itemName: string;
-    itemImage: number | GroupPage;
+    itemImage: number | MediaImageGridCarousel;
     id?: string | null;
   }[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'gridCarouselSection';
+  blockType: 'imageGridCarouselSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaImageGridCarousel".
+ */
+export interface MediaImageGridCarousel {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1159,25 +1176,6 @@ export interface MessageFromGuest {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaGridCarousel".
- */
-export interface MediaGridCarousel {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mediaListWithIconAndDescription".
  */
 export interface MediaListWithIconAndDescription {
@@ -1235,16 +1233,16 @@ export interface PayloadLockedDocument {
         value: number | MediaLoopingCarousel;
       } | null)
     | ({
-        relationTo: 'mediaIllustrationWithCarousel';
-        value: number | MediaIllustrationWithCarousel;
+        relationTo: 'mediaImageWithCarousel';
+        value: number | MediaImageWithCarousel;
       } | null)
     | ({
         relationTo: 'mediaQuadGrid';
         value: number | MediaQuadGrid;
       } | null)
     | ({
-        relationTo: 'mediaGridCarousel';
-        value: number | MediaGridCarousel;
+        relationTo: 'mediaImageGridCarousel';
+        value: number | MediaImageGridCarousel;
       } | null)
     | ({
         relationTo: 'mediaContact';
@@ -1358,9 +1356,9 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         heroSection?: T | HeroSectionSelect<T>;
         zigZagListSection?: T | ZigZagListsSectionSelect<T>;
-        illustrationWithCarouselSection?: T | IllustrationWithCarouselSectionSelect<T>;
+        imageWithCarouselSection?: T | ImageWithCarouselSectionSelect<T>;
         quadGridSection?: T | QuadGridSectionSelect<T>;
-        gridCarouselSection?: T | GridCarouselSectionSelect<T>;
+        imageGridCarouselSection?: T | ImageGridCarouselSectionSelect<T>;
         contactSection?: T | ContactSectionSelect<T>;
         illustrationWithTextAndCarouselSection?: T | IllustrationWithTextAndCarouselSectionSelect<T>;
         imageHeaderParagraphSection?: T | ImageHeaderParagraphSectionSelect<T>;
@@ -1422,20 +1420,19 @@ export interface ZigZagListsSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Illustration With Carousel Section_select".
+ * via the `definition` "Image With Carousel Section_select".
  */
-export interface IllustrationWithCarouselSectionSelect {
+export interface ImageWithCarouselSectionSelect {
   sectionTitle?: boolean;
-  sectionSubtitle?: boolean;
+  sectionDescription?: boolean;
   sectionIllustration?: boolean;
-  carouselLists?:
+  backgroundColor?: boolean;
+  carouselImage?:
     | boolean
     | {
-        itemName?: boolean;
-        itemIcon?: boolean;
+        itemImage?: boolean;
         id?: boolean;
       };
-  backgroundColor?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
@@ -1458,14 +1455,13 @@ export interface QuadGridSectionSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Grid Carousel Section_select".
+ * via the `definition` "Image Grid Carousel Section_select".
  */
-export interface GridCarouselSectionSelect {
+export interface ImageGridCarouselSectionSelect {
   sectionTitle?: boolean;
   gridLists?:
     | boolean
     | {
-        itemName?: boolean;
         itemImage?: boolean;
         id?: boolean;
       };
@@ -1924,9 +1920,9 @@ export interface MediaLoopingCarouselSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaIllustrationWithCarousel_select".
+ * via the `definition` "mediaImageWithCarousel_select".
  */
-export interface MediaIllustrationWithCarouselSelect<T extends boolean = true> {
+export interface MediaImageWithCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1960,9 +1956,9 @@ export interface MediaQuadGridSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mediaGridCarousel_select".
+ * via the `definition` "mediaImageGridCarousel_select".
  */
-export interface MediaGridCarouselSelect<T extends boolean = true> {
+export interface MediaImageGridCarouselSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
