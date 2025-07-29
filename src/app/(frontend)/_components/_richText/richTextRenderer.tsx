@@ -75,7 +75,7 @@ export const RichTextRenderer = ({ content }: { content: any }) => {
           case 'heading':
             const HeadingTag = `h${node.tag || 2}` as keyof JSX.IntrinsicElements
             return (
-              <HeadingTag key={i} className="font-extrabold mt-6 mb-3 text-2xl md:text-3xl lg:text-4xl">
+              <HeadingTag key={i} className="text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px]">
                 {renderChildren(node.children || [])}
               </HeadingTag>
             )

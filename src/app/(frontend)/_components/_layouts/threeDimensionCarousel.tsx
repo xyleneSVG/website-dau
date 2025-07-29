@@ -53,7 +53,7 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
     <div>
       <div className="w-full bg-[#E3F1FE]">
         <div className="max-w-5xl mx-auto px-6 py-6">
-          <div className="text-start text-[16px] md:text-[20px] lg:text-[28px] xl:text-[32px] 2xl:text-[40px] font-light uppercase">
+          <div className="text-start uppercase">
             {hasRichText && <RichTextRenderer content={data.sectionTitle.root} />}
           </div>
         </div>
