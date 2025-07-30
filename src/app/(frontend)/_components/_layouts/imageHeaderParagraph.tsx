@@ -12,7 +12,7 @@ interface Props {
   domainBlob: string
 }
 
-export default function imageHeaderParagraph({ data, domainBlob }: Props) {
+export default function ImageHeaderParagraph({ data, domainBlob }: Props) {
   const hasImage = data.sectionImage?.filename
   const hasTitle = data.sectionTitle
   const hasParagraph = data.sectionParagraph?.root?.children?.length > 0
