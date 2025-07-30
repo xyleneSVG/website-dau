@@ -1,5 +1,7 @@
+'use client'
+
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // Interfaces
 import { ImageHeaderParagraphSection } from '../../_interfaces/pages'
@@ -15,14 +17,29 @@ export default function imageHeaderParagraph({ data, domainBlob }: Props) {
   const hasTitle = data.sectionTitle
   const hasParagraph = data.sectionParagraph?.root?.children?.length > 0
 
+  const imageRef = useRef<HTMLImageElement | null>(null)
+  const [imageHeight, setImageHeight] = useState(0)
+
+  useEffect(() => {
+    if (imageRef.current) {
+      const { height } = imageRef.current.getBoundingClientRect()
+      setImageHeight(height / 2) // karena pakai translate-y-1/2
+    }
+  }, [])
+
   return (
-    <div className="flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#E3F1FE] relative">
+    <div
+      style={{ marginTop: `${imageHeight}px` }}
+      className="flex justify-center items-center p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 bg-[#E3F1FE] relative"
+    >
       {hasImage && (
         <Image
+          ref={imageRef}
           src={domainBlob + data.sectionImage.filename}
           alt="section image"
           width={0}
           height={0}
+          sizes="100vw"
           className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] sm:w-[120px] md:w-[150px] lg:w-[200px] xl:w-[250px] 2xl:w-[290px]"
         />
       )}
