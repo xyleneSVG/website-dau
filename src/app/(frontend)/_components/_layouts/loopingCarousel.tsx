@@ -15,7 +15,7 @@ export default function LoopingCarousel({ data, domainBlob }: Props) {
         {data.sectionTitle}
       </h1>
 
-      <div className="md:w-[80%] lg:w-[75%] border border-[#CECFDB] py-4 sm:py-6 md:py-8 xl:py-10 2xl:py-12 overflow-hidden rounded-2xl mx-auto">
+      <div className="md:w-[80%] lg:w-[95%] border border-[#CECFDB] py-4 sm:py-6 md:py-8 xl:py-10 2xl:py-12 overflow-hidden rounded-2xl mx-auto">
         <div className="relative w-full">
           <div className="flex scroll-container">
             {Array.isArray(data?.carouselLists) &&

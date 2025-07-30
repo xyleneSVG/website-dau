@@ -45,7 +45,7 @@ export default function imageHeaderParagraph({ data, domainBlob }: Props) {
       )}
       <div className="max-w-[1000px] text-center">
         {hasTitle && (
-          <h1 className="text-black text-[18px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] font-light uppercase text-wrap">
+          <h1 className="text-black text-[18px] sm:text-[20px] md:text-[24px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] font-light mb-3 md:mb-5 xl:mb-7 2xl:mb-10 uppercase text-wrap">
             {data.sectionTitle}
           </h1>
         )}
