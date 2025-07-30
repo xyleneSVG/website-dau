@@ -19,6 +19,7 @@ import { MessageFromGuests } from './collections/messages/MessageFromGuests'
 // Advance Configuration
 import { Pages } from './collections/Pages'
 import { Navbar } from './collections/Navbar'
+import { Footer } from './collections/Footer'
 
 // Storage Collections
 import { GroupPage } from './collections/storage/GroupPage'
@@ -42,7 +43,8 @@ import { MediaLayeredTextOnImage } from './collections/storage/MediaLayeredTextO
 import { MediaIconTextListWithImage } from './collections/storage/MediaIconTextListWithImage'
 import { MediaGridImage } from './collections/storage/MediaGridImage'
 import { MediaIconListWithSideImages } from './collections/storage/MediaIconListWithSideImages'
-import { MediaNavbar } from './collections/storage/Navbar'
+import { MediaNavbar } from './collections/storage/MediaNavbar'
+import { MediaFooter } from './collections/storage/MediaFooter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,6 +69,7 @@ export default buildConfig({
   collections: [
     Pages,
     Navbar,
+    Footer,
     Users,
     MessageFromGuests,
     MessageFieldConfiguration,
@@ -91,7 +94,8 @@ export default buildConfig({
     MediaIconTextListWithImage,
     MediaGridImage,
     MediaIconListWithSideImages,
-    MediaNavbar
+    MediaNavbar,
+    MediaFooter
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -129,7 +133,8 @@ export default buildConfig({
         mediaGridImage: true,
         mediaIconListWithSideImages: true,
         mediaImageWithCarousel: true,
-        mediaNavbar: true
+        mediaNavbar: true,
+        mediaFooter: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

@@ -90,95 +90,98 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
               />
 
               <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px] mt-4 md:mt-0">
-                {data.navbarItemArray.map((item) => {
-                  const isActive = pathname === item.navbarItemReference?.pageKey
-                  const isDropdown = item.hasDropdown
+                {Array.isArray(data.navbarItemArray) &&
+                  data.navbarItemArray.map((item) => {
+                    const isActive = pathname === item.navbarItemReference?.pageKey
+                    const isDropdown = item.hasDropdown
 
-                  return (
-                    <li key={item.id} className="relative">
-                      {isDropdown ? (
-                        <>
-                          <button
-                            onClick={() => handleDropdown(item.navbarItemName.toLowerCase() as any)}
-                            className="flex items-center gap-2"
-                          >
-                            <p>{item.navbarItemName}</p>
-                            <Triangle
-                              className={`rotate-180 size-2 md:size-3 fill-current text-black stroke-none transition-transform duration-300 ${
-                                openDropdown === item.navbarItemName.toLowerCase()
-                                  ? 'rotate-0'
-                                  : 'rotate-180'
-                              }`}
-                            />
-                          </button>
+                    return (
+                      <li key={item.id} className="relative">
+                        {isDropdown ? (
+                          <>
+                            <button
+                              onClick={() =>
+                                handleDropdown(item.navbarItemName.toLowerCase() as any)
+                              }
+                              className="flex items-center gap-2"
+                            >
+                              <p>{item.navbarItemName}</p>
+                              <Triangle
+                                className={`rotate-180 size-2 md:size-3 fill-current text-black stroke-none transition-transform duration-300 ${
+                                  openDropdown === item.navbarItemName.toLowerCase()
+                                    ? 'rotate-0'
+                                    : 'rotate-180'
+                                }`}
+                              />
+                            </button>
 
-                          <div
-                            className={`${
-                              openDropdown === item.navbarItemName.toLowerCase()
-                                ? 'block'
-                                : 'hidden'
-                            } md:absolute md:left-0 md:top-full md:mt-2 md:opacity-100 md:visible md:translate-y-0 w-full md:w-max bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out z-50`}
-                          >
                             <div
-                              className="w-full h-1.5"
-                              style={{ background: data.accentColor }}
-                            />
+                              className={`${
+                                openDropdown === item.navbarItemName.toLowerCase()
+                                  ? 'block'
+                                  : 'hidden'
+                              } md:absolute md:left-0 md:top-full md:mt-2 md:opacity-100 md:visible md:translate-y-0 w-full md:w-max bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 ease-in-out z-50`}
+                            >
+                              <div
+                                className="w-full h-1.5"
+                                style={{ background: data.accentColor }}
+                              />
 
-                            <ul className="p-4 space-y-2 lg:space-y-3">
-                              {item.navbarDropdown.map((dropdown) => {
-                                const IconComponent = getLucideIcon?.(dropdown.itemDropdownIcon)
+                              <ul className="p-4 space-y-2 lg:space-y-3">
+                                {item.navbarDropdown.map((dropdown) => {
+                                  const IconComponent = getLucideIcon?.(dropdown.itemDropdownIcon)
 
-                                return (
-                                  <li key={dropdown.id} className="relative group">
-                                    <Link
-                                      href={dropdown.itemDropdownReference?.pageKey || '/'}
-                                      className="flex items-center justify-between w-full text-left gap-4"
-                                    >
-                                      <div className="flex items-center gap-3">
-                                        <div className="bg-gray-200 rounded-md flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 p-1 sm:p-1.5 md:p-2 lg:p-2.5">
-                                          {IconComponent && (
-                                            <IconComponent
-                                              className="size-6 sm:size-7 md:size-8 lg:size-12"
-                                              strokeWidth={1.5}
-                                            />
-                                          )}
+                                  return (
+                                    <li key={dropdown.id} className="relative group">
+                                      <Link
+                                        href={dropdown.itemDropdownReference?.pageKey || '/'}
+                                        className="flex items-center justify-between w-full text-left gap-4"
+                                      >
+                                        <div className="flex items-center gap-3">
+                                          <div className="bg-gray-200 rounded-md flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 p-1 sm:p-1.5 md:p-2 lg:p-2.5">
+                                            {IconComponent && (
+                                              <IconComponent
+                                                className="size-6 sm:size-7 md:size-8 lg:size-12"
+                                                strokeWidth={1.5}
+                                              />
+                                            )}
+                                          </div>
+                                          <p
+                                            onMouseEnter={() => setHoveredDropdown(dropdown.id)}
+                                            onMouseLeave={() => setHoveredDropdown(null)}
+                                            style={{
+                                              color:
+                                                hoveredDropdown === dropdown.id
+                                                  ? data.accentColor
+                                                  : '#000000',
+                                              transition: 'color 0.2s ease-in-out',
+                                            }}
+                                          >
+                                            {dropdown.itemDropdownTitle}
+                                          </p>
                                         </div>
-                                        <p
-                                          onMouseEnter={() => setHoveredDropdown(dropdown.id)}
-                                          onMouseLeave={() => setHoveredDropdown(null)}
-                                          style={{
-                                            color:
-                                              hoveredDropdown === dropdown.id
-                                                ? data.accentColor
-                                                : '#000000',
-                                            transition: 'color 0.2s ease-in-out',
-                                          }}
-                                        >
-                                          {dropdown.itemDropdownTitle}
-                                        </p>
-                                      </div>
-                                      <Triangle className="rotate-90 size-2 md:size-3 ml-2 fill-current text-black stroke-none" />
-                                    </Link>
-                                  </li>
-                                )
-                              })}
-                            </ul>
-                          </div>
-                        </>
-                      ) : (
-                        <Link
-                          href={item.navbarItemReference?.pageKey || '/'}
-                          style={{
-                            color: isActive ? data.accentColor : '#000000',
-                            fontWeight: isActive ? '600' : '400',
-                          }}
-                        >
-                          {item.navbarItemName}
-                        </Link>
-                      )}
-                    </li>
-                  )
-                })}
+                                        <Triangle className="rotate-90 size-2 md:size-3 ml-2 fill-current text-black stroke-none" />
+                                      </Link>
+                                    </li>
+                                  )
+                                })}
+                              </ul>
+                            </div>
+                          </>
+                        ) : (
+                          <Link
+                            href={item.navbarItemReference?.pageKey || '/'}
+                            style={{
+                              color: isActive ? data.accentColor : '#000000',
+                              fontWeight: isActive ? '600' : '400',
+                            }}
+                          >
+                            {item.navbarItemName}
+                          </Link>
+                        )}
+                      </li>
+                    )
+                  })}
               </ul>
 
               <ul className="flex flex-col gap-4 md:flex-row md:items-cente md:gap-5 2xl:gap-10">

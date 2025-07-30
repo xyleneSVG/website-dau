@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     navbar: Navbar;
+    footer: Footer;
     users: User;
     messageFromGuests: MessageFromGuest;
     messageFieldConfiguration: MessageFieldConfiguration;
@@ -94,6 +95,7 @@ export interface Config {
     mediaGridImage: MediaGridImage;
     mediaIconListWithSideImages: MediaIconListWithSideImage;
     mediaNavbar: MediaNavbar;
+    mediaFooter: MediaFooter;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -102,6 +104,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
     messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
@@ -127,6 +130,7 @@ export interface Config {
     mediaGridImage: MediaGridImageSelect<false> | MediaGridImageSelect<true>;
     mediaIconListWithSideImages: MediaIconListWithSideImagesSelect<false> | MediaIconListWithSideImagesSelect<true>;
     mediaNavbar: MediaNavbarSelect<false> | MediaNavbarSelect<true>;
+    mediaFooter: MediaFooterSelect<false> | MediaFooterSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1184,6 +1188,48 @@ export interface MediaNavbar {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  active?: boolean | null;
+  layoutFooter?: string | null;
+  footerLogo: number | MediaFooter;
+  footerTitle: string;
+  footerDescription: string;
+  footerNavigation: {
+    navigationGroupTitle: string;
+    navigationGroupItem: {
+      navigationPageName: string;
+      navigationPageReference: number | Page;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaFooter".
+ */
+export interface MediaFooter {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1260,6 +1306,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'navbar';
         value: number | Navbar;
+      } | null)
+    | ({
+        relationTo: 'footer';
+        value: number | Footer;
       } | null)
     | ({
         relationTo: 'users';
@@ -1360,6 +1410,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaNavbar';
         value: number | MediaNavbar;
+      } | null)
+    | ({
+        relationTo: 'mediaFooter';
+        value: number | MediaFooter;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1890,6 +1944,32 @@ export interface NavbarSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  active?: T;
+  layoutFooter?: T;
+  footerLogo?: T;
+  footerTitle?: T;
+  footerDescription?: T;
+  footerNavigation?:
+    | T
+    | {
+        navigationGroupTitle?: T;
+        navigationGroupItem?:
+          | T
+          | {
+              navigationPageName?: T;
+              navigationPageReference?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -2321,6 +2401,24 @@ export interface MediaIconListWithSideImagesSelect<T extends boolean = true> {
  * via the `definition` "mediaNavbar_select".
  */
 export interface MediaNavbarSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaFooter_select".
+ */
+export interface MediaFooterSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
