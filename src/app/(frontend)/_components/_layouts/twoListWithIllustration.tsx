@@ -18,7 +18,7 @@ export default function TwoListWithIllustration({
 }: TwoListWithIllustrationProps) {
   const IconComponent = getLucideIcon?.(data.buttonIcon)
   return (
-    <div className="min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] px-6 md:px-12 py-16 flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50">
       <div className="text-center max-w-3xl">
         <h1 className="md:max-w-[600px] lg:max-w-[800px] xl:max-w-4xl 2xl:max-w-5xl text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-semibold text-black">
           {data.sectionTitle}
@@ -29,10 +29,10 @@ export default function TwoListWithIllustration({
       </div>
 
       <div className="mt-14 w-full max-w-5xl 2xl:max-w-7xl flex flex-col items-center">
-        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 lg:gap-8 xl:gap-10">
           {/* Card */}
-          <div className="w-full md:flex-[1] order-2 md:order-1">
-            <div className="rounded-2xl border border-gray-200 bg-white shadow-lg text-center h-full">
+          <div className="w-full md:flex-[1] order-2 md:order-1 p-2 shadow-lg rounded-3xl">
+            <div className={`rounded-3xl border-2 border-[${data.leftSideListColor}] bg-white text-center h-full`}>
               <div
                 className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
                 style={{
@@ -67,8 +67,8 @@ export default function TwoListWithIllustration({
           </div>
 
           {/* Card */}
-          <div className="w-full md:flex-[1] order-3 md:order-3">
-            <div className="rounded-2xl border border-gray-200 bg-white shadow-lg text-center h-full">
+          <div className="w-full md:flex-[1] order-3 md:order-3 p-2 shadow-lg rounded-3xl">
+            <div className={`rounded-3xl border-2 border-[${data.rightSideListColor}] bg-white text-center h-full`}>
               <div
                 className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
                 style={{
