@@ -32,7 +32,9 @@ export default function TwoListWithIllustration({
         <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 lg:gap-8 xl:gap-10">
           {/* Card */}
           <div className="w-full md:flex-[1] order-2 md:order-1 p-2 shadow-lg rounded-3xl">
-            <div className={`rounded-3xl border-2 border-[${data.leftSideListColor}] bg-white text-center h-full`}>
+            <div className={`rounded-3xl bg-white text-center h-full`}
+            style={{ borderColor: data.leftSideListColor, borderWidth: 2 }}
+            >
               <div
                 className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
                 style={{
@@ -68,7 +70,8 @@ export default function TwoListWithIllustration({
 
           {/* Card */}
           <div className="w-full md:flex-[1] order-3 md:order-3 p-2 shadow-lg rounded-3xl">
-            <div className={`rounded-3xl border-2 border-[${data.rightSideListColor}] bg-white text-center h-full`}>
+            <div className={`rounded-3xl border-2 border-[${data.rightSideListColor}] bg-white text-center h-full`}
+            style={{ borderColor: data.rightSideListColor, borderWidth: 2 }}>
               <div
                 className="text-white font-bold text-xl mb-4 py-6 rounded-t-2xl"
                 style={{
