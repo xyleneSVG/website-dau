@@ -36,16 +36,16 @@ export const IllustrationWithTextAndCarouselSection: Block = {
           label: 'Carousel Image',
         },
         {
-          name: 'carouselDescription',
-          type: 'text',
-          required: true,
-          label: 'Carousel Description',
-        },
-        {
           name: 'carouselTitle',
           type: 'text',
           required: true,
           label: 'Carousel Title',
+        },
+        {
+          name: 'carouselDescription',
+          type: 'text',
+          required: true,
+          label: 'Carousel Description',
         },
       ],
     },
