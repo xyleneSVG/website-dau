@@ -3,16 +3,15 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 
-export async function getDataPages(path: string) {
+export async function getDataNavbar() {
   const payload = await getPayload({ config: await configPromise })
 
   const result = await payload.find({
-    collection: 'pages',
-    where: { pageKey: { equals: path } },
+    collection: 'navbar',
+    where: { active: { equals: true } },
     sort: 'createdAt',
     limit: 1,
   })
-  console.log("slug "+path)
-  console.log(result)
-  return result.docs
+  console.log(result.docs)
+  return result.docs[0]
 }

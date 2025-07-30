@@ -18,6 +18,7 @@ import { MessageFromGuests } from './collections/messages/MessageFromGuests'
 
 // Advance Configuration
 import { Pages } from './collections/Pages'
+import { Navbar } from './collections/Navbar'
 
 // Storage Collections
 import { GroupPage } from './collections/storage/GroupPage'
@@ -41,6 +42,7 @@ import { MediaLayeredTextOnImage } from './collections/storage/MediaLayeredTextO
 import { MediaIconTextListWithImage } from './collections/storage/MediaIconTextListWithImage'
 import { MediaGridImage } from './collections/storage/MediaGridImage'
 import { MediaIconListWithSideImages } from './collections/storage/MediaIconListWithSideImages'
+import { MediaNavbar } from './collections/storage/Navbar'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -64,6 +66,7 @@ export default buildConfig({
   },
   collections: [
     Pages,
+    Navbar,
     Users,
     MessageFromGuests,
     MessageFieldConfiguration,
@@ -87,7 +90,8 @@ export default buildConfig({
     MediaLayeredTextOnImage,
     MediaIconTextListWithImage,
     MediaGridImage,
-    MediaIconListWithSideImages
+    MediaIconListWithSideImages,
+    MediaNavbar
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -124,7 +128,8 @@ export default buildConfig({
         mediaLayeredTextOnImage: true,
         mediaGridImage: true,
         mediaIconListWithSideImages: true,
-        mediaImageWithCarousel: true
+        mediaImageWithCarousel: true,
+        mediaNavbar: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

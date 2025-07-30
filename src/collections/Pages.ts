@@ -29,7 +29,7 @@ import { IconListWithSideImagesSection } from './block-layout/IconListWithSideIm
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
-    useAsTitle: 'pageName',
+    useAsTitle: 'pageKey',
     group: 'Advance Configuration',
   },
   fields: [
