@@ -52,7 +52,7 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
   return (
     <div>
       <div className="w-full bg-[#E3F1FE]">
-        <div className="max-w-5xl mx-auto px-6 py-6">
+        <div className="max-w-5xl mx-auto p-6 sm:p-8 md:p-12 min-2xl:p-20 py-10 sm:py-12 md:py-14 lg:py-16 xl:md:py-20 2xl:py-24">
           <div className="text-start uppercase">
             {hasRichText && <RichTextRenderer content={data.sectionTitle.root} />}
           </div>
@@ -60,7 +60,7 @@ export default function ThreeDimensionCarousel({ data, domainBlob }: ThreeDimens
       </div>
 
       {/* Carousel */}
-      <div className="w-full max-w-5xl mx-auto px-6 py-12">
+      <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12 min-2xl:px-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
         <div className="relative flex items-center justify-center gap-6 h-[200px] sm:h-[250px] md:h-[300px] overflow-visible">
           <button
             onClick={prevSlide}
