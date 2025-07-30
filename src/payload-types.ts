@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    navbar: Navbar;
     users: User;
     messageFromGuests: MessageFromGuest;
     messageFieldConfiguration: MessageFieldConfiguration;
@@ -92,6 +93,7 @@ export interface Config {
     mediaIconTextListWithImage: MediaIconTextListWithImage;
     mediaGridImage: MediaGridImage;
     mediaIconListWithSideImages: MediaIconListWithSideImage;
+    mediaNavbar: MediaNavbar;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -99,6 +101,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    navbar: NavbarSelect<false> | NavbarSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
     messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
@@ -123,6 +126,7 @@ export interface Config {
     mediaIconTextListWithImage: MediaIconTextListWithImageSelect<false> | MediaIconTextListWithImageSelect<true>;
     mediaGridImage: MediaGridImageSelect<false> | MediaGridImageSelect<true>;
     mediaIconListWithSideImages: MediaIconListWithSideImagesSelect<false> | MediaIconListWithSideImagesSelect<true>;
+    mediaNavbar: MediaNavbarSelect<false> | MediaNavbarSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -484,8 +488,8 @@ export interface IllustrationWithTextAndCarouselSection {
   sectionDescription: string;
   carouselLists: {
     carouselImage: number | MediaIllustrationWithTextAndCarousel;
-    carouselDescription: string;
     carouselTitle: string;
+    carouselDescription: string;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1131,6 +1135,55 @@ export interface MediaIconListWithSideImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar".
+ */
+export interface Navbar {
+  id: number;
+  active?: boolean | null;
+  layoutNavbar?: string | null;
+  navbarLogo: number | MediaNavbar;
+  navbarItemArray: {
+    navbarItemName: string;
+    navbarItemReference?: (number | null) | Page;
+    hasDropdown?: boolean | null;
+    navbarDropdown?:
+      | {
+          itemDropdownIcon: string;
+          itemDropdownTitle: string;
+          itemDropdownReference: number | Page;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  accentColor?: string | null;
+  hasButtonContact?: boolean | null;
+  buttonContactReference?: (number | null) | Page;
+  buttonContactColor?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaNavbar".
+ */
+export interface MediaNavbar {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1203,6 +1256,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'navbar';
+        value: number | Navbar;
       } | null)
     | ({
         relationTo: 'users';
@@ -1299,6 +1356,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mediaIconListWithSideImages';
         value: number | MediaIconListWithSideImage;
+      } | null)
+    | ({
+        relationTo: 'mediaNavbar';
+        value: number | MediaNavbar;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1497,8 +1558,8 @@ export interface IllustrationWithTextAndCarouselSectionSelect {
     | boolean
     | {
         carouselImage?: boolean;
-        carouselDescription?: boolean;
         carouselTitle?: boolean;
+        carouselDescription?: boolean;
         id?: boolean;
       };
   id?: boolean;
@@ -1795,6 +1856,37 @@ export interface IconListWithSideImagesSectionSelect {
       };
   id?: boolean;
   blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar_select".
+ */
+export interface NavbarSelect<T extends boolean = true> {
+  active?: T;
+  layoutNavbar?: T;
+  navbarLogo?: T;
+  navbarItemArray?:
+    | T
+    | {
+        navbarItemName?: T;
+        navbarItemReference?: T;
+        hasDropdown?: T;
+        navbarDropdown?:
+          | T
+          | {
+              itemDropdownIcon?: T;
+              itemDropdownTitle?: T;
+              itemDropdownReference?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  accentColor?: T;
+  hasButtonContact?: T;
+  buttonContactReference?: T;
+  buttonContactColor?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2211,6 +2303,24 @@ export interface MediaGridImageSelect<T extends boolean = true> {
  * via the `definition` "mediaIconListWithSideImages_select".
  */
 export interface MediaIconListWithSideImagesSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mediaNavbar_select".
+ */
+export interface MediaNavbarSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
