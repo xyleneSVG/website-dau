@@ -2,10 +2,15 @@
 
 import Image from 'next/image'
 import React from 'react'
-import logoDataAndalanUtama from 'public/assets/logo data utama.svg'
 import Link from 'next/link'
+import { FooterData } from '../../_interfaces/footers'
 
-export default function Footer() {
+interface Props {
+  data: FooterData
+  domainBlob: string
+}
+
+export default function Footer({ data, domainBlob }: Props) {
   return (
     <footer className="relative">
       <div className="w-full flex justify-between items-end relative p-0 m-0">
@@ -28,53 +33,43 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex">
+      <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex md:gap-x-12">
         <div className="md:w-[30%] flex flex-col">
           <Image
-            src={logoDataAndalanUtama}
-            alt="logo"
+            src={domainBlob + data.footerLogo.filename}
+            alt={data.footerLogo?.filename || ''}
+            width={0}
+            height={0}
             className="w-[160px] sm:w-[180px] lg:w-[200px] h-auto object-contain"
           />
           <h1 className="text-white font-bold text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px] mt-4">
-            PT. Data Andalan Utama
+            {data.footerTitle}
           </h1>
           <p className="text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] text-justify">
-            Jl. Selomas Raya B-21, Panggung Lor, Kec. Semarang Utara, Kota Semarang, Jawa Tengah -
-            50177
+            {data.footerDescription}
           </p>
         </div>
 
-        <div className="md:w-[70%] sm:flex sm:gap-[60px] md:gap-0 mt-[25px]">
-          <div className="md:w-[70%]">
-            <div className="md:mx-auto w-fit">
-              <h1 className="w-fit text-white font-bold uppercase mb-4 text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
-                Layanan
-              </h1>
-              <div className="md:flex md:gap-8 lg:gap-16">
-                <div className="flex flex-col gap-2 text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px]">
-                  <Link href="#">Software Architecture</Link>
-                  <Link href="#">Jaringan & Keamanan</Link>
-                  <Link href="#">Data Center & Cloud</Link>
-                </div>
-                <div className="flex flex-col gap-2 text-white mt-1 md:mt-0">
-                  <Link href="#">Command Center</Link>
-                  <Link href="#">Mobile Device Management</Link>
-                  <Link href="#">UIUX</Link>
+        <div className="md:w-[70%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-6 mt-[25px]">
+          {Array.isArray(data.footerNavigation) &&
+            data.footerNavigation.map((group, index) => (
+              <div key={index} className="mt-[35px] sm:mt-0">
+                <h1 className="text-white font-bold uppercase mb-4 text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
+                  {group.navigationGroupTitle}
+                </h1>
+                <div className="flex flex-col space-y-2 text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px]">
+                  {group.navigationGroupItem.map((navItem, i) => (
+                    <Link
+                      key={i}
+                      href={navItem.navigationPageReference.pageKey}
+                      className="hover:underline hover:text-gray-300 transition"
+                    >
+                      {navItem.navigationPageName}
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="md:w-[30%] mt-[35px] sm:mt-0">
-            <h1 className="text-white font-bold uppercase mb-4 text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
-              Perusahaan
-            </h1>
-            <div className="flex flex-col gap-2 text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px]">
-              <Link href="#">Tentang Kami</Link>
-              <Link href="#">Ketentuan Layanan</Link>
-              <Link href="#">Hubungi Kami</Link>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
 
