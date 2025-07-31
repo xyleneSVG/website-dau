@@ -8,7 +8,7 @@ import { CACHE_EXPIRED_5_MIN, client } from '@/lib/redis'
 export async function getDataPages(path: string) {
   const payload = await getPayload({ config: await configPromise })
 
-  const resultRedistCache = await client.get("pageCache")
+  const resultRedistCache = await client.get(`pageCache:${path}`)
 
   if (resultRedistCache) {
     const parsedCache = JSON.parse(resultRedistCache)
@@ -23,7 +23,7 @@ export async function getDataPages(path: string) {
     limit: 1,
   })
 
-  await client.set('pageCache', JSON.stringify(resultFind.docs), {EX: CACHE_EXPIRED_5_MIN});
+  await client.set(`pageCache:${path}`, JSON.stringify(resultFind.docs), {EX: CACHE_EXPIRED_5_MIN});
 
   return resultFind.docs
 }
