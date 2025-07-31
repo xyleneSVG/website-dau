@@ -9,24 +9,6 @@ import { X, Menu, Triangle, Phone, LucideIcon } from 'lucide-react'
 
 import type { NavbarData } from '../../_interfaces/navbars'
 
-const layananData = [
-  { title: 'Software Architecture', url: '/assets/landing/navbar/Layer_1.svg' },
-  { title: 'Jaringan & Keamanan', url: '/assets/landing/navbar/Layer_2.svg' },
-  { title: 'Data Center & Cloud', url: '/assets/landing/navbar/Layer_3.svg' },
-  { title: 'Command Center', url: '/assets/landing/navbar/Layer_4.svg' },
-  { title: 'Mobile Device Management', url: '/assets/landing/navbar/Layer_5.svg' },
-  { title: 'UIUX', url: '/assets/landing/navbar/Layer_6.svg' },
-]
-
-const portofolioData = [
-  { title: 'Software Architecture', url: '/assets/landing/navbar/Layer_1.svg' },
-  { title: 'Jaringan & Keamanan', url: '/assets/landing/navbar/Layer_2.svg' },
-  { title: 'Data Center & Cloud', url: '/assets/landing/navbar/Layer_3.svg' },
-  { title: 'Command Center', url: '/assets/landing/navbar/Layer_4.svg' },
-  { title: 'Mobile Device Management', url: '/assets/landing/navbar/Layer_5.svg' },
-  { title: 'UIUX', url: '/assets/landing/navbar/Layer_6.svg' },
-]
-
 interface Props {
   data: NavbarData
   domainBlob: string
@@ -188,7 +170,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
                 {data.hasButtonContact && (
                   <li>
                     <Link
-                      href={data.buttonContactReference.pageKey}
+                      href={data.buttonContactReference?.pageKey || ''}
                       className="text-white text-[12px] sm:text-[14px] md:text-[16px] xl:text-[18px] 2xl:text-[20px] flex items-center w-max gap-x-2.5 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-md sm:rounded-lg md:rounded-xl md:px-5"
                       style={{ backgroundColor: data.buttonContactColor }}
                     >

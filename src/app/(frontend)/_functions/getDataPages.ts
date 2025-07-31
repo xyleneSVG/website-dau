@@ -12,7 +12,7 @@ export async function getDataPages(path: string) {
     sort: 'createdAt',
     limit: 1,
   })
-  console.log("slug "+path)
-  console.log(result)
+  // console.log("slug "+path)
+  // console.log(result)
   return result.docs
 }
