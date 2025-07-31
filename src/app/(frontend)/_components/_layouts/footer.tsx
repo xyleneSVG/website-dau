@@ -36,7 +36,7 @@ export default function Footer({ data, domainBlob }: Props) {
       <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex md:gap-x-12">
         <div className="md:w-[30%] flex flex-col">
           <Image
-            src={domainBlob + data.footerLogo.filename}
+            src={domainBlob + data.footerLogo?.filename}
             alt={data.footerLogo?.filename || ''}
             width={0}
             height={0}

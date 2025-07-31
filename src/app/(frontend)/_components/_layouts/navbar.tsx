@@ -74,7 +74,8 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
               <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-8 xl:gap-10 2xl:gap-12 text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px] mt-4 md:mt-0">
                 {Array.isArray(data.navbarItemArray) &&
                   data.navbarItemArray.map((item) => {
-                    const isActive = pathname === item.navbarItemReference?.pageKey
+                    const itemPath = item.navbarItemReference?.pageKey || '/'
+                    const isActive = pathname === itemPath || (pathname === '/' && itemPath === '/')
                     const isDropdown = item.hasDropdown
 
                     return (

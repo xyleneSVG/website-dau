@@ -2,17 +2,28 @@
 
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import { CACHE_EXPIRED_5_MIN, client } from '@/lib/redis' 
+
 
 export async function getDataPages(path: string) {
   const payload = await getPayload({ config: await configPromise })
 
-  const result = await payload.find({
+  const resultRedistCache = await client.get("pageCache")
+
+  if (resultRedistCache) {
+    const parsedCache = JSON.parse(resultRedistCache)
+    console.log(parsedCache)
+    return parsedCache
+  }
+
+  const resultFind = await payload.find({
     collection: 'pages',
     where: { pageKey: { equals: path } },
     sort: 'createdAt',
     limit: 1,
   })
-  // console.log("slug "+path)
-  // console.log(result)
-  return result.docs
+
+  await client.set('pageCache', JSON.stringify(resultFind.docs), {EX: CACHE_EXPIRED_5_MIN});
+
+  return resultFind.docs
 }
