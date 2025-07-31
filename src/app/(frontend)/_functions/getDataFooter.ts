@@ -21,7 +21,7 @@ export async function getDataFooter() {
     sort: 'createdAt',
     limit: 1,
   })
-  await client.set('footerCache', JSON.stringify(resultFind.docs), {EX: CACHE_EXPIRED_5_MIN})
+  await client.set('footerCache', JSON.stringify(resultFind.docs[0]), {EX: CACHE_EXPIRED_5_MIN})
 
-  return resultFind.docs
+  return resultFind.docs[0]
 }

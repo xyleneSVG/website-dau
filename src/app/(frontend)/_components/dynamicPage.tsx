@@ -34,6 +34,7 @@ import {
 // components
 import NotFound from './NotFound'
 import Navbar from './_layouts/navbar'
+import Footer from './_layouts/footer'
 import Hero from './_layouts/hero'
 import LayeredTextOnImage from './_layouts/layeredTextOnImage'
 import ZigZagList from './_layouts/zigZagList'
@@ -71,7 +72,6 @@ interface DynamicPageProps {
 import { getDataPages } from '../_functions/getDataPages'
 import { getDataNavbar } from '../_functions/getDataNavbar'
 import { getDataFooter } from '../_functions/getDataFooter'
-import Footer from './_layouts/footer'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
@@ -146,8 +146,15 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     depth: 2,
   })
 
+  const { data: livePreviewFooter } = useLivePreview<FooterData>({
+    initialData: fetchedFooter ?? ({} as FooterData),
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
+    depth: 2,
+  })
+
   const pageData = { ...fetchedPage, ...livePreviewData }
   const navbarData = { ...fetchedNavbar, ...livePreviewNavbar }
+  const footerData = { ...fetchedFooter, ...livePreviewFooter }
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
@@ -251,7 +258,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         <Navbar data={navbarData} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
       )}
       {pageData.pageSection?.map((section, index) => renderSection(section, index))}
-      {fetchedFooter && <Footer data={fetchedFooter} domainBlob={domainBlob} />}
+      {fetchedFooter && <Footer data={footerData} domainBlob={domainBlob} />}
     </div>
   )
 }
