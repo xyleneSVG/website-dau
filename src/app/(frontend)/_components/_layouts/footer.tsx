@@ -28,7 +28,7 @@ export default function Footer({ data, domainBlob }: Props) {
             src="/assets/landing/footer/shape2.png"
             alt="shape2"
             fill
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       </div>

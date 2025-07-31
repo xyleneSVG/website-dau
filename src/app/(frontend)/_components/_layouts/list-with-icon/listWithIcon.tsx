@@ -17,7 +17,7 @@ export default function ListWithIcon({ data, getLucideIcon }: ListWithIconProps)
         style={{ backgroundColor: data.backgroundPageColor }}
       />
 
-      <div className="relative z-10 w-full md:w-[90%] lg:w-[80%] xl:w-[70%]">
+      <div className="relative z-10 max-w-full md:max-w-[90%] lg:max-w-[80%] xl:max-w-[70%]">
         <h2 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[32px] font-light uppercase mb-4 sm:mb-6 md:mb-8 xl:mb-10 text-center">
           {data.sectionTitle}
         </h2>
