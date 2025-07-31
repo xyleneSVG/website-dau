@@ -23,7 +23,7 @@ export default function Footer({ data, domainBlob }: Props) {
             priority
           />
         </div>
-        <div className="relative w-[200px] sm:w-[300px] md:w-[350px] lg:w-[400px] h-[40px] md:h-[50px] lg:h-[70px]">
+        <div className="relative w-[200px] sm:w-[300px] md:w-[350px] lg:w-[400px] h-[40px] md:h-[50px] lg:h-[50px]">
           <Image
             src="/assets/landing/footer/shape2.png"
             alt="shape2"
@@ -33,7 +33,7 @@ export default function Footer({ data, domainBlob }: Props) {
         </div>
       </div>
 
-      <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex md:gap-x-12">
+      <div className="bg-black w-full px-6 xl:px-[120px] py-10 lg:py-12 xl:py-14 2xl:py-16 md:flex md:gap-x-12 md:flex-row md:justify-between">
         <div className="md:w-[30%] flex flex-col">
           <Image
             src={domainBlob + data.footerLogo?.filename}
@@ -50,14 +50,14 @@ export default function Footer({ data, domainBlob }: Props) {
           </p>
         </div>
 
-        <div className="md:w-[70%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-6 mt-[25px]">
+        <div className="md:w-max grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-10 mt-[25px] md:justify-end md:flex">
           {Array.isArray(data.footerNavigation) &&
             data.footerNavigation.map((group, index) => (
               <div key={index} className="mt-[35px] sm:mt-0">
                 <h1 className="text-white font-bold uppercase mb-4 text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
                   {group.navigationGroupTitle}
                 </h1>
-                <div className="flex flex-col space-y-2 text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px]">
+                <div className="flex flex-col space-y-2 text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] md:h-[130px] md:gap-x-10 md:flex-wrap">
                   {group.navigationGroupItem.map((navItem, i) => (
                     <Link
                       key={i}
