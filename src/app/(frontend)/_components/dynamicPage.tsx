@@ -140,7 +140,14 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     depth: 2,
   })
 
+  const { data: livePreviewNavbar } = useLivePreview<NavbarData>({
+    initialData: fetchedNavbar ?? ({} as NavbarData),
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
+    depth: 2,
+  })
+
   const pageData = { ...fetchedPage, ...livePreviewData }
+  const navbarData = { ...fetchedNavbar, ...livePreviewNavbar }
 
   const renderSection = (section: any, index: number) => {
     switch (section.blockType) {
@@ -241,12 +248,10 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
   return (
     <div>
       {fetchedNavbar && (
-        <Navbar data={fetchedNavbar} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
+        <Navbar data={navbarData} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
       )}
       {pageData.pageSection?.map((section, index) => renderSection(section, index))}
-      {fetchedFooter && (
-        <Footer data={fetchedFooter} domainBlob={domainBlob} />
-      )}
+      {fetchedFooter && <Footer data={fetchedFooter} domainBlob={domainBlob} />}
     </div>
   )
 }

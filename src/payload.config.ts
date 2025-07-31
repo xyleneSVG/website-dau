@@ -61,9 +61,12 @@ export default buildConfig({
           const key = data?.pageKey?.startsWith('/') ? data.pageKey : `${data?.pageKey || ''}`
           return `${process.env.NEXT_PUBLIC_SERVER_URL}${key}`
         }
-        return process.env.NEXT_PUBLIC_SERVER_URL || '';
+        if (collectionConfig?.slug === 'navbar') {
+          return `${process.env.NEXT_PUBLIC_SERVER_URL}/`
+        }
+        return process.env.NEXT_PUBLIC_SERVER_URL || ''
       },
-      collections: ['pages'],
+      collections: ['pages', 'navbar'],
     },
   },
   collections: [
@@ -95,7 +98,7 @@ export default buildConfig({
     MediaGridImage,
     MediaIconListWithSideImages,
     MediaNavbar,
-    MediaFooter
+    MediaFooter,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -134,7 +137,7 @@ export default buildConfig({
         mediaIconListWithSideImages: true,
         mediaImageWithCarousel: true,
         mediaNavbar: true,
-        mediaFooter: true
+        mediaFooter: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
