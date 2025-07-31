@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-import icon1 from 'public/assets/landing/tech/icon1.svg'
 import background1 from 'public/assets/landing/tech/background1.svg'
 import background2 from 'public/assets/landing/tech/background2.svg'
 
@@ -17,10 +16,10 @@ interface Props {
 
 export default function ImageWithCarousel({ data, domainBlob }: Props) {
   const [visibleCount, setVisibleCount] = useState(3)
-  const [items, setItems] = useState(() =>
-    Array.isArray(data.carouselImage) ? data.carouselImage : [],
-  )
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [clonedItems, setClonedItems] = useState<any[]>([])
   const [isSliding, setIsSliding] = useState(false)
+  const [transitionEnabled, setTransitionEnabled] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const updateVisibleCount = () => {
@@ -36,39 +35,30 @@ export default function ImageWithCarousel({ data, domainBlob }: Props) {
     return () => window.removeEventListener('resize', updateVisibleCount)
   }, [])
 
+  useEffect(() => {
+    const items = Array.isArray(data.carouselImage) ? data.carouselImage : []
+    const prefix = items.slice(-visibleCount)
+    const suffix = items.slice(0, visibleCount)
+    setClonedItems([...prefix, ...items, ...suffix])
+    setCurrentIndex(visibleCount)
+  }, [data.carouselImage, visibleCount])
+
   const slide = (dir: 'left' | 'right') => {
     if (isSliding) return
     setIsSliding(true)
+    setTransitionEnabled(true)
+    setCurrentIndex((prev) => (dir === 'left' ? prev - 1 : prev + 1))
+  }
 
-    const container = containerRef.current
-    if (!container) return
-
-    const shiftPercent = 100 / items.length
-
-    container.style.transition = 'transform 0.3s ease'
-    container.style.transform = `translateX(${dir === 'left' ? shiftPercent : -shiftPercent}%)`
-
-    setTimeout(() => {
-      container.style.transition = 'none'
-      container.style.transform = 'translateX(0)'
-
-      setItems((prev) => {
-        const copy = [...prev]
-        if (dir === 'left') {
-          const last = copy.pop()
-          if (last) copy.unshift(last)
-        } else {
-          const first = copy.shift()
-          if (first) copy.push(first)
-        }
-        return copy
-      })
-
-      setTimeout(() => {
-        container.style.transition = 'transform 0.3s ease'
-        setIsSliding(false)
-      }, 30)
-    }, 300)
+  const handleTransitionEnd = () => {
+    setIsSliding(false)
+    if (currentIndex >= clonedItems.length - visibleCount) {
+      setTransitionEnabled(false)
+      setCurrentIndex(visibleCount)
+    } else if (currentIndex === 0) {
+      setTransitionEnabled(false)
+      setCurrentIndex(clonedItems.length - 2 * visibleCount)
+    }
   }
 
   return (
@@ -107,7 +97,7 @@ export default function ImageWithCarousel({ data, domainBlob }: Props) {
           />
 
           <div className="flex items-center justify-center gap-x-4 lg:gap-x-6 2xl:gap-x-8">
-            {items.length > visibleCount && (
+            {clonedItems.length > visibleCount && (
               <button
                 onClick={() => slide('left')}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
@@ -121,34 +111,35 @@ export default function ImageWithCarousel({ data, domainBlob }: Props) {
                 ref={containerRef}
                 className="flex"
                 style={{
-                  width: `${(items.length * 100) / visibleCount}%`,
-                  transform: 'translateX(0)',
+                  width: `${(clonedItems.length * 100) / visibleCount}%`,
+                  transform: `translateX(-${(currentIndex * 100) / clonedItems.length}%)`,
+                  transition: transitionEnabled ? 'transform 0.3s ease' : 'none',
                 }}
+                onTransitionEnd={handleTransitionEnd}
               >
-                {Array.isArray(data.carouselImage) &&
-                  data.carouselImage?.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex-shrink-0 px-2 transition-transform duration-300 ease-in-out"
-                      style={{ width: `${100 / items.length}%` }}
-                    >
-                      <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
-                        {item?.itemImage?.filename && (
-                          <Image
-                            src={domainBlob + item.itemImage?.filename}
-                            alt={item.itemImage.filename || ''}
-                            width={40}
-                            height={40}
-                            className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
-                          />
-                        )}
-                      </div>
+                {clonedItems.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-shrink-0 px-2"
+                    style={{ width: `${100 / clonedItems.length}%` }}
+                  >
+                    <div className="size-14 rounded-2xl bg-white flex justify-center items-center sm:size-16 lg:size-20 xl:size-23 2xl:size-32 mx-auto">
+                      {item?.itemImage?.filename && (
+                        <Image
+                          src={domainBlob + item.itemImage?.filename}
+                          alt={item.itemImage.filename || ''}
+                          width={40}
+                          height={40}
+                          className="w-6 h-auto sm:w-10 xl:w-12 2xl:w-16"
+                        />
+                      )}
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {items.length > visibleCount && (
+            {clonedItems.length > visibleCount && (
               <button
                 onClick={() => slide('right')}
                 className="w-6 h-6 rounded-full bg-[#00DB05] flex items-center justify-center lg:w-10 lg:h-10 2xl:w-14 2xl:h-14"
