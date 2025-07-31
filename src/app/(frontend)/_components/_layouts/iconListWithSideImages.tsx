@@ -41,7 +41,7 @@ export default function IconListWithSideImages({ data, domainBlob }: Props) {
                     src={domainBlob + item.itemImage?.filename}
                     alt={item.itemImage?.id || ''}
                     fill
-                    className="object-cover z-0"
+                    className="object-contain z-0"
                   />
                 </div>
 

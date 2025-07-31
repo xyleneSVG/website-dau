@@ -63,7 +63,7 @@ export default function ImageWithCarousel({ data, domainBlob }: Props) {
 
   return (
     <div
-      className={`p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 overflow-hidden`}
+      className={`relative p-6 sm:p-8 md:p-12 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30 overflow-hidden`}
       style={{ backgroundColor: data.backgroundColor }}
     >
       <Image
