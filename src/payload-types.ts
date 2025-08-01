@@ -70,6 +70,7 @@ export interface Config {
     pages: Page;
     navbar: Navbar;
     footer: Footer;
+    reciveMessage: ReciveMessage;
     users: User;
     messageFromGuests: MessageFromGuest;
     messageFieldConfiguration: MessageFieldConfiguration;
@@ -105,6 +106,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    reciveMessage: ReciveMessageSelect<false> | ReciveMessageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
     messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
@@ -410,12 +412,35 @@ export interface MediaImageGridCarousel {
  * via the `definition` "Contact Section".
  */
 export interface ContactSection {
-  sectionContactIllustration: number | MediaContact;
-  sectionContactLabel: string;
-  sectionContactHeadline: string;
-  sectionContactDescription: string;
-  fieldContactLists: {
-    fieldLabel: number | MessageFieldConfiguration;
+  sectionIllustration: number | MediaContact;
+  sectionLabel: string;
+  sectionHeadline: string;
+  sectionDescription: string;
+  fieldsForm: {
+    fieldLayout: 'single' | 'double';
+    fieldId: string;
+    fieldLabel: string;
+    fieldTypeSingle?: ('text' | 'number' | 'email' | 'textarea' | 'radio') | null;
+    fieldPlaceholder?: string | null;
+    fieldTypeDouble?: ('text' | 'email' | 'number') | null;
+    fieldRequired?: boolean | null;
+    fieldRadioOptions?:
+      | {
+          optionRadioValue: string;
+          optionRadioLabel: string;
+          id?: string | null;
+        }[]
+      | null;
+    subFields?:
+      | {
+          subFieldId: string;
+          subFieldLabel: string;
+          subFieldPlaceholder: string;
+          subFieldType: 'text' | 'email' | 'number';
+          subFieldRequired?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -440,48 +465,6 @@ export interface MediaContact {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messageFieldConfiguration".
- */
-export interface MessageFieldConfiguration {
-  id: number;
-  computedTitle?: string | null;
-  /**
-   * For show on frontend
-   */
-  fieldLabel: string;
-  fieldName: string;
-  fieldPlaceholder?: string | null;
-  fieldType: 'text' | 'email' | 'number' | 'textarea' | 'select';
-  selectOptions?:
-    | {
-        /**
-         * For show on frontend
-         */
-        optionLabel: string;
-        optionValue: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * By enabling styling, can make the current field into 2 input columns in one row
-   */
-  styling?: boolean | null;
-  /**
-   * For show on frontend
-   */
-  parallelFieldLabel?: string | null;
-  parallelFieldName?: string | null;
-  parallelFieldPlaceholder?: string | null;
-  parallelFieldType?: ('text' | 'email' | 'number') | null;
-  /**
-   * By enabling required, can make the current field mandatory on the frontend.
-   */
-  required?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1230,6 +1213,24 @@ export interface MediaFooter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reciveMessage".
+ */
+export interface ReciveMessage {
+  id: number;
+  recivedData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -1275,6 +1276,48 @@ export interface MessageFromGuest {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "messageFieldConfiguration".
+ */
+export interface MessageFieldConfiguration {
+  id: number;
+  computedTitle?: string | null;
+  /**
+   * For show on frontend
+   */
+  fieldLabel: string;
+  fieldName: string;
+  fieldPlaceholder?: string | null;
+  fieldType: 'text' | 'email' | 'number' | 'textarea' | 'select';
+  selectOptions?:
+    | {
+        /**
+         * For show on frontend
+         */
+        optionLabel: string;
+        optionValue: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * By enabling styling, can make the current field into 2 input columns in one row
+   */
+  styling?: boolean | null;
+  /**
+   * For show on frontend
+   */
+  parallelFieldLabel?: string | null;
+  parallelFieldName?: string | null;
+  parallelFieldPlaceholder?: string | null;
+  parallelFieldType?: ('text' | 'email' | 'number') | null;
+  /**
+   * By enabling required, can make the current field mandatory on the frontend.
+   */
+  required?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mediaListWithIconAndDescription".
  */
 export interface MediaListWithIconAndDescription {
@@ -1310,6 +1353,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'footer';
         value: number | Footer;
+      } | null)
+    | ({
+        relationTo: 'reciveMessage';
+        value: number | ReciveMessage;
       } | null)
     | ({
         relationTo: 'users';
@@ -1588,14 +1635,37 @@ export interface ImageGridCarouselSectionSelect {
  * via the `definition` "Contact Section_select".
  */
 export interface ContactSectionSelect {
-  sectionContactIllustration?: boolean;
-  sectionContactLabel?: boolean;
-  sectionContactHeadline?: boolean;
-  sectionContactDescription?: boolean;
-  fieldContactLists?:
+  sectionIllustration?: boolean;
+  sectionLabel?: boolean;
+  sectionHeadline?: boolean;
+  sectionDescription?: boolean;
+  fieldsForm?:
     | boolean
     | {
+        fieldLayout?: boolean;
+        fieldId?: boolean;
         fieldLabel?: boolean;
+        fieldTypeSingle?: boolean;
+        fieldPlaceholder?: boolean;
+        fieldTypeDouble?: boolean;
+        fieldRequired?: boolean;
+        fieldRadioOptions?:
+          | boolean
+          | {
+              optionRadioValue?: boolean;
+              optionRadioLabel?: boolean;
+              id?: boolean;
+            };
+        subFields?:
+          | boolean
+          | {
+              subFieldId?: boolean;
+              subFieldLabel?: boolean;
+              subFieldPlaceholder?: boolean;
+              subFieldType?: boolean;
+              subFieldRequired?: boolean;
+              id?: boolean;
+            };
         id?: boolean;
       };
   id?: boolean;
@@ -1965,6 +2035,15 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reciveMessage_select".
+ */
+export interface ReciveMessageSelect<T extends boolean = true> {
+  recivedData?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -2,47 +2,179 @@ import type { Block } from 'payload'
 
 export const ContactSection: Block = {
   slug: 'contactSection',
-  imageURL: "public/assets/landing/hero/thumbnail.png",
+  imageURL: '/assets/skeleton/contact.svg',
   interfaceName: 'Contact Section',
   fields: [
     {
-      name: 'sectionContactIllustration',
+      name: 'sectionIllustration',
+      label: 'Section Illustration',
       type: 'upload',
       relationTo: 'mediaContact',
       required: true,
     },
     {
-      name: 'sectionContactLabel',
+      name: 'sectionLabel',
       type: 'text',
       label: 'Section Label',
-      required: true
+      required: true,
     },
     {
-      name: 'sectionContactHeadline',
+      name: 'sectionHeadline',
       type: 'text',
       label: 'Section Headline',
-      required: true
+      required: true,
     },
     {
-      name: 'sectionContactDescription',
+      name: 'sectionDescription',
       type: 'text',
       label: 'Section Description',
-      required: true
+      required: true,
     },
     {
-      name: 'fieldContactLists',
+      name: 'fieldsForm',
       type: 'array',
+      label: 'Fields Form',
       required: true,
-      label: 'Field Contact Lists',
       fields: [
         {
-          name: 'fieldLabel',
-          type: 'relationship',
-          relationTo: 'messageFieldConfiguration',
+          name: 'fieldLayout',
+          label: 'Field Layout',
+          type: 'select',
+          options: [
+            { label: 'Single', value: 'single' },
+            { label: 'Double', value: 'double' },
+          ],
           required: true,
-          label: 'Field Name',
         },
-      ]
+        {
+          name: 'fieldId',
+          label: 'Field ID',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'fieldLabel',
+          label: 'Field Label',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'fieldTypeSingle',
+          label: 'Field Type (Single Layout)',
+          type: 'select',
+          admin: {
+            condition: (_, siblingData) => siblingData?.fieldLayout === 'single',
+          },
+          options: [
+            { label: 'Text', value: 'text' },
+            { label: 'Number', value: 'number' },
+            { label: 'Email', value: 'email' },
+            { label: 'Textarea', value: 'textarea' },
+            { label: 'Radio', value: 'radio' },
+          ],
+          required: true,
+        },
+        {
+          name: 'fieldPlaceholder',
+          label: 'Field Placeholder',
+          type: 'text',
+          required: true,
+          admin: {
+            condition: (_, siblingData) => siblingData?.fieldTypeSingle !== 'radio',
+          },
+        },
+        {
+          name: 'fieldTypeDouble',
+          label: 'Field Type (Double Layout)',
+          type: 'select',
+          admin: {
+            condition: (_, siblingData) => siblingData?.fieldLayout === 'double',
+          },
+          options: [
+            { label: 'Text', value: 'text' },
+            { label: 'Email', value: 'email' },
+            { label: 'Number', value: 'number' },
+          ],
+          required: true,
+        },
+        {
+          name: 'fieldRequired',
+          label: 'Field Required',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+        {
+          name: 'fieldRadioOptions',
+          label: 'Options for Radio',
+          type: 'array',
+          admin: {
+            condition: (_, siblingData) =>
+              siblingData?.fieldLayout === 'single' && siblingData?.fieldTypeSingle === 'radio',
+          },
+          fields: [
+            {
+              name: 'optionRadioValue',
+              type: 'text',
+              label: 'Option ID',
+              required: true,
+            },
+            {
+              name: 'optionRadioLabel',
+              type: 'text',
+              label: 'Option Label',
+              required: true,
+            },
+          ],
+          required: true,
+        },
+        {
+          name: 'subFields',
+          label: 'Sub Fields for Double Layout',
+          type: 'array',
+          maxRows: 1,
+          admin: {
+            condition: (_, siblingData) => siblingData?.fieldLayout === 'double',
+          },
+          fields: [
+            {
+              name: 'subFieldId',
+              label: 'Sub Field ID',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'subFieldLabel',
+              label: 'Sub Field Label',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'subFieldPlaceholder',
+              label: 'Sub Field Placeholder',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'subFieldType',
+              dbName: 'subType',
+              label: 'Sub Field Type',
+              type: 'select',
+              required: true,
+              options: [
+                { label: 'Text', value: 'text' },
+                { label: 'Email', value: 'email' },
+                { label: 'Number', value: 'number' },
+              ],
+            },
+            {
+              name: 'subFieldRequired',
+              label: 'Sub Field Required',
+              type: 'checkbox',
+              defaultValue: false,
+            },
+          ],
+        },
+      ],
     },
-  ]
+  ],
 }
