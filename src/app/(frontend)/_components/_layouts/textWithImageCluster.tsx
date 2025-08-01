@@ -54,13 +54,14 @@ export default function TextWithImageCluster({ data, domainBlob, getLucideIcon }
       >
         <div className="w-full lg:w-1/2 flex flex-col items-center gap-4 md:gap-6 mb-0">
           {imageLists?.length > 0 && (
-            <div className="w-[70%] sm:w-[50%] lg:w-full relative aspect-[4/3] rounded-2xl lg:rounded-4xl overflow-hidden">
+            <div className="w-[70%] sm:w-[50%] lg:w-full rounded-2xl lg:rounded-4xl overflow-hidden">
               <Image
                 src={domainBlob + imageLists[0].itemImage?.filename}
                 alt="Image"
-                fill
+                width={800} 
+                height={0} 
                 priority
-                className="object-cover"
+                className="w-full h-auto object-cover"
               />
             </div>
           )}
@@ -68,7 +69,7 @@ export default function TextWithImageCluster({ data, domainBlob, getLucideIcon }
             {imageLists?.slice(1).map((img, idx) => (
               <div
                 key={idx}
-                className="w-[48%] h-[100px] sm:h-[150px] lg:h-[160px] xl:h-[180px] 2xl:h-[200px] aspect-[3/2] relative rounded-2xl overflow-hidden"
+                className="w-[48%] h-[70px] sm:h-[100px] lg:h-[120px] xl:h-[150px] 2xl:h-[180px] aspect-[3/2] relative rounded-2xl overflow-hidden"
               >
                 <Image
                   src={domainBlob + img.itemImage?.filename}
