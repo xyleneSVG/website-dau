@@ -10,12 +10,6 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 
-// Collections Advance Configuration
-import { MessageFieldConfiguration } from './collections/messages/MessageFieldConfiguration'
-
-// Collections Message From Guests
-import { MessageFromGuests } from './collections/messages/MessageFromGuests'
-
 // Advance Configuration
 import { Pages } from './collections/Pages'
 import { Navbar } from './collections/Navbar'
@@ -76,8 +70,6 @@ export default buildConfig({
     Footer,
     ReciveMessage,
     Users,
-    MessageFromGuests,
-    MessageFieldConfiguration,
     GroupPage,
     MediaHero,
     MediaServices,

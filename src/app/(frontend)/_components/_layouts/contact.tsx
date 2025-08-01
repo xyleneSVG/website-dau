@@ -1,6 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import backgroundIcon1 from 'public/assets/landing/service/backgroundIcon1.svg'
 import { ContactSection, OptionRadio, SubFields } from '../../_interfaces/pages'
@@ -8,37 +10,6 @@ import { ContactSection, OptionRadio, SubFields } from '../../_interfaces/pages'
 interface Props {
   data: ContactSection
   domainBlob: string
-}
-
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault()
-
-  const formData = new FormData(e.currentTarget)
-  const jsonData: { [key: string]: string } = {}
-
-  formData.forEach((value, key) => {
-    jsonData[key] = value.toString()
-  })
-
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(jsonData),
-    })
-
-    if (!res.ok) throw new Error('Failed to send')
-
-    const result = await res.json()
-    console.log('Message sent:', result)
-    alert('Pesan berhasil dikirim!')
-    window.location.reload()
-  } catch (error) {
-    console.error('Send error:', error)
-    alert('Gagal mengirim pesan.')
-  }
 }
 
 const renderInputField = (field: any, isSubField: boolean = false) => {
@@ -108,6 +79,81 @@ const renderInputField = (field: any, isSubField: boolean = false) => {
 }
 
 export default function Contact({ data, domainBlob }: Props) {
+  const [sendingData, setSendingData] = useState(false)
+  const [checkingRecaptcha, setCheckingRecaptcha] = useState(false)
+  const { executeRecaptcha } = useGoogleReCaptcha()
+  const [recaptchaStatus, setRecaptchaStatus] = useState<string>('')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const form = e.currentTarget as HTMLFormElement | null
+    if (!form) {
+      console.error('Form element not found on event currentTarget')
+      return
+    }
+    setRecaptchaStatus('')
+
+    if (!executeRecaptcha) {
+      console.error('ReCAPTCHA not available')
+      setRecaptchaStatus('ReCAPTCHA not available.')
+      return
+    }
+
+    const gRecaptchaToken = await executeRecaptcha('formSubmit')
+
+    try {
+      setCheckingRecaptcha(true)
+      const verifyRes = await fetch('/api/recaptcha', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ gRecaptchaToken }),
+      })
+
+      console.log(verifyRes)
+
+      if (!verifyRes.ok) {
+        setRecaptchaStatus('Verifikasi ReCAPTCHA gagal. Silakan coba lagi.')
+        return
+      }
+
+      const verify = await verifyRes.json()
+
+      if (!verify.success || verify.score <= 0.5) {
+        setRecaptchaStatus('Verifikasi ReCAPTCHA gagal. Silakan coba lagi.')
+        return
+      }
+      setCheckingRecaptcha(false)
+      setSendingData(true)
+
+      const formData = new FormData(form)
+      const jsonData: { [key: string]: string } = {}
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value.toString()
+      })
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(jsonData),
+      })
+
+      if (!res.ok) throw new Error('Failed to send')
+
+      const result = await res.json()
+      console.log('Message sent:', result)
+
+      alert('Pesan berhasil dikirim!')
+      window.location.reload()
+    } catch (error) {
+      console.error('Error:', error)
+      alert('Gagal mengirim pesan.')
+    } finally {
+      setSendingData(false)
+    }
+  }
+
   return (
     <div className="relative w-full min-h-[calc(100vh-90px)] md:min-h-[calc(100vh-92px)] lg:min-h-[calc(100vh-108px)] flex items-center p-6 sm:p-8 md:p-12 lg:p-16 min-2xl:p-20 py-14 sm:py-16 md:py-18 lg:py-20 xl:md:py-24 2xl:py-30">
       <Image
@@ -141,7 +187,10 @@ export default function Contact({ data, domainBlob }: Props) {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="md:w-1/2 w-full mt-10 md:mt-0 flex flex-col gap-y-6">
+        <form
+          onSubmit={handleSubmit}
+          className="md:w-1/2 w-full mt-10 md:mt-0 flex flex-col gap-y-6"
+        >
           {Array.isArray(data.fieldsForm) &&
             data.fieldsForm.map((field, index) => {
               if (field.fieldLayout === 'double' && Array.isArray(field.subFields)) {
@@ -194,12 +243,22 @@ export default function Contact({ data, domainBlob }: Props) {
                 )
               }
             })}
-
+          {recaptchaStatus && (
+            <p className="mt-4 text-center text-sm text-red-600">{recaptchaStatus}</p>
+          )}
           <button
             type="submit"
-            className="bg-[#00DB05] text-white py-3 font-semibold transition rounded-lg text-[12px] sm:text-[14px] lg:text-[16px] 2xl:text-[18px] cursor-pointer"
+            disabled={checkingRecaptcha || sendingData}
+            className="text-white py-3 font-semibold transition rounded-lg text-[12px] sm:text-[14px] lg:text-[16px] 2xl:text-[18px] cursor-pointer hover:bg-gray-500"
+            style={{
+              backgroundColor: checkingRecaptcha || sendingData ? '#6a7282' : data.buttonSectionColor || '#00DB05',
+            }}
           >
-            KIRIM PESAN
+            {checkingRecaptcha
+              ? 'Validasi Recaptcha...'
+              : sendingData
+                ? 'Mengirim...'
+                : 'KIRIM PESAN'}
           </button>
         </form>
       </div>

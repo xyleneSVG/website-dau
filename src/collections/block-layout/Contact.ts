@@ -1,3 +1,4 @@
+import { colorPickerField } from '@innovixx/payload-color-picker-field'
 import type { Block } from 'payload'
 
 export const ContactSection: Block = {
@@ -30,6 +31,12 @@ export const ContactSection: Block = {
       label: 'Section Description',
       required: true,
     },
+    colorPickerField({
+      name: 'buttonSectionColor',
+      label: 'Button Section Color',
+      required: false,
+      defaultValue: '#00DB05'
+    }),
     {
       name: 'fieldsForm',
       type: 'array',

@@ -120,6 +120,7 @@ export interface ContactSection {
   sectionLabel: string
   sectionHeadline: string
   sectionDescription: string
+  buttonSectionColor: string
   fieldsForm: FieldForm[]
 }
 

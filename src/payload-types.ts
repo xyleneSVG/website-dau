@@ -72,8 +72,6 @@ export interface Config {
     footer: Footer;
     reciveMessage: ReciveMessage;
     users: User;
-    messageFromGuests: MessageFromGuest;
-    messageFieldConfiguration: MessageFieldConfiguration;
     groupPage: GroupPage;
     mediaHero: MediaHero;
     mediaServices: MediaService;
@@ -108,8 +106,6 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
     reciveMessage: ReciveMessageSelect<false> | ReciveMessageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    messageFromGuests: MessageFromGuestsSelect<false> | MessageFromGuestsSelect<true>;
-    messageFieldConfiguration: MessageFieldConfigurationSelect<false> | MessageFieldConfigurationSelect<true>;
     groupPage: GroupPageSelect<false> | GroupPageSelect<true>;
     mediaHero: MediaHeroSelect<false> | MediaHeroSelect<true>;
     mediaServices: MediaServicesSelect<false> | MediaServicesSelect<true>;
@@ -416,6 +412,7 @@ export interface ContactSection {
   sectionLabel: string;
   sectionHeadline: string;
   sectionDescription: string;
+  buttonSectionColor?: string | null;
   fieldsForm: {
     fieldLayout: 'single' | 'double';
     fieldId: string;
@@ -1255,69 +1252,6 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messageFromGuests".
- */
-export interface MessageFromGuest {
-  id: number;
-  /**
-   * This will store guests message based on configured
-   */
-  messageGuests?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messageFieldConfiguration".
- */
-export interface MessageFieldConfiguration {
-  id: number;
-  computedTitle?: string | null;
-  /**
-   * For show on frontend
-   */
-  fieldLabel: string;
-  fieldName: string;
-  fieldPlaceholder?: string | null;
-  fieldType: 'text' | 'email' | 'number' | 'textarea' | 'select';
-  selectOptions?:
-    | {
-        /**
-         * For show on frontend
-         */
-        optionLabel: string;
-        optionValue: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * By enabling styling, can make the current field into 2 input columns in one row
-   */
-  styling?: boolean | null;
-  /**
-   * For show on frontend
-   */
-  parallelFieldLabel?: string | null;
-  parallelFieldName?: string | null;
-  parallelFieldPlaceholder?: string | null;
-  parallelFieldType?: ('text' | 'email' | 'number') | null;
-  /**
-   * By enabling required, can make the current field mandatory on the frontend.
-   */
-  required?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mediaListWithIconAndDescription".
  */
 export interface MediaListWithIconAndDescription {
@@ -1361,14 +1295,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
-      } | null)
-    | ({
-        relationTo: 'messageFromGuests';
-        value: number | MessageFromGuest;
-      } | null)
-    | ({
-        relationTo: 'messageFieldConfiguration';
-        value: number | MessageFieldConfiguration;
       } | null)
     | ({
         relationTo: 'groupPage';
@@ -1639,6 +1565,7 @@ export interface ContactSectionSelect {
   sectionLabel?: boolean;
   sectionHeadline?: boolean;
   sectionDescription?: boolean;
+  buttonSectionColor?: boolean;
   fieldsForm?:
     | boolean
     | {
@@ -2068,41 +1995,6 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messageFromGuests_select".
- */
-export interface MessageFromGuestsSelect<T extends boolean = true> {
-  messageGuests?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "messageFieldConfiguration_select".
- */
-export interface MessageFieldConfigurationSelect<T extends boolean = true> {
-  computedTitle?: T;
-  fieldLabel?: T;
-  fieldName?: T;
-  fieldPlaceholder?: T;
-  fieldType?: T;
-  selectOptions?:
-    | T
-    | {
-        optionLabel?: T;
-        optionValue?: T;
-        id?: T;
-      };
-  styling?: T;
-  parallelFieldLabel?: T;
-  parallelFieldName?: T;
-  parallelFieldPlaceholder?: T;
-  parallelFieldType?: T;
-  required?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
