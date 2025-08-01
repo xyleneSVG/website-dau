@@ -162,7 +162,6 @@ export default function Footer({ data, domainBlob }: Props) {
                 </div>
 
                 {/* LG+: Split jika > 3 items */}
-                {/* LG+: Tetap justify-around tapi heading sejajar */}
                 <div className="hidden lg:block">
                   <div className="flex justify-around items-start text-white font-light text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px]">
                     <div className="flex flex-col text-left">
@@ -230,14 +229,14 @@ export default function Footer({ data, domainBlob }: Props) {
               <div
                 className={`flex flex-col ${
                   // SM dan LG+: Logika flex berdasarkan jumlah data
-                  data.footerNavigation[1]?.navigationGroupItem.length > 3 &&
-                  data.footerNavigation[0]?.navigationGroupItem.length <= 3
+                  data.footerNavigation[1]?.navigationGroupItem.length > 6 &&
+                  data.footerNavigation[0]?.navigationGroupItem.length <= 6
                     ? 'sm:flex-[2] md:flex-1 lg:flex-[2]'
-                    : data.footerNavigation[1]?.navigationGroupItem.length > 3 &&
-                        data.footerNavigation[0]?.navigationGroupItem.length > 3
+                    : data.footerNavigation[1]?.navigationGroupItem.length > 6 &&
+                        data.footerNavigation[0]?.navigationGroupItem.length > 6
                       ? 'sm:flex-[1.3] md:flex-1 lg:flex-[1.3]'
-                      : data.footerNavigation[1]?.navigationGroupItem.length <= 3 &&
-                          data.footerNavigation[0]?.navigationGroupItem.length > 3
+                      : data.footerNavigation[1]?.navigationGroupItem.length <= 6 &&
+                          data.footerNavigation[0]?.navigationGroupItem.length > 6
                         ? 'sm:flex-[0.7] md:flex-1 lg:flex-[0.7]'
                         : 'flex-1'
                 }`}
