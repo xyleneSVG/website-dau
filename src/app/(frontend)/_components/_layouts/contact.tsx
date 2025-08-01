@@ -33,10 +33,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     const result = await res.json()
     console.log('Message sent:', result)
-    alert('Pesan berhasil dikirim!')
   } catch (error) {
     console.error('Send error:', error)
-    alert('Gagal mengirim pesan.')
   }
 }
 
