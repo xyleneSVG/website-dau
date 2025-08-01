@@ -5,6 +5,7 @@ import { useLivePreview } from '@payloadcms/live-preview-react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import {
   Phone,
   ArrowRight,
@@ -260,7 +261,17 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       {fetchedNavbar && (
         <Navbar data={navbarData} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
       )}
-      {pageData.pageSection?.map((section, index) => renderSection(section, index))}
+      <GoogleReCaptchaProvider
+        reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+        scriptProps={{
+          async: true,
+          defer: true,
+          appendTo: 'head',
+          nonce: undefined,
+        }}
+      >
+        {pageData.pageSection?.map((section, index) => renderSection(section, index))}
+      </GoogleReCaptchaProvider>
       {fetchedFooter && <Footer data={footerData} domainBlob={domainBlob} />}
     </div>
   )
