@@ -19,7 +19,7 @@ export default function CardWithImageComponent({
           src={image}
           alt={title || ''}
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       <div className="p-4 md:p-6">
