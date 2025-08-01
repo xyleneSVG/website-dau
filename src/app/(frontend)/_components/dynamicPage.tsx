@@ -75,6 +75,7 @@ import { getDataFooter } from '../_functions/getDataFooter'
 
 export default function DynamicPage({ slug }: DynamicPageProps) {
   const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
   const [fetchedPage, setFetchedPage] = useState<Page | null>(null)
   const [fetchedNavbar, setFetchedNavbar] = useState<NavbarData | null>(null)
   const [fetchedFooter, setFetchedFooter] = useState<FooterData | null>(null)
@@ -118,14 +119,16 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         const footerData = await getDataFooter()
 
         if (!result || result.length === 0) {
-          router.replace('/not-found')
-        } else {
-          setFetchedPage(result[0] as unknown as Page)
-          setFetchedNavbar(navbarData as unknown as NavbarData)
-          setFetchedFooter(footerData as unknown as FooterData)
+          setNotFound(true)
+          return
         }
+
+        setFetchedPage(result[0] as unknown as Page)
+        setFetchedNavbar(navbarData as unknown as NavbarData)
+        setFetchedFooter(footerData as unknown as FooterData)
       } catch (err) {
         console.error(err)
+        setNotFound(true)
       } finally {
         setLoading(false)
       }
@@ -169,7 +172,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
       case 'imageGridCarouselSection':
         return <ImageGridCarousel key={index} data={section} domainBlob={domainBlob} />
       case 'contactSection':
-        return <Contact key={index} contactSection={section} domainBlob={domainBlob} />
+        return <Contact key={index} data={section} domainBlob={domainBlob} />
       case 'illustrationWithTextAndCarouselSection':
         return (
           <IllustrationWithTextAndCarousel key={index} data={section} domainBlob={domainBlob} />
@@ -250,7 +253,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
     )
   }
 
-  if (!pageData) return <NotFound />
+  if (notFound || !pageData) return <NotFound />
 
   return (
     <div>

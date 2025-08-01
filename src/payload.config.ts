@@ -45,6 +45,7 @@ import { MediaGridImage } from './collections/storage/MediaGridImage'
 import { MediaIconListWithSideImages } from './collections/storage/MediaIconListWithSideImages'
 import { MediaNavbar } from './collections/storage/MediaNavbar'
 import { MediaFooter } from './collections/storage/MediaFooter'
+import { ReciveMessage } from './collections/ReciveMessage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,13 +67,14 @@ export default buildConfig({
         }
         return process.env.NEXT_PUBLIC_SERVER_URL || ''
       },
-      collections: ['pages', 'navbar'],
+      collections: ['pages', 'navbar', 'footer'],
     },
   },
   collections: [
     Pages,
     Navbar,
     Footer,
+    ReciveMessage,
     Users,
     MessageFromGuests,
     MessageFieldConfiguration,

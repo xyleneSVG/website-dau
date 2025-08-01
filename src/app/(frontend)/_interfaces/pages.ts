@@ -116,32 +116,39 @@ export interface GridCarouselLists {
 export interface ContactSection {
   id: string
   blockType: 'contactSection'
-  sectionContactIllustration: ImageItem
-  sectionContactLabel: string
-  sectionContactHeadline: string
-  sectionContactDescription: string
-  fieldContactLists: FieldContactLists[]
+  sectionIllustration: ImageItem
+  sectionLabel: string
+  sectionHeadline: string
+  sectionDescription: string
+  fieldsForm: FieldForm[]
 }
 
-export interface FieldContactLists {
+export interface FieldForm {
   id: string
+  fieldLayout: "single" | "double"
+  fieldId: string
   fieldLabel: string
-  fieldName: string
+  fieldTypeSingle: "text" | "number" | "email" | "textarea" | "radio"
   fieldPlaceholder: string
-  fieldType: string
-  selectOptions: SelectOptions[]
-  styling: boolean
-  parallelFieldLabel: string
-  parallelFieldName: string
-  parallelFieldPlaceholder: string
-  parallelFieldType: string
-  required: boolean
+  fieldTypeDouble: "text" | "number" | "email"
+  fieldRequired: boolean
+  fieldRadioOptions: OptionRadio[]
+  subFields: SubFields[]
 }
 
-export interface SelectOptions {
+export interface OptionRadio {
   id: string
-  optionLabel: string
-  optionValue: string
+  optionRadioValue: string
+  optionRadioLabel: string
+}
+
+export interface SubFields {
+  id: string
+  subFieldId: string
+  subFieldLabel: string
+  subFieldPlaceholder: string
+  subFieldType: "text" | "number" | "email"
+  subFieldRequired: boolean
 }
 
 // Illustration With Text And Carousel
