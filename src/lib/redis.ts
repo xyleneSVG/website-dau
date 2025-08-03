@@ -15,7 +15,7 @@ await client.connect()
 
 export const CACHE_EXPIRED_1_MIN = 60
 export const CACHE_EXPIRED_5_MIN = 60 * 5
-export const CACHE_EXPIRED_15_MIN = 60 * 15
+export const CACHE_EXPIRED_15_MIN = 60 * 15 
 export const CACHE_EXPIRED_30_MIN = 60 * 30
 export const CACHE_EXPIRED_1_HOUR = 60 * 60
 export const CACHE_EXPIRED_1_DAY = 60 * 60 * 24

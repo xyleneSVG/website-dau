@@ -7,21 +7,30 @@ import { CACHE_EXPIRED_5_MIN, client } from '@/lib/redis'
 export async function getDataFooter() {
   const payload = await getPayload({ config: await configPromise })
 
-  const resultRedistCache = await client.get('footerCache')
-
-  if (resultRedistCache) {
-    const parsedCache = JSON.parse(resultRedistCache)
-    console.log(parsedCache)
-    return parsedCache
+  try {
+    const resultRedistCache = await client.get('footerCache')
+    if (resultRedistCache) {
+      const parsedCache = JSON.parse(resultRedistCache)
+      console.log('[Redis] Footer from cache:', parsedCache)
+      return parsedCache
+    }
+  } catch (err) {
+    console.error('Redis error (footer get):', err)
   }
-
   const resultFind = await payload.find({
     collection: 'footer',
     where: { active: { equals: true } },
-    sort: 'createdAt',
+    sort: '-createdAt',
     limit: 1,
   })
-  await client.set('footerCache', JSON.stringify(resultFind.docs[0]), {EX: CACHE_EXPIRED_5_MIN})
+  const footer = resultFind?.docs?.[0]
+  if (footer) {
+    try {
+      await client.set('footerCache', JSON.stringify(footer), { EX: CACHE_EXPIRED_5_MIN })
+    } catch (err) {
+      console.error('Redis error (footer set):', err)
+    }
+  }
 
-  return resultFind.docs[0]
+  return footer ?? null
 }
