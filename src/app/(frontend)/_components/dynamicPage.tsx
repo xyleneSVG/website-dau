@@ -259,7 +259,7 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
   return (
     <div>
       {fetchedNavbar && (
-        <Navbar data={navbarData} domainBlob={domainBlob} getLucideIcon={getLucideIcon} />
+        <Navbar data={navbarData} domainBlob={domainBlob} getLucideIcon={getLucideIcon} page={pageData} />
       )}
       <GoogleReCaptchaProvider
         reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}

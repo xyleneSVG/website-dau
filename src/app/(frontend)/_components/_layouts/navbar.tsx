@@ -3,30 +3,29 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { X, Menu, Triangle, Phone, LucideIcon } from 'lucide-react'
 
 import type { NavbarData } from '../../_interfaces/navbars'
+import { Page } from '../../_interfaces/pages'
 
 interface Props {
   data: NavbarData
   domainBlob: string
   getLucideIcon: (name?: string) => LucideIcon | null
+  page: Page
 }
 
-export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
+export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props) {
   const [isOpenNavbar, setIsOpenNavbar] = useState(false)
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
-  const [openDropdown, setOpenDropdown] = useState<'layanan' | 'portofolio' | null>(null)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [language, setLanguage] = useState<'default' | 'en' | 'id'>('default')
   const [deviceLang, setDeviceLang] = useState<'en' | 'id'>('en')
   const [isLangOpen, setIsLangOpen] = useState(false)
 
-  const pathname = usePathname()
-
   const toggleNavbar = () => setIsOpenNavbar(!isOpenNavbar)
 
-  const handleDropdown = (dropdown: 'layanan' | 'portofolio') => {
+  const handleDropdown = (dropdown: string) => {
     setOpenDropdown((prev) => (prev === dropdown ? null : dropdown))
   }
 
@@ -102,7 +101,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
               {Array.isArray(data.navbarItemArray) &&
                 data.navbarItemArray.map((item) => {
                   const itemPath = item.navbarItemReference?.pageKey || '/'
-                  const isActive = pathname === itemPath || (pathname === '/' && itemPath === '/')
+                  const isActive = page.pageKey === itemPath
                   const isDropdown = item.hasDropdown
 
                   return (
@@ -110,9 +109,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
                       {isDropdown ? (
                         <>
                           <button
-                            onClick={() =>
-                              handleDropdown(item.navbarItemName.toLowerCase() as any)
-                            }
+                            onClick={() => handleDropdown(item.navbarItemName.toLowerCase() as any)}
                             className="flex items-center gap-2"
                           >
                             <p>{item.navbarItemName}</p>
@@ -127,7 +124,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
 
                           <div
                             className={`absolute left-0 top-full mt-2 w-full md:w-max bg-white rounded-xl shadow-xl z-50 ${dropdownAnimationClass(
-                              openDropdown === item.navbarItemName.toLowerCase()
+                              openDropdown === item.navbarItemName.toLowerCase(),
                             )}`}
                           >
                             <div
@@ -220,7 +217,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon }: Props) {
 
                 <div
                   className={`absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-50 ${dropdownAnimationClass(
-                    isLangOpen
+                    isLangOpen,
                   )}`}
                 >
                   <ul className="py-2 px-3 space-y-2 text-sm md:text-base">
