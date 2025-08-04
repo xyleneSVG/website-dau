@@ -19,8 +19,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
   const [isOpenNavbar, setIsOpenNavbar] = useState(false)
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [language, setLanguage] = useState<'default' | 'en' | 'id'>('default')
-  const [deviceLang, setDeviceLang] = useState<'en' | 'id'>('en')
+  const [language, setLanguage] = useState<'en' | 'id'>('id')
   const [isLangOpen, setIsLangOpen] = useState(false)
 
   const toggleNavbar = () => setIsOpenNavbar(!isOpenNavbar)
@@ -31,17 +30,13 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
 
   useEffect(() => {
     const lang = navigator.language || navigator.languages?.[0] || 'en'
-    setDeviceLang(lang.startsWith('id') ? 'id' : 'en')
+    const initialLang = lang.startsWith('id') ? 'id' : 'en'
+    setLanguage(initialLang)
   }, [])
 
   const languageMap: Record<string, string> = {
     en: 'English',
     id: 'Bahasa Indonesia',
-    default: 'Default',
-  }
-
-  const getLanguageLabel = () => {
-    return language === 'default' ? languageMap[deviceLang] : languageMap[language]
   }
 
   const dropdownAnimationClass = (isOpen: boolean) =>
@@ -54,7 +49,6 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
       className="w-full h-max flex flex-col p-6 md:px-12 min-2xl:px-20 sticky top-0 z-50"
       style={{ background: 'linear-gradient(0deg, #D9D9D9 -20.5%, #FFFFFF 39.75%)' }}
     >
-      {/* Mobile Toggle */}
       <div className="flex flex-row justify-between items-center md:hidden">
         <Image
           src={domainBlob + data.navbarLogo?.filename}
@@ -80,9 +74,8 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
         </div>
       </div>
 
-      {/* Navbar Content */}
       <div
-        className={`transition-all duration-700 ease-in-out overflow-hidden md:overflow-visible ${
+        className={`transition-all duration-700 ease-in-out overflow-visible md:overflow-visible ${
           isOpenNavbar ? 'max-h-[1000px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
         } md:max-h-full md:opacity-100 md:visible md:block`}
       >
@@ -151,6 +144,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
                                           )}
                                         </div>
                                         <p
+                                          onClick={() => setHoveredDropdown(dropdown.id)}
                                           onMouseEnter={() => setHoveredDropdown(dropdown.id)}
                                           onMouseLeave={() => setHoveredDropdown(null)}
                                           style={{
@@ -188,7 +182,6 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
                 })}
             </ul>
 
-            {/* Contact & Language Selector */}
             <ul className="flex flex-col gap-4 md:flex-row md:items-center md:gap-5 2xl:gap-10">
               {data.hasButtonContact && (
                 <li>
@@ -202,12 +195,12 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
                   </Link>
                 </li>
               )}
-              <li className="relative">
+              <li className="relative z-50">
                 <button
                   onClick={() => setIsLangOpen((prev) => !prev)}
                   className="flex items-center gap-2 text-[14px] md:text-[16px] lg:text-[18px] xl:text-[18px] 2xl:text-[24px]"
                 >
-                  {getLanguageLabel()}
+                  {languageMap[language]}
                   <Triangle
                     className={`size-2 md:size-3 fill-current text-black stroke-none transition-transform duration-300 ${
                       isLangOpen ? 'rotate-0' : 'rotate-180'
@@ -216,26 +209,18 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
                 </button>
 
                 <div
-                  className={`absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-50 ${dropdownAnimationClass(
+                  className={`absolute mt-2 md:mt-3 w-max bg-white shadow-lg rounded-lg z-50 ${dropdownAnimationClass(
                     isLangOpen,
-                  )}`}
+                  )} left-0 md:left-auto md:right-0 whitespace-nowrap`}
+                  style={{ top: '100%' }}
                 >
-                  <ul className="py-2 px-3 space-y-2 text-sm md:text-base">
-                    <li
-                      onClick={() => {
-                        setLanguage('default')
-                        setIsLangOpen(false)
-                      }}
-                      className="cursor-pointer hover:text-blue-500 transition-colors duration-200"
-                    >
-                      Default (Device Language)
-                    </li>
+                  <ul className="py-2 px-3 md:py-3 md:px-4 space-y-2 text-[12px] sm:text-[14px] md:text-[16px] xl:text-[18px] 2xl:text-[20px] text-left">
                     <li
                       onClick={() => {
                         setLanguage('en')
                         setIsLangOpen(false)
                       }}
-                      className="cursor-pointer hover:text-blue-500 transition-colors duration-200"
+                      className="cursor-pointer hover:text-[#00DB05] transition-colors duration-200"
                     >
                       English
                     </li>
@@ -244,7 +229,7 @@ export default function Navbar({ data, domainBlob, getLucideIcon, page }: Props)
                         setLanguage('id')
                         setIsLangOpen(false)
                       }}
-                      className="cursor-pointer hover:text-blue-500 transition-colors duration-200"
+                      className="cursor-pointer hover:text-[#00DB05] transition-colors duration-200"
                     >
                       Bahasa Indonesia
                     </li>
