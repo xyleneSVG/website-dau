@@ -94,6 +94,26 @@ export default buildConfig({
     MediaNavbar,
     MediaFooter,
   ],
+  localization: {
+    locales: [
+      {
+        label: {
+          en: 'English',
+          id: 'Inggris',
+        },
+        code: 'en',
+      },
+      {
+        label: {
+          en: 'Indonesia',
+          id: 'Indonesia',
+        },
+        code: 'id',
+      },
+    ],
+    defaultLocale: 'id',
+    fallback: true,
+  },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -2,28 +2,35 @@
 
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { CACHE_EXPIRED_5_MIN, client } from '@/lib/redis' 
+import { CACHE_EXPIRED_5_MIN, client } from '@/lib/redis'
 
-
-export async function getDataPages(path: string) {
+export async function getDataPages(pathWithQuery: string) {
   const payload = await getPayload({ config: await configPromise })
 
-  const resultRedistCache = await client.get(`pageCache:${path}`)
+  const url = new URL(`${process.env.NEXT_PUBLIC_SERVER_URL}${pathWithQuery}`)
+  const pathname = url.pathname
+  const rawLocale = url.searchParams.get('locale') ?? ''
+  const locale = (['en', 'id'].includes(rawLocale) ? rawLocale : 'id') as 'en' | 'id'
+
+  const cacheKey = `pageCache:${pathname}:${locale}`
+
+  const resultRedistCache = await client.get(cacheKey)
 
   if (resultRedistCache) {
-    const parsedCache = JSON.parse(resultRedistCache)
-    console.log(parsedCache)
-    return parsedCache
+    return JSON.parse(resultRedistCache)
   }
 
   const resultFind = await payload.find({
     collection: 'pages',
-    where: { pageKey: { equals: path } },
+    where: { pageKey: { equals: pathname } },
     sort: 'createdAt',
     limit: 1,
+    locale,
   })
 
-  await client.set(`pageCache:${path}`, JSON.stringify(resultFind.docs), {EX: CACHE_EXPIRED_5_MIN});
+  await client.set(cacheKey, JSON.stringify(resultFind.docs), {
+    EX: CACHE_EXPIRED_5_MIN,
+  })
 
   return resultFind.docs
 }

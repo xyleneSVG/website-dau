@@ -1,21 +1,25 @@
-import { Fragment } from "react";
-import DynamicPage from "../_components/dynamicPage";
+import { Fragment } from 'react'
+import DynamicPage from '../_components/dynamicPage'
 import { RefreshRouteOnSave } from '../RefreshRouteOnSave'
 
-type Params = { slug?: string[] };
+type Params = { slug?: string[] }
 
 interface PageProps {
-  params: Promise<Params>;
+  params: Params
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default async function Page({ params }: PageProps) {
-  const { slug: slugArray } = await params; 
-  const slug = slugArray ? `/${slugArray.join('/')}` : '/';
-  console.log("1: " + slug);
+export default async function Page({ params, searchParams }: PageProps) {
+  const slugArray = params?.slug
+  const slugPath = slugArray ? `/${slugArray.join('/')}` : '/'
+
+  const query = new URLSearchParams(searchParams as Record<string, string>).toString()
+  const fullSlug = query ? `${slugPath}?${query}` : slugPath
+
   return (
     <Fragment>
       <RefreshRouteOnSave />
-      <DynamicPage slug={slug} />
+      <DynamicPage slug={fullSlug} />
     </Fragment>
-  );
+  )
 }

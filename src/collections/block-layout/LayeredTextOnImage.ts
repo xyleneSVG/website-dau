@@ -14,12 +14,14 @@ export const LayeredTextOnImageSection: Block = {
       type: 'text',
       label: 'Section Title',
       required: true,
+      localized: true
     },
     {
       name: 'sectionSubtitle',
       type: 'text',
       label: 'Section Subtitle',
-      required: true
+      required: true,
+      localized: true
     },
     {
       name: 'sectionBackground',
