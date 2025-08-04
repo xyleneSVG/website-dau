@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { getPayload } from 'payload'
 import { RefreshRouteOnSave } from './RefreshRouteOnSave'
 import configPromise from '@payload-config'
